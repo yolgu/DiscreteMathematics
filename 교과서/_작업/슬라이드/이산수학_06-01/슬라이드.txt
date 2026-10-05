@@ -1,0 +1,186 @@
+5. 관계의 폐포-1
+
+ 폐포(Closure)
+   ▪ 집합 A에 대한 관계 R이 가질 수 있는 성질 P에
+     대해 A에 대한 관계 S가 R을 포함하면서 성질 P를
+     가지면 S를 R에 대한 P의 폐포라고 한다.
+
+ 반사폐포(Reflexive Closure)
+   ▪ 집합 A에 대해, 관계 R을 포함하면서 반사관계를
+     갖는 관계 SR=R∪{(a, a)|a∈A}
+
+ 대칭폐포(Symmetric Closure)
+   ▪ 집합 A에 대해, 관계 R을 포함하면서 대칭관계를
+     갖는 관계 SS=R∪{(b, a)∈A×A|(a, b)∈R}=R∪R-1
+
+                                        COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+5. 관계의 폐포-2
+
+▪ [예제] 집합 A={1,2,3}에 대한 관계 R={(1,1), (1,2),
+
+(2,3), (3,1)}일 때 반사폐포 SR과 대칭폐포 SS?
+
+-SR={(1,1), (1,2), (2,2), (2,3), (3,1), (3,3)}
+
+SS={(1,1), (1,2), (1,3), (2,1), (2,3), (3,1), (3,2)}
+
+반사폐포 SR  관계 R  대칭폐포 SS
+
+110      110   111
+
+011      001   101
+
+101      100   110
+
+1·       1·    1·
+
+2· ·3 2· ·3 2· ·3
+
+COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+5. 관계의 폐포-3
+
+ 추이폐포(Transitive Closure)
+   ▪ 집합 A에 대해, 관계 R을 포함하면서 추이관계를
+     갖는 관계 ST=R∪{(a, c)∈A×A|(a, b)∈R∧(b, c)∈R}
+   ▪ [예제] 집합 A={1, 2, 3}에 대한 관계 R={(1,1),
+     (1,2), (1,3), (3,3)}일 때 추이폐포 ST?
+
+                              111 111
+      MST2=MST⊙MST= 0 0 0 ⊙ 0 0 0 =MST
+
+                              001 001
+
+      Rn⊆R이므로 R은 추이관계
+      ∴ ST=R={(1,1), (1,2), (1,3), (3,3)}
+
+                                        COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+5. 관계의 폐포-4
+
+ 연결관계(Connectivity Relation) R*
+   ▪ 원소의 개수가 n인 집합 A에 대한 관계 R에 대하여,
+             R*=‫∞ڂ‬������=������ ������������=R1∪R2∪…∪Rn∪…
+
+                                        COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+5. 관계의 폐포-5
+
+   ▪ [정리 6-2] 연결관계 R*는 관계 R의 추이폐포다.
+   ▪ (증명)
+
+       (a, b)∈R*, (b, c)∈R*라고 가정하면,
+       자연수 m, n에 대하여 (a, b)∈Rm, (b, c)∈Rn이다.
+       (a, b)∈Rm의 경우 x1, x2,…, xm-1에 대하여,
+       (a, x1)∈R, (x1, x2)∈R, …, (xm-2, xm-1)∈R, (xm-1, b)∈R.
+       (b, c)∈Rn의 경우 y1, y2,…, yn-1에 대하여,
+       (b, y1)∈R, (y1, y2)∈R, …, (yn-2, yn-1)∈R, (yn-1, c)∈R.
+       (a, c)∈Rm+n ⇒ (a, c)∈R*이므로 R*는 추이관계.
+       R*가 R을 포함하면서(R*=R∪…) 추이관계이므로
+       연결관계 R*는 관계 R의 추이폐포다.
+
+                                        COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+5. 관계의 폐포-6
+
+   ▪ [예제] 집합 A={1, 2, 3}에 대한 관계 R={(1,1),
+     (1,2), (2,3), (3,1)}일 때 추이폐포 ST를 구하시오.
+
+       -|A|=3이므로 거듭제곱 3번하여 연결관계 구한다.
+                                      110 110 111
+
+         R2=R1∘R=MR1⊙MR= 0 0 1 ⊙ 0 0 1 = 1 0 0
+                                      100 100 110
+                                      111 110 111
+
+         R3=R2∘R=MR2⊙MR= 1 0 0 ⊙ 0 0 1 = 1 1 0
+                                      110 100 111
+
+                     110 111 111 1 1 1
+         ST=R*= 0 0 1 ∨ 1 0 0 ∨ 1 1 0 = 1 1 1
+
+                     100 110 111 1 1 1
+
+                                        COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+6. 동치관계와 부분순서관계
+
+ 1) 동치관계
+ 2) 부분순서관계
+
+                                        COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+6-1) 동치관계-1
+
+ 동치관계(Equivalence Relation)
+
+   ▪ 반사관계, 대칭관계, 추이관계가 모두 성립하는
+
+     관계 R
+   ▪ [예제] 집합 A={1, 2, 3}에 대한 관계 R={(1, 1),
+
+      (1, 2), (2, 1), (2, 2), (3, 3)}이 동치관계인가?
+                                  110 110 110
+
+      R2=R∘R=MR⊙MR= 1 1 0 ⊙ 1 1 0 = 1 1 0 =R
+                                  001 001 001
+
+      R2⊆R, R3⊆R → Rn⊆R ∴ R은 추이관계
+      관계 R은 반사관계, 대칭관계, 추이관계가
+
+       모두 성립하는 동치관계이다.
+
+                                        COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+6-1) 동치관계-2
+
+▪ [예제 6-30] 정수 집합 Z에 대한 관계 R
+ ={(a, b)∈Z×Z|b=a mod n, n≥2, n인 정수}일 때
+ 관계 R이 동치관계인가?
+
+-b=a mod n ≡ a-b=kn
+
+a-a=0 (k=0)          ∴ 관계 R은 반사관계
+
+a-b=kn → b-a=-kn     ∴ 관계 R은 대칭관계
+
+a-b=kn & b-c=ln → a-c=(k+l)n
+
+즉, (a, b)∈R ∧ (b, c)∈R → (a, c)∈R
+
+                     ∴ 관계 R은 추이관계
+
+∴ 관계 R은 동치관계이다.
+
+COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+6-1) 동치관계-3
+
+ 동치류(Equivalence Class) [a]
+   ▪ 집합 A에 대한 관계 R이 동치관계일 때, 집합 A의
+     각 원소 a와 순서쌍을 이루는 원소들의 집합
+             [a] = {x|(a, x)∈R}
+   ▪ [예제 6-31] 집합 A={1, 2, 3, 4}에 대한 관계
+     R={(1,1), (1,2), (2,1), (2,2), (3,3), (3,4), (4,3), (4,4)}의
+
+      각 원소에 대한 동치류를 구하시오.
+
+      -[1]=[2]={1, 2}, [3]=[4]={3, 4}
+
+                                        COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+6-1) 동치관계-4
+
+ 동치류와 분할
+
+▪ 집합 A에 대한 관계 R이 동치관계일 때, 동치류
+
+집합 S={A1, A2, …, Ak}의 특징은 다음과 같다.
+
+⑴ i=1, 2, ..., k일 때 Ai≠Ø (Ai⊆A)
+
+⑵ A=A1∪A2∪…∪Ak  ⑶ i≠j면 Ai∩Aj=Ø
+
+▪ [예제 6-33] 집합 A={1, 2, 3, 4}에 대한 관계
+
+R={(1,1), (1,2), (2,1), (2,2), (3,3), (3,4), (4,3), (4,4)}의
+
+동치류 집합이 분할임을 증명하시오.
+
+-S={{1, 2}, {3, 4}}; A1={1, 2}, A2={3, 4}
+ ⑴ A1≠Ø, A2≠Ø, ⑵ A=A1∪A2={1, 2, 3, 4},
+ ⑶ A1∩A2=Ø ∴ 동치류 집합 S는 집합 A의 분할
+
+COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+

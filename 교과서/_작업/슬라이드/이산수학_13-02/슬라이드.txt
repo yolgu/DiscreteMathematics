@@ -1,0 +1,162 @@
+3. 정규식의 간략화
+
+ 1) 부울대수법칙을 이용한 간략화
+ 2) 카르노맵을 이용한 간략화
+
+                                        COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+3-1) 부울대수법칙 이용 간략화
+
+▪ f(w, x, y, z)=wxyz +wxyz' +wxy'z'
+
++wx'yz+wx'yz'+wx'y'z'+wx'y'z
+
+                    +w'x'y'z'
+
+=wxyz+wx'yz + wxyz'+wx'yz' + wxy'z'+wx'y'z'
+
++wx'yz+wx'yz'+wx'y'z'+wx'y'z
+
++wx'y'z'+w'x'y'z'                    (교환·멱등)
+
+=wyz+wyz'+wy'z' + wx' + x'y'z'       (보수·항등)
+
+=wyz+wyz' + wyz'+wy'z' +wx'+x'y'z' (멱등법칙)
+
+=wy+wz'+wx'+x'y'z'                   (보수·항등)
+
+COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+3-2) 카르노맵 이용 간략화-1
+
+ 카르노(Karnaugh) 맵을 이용한 간략화 방법
+
+   ▪ 행/열 제목의 인접한 것은 공통변수가 있도록 나열
+
+     ① n차 부울함수에 대응하는 n변수 카르노 맵 선택
+     ② 부울함수에 있는 항에 대응하는 셀에 1 표시
+     ③ 인접하는 1들을 2n, 2n-1, 2n-2, … 순으로 묶음
+
+      ④ 묶음에 있는 공통변수들을 찾아 부울합으로 묶음
+
+   ▪ 2, 3, 4 변수 부울함수에 대해서 이 방법을 사용하고,
+     5 변수 이상의 부울함수에 대해서는 퀸-맥클러스키
+
+      (Quine-McCluskey) 방법을 사용
+
+                                        COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+3-2) 카르노맵 이용 간략화-2
+
+ 2변수 부울함수용                 3변수 부울함수용
+
+       y y'                       yz yz' y'z' y'z
+   x                          x
+   x'                        x'
+
+ 4변수 부울함수용                24(=16),
+                           23(=8),
+          yz yz' y'z' y'z  22(=4), 21(=2)
+   wx
+   wx'
+  w'x'
+   w'x
+
+COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+3-2) 카르노맵 이용 간략화-3
+
+▪ f(w, x, y, z)=wxyz +wxyz' +wxy'z'
+              +wx'yz+wx'yz'+wx'y'z'+wx'y'z
+                                 +w'x'y'z'
+
+      yz yz' y'z' y'z
+
+wx 1 1 1
+
+wx' 1 1 1 1
+
+w'x'  1
+
+w'x
+
+-f(w, x, y, z)=wy+wz'+wx'+x'y'z'
+
+      COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+4. 논리게이트-1
+
+ NOT 게이트 입력 출력
+
+X        FX F
+            01
+
+            10
+
+ AND 게이트        OR 게이트
+
+X        F       X        F
+Y                Y
+
+입력 출력            입력 출력
+
+XY F             XY F
+
+   00 0             00 0
+
+   01 0             01 1
+
+   10 0             10 1
+
+   11 1             11 1
+
+   COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+4. 논리게이트-2
+
+ NAND 게이트   NOR 게이트
+
+X      F    X        F
+Y           Y
+
+입력 출력       입력  출력
+XY F        XY    F
+00 1        00    1
+01 1        01    0
+10 1        10    0
+11 0        11    0
+
+   COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+4. 논리게이트-3
+
+ XOR 게이트     XNOR 게이트
+
+X   F        X        F
+Y            Y
+
+입력  출력       입력  출력
+XY    F      XY    F
+00    0      00    1
+01    1      01    0
+10    1      10    0
+11    0      11    1
+
+X⊕Y=X'Y+XY'  X⊙Y=XY+X'Y'
+
+    COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+4. 논리게이트-4
+
+▪ [예제 11-16] 부울함수 f(x, y)=(x+y')(x'+y)를
+
+  ① 논리회로로 나타내시오.
+  ② 간략화하고 논리회로로 나타내시오.
+
+①x
+y
+                        f
+
+② f(x, y)=(x+y')(x'+y)     x                                      f
+                           y
+
+    =xx'+xy+x'y'+yy'          (분배 · 교환)
+
+    =0+xy+x'y'+0=xy+x'y' (보수/항등)
+
+    =x⊙y
+
+    COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+

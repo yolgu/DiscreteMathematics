@@ -1,0 +1,890 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>3장 집합</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body, {delimiters: [{left: '\\[', right: '\\]', display: true}, {left: '\\(', right: '\\)', display: false}], throwOnError: false, errorColor: '#cc0001', output: 'html'})"></script>
+<!-- errorColor는 print_pdf.py가 그리지 못한 수식을 찾는 표지다. 바꾸지 않는다. -->
+<link rel="stylesheet" href="textbook.css">
+</head>
+<body>
+
+<header class="chapter-opener">
+  <p class="chapter-number">3장</p>
+  <h1>집합</h1>
+</header>
+
+<section class="chapter-map">
+  <p>1장과 2장에서는 참과 거짓을 계산하고, 명제가 참임을 증명했습니다. 이 장은 그 논리를 대상을 모으는 일에 씁니다. 대상을 어떻게 한데 모아 다루고, 모은 것끼리는 어떻게 계산할 수 있을까요?</p>
+  <p>1절은 집합이 무엇인지 정하고, 집합을 적는 두 방법과 두 집합이 같다는 것의 뜻을 다룹니다. 2절은 전체집합, 공집합, 부분집합 같은 집합의 종류와 집합 사이의 포함관계를 정리합니다. 3절은 집합으로 새 집합을 만드는 연산을, 4절은 그 연산이 따르는 대수법칙을, 5절은 집합을 겹치지 않게 빠짐없이 나누는 분할을 다룹니다. 읽는 내내 한 가지를 눈여겨보세요. 집합의 정의와 연산은 모두 '원소 \(x\)가 집합 \(A\)에 속한다'는 명제에 1장의 연산자를 붙여 쓰입니다. 그래서 4절의 대수법칙은 1장의 동치 법칙과 하나하나 짝을 이룹니다.</p>
+</section>
+
+<section>
+  <h2>1. 집합의 개념</h2>
+
+  <div class="definition">
+    <p class="definition-term">집합(set)</p>
+    <p>명확한 기준에 의해 분류되어 공통된 성질을 가지며 중복되지 않는 원소(element, member)의 모임을 집합이라고 합니다. 집합은 보통 영문 대문자 \(A, B, C, \ldots\)로 나타냅니다.</p>
+  </div>
+  <p>이 정의에는 조건이 셋 들어 있습니다. 첫째, 기준이 명확해야 합니다. 어떤 대상이 모임에 드는지 안 드는지를 누가 판단해도 똑같이 가를 수 있어야 한다는 뜻입니다. '1부터 7까지의 자연수의 모임'은 집합이지만 '큰 수의 모임'은 집합이 아닙니다. 얼마나 커야 큰 수인지 사람마다 다르기 때문입니다. 1장에서 '컴퓨터 가격은 비싸다'가 명제가 아니었던 것과 같은 이유입니다.</p>
+  <p>둘째, 원소들은 그 기준이 정하는 공통된 성질을 가집니다. 셋째, 원소는 중복되지 않습니다. 같은 원소를 두 번 적어도 하나로 칩니다. 그래서 \(\{1, 1, 2, 3\}\)은 \(\{1, 2, 3\}\)과 같은 집합입니다. 원소를 적는 순서도 상관없어서 \(\{3, 2, 1\}\)도 같은 집합입니다. 집합이 따지는 것은 어떤 원소가 들어 있느냐 하나뿐입니다.</p>
+
+  <h4>집합을 적는 두 방법</h4>
+  <p><em>원소나열법</em>은 집합에 포함되는 원소를 중괄호 { } 안에 일일이 나열하는 방법입니다. 예를 들어 \(A = \{1, 2, 3, 4, 5, 6, 7\}\)입니다. 원소가 많고 규칙이 뚜렷하면 줄임표를 써서 \(A = \{1, 2, 3, \ldots, 7\}\)처럼 씁니다. 앞의 몇 개로 '1씩 커진다'는 규칙을 보여 주고, 그 규칙대로 7까지 간다는 뜻입니다.</p>
+  <p><em>조건제시법</em>은 원소의 공통 성질을 조건식으로 제시하는 방법입니다. 같은 집합을 조건제시법으로 쓰면 다음과 같습니다.</p>
+  <p>\[A = \{x \mid 0 &lt; x \le 7,\ x \in N\}\]</p>
+  <p>1장에서 본 것처럼 세로선 앞에는 원소를 나타내는 문자를, 뒤에는 원소가 만족할 조건을 씁니다. 이 식은 '0보다 크고 7 이하인 자연수 \(x\) 전체의 집합'이라고 읽습니다. \(N\)은 자연수 전체의 집합입니다. 이 책에서 자연수는 1, 2, 3, …입니다. 0을 자연수에 넣는 책도 있는데, 조건 \(0 &lt; x\)가 붙어 있으므로 어느 쪽으로 읽어도 \(A\)는 같은 집합입니다.</p>
+  <p>원소가 몇 개뿐이면 원소나열법이 간단하고, 원소가 수십 개를 넘거나 끝없이 많으면 조건제시법이 훨씬 간결합니다. 다만 조건제시법을 쓰려면 원소들이 조건식으로 적을 수 있는 공통 성질을 가져야 합니다. 원소 사이에 뚜렷한 규칙이 없으면 원소나열법으로 적을 수밖에 없습니다.</p>
+
+  <h4>수의 집합</h4>
+  <p>수의 집합에는 정해 둔 대문자가 있습니다. \(N\)은 자연수, \(Z\)는 정수, \(Q\)는 유리수, \(I\)는 무리수, \(R\)은 실수, \(C\)는 복소수 전체의 집합입니다. 유리수는 정수 \(a\), \(b\)(\(a \ne 0\))로 \(\frac{b}{a}\)처럼 분수로 나타낼 수 있는 수이고, 무리수는 그렇게 나타낼 수 없는 실수입니다. \(\sqrt{2}\)와 \(\pi\)가 무리수입니다. 실수는 유리수와 무리수를 합한 것이고, 복소수는 실수와 허수(실수가 아닌 복소수)를 합한 것입니다.</p>
+  <p>그림 3-&#8288;1은 이 관계를 나타낸 것입니다. 자연수는 정수에, 정수는 유리수에 들어 있습니다. 유리수와 무리수는 겹치지 않으며, 둘이 모여 실수가 됩니다. 이 관계를 기호로는 \(N \subset Z \subset Q\), \(R = Q \cup I\), \(R \subset C\)로 씁니다. 기호 \(\subset\)과 \(\cup\)는 2절과 3절에서 정의합니다. 다른 책에서는 이 집합들을 ℕ, ℤ, ℚ, ℝ, ℂ처럼 겹선 글자로 쓰기도 합니다.</p>
+
+  <figure>
+    <svg width="500" height="222" viewBox="0 0 500 222" role="img" aria-label="복소수 C 안에 실수 R과 허수가 있고, 실수 R 안에 유리수 Q와 무리수 I가 나란히 있으며, 유리수 안에 정수 Z, 정수 안에 자연수 N이 들어 있는 그림">
+      <rect x="4" y="4" width="492" height="214" class="fig-thin"/>
+      <text x="16" y="24" class="fig-text-strong">C (복소수)</text>
+      <rect x="20" y="34" width="340" height="174" class="fig-line"/>
+      <text x="32" y="54" class="fig-text-strong">R (실수) = Q ∪ I</text>
+      <rect x="32" y="64" width="210" height="134" class="fig-thin"/>
+      <text x="44" y="84" class="fig-text">Q (유리수)</text>
+      <rect x="44" y="94" width="186" height="78" class="fig-thin"/>
+      <text x="56" y="114" class="fig-text">Z (정수)</text>
+      <rect x="56" y="124" width="110" height="38" class="fig-node"/>
+      <text x="111" y="148" class="fig-text" text-anchor="middle">N (자연수)</text>
+      <text x="198" y="148" class="fig-text-soft" text-anchor="middle">0, −1, …</text>
+      <text x="137" y="189" class="fig-text-soft" text-anchor="middle">1/2, −0.25, …</text>
+      <rect x="254" y="64" width="94" height="134" class="fig-thin"/>
+      <text x="301" y="124" class="fig-text" text-anchor="middle">I (무리수)</text>
+      <text x="301" y="146" class="fig-text-soft" text-anchor="middle">√2, π, …</text>
+      <text x="428" y="110" class="fig-text" text-anchor="middle">허수</text>
+      <text x="428" y="128" class="fig-text-soft" text-anchor="middle">(실수가 아닌 복소수)</text>
+      <text x="428" y="146" class="fig-text-soft" text-anchor="middle">i, 1 + i, …</text>
+    </svg>
+    <figcaption>그림 3-&#8288;1 수의 집합 사이의 관계</figcaption>
+  </figure>
+
+  <h4>집합과 원소의 포함관계</h4>
+  <p>원소 \(a\)가 집합 \(A\)에 속할 때 \(a\)는 \(A\)의 원소라 하고 \(a \in A\)로 씁니다. '\(a\)는 \(A\)에 속한다' 또는 '\(a\)는 \(A\)의 원소다'라고 읽습니다. 2장에서 \(k \in Z\)를 '\(k\)는 정수다'라는 뜻으로 읽은 것이 이 기호입니다. \(a\)가 \(A\)의 원소가 아닐 때는 \(a \notin A\)로 씁니다. 기호 \(\in\)은 원소 하나와 집합 사이의 관계를 나타냅니다. 2절에서 배울 부분집합 기호가 집합과 집합 사이의 관계인 것과 구별해 두세요.</p>
+
+  <div class="definition">
+    <p class="definition-term">기수(cardinality)</p>
+    <p>집합 \(A\)가 포함하는 원소의 수를 \(A\)의 기수라 하고 \(|A|\)로 씁니다.</p>
+  </div>
+  <p>기수는 집합의 크기라고도 합니다. 절댓값과 같은 막대를 쓰지만, 막대 안에 집합이 들어 있으면 원소의 개수를 뜻합니다.</p>
+
+  <div class="example">
+    <p class="example-title">예제 3-&#8288;5</p>
+    <p>다음 집합의 기수는?</p>
+    <p>\(A = \{x \mid -4 \le x \le 4,\ x \in Z\}\), \(B = \{y \mid -3 \le y \le 3,\ y \in Q\}\), \(C = \{z \mid z^3 = 2,\ z \in Z\}\)</p>
+    <p class="solution-label">풀이</p>
+    <p>\(A\)는 −4 이상 4 이하의 정수 전체입니다. 원소나열법으로 쓰면 \(A = \{-4, -3, -2, -1, 0, 1, 2, 3, 4\}\)이고, 0도 정수이므로 빠뜨리지 않습니다. \(|A| = 9\)입니다.</p>
+    <p>\(B\)는 −3 이상 3 이하의 유리수 전체입니다. 두 유리수 사이에는 언제나 또 다른 유리수가 있습니다. 예를 들어 \(\frac{1}{3}\)과 \(\frac{1}{2}\) 사이에는 두 수의 평균 \(\frac{5}{12}\)가 있고, \(\frac{1}{3}\)과 \(\frac{5}{12}\) 사이에는 다시 그 평균이 있습니다. 이 일이 끝없이 이어지므로 \(B\)의 원소는 끝없이 많습니다. 정수였다면 1과 2 사이에 원소가 하나도 없었을 것입니다. 이럴 때 \(|B| = \infty\)로 씁니다.</p>
+    <p>\(C\)는 세제곱해서 2가 되는 정수의 집합입니다. \(1^3 = 1\)이고 \(2^3 = 8\)이므로 2는 그 사이에 있고, 0이나 음수의 세제곱은 0 이하입니다. 따라서 그런 정수는 없습니다. 실수로는 \(\sqrt[3]{2}\)가 있지만 정수가 아닙니다. \(C\)는 원소가 하나도 없으므로 \(|C| = 0\)입니다. 이런 집합을 2절에서 공집합이라고 부릅니다.</p>
+    <p>∴ \(|A| = 9\), \(|B| = \infty\), \(|C| = 0\)</p>
+  </div>
+
+  <div class="definition">
+    <p class="definition-term">유한집합(finite set), 무한집합(infinite set)</p>
+    <p>포함되는 원소의 수가 유한한 집합을 유한집합, 무한한 집합을 무한집합이라고 합니다.</p>
+  </div>
+  <p>예제 3-&#8288;5의 \(A\)와 \(C\)는 유한집합이고 \(B\)는 무한집합입니다. 원소가 없는 \(C\)도 원소의 수가 0으로 유한하므로 유한집합입니다.</p>
+
+  <div class="definition">
+    <p class="definition-term">상등(equal)</p>
+    <p>두 집합 \(A\), \(B\)에 속하는 원소가 동일할 때, 곧 \(A\)의 원소는 모두 \(B\)에 속하고 \(B\)의 원소도 모두 \(A\)에 속할 때, 두 집합 \(A\)와 \(B\)는 서로 같다(상등이다)고 하고 \(A = B\)로 씁니다.</p>
+    <p>\[A = B \Leftrightarrow \forall x\,(x \in A \leftrightarrow x \in B)\]</p>
+  </div>
+  <p>오른쪽은 1장의 한정자와 쌍방조건명제로 쓴 명제입니다. 어떤 \(x\)를 가져와도 '\(x \in A\)'와 '\(x \in B\)'의 진릿값이 같다는 뜻입니다. 1장에서 진릿값이 늘 같은 두 명제를 동치라 했듯이, 집합에서는 원소가 모두 같은 두 집합을 상등이라 합니다. 예를 들어 \(A = \{1, 2, 3\}\)이고 \(B = \{x \mid x\text{는 3 이하의 자연수}\}\)이면, \(B\)를 원소나열법으로 쓴 것이 \(\{1, 2, 3\}\)이므로 \(A = B\)입니다. 적는 방법이 달라도 원소가 같으면 같은 집합입니다.</p>
+  <p>이 정의에서 헷갈리기 쉬운 곳이 두 군데 있습니다. 첫째, 두 집합에 함께 속하는 원소가 있다는 것만으로는 같지 않습니다. \(\{1, 2\}\)와 \(\{1, 3\}\)은 1을 함께 가지지만, 2는 앞의 집합에만, 3은 뒤의 집합에만 있으므로 같지 않습니다. 정의의 \(\forall\)이 말하듯 모든 원소에서 속하는지 여부가 맞아야 합니다. 둘째, 기수가 같다고 같은 집합이 아닙니다. \(\{1, 2, 3\}\)과 \(\{4, 5, 6\}\)은 기수가 3으로 같지만 원소가 전혀 다릅니다.</p>
+
+  <div class="example">
+    <p class="example-title">예제 3-&#8288;8</p>
+    <p>다음 중 상등인 집합끼리 짝지으시오.</p>
+    <p>\(A = \{a \mid -3 &lt; a \le 3,\ a \in Z\}\), \(B = \{1, 2, 4, 8, \ldots\}\), \(C = \{c \mid c = 2^k,\ k \ge 0,\ k \in Z\}\), \(D = \{d \mid d \in R\}\), \(E = \{-2, -1, 0, 1, 2, 3\}\), \(F = \{e \mid e\text{는 유리수거나 무리수}\}\)</p>
+    <p class="solution-label">풀이</p>
+    <p>조건제시법으로 적은 집합을 원소나열법으로 바꾸거나 이미 아는 집합으로 바꾸어 견줍니다.</p>
+    <p>\(A\)는 −3보다 크고 3 이하인 정수입니다. \(-3 &lt; a\)이므로 −3은 빠지고, \(a \le 3\)이므로 3은 들어갑니다. 따라서 \(A = \{-2, -1, 0, 1, 2, 3\}\)이고 \(E\)와 같습니다.</p>
+    <p>\(C\)는 \(k = 0, 1, 2, 3, \ldots\)을 차례로 넣어 얻습니다. \(2^0 = 1\), \(2^1 = 2\), \(2^2 = 4\), \(2^3 = 8\)이므로 \(C = \{1, 2, 4, 8, \ldots\}\)이고 \(B\)와 같습니다. 조건이 \(k \ge 0\)이므로 \(k = 0\)부터 넣는다는 점에 주의하세요. 조건이 \(k &gt; 0\)이었다면 1이 빠져 \(B\)와 같지 않았을 것입니다.</p>
+    <p>\(D\)는 조건이 \(d \in R\) 하나뿐이므로 실수 전체입니다. \(F\)는 유리수이거나 무리수인 수 전체이므로 \(Q \cup I\), 곧 실수 전체입니다. 따라서 \(D\)와 \(F\)가 같습니다.</p>
+    <p>∴ \(A = E\), \(B = C\), \(D = F\)</p>
+  </div>
+</section>
+
+<section>
+  <h2>2. 집합의 종류</h2>
+
+  <div class="definition">
+    <p class="definition-term">전체집합(universal set)</p>
+    <p>논의 대상이 되는 원소 전체를 포함하는 집합을 전체집합이라 하고 \(U\)로 씁니다.</p>
+  </div>
+  <p>정수에 대해 이야기할 때는 정수 전체가, 실수에 대해 이야기할 때는 실수 전체가 전체집합이 됩니다. 1장의 진리집합 이야기에서 쓴 \(U\)가 이것이고, 한정자의 논의영역 \(D\)와 같은 구실을 합니다.</p>
+
+  <div class="definition">
+    <p class="definition-term">공집합(empty set, null set)</p>
+    <p>하나의 원소도 포함하지 않는 집합을 공집합이라 하고 \(\varnothing\) 또는 { }로 씁니다. \(|\varnothing| = 0\)입니다.</p>
+  </div>
+  <p>\(\varnothing\)와 \(\{\varnothing\}\)은 다른 집합입니다. \(\varnothing\)는 그 자체로 빈 집합이므로 중괄호로 다시 감싸지 않습니다. \(\{\varnothing\}\)은 공집합 하나를 원소로 가지는 집합이어서 원소가 1개이고, \(|\{\varnothing\}| = 1\)입니다. 원소가 있으니 공집합이 아닙니다. 공집합과 같은 것은 빈 중괄호 { }뿐입니다.</p>
+
+  <div class="definition">
+    <p class="definition-term">부분집합(subset)</p>
+    <p>집합 \(A\)의 모든 원소가 집합 \(B\)에 포함될 때 \(A\)를 \(B\)의 부분집합이라 하고 \(A \subseteq B\)로 씁니다. 명제로 쓰면, 모든 \(x\)에 대해 \(x \in A \rightarrow x \in B\)가 참일 때 \(A \subseteq B\)입니다.</p>
+  </div>
+  <div class="definition">
+    <p class="definition-term">진부분집합(proper subset)</p>
+    <p>\(A \subseteq B\)이지만 집합 \(A\)와 집합 \(B\)가 상등이 아닐 때 \(A\)를 \(B\)의 진부분집합이라 하고 \(A \subset B\)로 씁니다.</p>
+  </div>
+  <p>\(A \subseteq B\)는 '\(A\)는 \(B\)의 부분집합이다' 또는 '\(A\)는 \(B\)에 포함된다'라고 읽습니다. 부분집합에는 \(A\)가 \(B\)와 같은 경우도 들어갑니다. 그림 3-&#8288;2처럼 \(A\)가 \(B\) 안에 들어 있으면서 \(B\)보다 작은 경우와, \(A\)와 \(B\)가 꼭 겹치는 경우가 모두 \(A \subseteq B\)입니다. 진부분집합은 앞의 경우만 가리킵니다.</p>
+
+  <figure>
+    <svg width="400" height="146" viewBox="0 0 400 146" role="img" aria-label="왼쪽은 전체집합 안에서 큰 원 B 안에 작은 원 A가 들어 있는 그림, 오른쪽은 A와 B가 같은 원 하나로 겹쳐 있는 그림">
+      <g transform="translate(2,2)">
+        <rect x="0" y="0" width="180" height="114" class="fig-thin"/>
+        <text x="12" y="20" class="fig-text">U</text>
+        <circle cx="95" cy="58" r="48" class="fig-line"/>
+        <circle cx="82" cy="66" r="24" class="fig-region-a"/>
+        <circle cx="82" cy="66" r="24" class="fig-line"/>
+        <text x="82" y="71" class="fig-text" text-anchor="middle">A</text>
+        <text x="122" y="42" class="fig-text" text-anchor="middle">B</text>
+        <text x="90" y="136" class="fig-text" text-anchor="middle">A ⊂ B</text>
+      </g>
+      <g transform="translate(216,2)">
+        <rect x="0" y="0" width="180" height="114" class="fig-thin"/>
+        <text x="12" y="20" class="fig-text">U</text>
+        <circle cx="90" cy="58" r="44" class="fig-region-a"/>
+        <circle cx="90" cy="58" r="44" class="fig-line"/>
+        <text x="90" y="63" class="fig-text" text-anchor="middle">A, B</text>
+        <text x="90" y="136" class="fig-text" text-anchor="middle">A = B</text>
+      </g>
+    </svg>
+    <figcaption>그림 3-&#8288;2 \(A \subseteq B\)인 두 경우. 왼쪽은 진부분집합, 오른쪽은 상등입니다.</figcaption>
+  </figure>
+
+  <p>기호 \(\subseteq\)의 아랫줄을 등호가 들어 있다는 표시로 보면, 수의 \(\le\)와 \(&lt;\)의 관계와 같습니다. 실제로 두 집합이 유한집합이면 \(A \subseteq B\)일 때 \(|A| \le |B|\)이고, \(A \subset B\)일 때 \(|A| &lt; |B|\)입니다. 무한집합에서는 이렇게 원소의 수로 견주기 어렵습니다. \(N \subset Z\)이지만 둘 다 원소가 끝없이 많습니다.</p>
+  <p>고등학교 교과서는 부분집합을 \(\subset\)로 씁니다. 1장에서 진리집합의 포함 관계를 P ⊂ Q로 쓴 것도 그 표기를 따른 것입니다. 이 장부터는 부분집합 \(\subseteq\)와 진부분집합 \(\subset\)를 구분해 씁니다. 1장의 P ⊂ Q는 이 장의 표기로 \(P \subseteq Q\)입니다. 다른 책을 볼 때도 \(\subset\)가 어느 뜻으로 쓰였는지 먼저 확인하세요.</p>
+  <p>\(B \supseteq A\)는 \(A \subseteq B\)를 뒤집어 쓴 것으로 '\(B\)는 \(A\)를 포함한다'라고 읽습니다. 기호에 빗금을 그으면 그 관계가 아니라는 뜻입니다. \(A \nsubseteq B\)는 \(A\)가 \(B\)의 부분집합이 아니라는 뜻, 곧 \(A\)의 원소 가운데 \(B\)에 속하지 않는 것이 하나라도 있다는 뜻입니다. '모든 원소가 속한다'를 부정하면 '속하지 않는 원소가 있다'가 된다는 1장의 한정자의 부정 그대로입니다.</p>
+
+  <h4>집합 간 포함관계 정리</h4>
+  <p>부분집합의 정의에서 바로 나오는 성질 다섯 가지를 정리합니다. 모두 당연해 보이지만, 그림이나 직관이 아니라 정의와 1장의 논리만으로 확인할 수 있다는 데 뜻이 있습니다. 증명의 열쇠는 언제나 같습니다. \(A \subseteq B\)를 보이려면 모든 \(x\)에 대해 \(x \in A \rightarrow x \in B\)가 참임을 보이면 됩니다.</p>
+  <p><strong>(1) 모든 집합 \(A\)에 대해 \(A \subseteq A\)</strong> 확인할 명제는 \(x \in A \rightarrow x \in A\)로, 조건과 결론이 같은 p → p 꼴입니다. p가 참이면 T → T이고 거짓이면 F → F이므로 어느 쪽이든 참입니다. 따라서 \(A \subseteq A\)입니다. 모든 집합은 자기 자신의 부분집합입니다.</p>
+  <p><strong>(2) 모든 집합 \(A\)에 대해 \(\varnothing \subseteq A\)</strong> 이번에는 \(x \in \varnothing \rightarrow x \in A\)가 참인지 봅니다. 공집합에는 원소가 없으므로 어떤 \(x\)를 가져와도 \(x \in \varnothing\)는 거짓입니다. p를 \(x \in \varnothing\), q를 \(x \in A\)로 놓으면 p가 늘 거짓이므로, 표 3-&#8288;1에서 표시한 셋째와 넷째 줄만 일어납니다. 1장에서 본 대로 조건이 거짓인 함축은 결론과 상관없이 참입니다.</p>
+
+  <table class="truth">
+    <caption>표 3-&#8288;1 p → q의 진리표</caption>
+    <thead><tr><th>p</th><th>q</th><th>p → q</th></tr></thead>
+    <tbody>
+      <tr><td>T</td><td>T</td><td>T</td></tr>
+      <tr><td>T</td><td>F</td><td>F</td></tr>
+      <tr class="mark"><td>F</td><td>T</td><td>T</td></tr>
+      <tr class="mark"><td>F</td><td>F</td><td>T</td></tr>
+    </tbody>
+  </table>
+
+  <p>비와 우산으로 옮기면, 비가 오지 않은 날에는 우산을 가져가든 말든 '비가 오면 우산을 가지고 간다'는 약속이 깨지지 않습니다. 약속이 깨지는 것은 둘째 줄, 곧 \(x\)가 공집합에 속하는데 \(A\)에는 속하지 않는 경우뿐인데, 공집합에 속하는 원소가 없으니 그런 경우는 일어날 수 없습니다. 따라서 \(x \in \varnothing \rightarrow x \in A\)는 늘 참이고 \(\varnothing \subseteq A\)입니다. 공집합은 모든 집합의 부분집합입니다.</p>
+  <p><strong>(3) 모든 집합 \(A\)에 대해 \(A \subseteq U\)</strong> 전체집합 \(U\)는 논의 대상의 원소를 모두 포함하므로, \(A\)의 원소 \(x\)는 언제나 \(U\)의 원소입니다. \(x \in A \rightarrow x \in U\)는 결론이 늘 참이니 함축도 늘 참이고, \(A \subseteq U\)입니다.</p>
+  <p><strong>(4) 집합 \(A, B, C\)에 대해 \(A \subseteq B\)이고 \(B \subseteq C\)이면 \(A \subseteq C\)</strong> \(A \subseteq B\)에 의해 \(x \in A\)이면 \(x \in B\)이고, \(B \subseteq C\)에 의해 \(x \in B\)이면 \(x \in C\)입니다. 두 함축을 이으면 \(x \in A\)이면 \(x \in C\)이므로 \(A \subseteq C\)입니다. 1장의 논리적 추론 법칙 가운데 가설적 삼단논법 p → q, q → r ∴ p → r을 그대로 쓴 것입니다. p, q, r에 \(x \in A\), \(x \in B\), \(x \in C\)를 넣으면 됩니다.</p>
+  <p><strong>(5) 집합 \(A, B\)에 대해 \(A = B \Leftrightarrow (A \subseteq B \land B \subseteq A)\)</strong> \(A \subseteq B\)는 모든 \(x\)에 대해 \(x \in A \rightarrow x \in B\)이고, \(B \subseteq A\)는 모든 \(x\)에 대해 \(x \in B \rightarrow x \in A\)라는 뜻입니다. 둘이 함께 참이라는 것은 모든 \(x\)에 대해 \((x \in A \rightarrow x \in B) \land (x \in B \rightarrow x \in A)\)가 참이라는 것입니다. 1장에서 (p → q) ∧ (q → p) ≡ p ↔ q임을 확인했으므로, 이것은 모든 \(x\)에 대해 \(x \in A \leftrightarrow x \in B\)가 참이라는 것과 같습니다. 이것이 바로 1절의 상등의 정의입니다. 따라서 \(A = B \Leftrightarrow (A \subseteq B \land B \subseteq A)\)입니다.</p>
+  <p>(5)는 직관으로 보면, 한 집합이 다른 집합에 들어 있고 그 다른 집합도 처음 집합에 들어 있으면 둘이 같다는 이야기입니다. 당연한 이 성질이 두 집합이 같음을 증명하는 표준 방법이 됩니다. \(A = B\)를 보이려면 \(A \subseteq B\)와 \(B \subseteq A\)를 각각 보이면 됩니다. 4절의 예제 3-&#8288;24에서 이 방법을 씁니다.</p>
+
+  <div class="example">
+    <p class="example-title">예제 3-&#8288;10</p>
+    <p>집합 \(A\)와 \(B\), 집합 \(B\)와 \(C\), 집합 \(B\)와 \(E\), 집합 \(C\)와 \(E\), 집합 \(C\)와 \(D\) 간의 포함관계는?</p>
+    <p>\(A = \{a\}\), \(B = \{a, b, w, x, y\}\), \(C = \{x, y\}\), \(D = \{w, x\}\), \(E = \{a, b, w, x, y, z\}\)</p>
+    <p class="solution-label">풀이</p>
+    <p>원소를 하나씩 견주어 봅니다. \(A\)의 원소 \(a\)는 \(B\)에 있고, \(B\)에는 \(A\)에 없는 원소도 있으므로 \(A \subset B\)입니다. \(C\)의 원소 \(x\), \(y\)는 모두 \(B\)에 있으므로 \(C \subset B\)입니다. \(B\)의 원소 다섯은 모두 \(E\)에 있고 \(E\)에는 \(z\)가 더 있으므로 \(B \subset E\)입니다. \(C \subset E\)도 같은 방법으로 확인됩니다. 덧붙여 \(A \subseteq B\)이고 \(B \subseteq E\)이므로 포함관계 정리 (4)에 따라 \(A \subseteq E\)이고, \(E\)에는 \(A\)에 없는 원소가 있으므로 \(A \subset E\)입니다.</p>
+    <p>\(C\)와 \(D\)는 \(x\)를 함께 가지지만, \(C\)의 \(y\)는 \(D\)에 없고 \(D\)의 \(w\)는 \(C\)에 없습니다. 그래서 \(C \nsubseteq D\)이고 \(D \nsubseteq C\), 곧 \(C \nsupseteq D\)입니다. 어느 쪽도 다른 쪽의 부분집합이 아니므로 두 집합 사이에는 포함관계가 없습니다. 진부분집합이 아니라는 뜻으로 \(C \not\subset D\), \(C \not\supset D\)라고 써도 맞습니다.</p>
+    <p>∴ \(A \subset B\), \(C \subset B\), \(B \subset E\), \(C \subset E\)(그리고 \(A \subset E\))이고, \(C\)와 \(D\) 사이에는 포함관계가 없습니다.</p>
+  </div>
+
+  <div class="example">
+    <p class="example-title">예제 3-&#8288;11</p>
+    <p>집합 \(A = \{\,\{a, b\}, c, \{d\}\,\}\)일 때, \(\{a, b\}\), \(c\), \(\{\,\{d\}\,\}\), \(\{\,\{a, b\}, c, \{d\}\,\}\)는 각각 \(A\)와 어떤 관계인가?</p>
+    <p class="solution-label">풀이</p>
+    <p>이 집합의 원소는 셋입니다. 집합 \(\{a, b\}\), 문자 \(c\), 집합 \(\{d\}\)입니다. 집합도 다른 집합의 원소가 될 수 있습니다. 바깥 중괄호 안에서 쉼표로 나뉜 덩어리 하나하나가 원소라고 보면 됩니다.</p>
+    <p>① \(\{a, b\}\)는 \(A\)의 원소이므로 \(\{a, b\} \in A\)입니다. 부분집합은 아닙니다. \(\{a, b\} \subseteq A\)이려면 \(a\)와 \(b\)가 각각 \(A\)의 원소여야 하는데, \(A\)의 원소는 \(a\)가 아니라 \(\{a, b\}\)라는 덩어리입니다.</p>
+    <p>② \(c\)도 \(A\)의 원소이므로 \(c \in A\)입니다.</p>
+    <p>③ \(\{d\}\)는 \(A\)의 원소이고, \(\{d\}\) 하나만을 원소로 가지는 집합 \(\{\,\{d\}\,\}\)는 \(A\)의 부분집합입니다. \(\{\,\{d\}\,\}\)의 원소 \(\{d\}\)가 \(A\)에 속하기 때문입니다. \(A\)와 같지는 않으므로 \(\{\,\{d\}\,\} \subset A\)입니다. 한편 \(d\)는 \(A\)의 원소가 아닙니다(\(d \notin A\)).</p>
+    <p>④ \(\{\,\{a, b\}, c, \{d\}\,\}\)는 \(A\)와 원소가 똑같으므로 \(\{\,\{a, b\}, c, \{d\}\,\} = A\)입니다.</p>
+    <p>∈와 ⊆는 이렇게 가릅니다. 왼쪽의 것을 그대로 \(A\)의 원소 목록에서 찾을 수 있으면 ∈이고, 왼쪽 집합의 원소들을 하나씩 \(A\)의 원소 목록에서 찾을 수 있으면 ⊆입니다.</p>
+  </div>
+</section>
+
+<section>
+  <h2>3. 집합의 연산</h2>
+  <p>집합 몇 개로 새 집합을 만드는 방법을 집합의 연산이라고 합니다. 1장의 논리 연산자가 명제로 새 명제를 만들었듯이, 집합의 연산은 집합으로 새 집합을 만듭니다. 그리고 연산마다 새 집합의 원소가 되는 조건이 1장의 연산자로 적힙니다.</p>
+
+  <h3>3-1) 합집합과 교집합</h3>
+  <div class="definition">
+    <p class="definition-term">합집합(union)</p>
+    <p>집합 \(A\), \(B\)에 대하여, \(A\)와 \(B\)에 모두 속하거나 두 집합 중 한 집합에 속하는 원소들로 구성된 집합을 \(A\)와 \(B\)의 합집합이라 하고 \(A \cup B\)로 씁니다.</p>
+    <p>\[A \cup B = \{x \mid x \in A \lor x \in B\}\]</p>
+  </div>
+  <p>\(A \cup B\)는 '\(A\) 합집합 \(B\)' 또는 '\(A\) 유니온 \(B\)'라고 읽습니다. 조건 \(x \in A \lor x \in B\)는 1장의 논리합입니다. 논리합은 둘 가운데 하나만 참이어도 참이고 둘 다 참이어도 참이므로, \(A\)에만 있는 원소, \(B\)에만 있는 원소, 둘 다에 있는 원소가 모두 \(A \cup B\)에 들어갑니다. \(A\)의 원소 전부와 \(B\)의 원소 전부를 한데 모은 것입니다. 기호 ∪와 ∨는 모양도 닮았습니다.</p>
+
+  <div class="definition">
+    <p class="definition-term">교집합(intersection)</p>
+    <p>집합 \(A\), \(B\)에 대하여, \(A\)와 \(B\)에 모두 속하는 원소들로 구성된 집합을 \(A\)와 \(B\)의 교집합이라 하고 \(A \cap B\)로 씁니다.</p>
+    <p>\[A \cap B = \{x \mid x \in A \land x \in B\}\]</p>
+  </div>
+  <p>\(A \cap B\)는 '\(A\) 교집합 \(B\)' 또는 '\(A\) 인터섹션 \(B\)'라고 읽습니다. 조건이 논리곱이므로 두 집합에 동시에 속하는 원소만 들어갑니다. ∩와 ∧가 짝입니다. 합집합의 정의에 '모두 속하거나'라는 말이 들어 있다고 해서 합집합을 '모두 속하는 원소의 모임'으로 줄여 기억하면 교집합과 뒤바뀝니다. 합집합은 어느 한쪽에라도 속하는 원소의 모임이고, 교집합은 양쪽에 다 속하는 원소의 모임입니다.</p>
+
+  <div class="definition">
+    <p class="definition-term">서로소(disjoint)</p>
+    <p>집합 \(A\), \(B\)에 대하여, \(A\)와 \(B\) 모두에 공통으로 속하는 원소가 하나도 없는 경우, 곧 \(A \cap B = \varnothing\)일 때 \(A\)와 \(B\)는 서로소라고 합니다.</p>
+  </div>
+  <p>서로소는 정수에서 최대공약수가 1이라는 뜻으로도 쓰는 말이지만, 집합에서는 공통 원소가 없다는 뜻입니다. 그림 3-&#8288;3은 세 정의를 벤 다이어그램으로 나타낸 것입니다.</p>
+
+  <figure>
+    <svg width="584" height="142" viewBox="0 0 584 142" role="img" aria-label="벤 다이어그램 세 개. 왼쪽은 두 원 전체를 칠한 A 합집합 B, 가운데는 두 원이 겹친 부분만 칠한 A 교집합 B, 오른쪽은 떨어져 있는 두 원으로 서로소">
+      <defs>
+        <clipPath id="clip-3-3-a"><circle cx="70" cy="55" r="34"/></clipPath>
+      </defs>
+      <g transform="translate(2,2)">
+        <rect x="0" y="0" width="180" height="110" class="fig-thin"/>
+        <text x="12" y="20" class="fig-text">U</text>
+        <path d="M90,27.5 A34,34 0 1,0 90,82.5 A34,34 0 1,0 90,27.5 Z" class="fig-region-highlight"/>
+        <circle cx="70" cy="55" r="34" class="fig-line"/>
+        <circle cx="110" cy="55" r="34" class="fig-line"/>
+        <text x="54" y="60" class="fig-text" text-anchor="middle">A</text>
+        <text x="126" y="60" class="fig-text" text-anchor="middle">B</text>
+        <text x="90" y="134" class="fig-text" text-anchor="middle">A ∪ B</text>
+      </g>
+      <g transform="translate(202,2)">
+        <rect x="0" y="0" width="180" height="110" class="fig-thin"/>
+        <text x="12" y="20" class="fig-text">U</text>
+        <circle cx="110" cy="55" r="34" class="fig-region-highlight" clip-path="url(#clip-3-3-a)"/>
+        <circle cx="70" cy="55" r="34" class="fig-line"/>
+        <circle cx="110" cy="55" r="34" class="fig-line"/>
+        <text x="54" y="60" class="fig-text" text-anchor="middle">A</text>
+        <text x="126" y="60" class="fig-text" text-anchor="middle">B</text>
+        <text x="90" y="134" class="fig-text" text-anchor="middle">A ∩ B</text>
+      </g>
+      <g transform="translate(402,2)">
+        <rect x="0" y="0" width="180" height="110" class="fig-thin"/>
+        <text x="12" y="20" class="fig-text">U</text>
+        <circle cx="55" cy="58" r="30" class="fig-line"/>
+        <circle cx="125" cy="58" r="30" class="fig-line"/>
+        <text x="55" y="63" class="fig-text" text-anchor="middle">A</text>
+        <text x="125" y="63" class="fig-text" text-anchor="middle">B</text>
+        <text x="90" y="134" class="fig-text" text-anchor="middle">A ∩ B = ∅</text>
+      </g>
+    </svg>
+    <figcaption>그림 3-&#8288;3 합집합(왼쪽)과 교집합(가운데)은 칠한 부분이고, 서로소인 두 집합(오른쪽)은 겹치는 부분이 없습니다.</figcaption>
+  </figure>
+
+  <div class="example">
+    <p class="example-title">예제 3-&#8288;12</p>
+    <p>다음 집합 \(A, B, C\)의 합집합(\(A \cup B \cup C\))은? \(A = \{a, b, c, d\}\), \(B = \{d, e, f, g, h\}\), \(C = \{c, d, e\}\)</p>
+    <p class="solution-label">풀이</p>
+    <p>세 집합의 원소를 모두 모으되, 여러 집합에 겹쳐 나오는 원소는 한 번만 씁니다. \(c\)는 \(A\)와 \(C\)에, \(d\)는 세 집합 모두에, \(e\)는 \(B\)와 \(C\)에 있지만 한 번씩만 적습니다. 집합은 원소를 중복해 세지 않기 때문입니다.</p>
+    <p>∴ \(A \cup B \cup C = \{a, b, c, d, e, f, g, h\}\)</p>
+    <p>\(A \cup B \cup C\)처럼 괄호 없이 써도 되는 근거는 4절의 결합법칙입니다.</p>
+  </div>
+
+  <div class="example">
+    <p class="example-title">예제 3-&#8288;13</p>
+    <p>다음 집합 \(A, B, C\)의 교집합(\(A \cap B \cap C\))은? \(A = \{a, b, c, d\}\), \(B = \{d, e, f, g, h\}\), \(C = \{c, d, e\}\)</p>
+    <p class="solution-label">풀이</p>
+    <p>먼저 \(A \cap B\)를 구하면 두 집합에 함께 있는 원소는 \(d\)뿐이므로 \(\{d\}\)입니다. 이것과 \(C\)의 교집합을 구하면 \(d\)가 \(C\)에도 있으므로 \(\{d\}\)입니다.</p>
+    <p>∴ \(A \cap B \cap C = \{d\}\)</p>
+  </div>
+
+  <h4>합집합과 교집합의 기수</h4>
+  <p>\(|A \cup B|\)를 \(|A|\)와 \(|B|\)로 구하는 방법을 생각해 봅니다. \(|A|\)와 \(|B|\)를 그냥 더하면 그림 3-&#8288;4의 ①, 곧 \(A \cap B\)에 속한 원소를 두 번 세게 됩니다. 한 번은 \(A\)의 원소로, 한 번은 \(B\)의 원소로 셉니다. 그래서 한 번 더 센 만큼을 빼 줍니다.</p>
+
+  <figure>
+    <svg width="384" height="142" viewBox="0 0 384 142" role="img" aria-label="벤 다이어그램 두 개. 왼쪽은 원 A를 칠하고 오른쪽은 원 B를 칠했으며, 두 원이 겹친 영역 1은 두 그림 모두에서 칠해져 있다">
+      <g transform="translate(2,2)">
+        <rect x="0" y="0" width="180" height="110" class="fig-thin"/>
+        <text x="12" y="20" class="fig-text">U</text>
+        <circle cx="70" cy="55" r="34" class="fig-region-highlight"/>
+        <circle cx="70" cy="55" r="34" class="fig-line"/>
+        <circle cx="110" cy="55" r="34" class="fig-line"/>
+        <text x="54" y="60" class="fig-text" text-anchor="middle">A</text>
+        <text x="126" y="60" class="fig-text" text-anchor="middle">B</text>
+        <text x="90" y="60" class="fig-text" text-anchor="middle">①</text>
+        <text x="90" y="134" class="fig-text" text-anchor="middle">|A|</text>
+      </g>
+      <g transform="translate(202,2)">
+        <rect x="0" y="0" width="180" height="110" class="fig-thin"/>
+        <text x="12" y="20" class="fig-text">U</text>
+        <circle cx="110" cy="55" r="34" class="fig-region-highlight"/>
+        <circle cx="70" cy="55" r="34" class="fig-line"/>
+        <circle cx="110" cy="55" r="34" class="fig-line"/>
+        <text x="54" y="60" class="fig-text" text-anchor="middle">A</text>
+        <text x="126" y="60" class="fig-text" text-anchor="middle">B</text>
+        <text x="90" y="60" class="fig-text" text-anchor="middle">①</text>
+        <text x="90" y="134" class="fig-text" text-anchor="middle">|B|</text>
+      </g>
+    </svg>
+    <figcaption>그림 3-&#8288;4 \(|A|\)와 \(|B|\)를 더하면 ①(\(A \cap B\))이 두 번 들어갑니다.</figcaption>
+  </figure>
+
+  <p>\[|A \cup B| = |A| + |B| - |A \cap B|\]</p>
+  <p>이 식을 이항하면 교집합의 기수를 구하는 식이 됩니다.</p>
+  <p>\[|A \cap B| = |A| + |B| - |A \cup B|\]</p>
+  <p>\(A\)와 \(B\)가 서로소이면 \(A \cap B = \varnothing\)이므로 \(|A \cap B| = 0\)이고, \(|A \cup B| = |A| + |B|\)입니다. 겹치는 원소가 없으니 그냥 더하면 됩니다. 여기서 \(A \cap B = \varnothing\)는 집합이 공집합이라는 말이고, \(|A \cap B| = 0\)은 그 기수가 0이라는 말입니다. 집합과 수를 섞어 \(|A \cap B|\)를 \(\varnothing\)와 같다고 쓰지 않도록 하세요.</p>
+  <p>세 집합이면 겹치는 곳이 더 많습니다. 그림 3-&#8288;5처럼 세 원이 나누는 일곱 영역에 번호를 붙여 봅니다. ①은 \(A\)와 \(B\)에만, ②는 \(B\)와 \(C\)에만, ③은 \(C\)와 \(A\)에만 속하는 영역이고, ④는 세 집합 모두에 속하는 영역입니다. ⑤, ⑥, ⑦은 각각 \(A\), \(B\), \(C\)에만 속하는 영역입니다.</p>
+
+  <p>\(|A| + |B| + |C|\)를 구하면 영역마다 몇 번씩 세어질까요? \(A\)는 ①③④⑤, \(B\)는 ①②④⑥, \(C\)는 ②③④⑦로 이루어지므로, 한 집합에만 속한 ⑤⑥⑦은 한 번, 두 집합에 속한 ①②③은 두 번, 세 집합에 모두 속한 ④는 세 번 세어집니다. 두 번 센 것을 바로잡으려고 \(|A \cap B|\), \(|B \cap C|\), \(|C \cap A|\)를 뺍니다. \(A \cap B\)는 ①④, \(B \cap C\)는 ②④, \(C \cap A\)는 ③④이므로 ①②③은 한 번씩 빠져 1번이 되지만, ④는 세 번 빠져 0번이 되어 버립니다. 그래서 마지막에 \(|A \cap B \cap C|\)를 한 번 더합니다(표 3-&#8288;2).</p>
+
+  <figure>
+    <svg width="240" height="186" viewBox="0 0 240 186" role="img" aria-label="세 원 A, B, C가 겹친 벤 다이어그램. A와 B에만 속하는 영역 1, B와 C에만 속하는 영역 2, C와 A에만 속하는 영역 3, 세 집합 모두에 속하는 영역 4, A에만 5, B에만 6, C에만 7">
+      <rect x="2" y="2" width="236" height="182" class="fig-thin"/>
+      <text x="14" y="22" class="fig-text">U</text>
+      <circle cx="95" cy="72" r="42" class="fig-line"/>
+      <circle cx="145" cy="72" r="42" class="fig-line"/>
+      <circle cx="120" cy="116" r="42" class="fig-line"/>
+      <text x="52" y="38" class="fig-text" text-anchor="middle">A</text>
+      <text x="188" y="38" class="fig-text" text-anchor="middle">B</text>
+      <text x="168" y="168" class="fig-text" text-anchor="middle">C</text>
+      <text x="120" y="55" class="fig-text" text-anchor="middle">①</text>
+      <text x="143" y="103" class="fig-text" text-anchor="middle">②</text>
+      <text x="97" y="103" class="fig-text" text-anchor="middle">③</text>
+      <text x="120" y="92" class="fig-text-strong" text-anchor="middle">④</text>
+      <text x="70" y="69" class="fig-text" text-anchor="middle">⑤</text>
+      <text x="170" y="69" class="fig-text" text-anchor="middle">⑥</text>
+      <text x="120" y="145" class="fig-text" text-anchor="middle">⑦</text>
+    </svg>
+    <figcaption>그림 3-&#8288;5 세 집합이 나누는 일곱 영역</figcaption>
+  </figure>
+
+  <table>
+    <caption>표 3-&#8288;2 세 집합의 기수 공식에서 영역마다 세어지는 횟수</caption>
+    <thead>
+      <tr><th>영역</th><th>\(|A| + |B| + |C|\)</th><th>두 집합의 교집합<br>셋을 뺀 뒤</th><th>\(|A \cap B \cap C|\)를<br>더한 뒤</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>⑤⑥⑦ (한 집합에만)</td><td>1</td><td>1</td><td>1</td></tr>
+      <tr><td>①②③ (두 집합에만)</td><td>2</td><td>1</td><td>1</td></tr>
+      <tr><td>④ (세 집합 모두)</td><td>3</td><td>0</td><td>1</td></tr>
+    </tbody>
+  </table>
+
+  <p>\[\begin{aligned} |A \cup B \cup C| = {} &amp; |A| + |B| + |C| \\ &amp; - |A \cap B| - |B \cap C| - |C \cap A| \\ &amp; + |A \cap B \cap C| \end{aligned}\]</p>
+  <p>더하고 빼고 다시 더하면서 모든 영역을 꼭 한 번씩 세도록 맞추는 이 방법을 포함배제의 원리(inclusion-exclusion principle)라고 부르는 책도 많습니다.</p>
+
+  <div class="example">
+    <p class="example-title">예제 3-&#8288;15</p>
+    <p>집합 \(A = \{a, b, c, d, e, f, g\}\), \(B = \{e, f, g, h, i, j, k, l\}\), \(C = \{k, l, m, n\}\)일 때 다음을 구하시오. \(|A \cup B|\), \(|A \cap C|\), \(|A \cup B \cup C|\)</p>
+    <p class="solution-label">풀이</p>
+    <p>원소를 세면 \(|A| = 7\), \(|B| = 8\), \(|C| = 4\)입니다. 겹치는 원소를 찾으면 \(A \cap B = \{e, f, g\}\), \(B \cap C = \{k, l\}\)이고, \(A\)와 \(C\)는 공통 원소가 없습니다. 따라서 세 집합의 공통 원소도 없습니다.</p>
+    <p>\(|A \cup B| = |A| + |B| - |A \cap B| = 7 + 8 - 3 = 12\)입니다. 직접 모아 보아도 \(a\)부터 \(l\)까지 12개입니다.</p>
+    <p>\(A\)와 \(C\)는 서로소이므로 \(A \cap C = \varnothing\)이고 \(|A \cap C| = 0\)입니다. 교집합의 기수 식으로 구해도 \(|A \cup C| = 11\)이므로 \(7 + 4 - 11 = 0\)입니다.</p>
+    <p>\[\begin{aligned} |A \cup B \cup C| &amp;= |A| + |B| + |C| - |A \cap B| - |B \cap C| - |C \cap A| + |A \cap B \cap C| \\ &amp;= 7 + 8 + 4 - 3 - 2 - 0 + 0 = 14 \end{aligned}\]</p>
+    <p>\(a\)부터 \(n\)까지 14개와 맞습니다.</p>
+    <p>∴ \(|A \cup B| = 12\), \(|A \cap C| = 0\), \(|A \cup B \cup C| = 14\)</p>
+  </div>
+
+  <h3>3-2) 그 외의 집합 연산</h3>
+  <div class="definition">
+    <p class="definition-term">차집합(difference)</p>
+    <p>집합 \(A\), \(B\)에 대하여, \(A\)에는 속하지만 \(B\)에는 속하지 않는 원소들로 구성된 집합을 \(A\)에서 \(B\)를 뺀 차집합이라 하고 \(A - B\)로 씁니다.</p>
+    <p>\[A - B = \{x \mid x \in A \land x \notin B\}\]</p>
+  </div>
+  <p>\(A - B\)는 '\(A\) 빼기 \(B\)'라고 읽습니다. \(A - B\)는 \(A\)에서 \(B\)와 겹치는 부분, 곧 \(A \cap B\)를 덜어 낸 것입니다. \(B\)에만 있는 원소는 처음부터 \(A\)에 없으므로 덜어 낼 것이 없습니다. 그래서 \(A - B\)는 언제나 \(A\)의 부분집합입니다. 빼는 순서를 바꾸면 결과가 달라집니다. \(B - A\)는 \(B\)에서 \(A\)와 겹치는 부분을 덜어 낸 것이므로, \(A\)와 \(B\)가 같은 집합이 아니면 \(A - B\)와 \(B - A\)는 다릅니다(그림 3-&#8288;6).</p>
+
+  <div class="example">
+    <p class="example-title">예제 3-&#8288;18</p>
+    <p>다음 집합 \(A\), \(B\)에서 차집합 \(A - B\)는? \(A = \{a, b, c, d, e, f, g, h, i, j\}\), \(B = \{g, h, i, j, k, l, m, n\}\)</p>
+    <p class="solution-label">풀이</p>
+    <p>\(A\)와 \(B\)가 겹치는 원소는 \(g, h, i, j\)입니다. \(A\)에서 이 넷을 덜어 냅니다.</p>
+    <p>∴ \(A - B = \{a, b, c, d, e, f\}\)</p>
+    <p>거꾸로 \(B\)에서 \(g, h, i, j\)를 덜어 내면 \(B - A = \{k, l, m, n\}\)으로 다른 집합이 됩니다.</p>
+  </div>
+
+  <div class="definition">
+    <p class="definition-term">대칭차집합(symmetric difference)</p>
+    <p>집합 \(A\), \(B\)에 대하여, \(A - B\)에 속하거나 \(B - A\)에 속하는 원소들로 구성된 집합을 \(A\)와 \(B\)의 대칭차집합이라 하고 \(A \oplus B\)로 씁니다.</p>
+    <p>\[\begin{aligned} A \oplus B &amp;= (A - B) \cup (B - A) \\ &amp;= \{x \mid (x \in A \land x \notin B) \lor (x \notin A \land x \in B)\} \end{aligned}\]</p>
+  </div>
+  <p>기호 ⊕는 1장의 배타적 논리합과 같고, 뜻도 같습니다. \(x\)가 \(A \oplus B\)에 속하는 것은 '\(x \in A\)'와 '\(x \in B\)' 가운데 꼭 하나만 참일 때입니다. 배타적 논리합 p ⊕ q가 p와 q의 진릿값이 다를 때만 참이었던 것과 같습니다. 그래서 \(x \in A \oplus B \Leftrightarrow (x \in A) \oplus (x \in B)\)입니다. 두 집합에 다 속하는 원소, 곧 \(A \cap B\)의 원소는 빠집니다. 그림 3-&#8288;6에서 보듯 \(A \oplus B\)는 \(A \cup B\)에서 가운데의 \(A \cap B\)를 덜어 낸 모양입니다. 이것은 4절에서 법칙으로 증명합니다. \(A\)와 \(B\)를 맞바꾸어도 정의에서 \(A - B\)와 \(B - A\)의 자리만 바뀌므로 \(A \oplus B = B \oplus A\)입니다.</p>
+
+  <figure>
+    <svg width="584" height="142" viewBox="0 0 584 142" role="img" aria-label="벤 다이어그램 세 개. 왼쪽은 A에서 B와 겹친 부분을 뺀 A 빼기 B, 가운데는 B 빼기 A, 오른쪽은 두 원에서 겹친 부분만 뺀 대칭차집합">
+      <defs>
+        <clipPath id="clip-3-6-a"><circle cx="70" cy="55" r="34"/></clipPath>
+      </defs>
+      <g transform="translate(2,2)">
+        <rect x="0" y="0" width="180" height="110" class="fig-thin"/>
+        <text x="12" y="20" class="fig-text">U</text>
+        <circle cx="70" cy="55" r="34" class="fig-region-highlight"/>
+        <circle cx="110" cy="55" r="34" class="fig-node"/>
+        <circle cx="70" cy="55" r="34" class="fig-line"/>
+        <text x="54" y="60" class="fig-text" text-anchor="middle">A</text>
+        <text x="126" y="60" class="fig-text" text-anchor="middle">B</text>
+        <text x="90" y="134" class="fig-text" text-anchor="middle">A − B</text>
+      </g>
+      <g transform="translate(202,2)">
+        <rect x="0" y="0" width="180" height="110" class="fig-thin"/>
+        <text x="12" y="20" class="fig-text">U</text>
+        <circle cx="110" cy="55" r="34" class="fig-region-highlight"/>
+        <circle cx="70" cy="55" r="34" class="fig-node"/>
+        <circle cx="110" cy="55" r="34" class="fig-line"/>
+        <text x="54" y="60" class="fig-text" text-anchor="middle">A</text>
+        <text x="126" y="60" class="fig-text" text-anchor="middle">B</text>
+        <text x="90" y="134" class="fig-text" text-anchor="middle">B − A</text>
+      </g>
+      <g transform="translate(402,2)">
+        <rect x="0" y="0" width="180" height="110" class="fig-thin"/>
+        <text x="12" y="20" class="fig-text">U</text>
+        <path d="M90,27.5 A34,34 0 1,0 90,82.5 A34,34 0 1,0 90,27.5 Z" class="fig-region-highlight"/>
+        <circle cx="110" cy="55" r="34" class="fig-node" clip-path="url(#clip-3-6-a)"/>
+        <circle cx="70" cy="55" r="34" class="fig-line"/>
+        <circle cx="110" cy="55" r="34" class="fig-line"/>
+        <text x="54" y="60" class="fig-text" text-anchor="middle">A</text>
+        <text x="126" y="60" class="fig-text" text-anchor="middle">B</text>
+        <text x="90" y="134" class="fig-text" text-anchor="middle">A ⊕ B</text>
+      </g>
+    </svg>
+    <figcaption>그림 3-&#8288;6 차집합 \(A - B\), \(B - A\)와 대칭차집합 \(A \oplus B\)</figcaption>
+  </figure>
+
+  <div class="example">
+    <p class="example-title">예제 3-&#8288;19</p>
+    <p>\(A \oplus B\)는? \(A = \{a, b, c, d, e, f, g, h, i, j\}\), \(B = \{g, h, i, j, k, l, m, n\}\)</p>
+    <p class="solution-label">풀이</p>
+    <p>예제 3-&#8288;18과 같은 집합이므로, 거기서 구한 \(A - B = \{a, b, c, d, e, f\}\)와 \(B - A = \{k, l, m, n\}\)을 합치면 됩니다. 두 집합에 함께 있는 \(g, h, i, j\)만 빠집니다.</p>
+    <p>∴ \(A \oplus B = \{a, b, c, d, e, f, k, l, m, n\}\)</p>
+  </div>
+
+  <div class="definition">
+    <p class="definition-term">여집합(complement), 보집합</p>
+    <p>전체집합 \(U\)에는 속하지만 집합 \(A\)에는 속하지 않는 원소들로 구성된 집합을 \(A\)의 여집합 또는 보집합이라 하고 \(A'\) 또는 \(\bar{A}\)로 씁니다.</p>
+    <p>\[A' = \{x \mid x \in U \land x \notin A\} = U - A\]</p>
+  </div>
+  <p>\(A'\)은 '\(A\)의 여집합'이라고 읽습니다. \(A^c\)로 쓰는 책도 있습니다. 정의에서 보듯 여집합은 전체집합에서 \(A\)를 뺀 차집합 \(U - A\)이고, 그림 3-&#8288;7처럼 \(U\) 안에서 \(A\)의 바깥 전부입니다. 조건 \(x \notin A\)는 \(\neg(x \in A)\)이므로 여집합은 1장의 부정에 해당합니다.</p>
+
+  <figure>
+    <svg width="184" height="142" viewBox="0 0 184 142" role="img" aria-label="전체집합 U 안에서 원 A의 바깥을 모두 칠한 그림">
+      <g transform="translate(2,2)">
+        <rect x="0" y="0" width="180" height="110" class="fig-region-highlight"/>
+        <rect x="0" y="0" width="180" height="110" class="fig-thin"/>
+        <text x="12" y="20" class="fig-text">U</text>
+        <circle cx="90" cy="55" r="34" class="fig-node"/>
+        <text x="90" y="60" class="fig-text" text-anchor="middle">A</text>
+        <text x="90" y="134" class="fig-text" text-anchor="middle">A′</text>
+      </g>
+    </svg>
+    <figcaption>그림 3-&#8288;7 여집합 \(A'\)</figcaption>
+  </figure>
+
+  <p>여집합에는 꼭 짚어 둘 점이 있습니다. \(A\)만 보고는 \(A'\)을 정할 수 없고, 전체집합 \(U\)가 무엇인지 알아야 합니다. 같은 \(A\)라도 \(U\)가 달라지면 \(A'\)도 달라집니다. 다음 예제에서 이 점을 확인합니다.</p>
+
+  <div class="example">
+    <p class="example-title">예제 3-&#8288;20</p>
+    <p>다음 집합의 여집합은? \(X = \{x \mid -33 \le x &lt; 72,\ x \in R\}\), \(Y = \{y \mid y \in R\}\)</p>
+    <p class="solution-label">풀이</p>
+    <p>\(X\)는 실수에 관한 집합이므로 실수 전체 \(R\)을 전체집합으로 보고 여집합을 구합니다. 그림 3-&#8288;8처럼 수직선에서 \(X\)는 −33부터 72 앞까지의 구간이고, −33은 들어가고 72는 들어가지 않습니다. \(X'\)은 그 바깥 전부입니다. 경계에서는 들어가는지 여부가 뒤바뀝니다. −33은 \(X\)에 속하므로 \(X'\)에 속하지 않고, 72는 \(X\)에 속하지 않으므로 \(X'\)에 속합니다.</p>
+
+    <figure>
+      <svg width="520" height="122" viewBox="0 0 520 122" role="img" aria-label="수직선 두 줄. 위 줄의 X는 마이너스 33(속 찬 점)부터 72(빈 점)까지의 구간이고, 아래 줄의 X 여집합은 마이너스 33(빈 점)보다 왼쪽과 72(속 찬 점)부터 오른쪽의 두 구간이다">
+        <defs>
+          <marker id="arrow-3-8" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 z" class="fig-arrow-head"/>
+          </marker>
+        </defs>
+        <line x1="170" y1="20" x2="170" y2="100" class="fig-dashed"/>
+        <line x1="380" y1="20" x2="380" y2="100" class="fig-dashed"/>
+        <text x="20" y="45" class="fig-text-strong">X</text>
+        <line x1="44" y1="40" x2="506" y2="40" class="fig-thin" marker-start="url(#arrow-3-8)" marker-end="url(#arrow-3-8)"/>
+        <rect x="170" y="36" width="210" height="8" class="fig-region-a"/>
+        <circle cx="170" cy="40" r="5" class="fig-arrow-head"/>
+        <circle cx="380" cy="40" r="5" class="fig-node"/>
+        <text x="20" y="85" class="fig-text-strong">X′</text>
+        <line x1="44" y1="80" x2="506" y2="80" class="fig-thin" marker-start="url(#arrow-3-8)" marker-end="url(#arrow-3-8)"/>
+        <rect x="50" y="76" width="120" height="8" class="fig-region-highlight"/>
+        <rect x="380" y="76" width="120" height="8" class="fig-region-highlight"/>
+        <circle cx="170" cy="80" r="5" class="fig-node"/>
+        <circle cx="380" cy="80" r="5" class="fig-arrow-head"/>
+        <text x="170" y="116" class="fig-text" text-anchor="middle">−33</text>
+        <text x="380" y="116" class="fig-text" text-anchor="middle">72</text>
+      </svg>
+      <figcaption>그림 3-&#8288;8 수직선 위의 \(X\)와 \(X'\). 속 찬 점은 그 수가 들어가고, 빈 점은 들어가지 않는다는 표시입니다.</figcaption>
+    </figure>
+
+    <p>\[X' = \{x \mid x &lt; -33 \lor x \ge 72,\ x \in R\}\]</p>
+    <p>조건 \(-33 \le x &lt; 72\)는 \(-33 \le x \land x &lt; 72\)이므로, 이것을 부정하면 1장의 드모르간의 법칙에 따라 \(x &lt; -33 \lor x \ge 72\)가 됩니다.</p>
+    <p>\(Y\)는 실수 전체입니다. 실수 전체를 전체집합으로 보면 \(Y' = \varnothing\)가 되어 버립니다. 그래서 \(Y\)의 여집합은 실수를 포함하는 더 큰 집합인 복소수 전체 \(C\)를 전체집합으로 보고 구합니다. 그림 3-&#8288;1에서 \(C\) 안의 \(R\) 바깥, 곧 허수 전체입니다.</p>
+    <p>\[Y' = \{y \mid y \in C - R\}\]</p>
+    <p>같은 실수의 집합이라도 \(X\)는 \(R\)을, \(Y\)는 \(C\)를 전체집합으로 삼았습니다. 여집합을 말할 때는 전체집합이 무엇인지 늘 함께 밝혀야 합니다.</p>
+  </div>
+
+  <h4>차집합을 여집합으로 나타내기</h4>
+  <p>차집합은 여집합과 교집합으로 바꾸어 쓸 수 있습니다. 두 집합 \(S\), \(T\)에서 \(S - T\)의 원소는 \(S\)에 속하면서 \(T\)에 속하지 않는 원소이고, \(T\)에 속하지 않는다는 것은 \(T'\)에 속한다는 것입니다. 따라서 다음이 성립합니다.</p>
+  <p>\[S - T = S \cap T'\]</p>
+  <p>그림 3-&#8288;9에서 \(S\)를 칠한 영역과 \(T'\)을 칠한 영역이 겹치는 곳이 바로 \(S - T\)입니다. 차집합을 ∩와 ′의 식으로 바꾸어 두면 4절의 대수법칙을 쓸 수 있습니다. 4절의 마지막 예제에서 이 식을 씁니다.</p>
+
+  <figure>
+    <svg width="584" height="142" viewBox="0 0 584 142" role="img" aria-label="벤 다이어그램 세 개. 왼쪽은 S를 칠하고, 가운데는 T의 바깥 T 여집합을 칠하고, 오른쪽은 둘이 겹치는 S 교집합 T 여집합, 곧 S 빼기 T를 칠함">
+      <g transform="translate(2,2)">
+        <rect x="0" y="0" width="180" height="110" class="fig-thin"/>
+        <circle cx="70" cy="55" r="34" class="fig-region-a"/>
+        <circle cx="70" cy="55" r="34" class="fig-line"/>
+        <circle cx="110" cy="55" r="34" class="fig-line"/>
+        <text x="12" y="20" class="fig-text">U</text>
+        <text x="54" y="60" class="fig-text" text-anchor="middle">S</text>
+        <text x="126" y="60" class="fig-text" text-anchor="middle">T</text>
+        <text x="90" y="134" class="fig-text" text-anchor="middle">S</text>
+      </g>
+      <g transform="translate(202,2)">
+        <rect x="0" y="0" width="180" height="110" class="fig-region-b"/>
+        <rect x="0" y="0" width="180" height="110" class="fig-thin"/>
+        <circle cx="110" cy="55" r="34" class="fig-node"/>
+        <circle cx="70" cy="55" r="34" class="fig-line"/>
+        <text x="12" y="20" class="fig-text">U</text>
+        <text x="54" y="60" class="fig-text" text-anchor="middle">S</text>
+        <text x="126" y="60" class="fig-text" text-anchor="middle">T</text>
+        <text x="90" y="134" class="fig-text" text-anchor="middle">T′</text>
+      </g>
+      <g transform="translate(402,2)">
+        <rect x="0" y="0" width="180" height="110" class="fig-thin"/>
+        <circle cx="70" cy="55" r="34" class="fig-region-highlight"/>
+        <circle cx="110" cy="55" r="34" class="fig-node"/>
+        <circle cx="70" cy="55" r="34" class="fig-line"/>
+        <text x="12" y="20" class="fig-text">U</text>
+        <text x="54" y="60" class="fig-text" text-anchor="middle">S</text>
+        <text x="126" y="60" class="fig-text" text-anchor="middle">T</text>
+        <text x="90" y="134" class="fig-text" text-anchor="middle">S ∩ T′ = S − T</text>
+      </g>
+    </svg>
+    <figcaption>그림 3-&#8288;9 \(S\)와 \(T'\)이 겹치는 부분이 \(S - T\)입니다.</figcaption>
+  </figure>
+
+  <div class="definition">
+    <p class="definition-term">곱집합(Cartesian product), 데카르트 곱</p>
+    <p>집합 \(A\), \(B\)에 대하여, \(a \in A\), \(b \in B\)일 때 순서쌍 \((a, b)\) 전체의 집합을 \(A\)와 \(B\)의 곱집합이라 하고 \(A \times B\)로 씁니다.</p>
+    <p>\[A \times B = \{(a, b) \mid a \in A \land b \in B\}, \qquad |A \times B| = |A| \times |B|\]</p>
+  </div>
+  <p>\(A \times B\)는 '\(A\) 곱하기 \(B\)'라고 읽습니다. <em>순서쌍</em>(ordered pair) \((a, b)\)는 두 원소를 순서를 정해 짝지은 것입니다. 집합 \(\{a, b\}\)와 달리 순서가 중요해서, \((a, b)\)와 \((b, a)\)는 \(a = b\)가 아니면 서로 다릅니다. 두 순서쌍은 첫째 성분끼리, 둘째 성분끼리 모두 같을 때만 같습니다.</p>
+  <p>\[(a, b) = (c, d) \Leftrightarrow a = c \land b = d\]</p>
+  <p>좌표평면의 점 (1, 2)와 (2, 1)이 다른 점인 것과 같습니다.</p>
+  <p>\(A \times B\)에서는 \(A\)의 원소가 앞에, \(B\)의 원소가 뒤에 옵니다. 앞자리에 올 수 있는 원소 \(|A|\)개 하나하나에 뒷자리에 올 원소 \(|B|\)개가 짝지어지므로, 기수는 \(|A| \times |B|\)입니다.</p>
+
+  <div class="example">
+    <p class="example-title">예제 3-&#8288;21</p>
+    <p>\(A = \{1, 2\}\), \(B = \{a, b, c\}\)에 대하여 \(A \times B\)와 \(B \times A\) 및 각각의 기수를 구하시오.</p>
+    <p class="solution-label">풀이</p>
+    <p>\(A \times B\)는 \(A\)의 원소를 앞에 두고 \(B\)의 원소를 뒤에 둔 순서쌍입니다. 1에 \(a, b, c\)를 하나씩 짝짓고, 2에도 \(a, b, c\)를 하나씩 짝짓습니다. 표 3-&#8288;3처럼 \(A\)의 원소를 줄로, \(B\)의 원소를 칸으로 놓으면 순서쌍이 2줄 3칸에 빠짐없이 놓입니다.</p>
+
+    <table>
+      <caption>표 3-&#8288;3 \(A \times B\)의 순서쌍</caption>
+      <thead><tr><th></th><th>\(a\)</th><th>\(b\)</th><th>\(c\)</th></tr></thead>
+      <tbody>
+        <tr><th>1</th><td>\((1, a)\)</td><td>\((1, b)\)</td><td>\((1, c)\)</td></tr>
+        <tr><th>2</th><td>\((2, a)\)</td><td>\((2, b)\)</td><td>\((2, c)\)</td></tr>
+      </tbody>
+    </table>
+
+    <p>\(A \times B = \{(1, a), (1, b), (1, c), (2, a), (2, b), (2, c)\}\)</p>
+    <p>\(B \times A = \{(a, 1), (a, 2), (b, 1), (b, 2), (c, 1), (c, 2)\}\)</p>
+    <p>두 곱집합의 원소는 순서쌍의 앞뒤가 서로 바뀌어 있습니다. \((1, a)\)는 \(A \times B\)에 있지만 \(B \times A\)에는 없고, \(B \times A\)에는 대신 \((a, 1)\)이 있습니다. 따라서 \(A \times B \ne B \times A\)입니다. 같은 것은 기수뿐입니다.</p>
+    <p>\[|A \times B| = |A| \times |B| = 2 \times 3 = 6 = 3 \times 2 = |B| \times |A| = |B \times A|\]</p>
+    <p>원소의 개수가 같다고 같은 집합이 아니라는 1절의 이야기가 여기서도 그대로입니다.</p>
+  </div>
+
+  <div class="definition">
+    <p class="definition-term">멱집합(power set)</p>
+    <p>\(n\)개의 원소를 갖는 집합 \(A\)에 대하여, \(A\)의 모든 부분집합을 원소로 갖는 집합을 \(A\)의 멱집합이라 하고 \(P(A)\)로 씁니다.</p>
+    <p>\[P(A) = \{X \mid X \subseteq A\}, \qquad |P(A)| = 2^n\]</p>
+  </div>
+  <p>멱집합은 원소가 모두 집합인 집합입니다. 예제 3-&#8288;11에서 본 것처럼 집합도 원소가 될 수 있기 때문에 이런 집합을 만들 수 있습니다. 2절에서 본 대로 \(\varnothing \subseteq A\)이고 \(A \subseteq A\)이므로, 어떤 집합의 멱집합에든 \(\varnothing\)와 \(A\) 자신이 원소로 들어 있습니다. \(P(A)\)는 1장의 명제함수 \(P(x)\)와 글자는 같지만 뜻이 다릅니다. 괄호 안에 집합이 들어 있으면 멱집합입니다. \(2^A\)로 쓰는 책도 있습니다.</p>
+  <p>부분집합의 개수가 \(2^n\)인 까닭은 이렇습니다. 부분집합 하나를 만드는 일은 \(A\)의 원소 하나하나에 대해 '넣는다'와 '넣지 않는다' 가운데 하나를 고르는 일입니다. 원소마다 두 가지씩이고 원소가 \(n\)개이므로 \(2 \times 2 \times \cdots \times 2 = 2^n\)가지 부분집합이 생깁니다. 넣으면 1, 넣지 않으면 0으로 적으면 부분집합 하나가 \(n\)비트 나열 하나와 짝지어집니다(표 3-&#8288;4). 2장 예제 2-&#8288;42에서 \(n\)비트의 나열이 \(2^n\)개임을 수학적 귀납법으로 증명했으므로, 부분집합도 \(2^n\)개입니다.</p>
+
+  <table>
+    <caption>표 3-&#8288;4 \(\{1, 2, 3\}\)의 부분집합과 3비트 나열. 비트는 왼쪽부터 원소 1, 2, 3을 넣었는지(1) 넣지 않았는지(0)를 나타냅니다.</caption>
+    <tbody>
+      <tr><th>부분집합</th><td>\(\varnothing\)</td><td>\(\{1\}\)</td><td>\(\{2\}\)</td><td>\(\{3\}\)</td><td>\(\{1, 2\}\)</td><td>\(\{1, 3\}\)</td><td>\(\{2, 3\}\)</td><td>\(\{1, 2, 3\}\)</td></tr>
+      <tr><th>비트 나열</th><td>000</td><td>100</td><td>010</td><td>001</td><td>110</td><td>101</td><td>011</td><td>111</td></tr>
+    </tbody>
+  </table>
+
+  <div class="example">
+    <p class="example-title">예제 3-&#8288;23</p>
+    <p>\(A = \{1, 2, 3\}\), \(B = \{\varnothing, \{\varnothing\}\,\}\)에 대하여 멱집합과 기수를 구하시오.</p>
+    <p class="solution-label">풀이</p>
+    <p>\(A\)의 부분집합을 원소의 개수별로 빠짐없이 찾습니다. 0개짜리 \(\varnothing\), 1개짜리 \(\{1\}, \{2\}, \{3\}\), 2개짜리 \(\{1, 2\}, \{1, 3\}, \{2, 3\}\), 3개짜리 \(\{1, 2, 3\}\)입니다. 원소가 하나뿐인 부분집합도 1이 아니라 \(\{1\}\)로 써야 합니다. 멱집합의 원소는 모두 집합이기 때문입니다.</p>
+    <p>\(P(A) = \{\varnothing, \{1\}, \{2\}, \{3\}, \{1, 2\}, \{1, 3\}, \{2, 3\}, \{1, 2, 3\}\,\}\), \(|P(A)| = 2^3 = 8\)</p>
+    <p>\(B\)는 원소가 두 개입니다. 하나는 \(\varnothing\)이고, 다른 하나는 \(\{\varnothing\}\)입니다. 원소가 집합이라 헷갈리기 쉬우니, 두 원소에 잠시 \(s = \varnothing\), \(t = \{\varnothing\}\)이라는 이름을 붙입니다. 그러면 \(B = \{s, t\}\)이고 부분집합은 \(\varnothing, \{s\}, \{t\}, \{s, t\}\)의 넷입니다. 이름을 다시 풀어 쓰면 다음과 같습니다.</p>
+    <p>\(P(B) = \{\varnothing, \{\varnothing\}, \{\,\{\varnothing\}\,\}, \{\varnothing, \{\varnothing\}\,\}\,\}\), \(|P(B)| = 2^2 = 4\)</p>
+    <p>첫째 \(\varnothing\)는 원소를 하나도 넣지 않은 부분집합이고, 둘째 \(\{\varnothing\}\)는 원소 \(\varnothing\) 하나만 넣은 부분집합입니다. 이 \(B\)에서는 \(\varnothing\)가 원소이면서(\(\varnothing \in B\)) 부분집합이기도(\(\varnothing \subseteq B\)) 합니다. 앞의 것은 \(B\)의 원소 목록에 \(\varnothing\)가 있어서이고, 뒤의 것은 공집합이 모든 집합의 부분집합이어서입니다.</p>
+  </div>
+</section>
+
+<section>
+  <h2>4. 집합의 대수법칙</h2>
+  <p>3절의 연산은 1장의 동치 법칙과 똑같은 꼴의 법칙을 따릅니다. 표 3-&#8288;5가 집합의 대수법칙입니다. 한 줄의 두 식은 ∪와 ∩를 맞바꾸고 \(U\)와 \(\varnothing\)를 맞바꾼 관계로, 1장에서 본 쌍대입니다.</p>
+
+  <table class="long">
+    <caption>표 3-&#8288;5 집합의 대수법칙. 한 줄의 두 식은 서로 쌍대입니다.</caption>
+    <thead><tr><th>법칙</th><th>식</th><th>쌍대인 식</th></tr></thead>
+    <tbody>
+      <tr><td>항등법칙</td><td>\(A \cup \varnothing = A\)</td><td>\(A \cap U = A\)</td></tr>
+      <tr><td>지배법칙</td><td>\(A \cup U = U\)</td><td>\(A \cap \varnothing = \varnothing\)</td></tr>
+      <tr><td>멱등법칙</td><td>\(A \cup A = A\)</td><td>\(A \cap A = A\)</td></tr>
+      <tr><td>교환법칙</td><td>\(A \cup B = B \cup A\)</td><td>\(A \cap B = B \cap A\)</td></tr>
+      <tr><td>결합법칙</td><td>\(A \cup (B \cup C)\)<br>\(= (A \cup B) \cup C\)</td><td>\(A \cap (B \cap C)\)<br>\(= (A \cap B) \cap C\)</td></tr>
+      <tr><td rowspan="2">분배법칙</td><td>\(A \cup (B \cap C)\)<br>\(= (A \cup B) \cap (A \cup C)\)</td><td>\(A \cap (B \cup C)\)<br>\(= (A \cap B) \cup (A \cap C)\)</td></tr>
+      <tr><td>\(A \times (B \cup C)\)<br>\(= (A \times B) \cup (A \times C)\)</td><td>\(A \times (B \cap C)\)<br>\(= (A \times B) \cap (A \times C)\)</td></tr>
+      <tr><td>이중 보법칙</td><td colspan="2">\((A')' = A\)</td></tr>
+      <tr><td rowspan="2">보법칙(complement law)</td><td>\(A \cup A' = U\)</td><td>\(A \cap A' = \varnothing\)</td></tr>
+      <tr><td>\(\varnothing' = U\)</td><td>\(U' = \varnothing\)</td></tr>
+      <tr><td>드모르간의 법칙</td><td>\((A \cup B)' = A' \cap B'\)</td><td>\((A \cap B)' = A' \cup B'\)</td></tr>
+      <tr><td>흡수법칙</td><td>\(A \cup (A \cap B) = A\)</td><td>\(A \cap (A \cup B) = A\)</td></tr>
+    </tbody>
+  </table>
+
+  <h4>명제의 동치 법칙과 같은 까닭</h4>
+  <p>법칙이 같은 데는 이유가 있습니다. 3절의 정의에서 \(x \in A \cup B\)는 \((x \in A) \lor (x \in B)\)이고, \(x \in A \cap B\)는 \((x \in A) \land (x \in B)\), \(x \in A'\)은 \(\neg(x \in A)\)였습니다. \(x \in U\)는 늘 참이고 \(x \in \varnothing\)는 늘 거짓입니다. 그러니 p, q, r을 각각 \(x \in A\), \(x \in B\), \(x \in C\)로 놓으면, 집합의 식에 \(x\)가 속하는지를 묻는 명제는 표 3-&#8288;6의 대응대로 1장의 명제 식이 됩니다.</p>
+
+  <table>
+    <caption>표 3-&#8288;6 집합과 1장의 명제의 대응</caption>
+    <thead><tr><th>집합</th><th>명제</th></tr></thead>
+    <tbody>
+      <tr><td>합집합 \(A \cup B\)</td><td>논리합 p ∨ q</td></tr>
+      <tr><td>교집합 \(A \cap B\)</td><td>논리곱 p ∧ q</td></tr>
+      <tr><td>여집합 \(A'\)</td><td>부정 ¬p</td></tr>
+      <tr><td>대칭차집합 \(A \oplus B\)</td><td>배타적 논리합 p ⊕ q</td></tr>
+      <tr><td>전체집합 \(U\)</td><td>늘 참인 명제 T</td></tr>
+      <tr><td>공집합 \(\varnothing\)</td><td>늘 거짓인 명제 F</td></tr>
+      <tr><td>상등 \(A = B\)</td><td>동치 p ≡ q</td></tr>
+      <tr><td>부분집합 \(A \subseteq B\)</td><td>p ⇒ q</td></tr>
+      <tr><td>보법칙, 이중 보법칙</td><td>부정법칙, 이중 부정법칙</td></tr>
+    </tbody>
+  </table>
+
+  <p>예를 들어 분배법칙 \(A \cup (B \cap C) = (A \cup B) \cap (A \cup C)\)에서, \(x\)가 왼쪽에 속하는지는 p ∨ (q ∧ r)이고 오른쪽에 속하는지는 (p ∨ q) ∧ (p ∨ r)입니다. 1장의 분배법칙에 따라 두 명제는 동치이므로 모든 \(x\)에서 속하는지 여부가 같고, 1절의 상등의 정의에 따라 두 집합은 같습니다. 다른 법칙도 모두 이렇게 1장의 동치 법칙 하나에서 나옵니다.</p>
+  <p>곱집합의 분배법칙 두 줄만은 짝이 되는 명제의 법칙이 따로 없습니다. 곱집합의 원소는 \(x\) 하나가 아니라 순서쌍이기 때문입니다. 이 두 줄은 순서쌍으로 확인합니다. \((a, b) \in A \times (B \cup C)\)는 \(a \in A \land (b \in B \lor b \in C)\)이고, 1장의 분배법칙으로 \((a \in A \land b \in B) \lor (a \in A \land b \in C)\), 곧 \((a, b) \in (A \times B) \cup (A \times C)\)입니다. ∩ 쪽도 같은 방법으로, 멱등법칙으로 \(a \in A\)를 두 번 쓰면 확인됩니다.</p>
+
+  <h4>법칙 하나하나</h4>
+  <p><em>항등법칙과 지배법칙</em>: 공집합과 합집합을 하거나 전체집합과 교집합을 하면 자기 자신이 나옵니다. 거꾸로 전체집합과 합집합을 하면 전체집합이 되고, 공집합과 교집합을 하면 공집합이 됩니다. 모든 집합은 \(U\)의 부분집합이므로 \(U\)와 합쳐도 \(U\)이고, 공집합과 겹치는 원소는 있을 수 없기 때문입니다. \(U\)가 합집합의 결과를, \(\varnothing\)가 교집합의 결과를 지배한다고 해서 지배법칙입니다. 1장의 p ∨ T ≡ T, p ∧ F ≡ F에서 T가 \(U\)로, F가 \(\varnothing\)로 바뀐 것입니다.</p>
+  <p><em>멱등법칙, 교환법칙, 결합법칙</em>: 1장과 같습니다. 결합법칙 덕분에 예제 3-&#8288;12의 \(A \cup B \cup C\)처럼 괄호 없이 씁니다.</p>
+  <p><em>분배법칙</em>: 바깥의 \(A \cup\)가 괄호 안의 \(B\)와 \(C\)에 하나씩 나뉘어 들어가고, 연산자 ∩는 그대로 둘 사이에 남습니다. 쌍대 쪽에서는 \(A \cap\)가 나뉘어 들어갑니다. <strong>분배법칙은 특히 잘 기억해 두세요.</strong> 직관으로 바로 떠오르지 않는데 증명에서 자주 쓰입니다. 1장에서 본 것처럼 ∪ 쪽 분배법칙은 ∪를 덧셈, ∩를 곱셈으로 옮기면 산수에서 성립하지 않으므로, 산수에 기대지 말고 법칙 그대로 익혀야 합니다.</p>
+  <p><em>이중 보법칙과 보법칙</em>: 여집합의 여집합은 \(A\)의 바깥의 바깥이므로 \(A\)입니다. 1장의 이중 부정법칙에 해당합니다. 보법칙은 1장의 부정법칙에 해당합니다. \(A\)와 \(A'\)은 언제나 서로소이고, 둘을 합치면 전체집합이 됩니다. \(\varnothing' = U\)와 \(U' = \varnothing\)는 아무것도 없는 것의 바깥은 전체이고, 전체의 바깥에는 아무것도 없다는 뜻입니다.</p>
+  <p><em>드모르간의 법칙</em>: 그림 3-&#8288;10에서 \(A'\)(왼쪽)과 \(B'\)(가운데)이 겹치는 곳(오른쪽)은 두 원의 바깥 전체이고, 이것은 \(A \cup B\)의 바깥, 곧 \((A \cup B)'\)과 같습니다. 괄호 밖의 ′을 안으로 들이면 \(A\)와 \(B\)에 각각 ′이 붙고 ∪는 ∩로 바뀝니다. 1장에서 ¬를 괄호 안으로 들일 때 ∧와 ∨가 바뀐 것과 똑같습니다. 쌍대인 \((A \cap B)' = A' \cup B'\)에서는 ∩가 ∪로 바뀝니다.</p>
+
+  <figure>
+    <svg width="584" height="142" viewBox="0 0 584 142" role="img" aria-label="벤 다이어그램 세 개. 왼쪽은 A의 바깥 A 여집합, 가운데는 B의 바깥 B 여집합을 칠했고, 오른쪽은 둘이 겹치는 두 원의 바깥을 칠해 A 합집합 B의 여집합과 같음을 보임">
+      <g transform="translate(2,2)">
+        <rect x="0" y="0" width="180" height="110" class="fig-region-a"/>
+        <rect x="0" y="0" width="180" height="110" class="fig-thin"/>
+        <circle cx="70" cy="55" r="34" class="fig-node"/>
+        <circle cx="110" cy="55" r="34" class="fig-line"/>
+        <text x="12" y="20" class="fig-text">U</text>
+        <text x="54" y="60" class="fig-text" text-anchor="middle">A</text>
+        <text x="126" y="60" class="fig-text" text-anchor="middle">B</text>
+        <text x="90" y="134" class="fig-text" text-anchor="middle">A′</text>
+      </g>
+      <g transform="translate(202,2)">
+        <rect x="0" y="0" width="180" height="110" class="fig-region-b"/>
+        <rect x="0" y="0" width="180" height="110" class="fig-thin"/>
+        <circle cx="110" cy="55" r="34" class="fig-node"/>
+        <circle cx="70" cy="55" r="34" class="fig-line"/>
+        <text x="12" y="20" class="fig-text">U</text>
+        <text x="54" y="60" class="fig-text" text-anchor="middle">A</text>
+        <text x="126" y="60" class="fig-text" text-anchor="middle">B</text>
+        <text x="90" y="134" class="fig-text" text-anchor="middle">B′</text>
+      </g>
+      <g transform="translate(402,2)">
+        <rect x="0" y="0" width="180" height="110" class="fig-region-highlight"/>
+        <rect x="0" y="0" width="180" height="110" class="fig-thin"/>
+        <path d="M90,27.5 A34,34 0 1,0 90,82.5 A34,34 0 1,0 90,27.5 Z" class="fig-node"/>
+        <circle cx="70" cy="55" r="34" class="fig-line"/>
+        <circle cx="110" cy="55" r="34" class="fig-line"/>
+        <text x="12" y="20" class="fig-text">U</text>
+        <text x="54" y="60" class="fig-text" text-anchor="middle">A</text>
+        <text x="126" y="60" class="fig-text" text-anchor="middle">B</text>
+        <text x="90" y="134" class="fig-text" text-anchor="middle">A′ ∩ B′ = (A ∪ B)′</text>
+      </g>
+    </svg>
+    <figcaption>그림 3-&#8288;10 드모르간의 법칙 \((A \cup B)' = A' \cap B'\)</figcaption>
+  </figure>
+
+  <p><em>흡수법칙</em>: \(A \cap B\)는 \(A\)에 들어 있으므로 \(A\)와 합치면 \(A\)이고, \(A\)는 \(A \cup B\)에 들어 있으므로 \(A \cup B\)와 겹치는 부분은 \(A\)입니다. 1장 그림 1-&#8288;3의 벤 다이어그램에서 p와 q를 \(A\)와 \(B\)로 읽으면 그대로 이 법칙의 그림이 됩니다.</p>
+
+  <div class="example">
+    <p class="example-title">예제 3-&#8288;24</p>
+    <p>드모르간의 법칙을 증명하시오. (1) \((A \cup B)' = A' \cap B'\) (2) \((A \cap B)' = A' \cup B'\)</p>
+    <p class="solution-label">풀이</p>
+    <p>두 집합이 같다는 것을 보이려면, 상등의 정의대로 모든 원소 \(x\)에 대해 '\(x\)가 왼쪽 집합에 속한다'와 '\(x\)가 오른쪽 집합에 속한다'가 필요충분조건임을 보이면 됩니다. \(x\)는 전체집합 \(U\)의 원소 가운데에서 생각합니다. 집합의 정의로 집합의 식을 명제로 옮기고, 1장의 드모르간의 법칙을 쓴 뒤, 다시 집합의 식으로 옮깁니다.</p>
+    <table class="derivation">
+      <tr><td class="step-sign">(1)</td><td>\(x \in (A \cup B)'\)</td><td class="step-reason"></td></tr>
+      <tr><td class="step-sign">⇔</td><td>\(x \notin A \cup B\)</td><td class="step-reason">여집합의 정의</td></tr>
+      <tr><td class="step-sign">⇔</td><td>\(\neg(x \in A \lor x \in B)\)</td><td class="step-reason">합집합의 정의</td></tr>
+      <tr><td class="step-sign">⇔</td><td>\(x \notin A \land x \notin B\)</td><td class="step-reason">1장의 드모르간의 법칙</td></tr>
+      <tr><td class="step-sign">⇔</td><td>\(x \in A' \land x \in B'\)</td><td class="step-reason">여집합의 정의</td></tr>
+      <tr><td class="step-sign">⇔</td><td>\(x \in A' \cap B'\)</td><td class="step-reason">교집합의 정의</td></tr>
+    </table>
+    <p>모든 \(x\)에 대해 성립하므로 \((A \cup B)' = A' \cap B'\)입니다. 이 사슬을 위에서 아래로 읽으면 \((A \cup B)' \subseteq A' \cap B'\)을, 아래에서 위로 읽으면 \(A' \cap B' \subseteq (A \cup B)'\)을 보인 것이 됩니다. 2절 포함관계 정리 (5)의 두 포함을 한꺼번에 보인 셈입니다.</p>
+    <table class="derivation">
+      <tr><td class="step-sign">(2)</td><td>\(x \in (A \cap B)'\)</td><td class="step-reason"></td></tr>
+      <tr><td class="step-sign">⇔</td><td>\(x \notin A \cap B\)</td><td class="step-reason">여집합의 정의</td></tr>
+      <tr><td class="step-sign">⇔</td><td>\(\neg(x \in A \land x \in B)\)</td><td class="step-reason">교집합의 정의</td></tr>
+      <tr><td class="step-sign">⇔</td><td>\(x \notin A \lor x \notin B\)</td><td class="step-reason">1장의 드모르간의 법칙</td></tr>
+      <tr><td class="step-sign">⇔</td><td>\(x \in A' \lor x \in B'\)</td><td class="step-reason">여집합의 정의</td></tr>
+      <tr><td class="step-sign">⇔</td><td>\(x \in A' \cup B'\)</td><td class="step-reason">합집합의 정의</td></tr>
+    </table>
+    <p>∴ \((A \cap B)' = A' \cup B'\)</p>
+    <p>넷째 줄의 ∧와 ∨는 '\(x \notin A\)' 같은 명제를 잇는 연산자입니다. 이것을 '\(A' \land B'\)'처럼 집합 사이에 바로 쓰지 않도록 주의하세요. 집합을 잇는 것은 ∩와 ∪이고, 명제를 잇는 것은 ∧와 ∨입니다.</p>
+  </div>
+
+  <div class="example">
+    <p class="example-title">예제 3-&#8288;25</p>
+    <p>다음의 흡수법칙을 증명하시오. \(A \cap (A \cup B) = A\), \(A \cup (A \cap B) = A\)</p>
+    <p class="solution-label">풀이</p>
+    <p>이번에는 원소를 따지지 않고 표 3-&#8288;5의 법칙만으로 왼쪽 식을 오른쪽 식으로 바꿉니다. \(A \cap (A \cup B)\)에는 \(A\)가 두 번 나옵니다. 하나는 그냥 \(A\)이고, 하나는 \(A \cup B\) 안에 있습니다. 둘을 같은 모양으로 맞추면 분배법칙으로 묶을 수 있습니다. 그래서 먼저 항등법칙으로 \(A\)를 \(A \cup \varnothing\)로 바꿉니다. 그러면 두 괄호에 \(A \cup\)가 똑같이 들어 있으므로, 분배법칙을 거꾸로 써서 공통인 \(A \cup\)를 밖으로 묶어 냅니다.</p>
+    <table class="derivation">
+      <tr><td class="step-sign"></td><td>\(A \cap (A \cup B)\)</td><td class="step-reason"></td></tr>
+      <tr><td class="step-sign">=</td><td>\((A \cup \varnothing) \cap (A \cup B)\)</td><td class="step-reason">항등법칙</td></tr>
+      <tr><td class="step-sign">=</td><td>\(A \cup (\varnothing \cap B)\)</td><td class="step-reason">분배법칙(거꾸로)</td></tr>
+      <tr><td class="step-sign">=</td><td>\(A \cup \varnothing\)</td><td class="step-reason">지배법칙</td></tr>
+      <tr><td class="step-sign">=</td><td>\(A\)</td><td class="step-reason">항등법칙</td></tr>
+    </table>
+    <p>공통인 부분을 묶어 내는 모습은 중학교에서 배운 인수분해와 닮았습니다. 다만 닮은 것은 모양까지입니다. ∪를 덧셈, ∩를 곱셈으로 옮기면 둘째 줄에서 셋째 줄로 가는 단계는 다음 꼴이 되는데, 이것은 보통 산수에서 성립하지 않습니다.</p>
+    <p>\[(a + x)(a + y) = a + xy\]</p>
+    <p> \(a = x = y = 1\)이면 왼쪽은 4, 오른쪽은 2입니다. 1장에서 본 것처럼 ∪(1장에서는 ∨)가 나뉘어 들어가는 분배법칙은 산수에 없는 법칙입니다.</p>
+    <table class="derivation">
+      <tr><td class="step-sign"></td><td>\(A \cup (A \cap B)\)</td><td class="step-reason"></td></tr>
+      <tr><td class="step-sign">=</td><td>\((A \cap U) \cup (A \cap B)\)</td><td class="step-reason">항등법칙</td></tr>
+      <tr><td class="step-sign">=</td><td>\(A \cap (U \cup B)\)</td><td class="step-reason">분배법칙(거꾸로)</td></tr>
+      <tr><td class="step-sign">=</td><td>\(A \cap U\)</td><td class="step-reason">지배법칙</td></tr>
+      <tr><td class="step-sign">=</td><td>\(A\)</td><td class="step-reason">항등법칙</td></tr>
+    </table>
+    <p>둘째 식은 첫째 식의 쌍대이고, 증명도 첫째 증명의 쌍대입니다. ∪와 ∩, \(\varnothing\)와 \(U\)를 맞바꾸면 줄마다 그대로 맞바뀝니다. 그래서 \(A\)를 바꿀 때 첫째 증명에서는 \(\varnothing\)를 ∪로 붙였고, 둘째 증명에서는 \(U\)를 ∩로 붙였습니다.</p>
+  </div>
+
+  <div class="example">
+    <p class="example-title">예제</p>
+    <p>\((A \cup B) - (A \cap B) = A \oplus B\)임을 증명하시오.</p>
+    <p class="solution-label">풀이</p>
+    <p>먼저 그림으로 생각해 봅니다. \(A \cup B\)에서 가운데의 \(A \cap B\)를 덜어 내면 \(A\)에만 있는 부분과 \(B\)에만 있는 부분이 남습니다. 그림 3-&#8288;6의 \(A \oplus B\)와 같은 모양입니다. 두 집합에 다 있으면 빼고 한쪽에만 있으면 남기는, 배타적 논리합 그대로입니다.</p>
+    <p>이제 이것을 법칙으로 보입니다. 차집합에는 표 3-&#8288;5의 법칙을 바로 쓸 수 없으므로, 3-2)의 \(S - T = S \cap T'\)으로 ∩와 ′의 식으로 바꾸는 데서 시작합니다. \(S\) 자리에 \(A \cup B\)가, \(T\) 자리에 \(A \cap B\)가 들어갑니다. 그다음 괄호에 걸린 ′을 드모르간의 법칙으로 안으로 들이고, \(A \cup B\)를 한 덩어리로 보아 분배법칙으로 풉니다. 식이 길어 괄호가 겹칠 때는 대괄호 [ ]로 묶습니다. 중괄호 { }는 집합을 나타내므로 묶음 기호로 쓰지 않습니다.</p>
+    <table class="derivation">
+      <tr><td class="step-sign"></td><td>\((A \cup B) - (A \cap B)\)</td><td class="step-reason"></td></tr>
+      <tr><td class="step-sign">=</td><td>\((A \cup B) \cap (A \cap B)'\)</td><td class="step-reason">\(S - T = S \cap T'\)</td></tr>
+      <tr><td class="step-sign">=</td><td>\((A \cup B) \cap (A' \cup B')\)</td><td class="step-reason">드모르간의 법칙</td></tr>
+      <tr><td class="step-sign">=</td><td>\([(A \cup B) \cap A'] \cup [(A \cup B) \cap B']\)</td><td class="step-reason">분배법칙</td></tr>
+      <tr><td class="step-sign">=</td><td>\([(A \cap A') \cup (B \cap A')] \cup [(A \cap B') \cup (B \cap B')]\)</td><td class="step-reason">분배법칙, 교환법칙</td></tr>
+      <tr><td class="step-sign">=</td><td>\([\varnothing \cup (B \cap A')] \cup [(A \cap B') \cup \varnothing]\)</td><td class="step-reason">보법칙</td></tr>
+      <tr><td class="step-sign">=</td><td>\((B \cap A') \cup (A \cap B')\)</td><td class="step-reason">항등법칙</td></tr>
+      <tr><td class="step-sign">=</td><td>\((B - A) \cup (A - B)\)</td><td class="step-reason">\(S \cap T' = S - T\)</td></tr>
+      <tr><td class="step-sign">=</td><td>\((A - B) \cup (B - A)\)</td><td class="step-reason">교환법칙</td></tr>
+      <tr><td class="step-sign">=</td><td>\(A \oplus B\)</td><td class="step-reason">대칭차집합의 정의</td></tr>
+    </table>
+    <p>넷째 줄은 \(A \cup B\)를 한 덩어리로 보고, 그 덩어리가 \(A'\)과 \(B'\)에 하나씩 ∩로 나뉘어 들어가게 한 것입니다. 다섯째 줄에서는 \((A \cup B) \cap A'\)을 다시 풀었는데, 분배법칙은 바깥 집합이 왼쪽에 있는 꼴이므로 교환법칙으로 \(A' \cap (A \cup B)\)로 본 뒤 풀고 순서를 되돌린 것입니다. 일곱째 줄의 항등법칙도 \(\varnothing \cup (B \cap A')\)을 교환법칙으로 \((B \cap A') \cup \varnothing\)로 본 것입니다. 1장에서처럼 교환법칙은 이렇게 따로 적지 않고 쓰는 일이 많습니다.</p>
+  </div>
+</section>
+
+<section>
+  <h2>5. 집합의 분할</h2>
+  <p>피자나 파이를 몇 조각으로 자르는 장면을 떠올려 보세요. 자른 조각을 모두 모으면 원래의 파이가 되고, 두 조각이 같은 부분을 나눠 가지는 일은 없습니다. 집합을 이렇게 조각내는 것이 분할입니다(그림 3-&#8288;11).</p>
+
+  <div class="definition">
+    <p class="definition-term">분할(partition)</p>
+    <p>공집합이 아닌 임의의 집합 \(A\)를, 서로소이면서 공집합이 아닌 부분집합들로 나누는 것을 \(A\)의 분할이라고 합니다. 분할은 나눈 부분집합들의 집합 \(\{A_1, A_2, \ldots, A_k\}\)로 나타냅니다. 분할은 \(i = 1, 2, \ldots, k\)에 대하여 다음 네 성질을 가집니다.</p>
+    <p>(1) \(A_i \ne \varnothing\) (2) \(A_i \subseteq A\) (3) \(A = A_1 \cup A_2 \cup \cdots \cup A_k\) (4) \(i \ne j\)이면 \(A_i \cap A_j = \varnothing\)</p>
+  </div>
+  <p>분할을 이루는 부분집합 하나하나 \(A_i\)를 <em>집합류</em>라고 합니다. 블록(block)이라고 부르는 책도 있습니다. 네 성질을 파이에 빗대어 읽으면 이렇습니다. (1) 빈 조각은 없습니다. (2) 조각은 모두 원래 파이의 일부입니다. (3) 조각을 모두 모으면 파이 전체가 되어 남는 부분이 없습니다. (4) 서로 다른 두 조각은 겹치지 않습니다.</p>
+  <p>비유가 통하지 않는 곳도 있습니다. 파이를 자를 때는 조각의 크기와 모양이 중요하지만, 집합의 분할은 어떤 원소들이 한 조각에 함께 들었는지만 따집니다. 또 파이에서는 크기가 0인 조각을 생각하지 않지만, 집합에서는 공집합도 엄연한 부분집합이므로 (1)로 빈 조각을 따로 막아 둔 것입니다.</p>
+
+  <figure>
+    <svg width="440" height="178" viewBox="0 0 440 178" role="img" aria-label="왼쪽은 원으로 그린 집합 A를 네 조각 A1, A2, A3, A4로 나눈 그림, 오른쪽은 원소 a, b, c를 가진 집합을 a와 b가 든 조각과 c가 든 조각으로 나눈 그림">
+      <g transform="translate(10,0)">
+        <circle cx="90" cy="80" r="64" class="fig-region-a"/>
+        <circle cx="90" cy="80" r="64" class="fig-line"/>
+        <line x1="90" y1="80" x2="90" y2="16" class="fig-line"/>
+        <line x1="90" y1="80" x2="150.1" y2="101.9" class="fig-line"/>
+        <line x1="90" y1="80" x2="41.0" y2="121.1" class="fig-line"/>
+        <line x1="90" y1="80" x2="29.9" y2="58.1" class="fig-line"/>
+        <text x="121" y="63" class="fig-text" text-anchor="middle">A<tspan dy="4" class="fig-text-soft">1</tspan></text>
+        <text x="97" y="122" class="fig-text" text-anchor="middle">A<tspan dy="4" class="fig-text-soft">2</tspan></text>
+        <text x="53" y="91" class="fig-text" text-anchor="middle">A<tspan dy="4" class="fig-text-soft">3</tspan></text>
+        <text x="68" y="54" class="fig-text" text-anchor="middle">A<tspan dy="4" class="fig-text-soft">4</tspan></text>
+        <text x="160" y="24" class="fig-text-strong" text-anchor="middle">A</text>
+        <text x="90" y="170" class="fig-text" text-anchor="middle">{A<tspan dy="4" class="fig-text-soft">1</tspan><tspan dy="-4">, A</tspan><tspan dy="4" class="fig-text-soft">2</tspan><tspan dy="-4">, A</tspan><tspan dy="4" class="fig-text-soft">3</tspan><tspan dy="-4">, A</tspan><tspan dy="4" class="fig-text-soft">4</tspan><tspan dy="-4">}</tspan></text>
+      </g>
+      <g transform="translate(240,0)">
+        <circle cx="90" cy="80" r="64" class="fig-line"/>
+        <line x1="108" y1="18.6" x2="108" y2="141.4" class="fig-line"/>
+        <circle cx="62" cy="62" r="3.5" class="fig-arrow-head"/>
+        <circle cx="80" cy="104" r="3.5" class="fig-arrow-head"/>
+        <circle cx="130" cy="78" r="3.5" class="fig-arrow-head"/>
+        <text x="50" y="60" class="fig-text" text-anchor="middle">a</text>
+        <text x="68" y="102" class="fig-text" text-anchor="middle">b</text>
+        <text x="130" y="98" class="fig-text" text-anchor="middle">c</text>
+        <text x="160" y="24" class="fig-text-strong" text-anchor="middle">A</text>
+        <text x="90" y="170" class="fig-text" text-anchor="middle">{ {a, b}, {c} }</text>
+      </g>
+    </svg>
+    <figcaption>그림 3-&#8288;11 집합 \(A\)의 분할. 오른쪽은 \(\{a, b, c\}\)를 \(\{a, b\}\)와 \(\{c\}\)로 나눈 것입니다.</figcaption>
+  </figure>
+
+  <p>분할은 원소로 나누는 것이 아니라 부분집합으로 나누는 것입니다. 그래서 분할 자체는 집합을 원소로 가지는 집합이고, 그 원소는 모두 \(A\)의 멱집합 \(P(A)\)에 들어 있는 공집합 아닌 집합입니다.</p>
+
+  <div class="example">
+    <p class="example-title">예제 3-&#8288;30</p>
+    <p>집합 \(A = \{a, b, c\}\)의 모든 분할은?</p>
+    <p class="solution-label">풀이</p>
+    <p>조각의 개수에 따라 나누어 찾습니다. 원소가 셋이므로 조각은 셋, 둘, 하나 가운데 하나입니다.</p>
+    <p>조각이 셋이면 원소 하나씩 나누는 \(\{\,\{a\}, \{b\}, \{c\}\,\}\) 하나뿐입니다. 조각은 \(a\)가 아니라 \(\{a\}\)처럼 집합이어야 합니다. 네 성질을 확인하면 다음과 같습니다.</p>
+    <ul>
+      <li>(1) \(\{a\} \ne \varnothing\), \(\{b\} \ne \varnothing\), \(\{c\} \ne \varnothing\)</li>
+      <li>(2) \(\{a\} \subseteq A\), \(\{b\} \subseteq A\), \(\{c\} \subseteq A\)</li>
+      <li>(3) \(\{a\} \cup \{b\} \cup \{c\} = \{a, b, c\} = A\)</li>
+      <li>(4) \(\{a\} \cap \{b\} = \varnothing\), \(\{b\} \cap \{c\} = \varnothing\), \(\{c\} \cap \{a\} = \varnothing\)</li>
+    </ul>
+    <p>조각이 둘이면 원소 둘과 하나로 나눕니다. 혼자 떨어질 원소를 고르는 방법이 셋이므로 \(\{\,\{a, b\}, \{c\}\,\}\), \(\{\,\{a, c\}, \{b\}\,\}\), \(\{\,\{a\}, \{b, c\}\,\}\)의 세 가지입니다. 네 성질은 같은 방법으로 확인됩니다.</p>
+    <p>조각이 하나이면 \(A\)를 통째로 둔 \(\{\,\{a, b, c\}\,\}\)입니다. 이것도 분할입니다. (1) \(\{a, b, c\} \ne \varnothing\)이고, (2) \(\{a, b, c\} \subseteq A\)입니다. 이때 \(\{a, b, c\}\)는 \(A\) 자신이므로 진부분집합 기호 \(\subset\)가 아니라 부분집합 기호 \(\subseteq\)로 써야 합니다. (3) 조각이 하나뿐이므로 \(A_1 = A\)가 곧 성질 (3)입니다. (4) 서로 다른 두 조각이 없으므로 확인할 쌍이 없습니다. 성질 (4)는 '\(i \ne j\)이면 \(A_i \cap A_j = \varnothing\)'이라는 함축인데, 번호가 1 하나뿐이라 조건 \(i \ne j\)가 참이 되는 경우가 없습니다. 2절에서 \(\varnothing \subseteq A\)가 참이었던 것과 같은 이치로 (4)는 저절로 성립합니다. 공집합을 조각으로 끼워 넣어 (3)과 (4)를 확인하려 해서는 안 됩니다. 공집합은 (1)에 따라 조각이 될 수 없습니다.</p>
+    <p>∴ \(A = \{a, b, c\}\)의 분할은 \(\{\,\{a\}, \{b\}, \{c\}\,\}\), \(\{\,\{a, b\}, \{c\}\,\}\), \(\{\,\{a, c\}, \{b\}\,\}\), \(\{\,\{a\}, \{b, c\}\,\}\), \(\{\,\{a, b, c\}\,\}\)의 1 + 3 + 1 = 5가지입니다.</p>
+    <p>분할이 아닌 예도 견주어 두세요. \(\{\,\{a, b\}, \{b, c\}\,\}\)는 \(b\)가 두 조각에 겹치므로 (4)를 어기고, \(\{\,\{a\}, \{b\}\,\}\)는 \(c\)가 어느 조각에도 없으므로 (3)을 어기며, \(\{\varnothing, \{a, b, c\}\,\}\)는 빈 조각이 있으므로 (1)을 어깁니다.</p>
+  </div>
+</section>
+
+<section class="looking-back">
+  <h2>장을 마치며</h2>
+  <p>이 장의 집합은 모두 '원소 \(x\)가 집합에 속하는가'라는 명제 위에 서 있었습니다. 상등은 \(x \in A\)와 \(x \in B\)가 모든 \(x\)에서 같은 진릿값을 가진다는 것이었고, 부분집합은 \(x \in A \rightarrow x \in B\)가 늘 참이라는 것이었습니다. 공집합이 모든 집합의 부분집합인 까닭도 조건이 거짓인 함축은 참이라는 1장의 진리표에 있었습니다. 3절의 합집합, 교집합, 여집합, 대칭차집합은 그 명제에 ∨, ∧, ¬, ⊕를 붙인 것이어서, 4절의 대수법칙은 1장의 동치 법칙을 집합의 말로 다시 쓴 것이 되었습니다. 그래서 집합의 등식은 두 가지 방법으로 증명할 수 있습니다. 예제 3-&#8288;24처럼 원소 하나를 잡아 명제로 옮겨 따지거나, 예제 3-&#8288;25처럼 대수법칙으로 식을 바꾸는 것입니다.</p>
+  <p>기수의 공식은 겹친 부분을 몇 번 세었는지 바로잡는 셈이었고, 멱집합의 기수 \(2^n\)은 2장에서 센 \(n\)비트 나열의 개수와 같은 셈이었습니다. 5절의 분할은 겹치지 않고 빠짐없이 나누는 일이고, 그 조건 (4)가 저절로 성립하는 경우마저 2절의 공집합과 같은 이치로 설명되었습니다.</p>
+  <p>다음 장에서는 이산수학의 또 다른 재료인 수를 다룹니다. 수의 성질에서 출발해 수 체계와 보수로 수를 나타내는 방법을 배웁니다. 이 장의 곱집합과 분할은 6장 관계에서 다시 나옵니다. 관계는 곱집합의 부분집합으로 정의되고, 동치관계는 집합을 분할합니다.</p>
+</section>
+
+<section class="recall">
+  <h2>떠올려 보기</h2>
+  <ol>
+    <li>두 집합 \(A\), \(B\)가 상등이라는 것을 한정자를 써서 나타내 보세요. \(A\)와 \(B\)에 함께 속하는 원소가 있다는 것만으로 \(A = B\)라고 할 수 없는 까닭은 무엇입니까?</li>
+    <li>\(\varnothing\)와 \(\{\varnothing\}\)는 같은 집합입니까? 각각의 기수는 얼마입니까?</li>
+    <li>\(\subseteq\)와 \(\subset\)는 어떻게 다릅니까? 1장에서 진리집합의 관계를 P ⊂ Q로 쓴 것은 이 장의 기호로 무엇입니까?</li>
+    <li>공집합이 모든 집합의 부분집합인 까닭을 함축의 진리표로 설명해 보세요.</li>
+    <li>\(A = \{\,\{a, b\}, c\}\)일 때 \(\{a, b\} \in A\)와 \(\{a, b\} \subseteq A\) 가운데 맞는 것은 무엇입니까?</li>
+    <li>\(|A \cup B \cup C|\)를 구하는 식에서 마지막에 \(|A \cap B \cap C|\)를 더하는 까닭은 무엇입니까?</li>
+    <li>\(x \in A \oplus B\)를 1장의 연산자로 나타내면 무엇입니까?</li>
+    <li>집합 \(A\)의 여집합을 구하려면 \(A\) 말고 무엇을 먼저 알아야 합니까?</li>
+    <li>\(A = \{1, 2\}\), \(B = \{a, b, c\}\)일 때 \(A \times B\)와 \(B \times A\)는 같은 집합입니까? 기수는 어떻습니까?</li>
+    <li>원소가 \(n\)개인 집합의 멱집합의 기수가 \(2^n\)인 까닭은 무엇입니까?</li>
+    <li>집합의 대수법칙이 1장의 동치 법칙과 하나하나 짝을 이루는 까닭은 무엇입니까?</li>
+    <li>\(\{\,\{a, b, c\}\,\}\)가 \(\{a, b, c\}\)의 분할인 까닭은 무엇입니까? 성질 (4)는 어떻게 확인합니까?</li>
+  </ol>
+</section>
+
+<section class="answers">
+  <h2>짧은 답</h2>
+  <ol>
+    <li>\(A = B \Leftrightarrow \forall x\,(x \in A \leftrightarrow x \in B)\)입니다. 함께 속하는 원소가 있어도 한쪽에만 있는 원소가 있을 수 있기 때문입니다. \(\{1, 2\}\)와 \(\{1, 3\}\)은 1을 함께 가지지만 같지 않습니다.</li>
+    <li>다릅니다. \(\varnothing\)는 원소가 없어 기수가 0이고, \(\{\varnothing\}\)는 \(\varnothing\) 하나를 원소로 가져 기수가 1입니다.</li>
+    <li>\(A \subseteq B\)는 \(A = B\)인 경우도 포함하고, \(A \subset B\)는 \(A \subseteq B\)이면서 \(A \ne B\)인 경우만 뜻합니다. 1장의 P ⊂ Q는 이 장의 기호로 \(P \subseteq Q\)입니다.</li>
+    <li>\(x \in \varnothing\)는 늘 거짓이고, 조건이 거짓인 함축은 진리표의 셋째, 넷째 줄처럼 결론과 상관없이 참입니다. 그래서 모든 \(x\)에 대해 \(x \in \varnothing \rightarrow x \in A\)가 참이고 \(\varnothing \subseteq A\)입니다.</li>
+    <li>\(\{a, b\} \in A\)가 맞습니다. \(\{a, b\}\)는 \(A\)의 원소이고, \(a\)와 \(b\)는 \(A\)의 원소가 아니므로 \(\{a, b\} \subseteq A\)는 거짓입니다.</li>
+    <li>세 집합 모두에 속한 원소는 \(|A| + |B| + |C|\)에서 세 번 더해지고, 두 집합의 교집합 셋을 빼면서 세 번 빠져 한 번도 세어지지 않게 됩니다. 그래서 한 번 더해 줍니다.</li>
+    <li>\((x \in A) \oplus (x \in B)\)입니다. \(x\)가 \(A\)와 \(B\) 가운데 꼭 하나에만 속할 때 참입니다.</li>
+    <li>전체집합 \(U\)입니다. 같은 집합이라도 전체집합이 달라지면 여집합이 달라집니다.</li>
+    <li>같지 않습니다. \((1, a)\)는 \(A \times B\)에만, \((a, 1)\)은 \(B \times A\)에만 있습니다. 기수는 둘 다 \(2 \times 3 = 6\)으로 같습니다.</li>
+    <li>부분집합을 만들 때 원소마다 넣거나 넣지 않거나 두 가지를 고르므로 2를 \(n\)번 곱한 \(2^n\)가지입니다. 부분집합 하나가 \(n\)비트 나열 하나와 짝지어진다고 보아도 됩니다.</li>
+    <li>\(x \in A \cup B\), \(x \in A \cap B\), \(x \in A'\)이 각각 \((x \in A) \lor (x \in B)\), \((x \in A) \land (x \in B)\), \(\neg(x \in A)\)이므로, 집합의 식에 \(x\)가 속하는지를 묻는 명제가 1장의 명제 식이 되기 때문입니다. 두 명제가 동치이면 모든 \(x\)에서 속하는지 여부가 같으므로 두 집합은 상등입니다.</li>
+    <li>\(\{a, b, c\}\)는 공집합이 아니고 \(A\)의 부분집합이며, 그 하나가 곧 \(A\) 전체이기 때문입니다. 서로 다른 두 조각이 없어 조건 \(i \ne j\)가 참인 경우가 없으므로, (4)는 저절로 성립합니다.</li>
+  </ol>
+</section>
+
+</body>
+</html>

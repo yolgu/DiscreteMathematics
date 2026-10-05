@@ -1,0 +1,138 @@
+3. 오일러와 해밀턴
+
+ 1) 오일러의 정의
+ 2) 해밀턴의 정의
+
+                                          COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+3-1) 오일러의 정의-1
+
+ 오일러 경로(Eulerian Path)
+   ▪ 그래프 G=(V, E)의 모든 변을 꼭 한 번씩만 지나는
+
+      경로
+
+ 오일러 순환/회로(Eulerian Cycle/Circuit)
+   ▪ 그래프 G=(V, E)의 꼭짓점 v에서 시작해 모든 변을
+     꼭 한 번씩만 지나서 v로 돌아오는 순환
+
+ 오일러 그래프(Eulerian Graph)
+   ▪ 오일러 순환을 포함하는 그래프 G=(V, E)
+
+※ 꼭짓점에 상관없이 모든 변을 한 번씩만 지남!
+
+                                          COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+3-1) 오일러의 정의-2
+
+ [정리 8-3①] 오일러 그래프에 대한 정리
+  연결 그래프 G=(V, E)의 모든 꼭짓점의 차수가 짝수
+  ⇔ 그래프 G가 오일러 그래프
+
+   (증명 →)
+   시작 꼭짓점에서 나온 변이 다른 꼭짓점을 연결하고,
+   그 꼭짓점의 다른 변을 통해 또 다른 꼭짓점들을 계속
+   연결함으로써 (시작 꼭짓점으로 되돌아 와) 생성된 부분
+
+  그래프 G1이 모든 변을 지난 경로이면 오일러 순환,
+  그렇지 않을 경우 G에서 G1을 제거하여 생성한 G2의
+
+   모든 꼭짓점 차수도 짝수,
+
+  ∴ 이를 계속 반복하면 결국 G는 오일러 그래프.
+
+                                          COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+3-1) 오일러의 정의-3
+
+ [정리 8-3①] 오일러 그래프에 대한 정리
+  연결 그래프 G=(V, E)의 모든 꼭짓점의 차수가 짝수
+  ⇔ 그래프 G가 오일러 그래프
+
+   (증명 ←)
+
+  G가 오일러 순환을 가지므로 시작 꼭짓점 차수는 2
+  (∵ 처음 나오는 변과 마지막 들어가는 변이 근접),
+
+   각 꼭짓점마다 들어가는 변과 나오는 변을 가지므로
+
+  시각 꼭짓점 이외의 모든 꼭짓점의 차수도 2의 배수,
+
+   ∴ 모든 꼭짓점의 차수는 짝수.
+
+                                          COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+3-1) 오일러의 정의-4
+
+ [정리 8-3②] 오일러 그래프에 대한 정리
+  연결 그래프 G=(V, E)의 홀수점의 수가 0 또는 2개
+  ⇔ 그래프 G에 오일러 경로 있음
+
+   (증명 →)
+
+  홀수점 수가 0일 때 [정리 8-3①]에 의해 오일러
+
+   순환
+   ∴ 오일러 경로 있음,
+
+  홀수점 수가 2일 때 그 홀수점들을 u, v라고 하고,
+  G에 변 (u, v)를 추가하면 모두 짝수점으로 구성되어
+
+   [정리 8-3①]에 의해 오일러 순환,
+
+  ∴ 변 (u, v)를 제거하면 오일러 경로 있음
+
+                                          COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+3-1) 오일러의 정의-5
+
+ [정리 8-3②] 오일러 그래프에 대한 정리
+  연결 그래프 G=(V, E)의 홀수점의 수가 0 또는 2개
+  ⇔ 그래프 G에 오일러 경로 있음
+
+   (증명 ←)
+
+  오일러 경로가 오일러 순환이 되면 홀수점 수는 0개,
+
+   오일러 경로만 있으면(≠오일러 순환) 시작 꼭짓점은
+   나오는 변만 있고 끝 꼭짓점은 들어가는 변만 있으며
+   나머지 변은 들어가는 변·나오는 변이 모두 있으므로
+
+  홀수점은 시작 꼭짓점과 끝 꼭짓점 2개 뿐이다.
+  ∴ 홀수점의 수는 0 또는 2개
+
+                                          COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+3-2) 해밀턴의 정의-1
+
+ 해밀턴 경로(Hamiltonian Path)
+   ▪ 그래프 G=(V, E)의 모든 꼭짓점을 꼭 한 번씩만
+
+      지나는 경로
+
+ 해밀턴 순환/회로(Hamiltonian Cycle/Circuit)
+   ▪ 그래프 G=(V, E)의 꼭짓점 v에서 시작해 모든
+     꼭짓점을 꼭 한 번씩만 지나서 v로 돌아오는 순환
+
+ 해밀턴 그래프(Hamiltonian Graph)
+   ▪ 해밀턴 순환을 포함하는 그래프 G=(V, E)
+
+※ 변에 상관없이 모든 꼭짓점을 한 번씩만 지남!
+
+                                          COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+3-2) 해밀턴의 정의-2
+
+▪ [예제 8-23] 해밀턴 경로·순환이 있는지 찾으시오.
+
+   a e da       b
+
+G               G
+
+1b f c c        d2
+
+-G1: 해밀턴 경로 예: a-f-e-b-c-d
+       해밀턴 순환 예: a-f-e-b-c-d-a
+
+-G2: 해밀턴 경로 예: a-b-c-d
+       해밀턴 순환 예: a-b-c-d-a
+
+-완전 그래프와 (Kn,n 형태의)완전이분 그래프는
+
+  항상 해밀턴 경로와 해밀턴 순환을 가지고 있음
+
+   COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+

@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>1장 명제와 논리 문제집</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body, {delimiters: [{left: '\\[', right: '\\]', display: true}, {left: '\\(', right: '\\)', display: false}], throwOnError: false, errorColor: '#cc0001', output: 'html'})"></script>
+<link rel="stylesheet" href="textbook.css">
+<link rel="stylesheet" href="workbook.css">
+</head>
+<body>
+<section class="cover">
+<h1>1장 명제와 논리 문제집</h1>
+<p class="cover-sub">이산수학 교과서 1장의 내용을, 다섯 선택지 가운데 하나를 고르는 문제 40개로 연습합니다.</p>
+<h2>다루는 범위</h2>
+<table class="prose-table"><thead><tr><th>묶음</th><th>문제</th></tr></thead><tbody><tr><td>1. 명제와 논리 연산자</td><td>1~12번</td></tr><tr><td>2. 논리적 동치</td><td>13~22번</td></tr><tr><td>3. 변수를 포함한 명제와 한정자</td><td>23~29번</td></tr><tr><td>4. 추론</td><td>30~36번</td></tr><tr><td>5. 섞어 풀기</td><td>37~40번</td></tr></tbody></table>
+<h2>풀기 전에 알아 둘 것</h2>
+<ul>
+  <li>교과서 1장을 한 번 읽었다고 보고 시작합니다. 문제에 필요한 정의와 법칙은 묶음마다 핵심 정리에 다시 모아 두었습니다.</li>
+  <li>T는 참, F는 거짓입니다. 진리표의 줄은 교과서처럼 p, q가 TT, TF, FT, FF인 순서로 적습니다.</li>
+</ul>
+<h2>푸는 방법</h2>
+<ul>
+  <li>각 문제에서 알맞은 답을 <strong>하나만</strong> 고르세요.</li>
+  <li>묶음마다 핵심 정리와 보기를 먼저 읽으세요. 보기는 풀이까지 보여 주는 예제입니다. 문제는 보기와 닮은 것부터 시작해, 스스로 판단할 것이 차츰 늘어나는 순서로 놓았습니다.</li>
+  <li>문제 번호 아래의 표시는 문제가 요구하는 수준입니다. 기초는 정의와 법칙을 그대로 쓰는 문제, 변형은 조건이나 표현이 바뀌어 방법을 골라야 하는 문제, 도전은 여러 단계를 이어야 하는 문제입니다.</li>
+  <li>정답과 풀이는 따로 묶은 「1장 명제와 논리 해설」에 있습니다. 해설에는 틀린 선택지 넷이 왜 틀렸는지도 적었습니다.</li>
+  <li>마지막 섞어 풀기(37~40번)는 앞 문제를 다 풀고 며칠 지난 뒤, 해설을 보지 않고 풀어 보세요.</li>
+</ul>
+</section>
+<section class="part">
+<h2>1. 명제와 논리 연산자</h2>
+<div class="summary"><p class="summary-title">핵심 정리</p>
+<ul>
+  <li><strong>명제</strong>: 참인지 거짓인지를 구분할 수 있는 문장이나 수식입니다. 거짓인 문장도 명제입니다. 변수의 값에 따라 참과 거짓이 바뀌는 문장은 그 값이 정해지기 전까지 명제가 아닙니다.</li>
+  <li><strong>논리 연산자</strong>: ¬p는 p와 반대 값입니다. p ∧ q는 둘 다 참일 때만 참, p ∨ q는 둘 다 거짓일 때만 거짓입니다(둘 다 참이어도 참). p ⊕ q는 두 값이 다를 때만 참입니다.</li>
+  <li><strong>진리표</strong>: p, q의 경우를 TT, TF, FT, FF 순서로 적습니다. 명제가 \(n\)개이면 \(2^n\)줄입니다.</li>
+  <li><strong>우선순위</strong>: ¬를 가장 먼저, ∧와 ∨를 다음에, →와 ↔를 가장 나중에 계산합니다. 괄호 안이 언제나 먼저입니다. ¬p ∧ q는 (¬p) ∧ q입니다.</li>
+  <li><strong>항진명제, 모순명제, 사건명제</strong>: 구성명제의 값과 상관없이 늘 참이면 항진명제, 늘 거짓이면 모순명제, 둘 다 아니면 사건명제입니다.</li>
+  <li><strong>함축</strong> p → q: p가 참이고 q가 거짓일 때만 거짓입니다. p가 거짓이면 q와 상관없이 참입니다.</li>
+  <li><strong>충분조건과 필요조건</strong>: p ⇒ q이면 p는 q의 충분조건, q는 p의 필요조건입니다. 진리집합으로는 P ⊂ Q이고, 작은 집합 쪽이 충분조건입니다.</li>
+  <li><strong>쌍방조건명제</strong> p ↔ q: p와 q의 값이 같을 때만 참입니다.</li>
+  <li><strong>역, 이, 대우</strong>: p → q의 역은 q → p, 이는 ¬p → ¬q, 대우는 ¬q → ¬p입니다. 원래 명제와 대우는 진릿값이 늘 같고, 역과 이도 서로 늘 같습니다.</li>
+</ul>
+</div>
+<div class="example"><p class="example-title">보기 1 우선순위를 지켜 진릿값 계산하기</p>
+<p>p, q, r가 모두 F일 때 ¬p ∨ q → r의 진릿값을 구하세요.</p>
+<p class="solution-label">풀이</p>
+<p>계산하기 전에 순서부터 정합니다. ¬를 가장 먼저, ∨를 그다음, →를 가장 나중에 계산하므로 이 식은 ((¬p) ∨ q) → r로 읽습니다. 이제 안쪽부터 한 겹씩 계산합니다.</p>
+<table class="derivation">
+  <tr><td class="step-sign"></td><td>¬p = T</td><td class="step-reason">p가 F이므로 뒤집습니다</td></tr>
+  <tr><td class="step-sign"></td><td>(¬p) ∨ q = T ∨ F = T</td><td class="step-reason">하나라도 참이면 참</td></tr>
+  <tr><td class="step-sign"></td><td>((¬p) ∨ q) → r = T → F = F</td><td class="step-reason">조건이 참이고 결론이 거짓</td></tr>
+</table>
+<p>따라서 진릿값은 F입니다. →를 먼저 계산해 ¬p ∨ (q → r)로 읽으면 F → F가 T이므로 T ∨ T = T가 되어 답이 달라집니다. 우선순위가 헷갈리면 괄호를 쳐서 계산 순서를 먼저 적어 두세요.</p>
+</div>
+<div class="item"><div class="item-side"><span class="item-number">1</span><span class="demand">기초</span></div><div class="item-body"><p>다음 가운데 명제인 것을 고르세요.</p><ol class="choices medium"><li><span class="choice-label">①</span><span>100은 큰 수이다.</span></li><li><span class="choice-label">②</span><span>7은 짝수이다.</span></li><li><span class="choice-label">③</span><span>\(x + 3 = 5\)</span></li><li><span class="choice-label">④</span><span>\(2 + 3\)</span></li><li><span class="choice-label">⑤</span><span>3과 4를 더하시오.</span></li></ol><div class="work-space"></div></div></div>
+<div class="item"><div class="item-side"><span class="item-number">2</span><span class="demand">기초</span></div><div class="item-body"><p>다음 가운데 명제가 <strong>아닌</strong> 것을 고르세요.</p><ol class="choices long"><li><span class="choice-label">①</span><span>3은 5보다 크다.</span></li><li><span class="choice-label">②</span><span>모든 자연수는 0보다 크다.</span></li><li><span class="choice-label">③</span><span>\(1 + 1 = 2\)이고 \(2 + 2 = 5\)이다.</span></li><li><span class="choice-label">④</span><span>\(2x - 1 = 7\)</span></li><li><span class="choice-label">⑤</span><span>\(x^2 = 4\)를 만족하는 정수 \(x\)가 존재한다.</span></li></ol><div class="work-space"></div></div></div>
+<div class="item"><div class="item-side"><span class="item-number">3</span><span class="demand">기초</span></div><div class="item-body"><p>p: '4는 짝수이다', q: '9는 소수이다'일 때, 다음 가운데 진릿값이 참인 것을 고르세요.</p><ol class="choices short"><li><span class="choice-label">①</span><span>p ∧ q</span></li><li><span class="choice-label">②</span><span>¬p ∨ q</span></li><li><span class="choice-label">③</span><span>¬(p ∨ q)</span></li><li><span class="choice-label">④</span><span>¬p ⊕ q</span></li><li><span class="choice-label">⑤</span><span>p ⊕ q</span></li></ol><div class="work-space"></div></div></div>
+<div class="item"><div class="item-side"><span class="item-number">4</span><span class="demand">기초</span></div><div class="item-body"><p>p ∨ q는 참이고 p ⊕ q는 거짓입니다. 다음 가운데 진릿값이 참인 것을 고르세요.</p><ol class="choices short"><li><span class="choice-label">①</span><span>p ∧ q</span></li><li><span class="choice-label">②</span><span>p ∧ ¬q</span></li><li><span class="choice-label">③</span><span>¬p ↔ q</span></li><li><span class="choice-label">④</span><span>¬p ∧ ¬q</span></li><li><span class="choice-label">⑤</span><span>p → ¬q</span></li></ol><div class="work-space"></div></div></div>
+<div class="item"><div class="item-side"><span class="item-number">5</span><span class="demand">기초</span></div><div class="item-body"><p>p가 T이고 q가 F일 때, 다음 가운데 진릿값이 참인 것을 고르세요.</p><ol class="choices short"><li><span class="choice-label">①</span><span>¬p ∧ q</span></li><li><span class="choice-label">②</span><span>¬(p ∨ q)</span></li><li><span class="choice-label">③</span><span>¬(p ∧ q)</span></li><li><span class="choice-label">④</span><span>p ⊕ ¬q</span></li><li><span class="choice-label">⑤</span><span>¬(¬q) ∧ p</span></li></ol><div class="work-space"></div></div></div>
+<div class="item"><div class="item-side"><span class="item-number">6</span><span class="demand">기초</span></div><div class="item-body"><p>합성명제 (p ∨ q) ∧ ¬r의 진리표는 모두 몇 줄이고, 그 가운데 진릿값이 T인 줄은 몇 개인지 고르세요.</p><ol class="choices short"><li><span class="choice-label">①</span><span>4줄, 3개</span></li><li><span class="choice-label">②</span><span>6줄, 3개</span></li><li><span class="choice-label">③</span><span>8줄, 2개</span></li><li><span class="choice-label">④</span><span>8줄, 3개</span></li><li><span class="choice-label">⑤</span><span>8줄, 6개</span></li></ol><div class="work-space"></div></div></div>
+<div class="item"><div class="item-side"><span class="item-number">7</span><span class="demand">기초</span></div><div class="item-body"><p>다음 가운데 항진명제인 것을 고르세요.</p><ol class="choices medium"><li><span class="choice-label">①</span><span>(p ∨ q) → p</span></li><li><span class="choice-label">②</span><span>p → (p ∧ q)</span></li><li><span class="choice-label">③</span><span>p ∧ ¬p</span></li><li><span class="choice-label">④</span><span>(p ⊕ q) ∨ (p ∧ q)</span></li><li><span class="choice-label">⑤</span><span>p → (p ∨ q)</span></li></ol><div class="work-space"></div></div></div>
+<div class="item"><div class="item-side"><span class="item-number">8</span><span class="demand">기초</span></div><div class="item-body"><p>p가 거짓일 때, q의 진릿값과 상관없이 참인 명제를 고르세요.</p><ol class="choices short"><li><span class="choice-label">①</span><span>p ∧ q</span></li><li><span class="choice-label">②</span><span>p → q</span></li><li><span class="choice-label">③</span><span>¬p → q</span></li><li><span class="choice-label">④</span><span>q → p</span></li><li><span class="choice-label">⑤</span><span>p ↔ q</span></li></ol><div class="work-space"></div></div></div>
+<div class="item"><div class="item-side"><span class="item-number">9</span><span class="demand">기초</span></div><div class="item-body"><p>정수 \(n\)에 대해 p: '\(n\)은 4의 배수이다', q: '\(n\)은 짝수이다'라고 합니다. 다음 가운데 p → q와 같은 뜻인 문장을 고르세요.</p><ol class="choices long"><li><span class="choice-label">①</span><span>\(n\)이 짝수가 아니면 \(n\)은 4의 배수이다.</span></li><li><span class="choice-label">②</span><span>\(n\)은 4의 배수이고 짝수이다.</span></li><li><span class="choice-label">③</span><span>\(n\)이 4의 배수인 것은 \(n\)이 짝수이기 위한 필요조건이다.</span></li><li><span class="choice-label">④</span><span>\(n\)이 짝수인 것은 \(n\)이 4의 배수이기 위한 필요조건이다.</span></li><li><span class="choice-label">⑤</span><span>\(n\)이 4의 배수인 것은 \(n\)이 짝수이기 위한 필요충분조건이다.</span></li></ol><div class="work-space"></div></div></div>
+<div class="item"><div class="item-side"><span class="item-number">10</span><span class="demand">기초</span></div><div class="item-body"><p>실수 \(x\)에 대한 두 조건 p: \(x &gt; 3\), q: \(x &gt; 1\)에 대해 옳은 것을 고르세요.</p><ol class="choices long"><li><span class="choice-label">①</span><span>p는 q의 충분조건이다.</span></li><li><span class="choice-label">②</span><span>p는 q의 필요조건이다.</span></li><li><span class="choice-label">③</span><span>p와 q는 서로 필요충분조건이다.</span></li><li><span class="choice-label">④</span><span>¬p는 ¬q의 충분조건이다.</span></li><li><span class="choice-label">⑤</span><span>p와 q 사이에는 충분조건이나 필요조건의 관계가 없다.</span></li></ol><div class="work-space"></div></div></div>
+<div class="item"><div class="item-side"><span class="item-number">11</span><span class="demand">기초</span></div><div class="item-body"><p>정수 \(n\)에 대한 명제 '\(n\)이 6의 배수이면 \(n\)은 3의 배수이다'의 대우를 고르세요.</p><ol class="choices long"><li><span class="choice-label">①</span><span>\(n\)이 3의 배수이면 \(n\)은 6의 배수이다.</span></li><li><span class="choice-label">②</span><span>\(n\)이 6의 배수가 아니면 \(n\)은 3의 배수가 아니다.</span></li><li><span class="choice-label">③</span><span>\(n\)이 3의 배수가 아니면 \(n\)은 6의 배수가 아니다.</span></li><li><span class="choice-label">④</span><span>\(n\)이 3의 배수가 아니면 \(n\)은 6의 배수이다.</span></li><li><span class="choice-label">⑤</span><span>\(n\)이 6의 배수이면 \(n\)은 3의 배수가 아니다.</span></li></ol><div class="work-space"></div></div></div>
+<div class="item"><div class="item-side"><span class="item-number">12</span><span class="demand">기초</span></div><div class="item-body"><p>p ↔ q가 참일 때, 다음 가운데 반드시 참인 것을 고르세요.</p><ol class="choices short"><li><span class="choice-label">①</span><span>p ∧ q</span></li><li><span class="choice-label">②</span><span>p ∨ q</span></li><li><span class="choice-label">③</span><span>p ⊕ q</span></li><li><span class="choice-label">④</span><span>¬p ∧ ¬q</span></li><li><span class="choice-label">⑤</span><span>p → q</span></li></ol><div class="work-space"></div></div></div>
+</section>
+<section class="part">
+<h2>2. 논리적 동치</h2>
+<div class="summary"><p class="summary-title">핵심 정리</p>
+<ul>
+  <li><strong>논리적 동치</strong> p ≡ q: 두 명제의 진릿값이 모든 경우에 같다는 뜻입니다. p ↔ q가 항진명제라는 말과 같습니다. 동치는 진리표의 열을 견주거나, 동치 법칙으로 한쪽 식을 다른 쪽 식으로 바꾸어 보입니다.</li>
+  <li><strong>쌍대</strong>: ¬, ∧, ∨, T, F만으로 된 식에서 ∧와 ∨, T와 F를 모두 맞바꾼 식입니다. 두 식이 동치이면 쌍대끼리도 동치입니다.</li>
+  <li><strong>식을 바꾸는 요령</strong>: →가 있으면 함축법칙으로 먼저 없앱니다. 괄호 전체에 걸린 ¬는 드모르간의 법칙으로 안으로 들이며 ∧와 ∨를 맞바꿉니다. 두 괄호에 같은 명제가 같은 연산자로 붙어 있으면 분배법칙을 거꾸로 써서 묶어 냅니다.</li>
+  <li><strong>곱하기와 더하기 비유</strong>: T를 1, F를 0, ∧를 곱하기, ∨를 더하기로 옮기면 여러 법칙을 산수처럼 볼 수 있지만, ∨ 쪽에서 1 + 1이 나오는 곳은 산수로 성립하지 않습니다.</li>
+</ul>
+<table class="prose-table">
+  <caption>이 장의 동치 법칙. 한 줄의 두 식은 서로 쌍대입니다.</caption>
+  <thead><tr><th>법칙</th><th>식</th><th>쌍대인 식</th></tr></thead>
+  <tbody>
+    <tr><td>항등법칙</td><td>p ∧ T ≡ p</td><td>p ∨ F ≡ p</td></tr>
+    <tr><td>지배법칙</td><td>p ∧ F ≡ F</td><td>p ∨ T ≡ T</td></tr>
+    <tr><td>부정법칙</td><td>p ∧ ¬p ≡ F</td><td>p ∨ ¬p ≡ T</td></tr>
+    <tr><td>이중 부정법칙</td><td colspan="2">¬(¬p) ≡ p</td></tr>
+    <tr><td>멱등법칙</td><td>p ∧ p ≡ p</td><td>p ∨ p ≡ p</td></tr>
+    <tr><td>교환법칙</td><td>p ∧ q ≡ q ∧ p</td><td>p ∨ q ≡ q ∨ p</td></tr>
+    <tr><td>결합법칙</td><td>(p ∧ q) ∧ r ≡ p ∧ (q ∧ r)</td><td>(p ∨ q) ∨ r ≡ p ∨ (q ∨ r)</td></tr>
+    <tr><td>분배법칙</td><td>p ∨ (q ∧ r)<br>≡ (p ∨ q) ∧ (p ∨ r)</td><td>p ∧ (q ∨ r)<br>≡ (p ∧ q) ∨ (p ∧ r)</td></tr>
+    <tr><td>드모르간의 법칙</td><td>¬(p ∧ q) ≡ ¬p ∨ ¬q</td><td>¬(p ∨ q) ≡ ¬p ∧ ¬q</td></tr>
+    <tr><td>흡수법칙</td><td>p ∧ (p ∨ q) ≡ p</td><td>p ∨ (p ∧ q) ≡ p</td></tr>
+    <tr><td>함축법칙</td><td colspan="2">p → q ≡ ¬p ∨ q</td></tr>
+  </tbody>
+</table>
+</div>
+<div class="example"><p class="example-title">보기 2 동치 법칙으로 식 바꾸기</p>
+<p>¬(p → q) ≡ p ∧ ¬q임을 동치 법칙으로 보이세요.</p>
+<p class="solution-label">풀이</p>
+<p>→가 남아 있으면 드모르간의 법칙 같은 다른 법칙을 쓸 수 없으므로, 먼저 함축법칙으로 →를 ¬와 ∨로 바꿉니다. 그러면 괄호 전체에 ¬가 걸린 꼴이 되니, 드모르간의 법칙으로 ¬를 안으로 들이면서 ∨를 ∧로 바꿉니다. 마지막으로 부정이 두 번 걸린 ¬(¬p)를 이중 부정법칙으로 정리합니다.</p>
+<table class="derivation"><tr><td class="step-sign"></td><td>¬(p → q)</td><td class="step-reason"></td></tr><tr><td class="step-sign">≡</td><td>¬(¬p ∨ q)</td><td class="step-reason">함축법칙</td></tr><tr><td class="step-sign">≡</td><td>¬(¬p) ∧ ¬q</td><td class="step-reason">드모르간의 법칙</td></tr><tr><td class="step-sign">≡</td><td>p ∧ ¬q</td><td class="step-reason">이중 부정법칙</td></tr></table>
+<p>결과를 말로 읽으면 'p이면 q'라는 약속이 깨지는 것은 p가 참인데 q가 거짓인 경우라는 뜻입니다. 함축의 진리표에서 거짓인 줄이 TF 하나뿐이었던 것과 맞습니다.</p>
+</div>
+<div class="item"><div class="item-side"><span class="item-number">13</span><span class="demand">기초</span></div><div class="item-body"><p>¬(p ⊕ q)와 논리적 동치인 것을 고르세요.</p><ol class="choices short"><li><span class="choice-label">①</span><span>p ∧ q</span></li><li><span class="choice-label">②</span><span>p ↔ q</span></li><li><span class="choice-label">③</span><span>¬p ⊕ ¬q</span></li><li><span class="choice-label">④</span><span>¬p ∨ ¬q</span></li><li><span class="choice-label">⑤</span><span>p → q</span></li></ol><div class="work-space"></div></div></div>
+<div class="item"><div class="item-side"><span class="item-number">14</span><span class="demand">기초</span></div><div class="item-body">
+<p>다음은 ¬(p ∧ ¬q) ≡ ¬p ∨ q를 보이는 과정입니다. (가)에 알맞은 식을 고르세요.</p>
+<table class="derivation">
+  <tr><td class="step-sign"></td><td>¬(p ∧ ¬q)</td><td class="step-reason"></td></tr>
+  <tr><td class="step-sign">≡</td><td>(가)</td><td class="step-reason">드모르간의 법칙</td></tr>
+  <tr><td class="step-sign">≡</td><td>¬p ∨ q</td><td class="step-reason">이중 부정법칙</td></tr>
+</table>
+<ol class="choices short"><li><span class="choice-label">①</span><span>¬p ∨ ¬(¬q)</span></li><li><span class="choice-label">②</span><span>¬p ∧ ¬(¬q)</span></li><li><span class="choice-label">③</span><span>¬p ∨ ¬q</span></li><li><span class="choice-label">④</span><span>p ∨ ¬(¬q)</span></li><li><span class="choice-label">⑤</span><span>¬p ∧ ¬q</span></li></ol><div class="work-space"></div></div></div>
+<div class="item"><div class="item-side"><span class="item-number">15</span><span class="demand">기초</span></div><div class="item-body"><p>동치 p ∨ (p ∧ q) ≡ p에 해당하는 법칙의 이름을 고르세요.</p><ol class="choices short"><li><span class="choice-label">①</span><span>분배법칙</span></li><li><span class="choice-label">②</span><span>멱등법칙</span></li><li><span class="choice-label">③</span><span>지배법칙</span></li><li><span class="choice-label">④</span><span>흡수법칙</span></li><li><span class="choice-label">⑤</span><span>항등법칙</span></li></ol><div class="work-space"></div></div></div>
+<div class="item"><div class="item-side"><span class="item-number">16</span><span class="demand">기초</span></div><div class="item-body"><p>식 p ∨ (q ∧ T)의 쌍대를 고르세요.</p><ol class="choices medium"><li><span class="choice-label">①</span><span>p ∧ (q ∨ T)</span></li><li><span class="choice-label">②</span><span>p ∨ (q ∧ F)</span></li><li><span class="choice-label">③</span><span>p ∧ (q ∨ F)</span></li><li><span class="choice-label">④</span><span>¬p ∧ (¬q ∨ F)</span></li><li><span class="choice-label">⑤</span><span>¬(p ∨ (q ∧ T))</span></li></ol><div class="work-space"></div></div></div>
+<div class="item"><div class="item-side"><span class="item-number">17</span><span class="demand">기초</span></div><div class="item-body">
+<p>다음은 ¬(¬p ∧ ¬q) ∧ (p ∨ F)를 간단히 하는 과정입니다. 오른쪽에 적은 법칙의 이름이 <strong>틀린</strong> 줄을 고르세요.</p>
+<table class="derivation"><tr><td class="step-sign"></td><td>¬(¬p ∧ ¬q) ∧ (p ∨ F)</td><td class="step-reason"></td></tr><tr><td class="step-sign">(가) ≡</td><td>¬(¬p ∧ ¬q) ∧ p</td><td class="step-reason">지배법칙</td></tr><tr><td class="step-sign">(나) ≡</td><td>(¬(¬p) ∨ ¬(¬q)) ∧ p</td><td class="step-reason">드모르간의 법칙</td></tr><tr><td class="step-sign">(다) ≡</td><td>(p ∨ q) ∧ p</td><td class="step-reason">이중 부정법칙</td></tr><tr><td class="step-sign">(라) ≡</td><td>p ∧ (p ∨ q)</td><td class="step-reason">교환법칙</td></tr><tr><td class="step-sign">(마) ≡</td><td>p</td><td class="step-reason">흡수법칙</td></tr></table>
+<ol class="choices short"><li><span class="choice-label">①</span><span>(가)</span></li><li><span class="choice-label">②</span><span>(나)</span></li><li><span class="choice-label">③</span><span>(다)</span></li><li><span class="choice-label">④</span><span>(라)</span></li><li><span class="choice-label">⑤</span><span>(마)</span></li></ol><div class="work-space"></div></div></div>
+<div class="item"><div class="item-side"><span class="item-number">18</span><span class="demand">기초</span></div><div class="item-body"><p>(p ∧ q) ∨ (p ∧ ¬q)를 가장 간단히 한 것을 고르세요.</p><ol class="choices short"><li><span class="choice-label">①</span><span>q</span></li><li><span class="choice-label">②</span><span>p ∧ q</span></li><li><span class="choice-label">③</span><span>T</span></li><li><span class="choice-label">④</span><span>F</span></li><li><span class="choice-label">⑤</span><span>p</span></li></ol><div class="work-space"></div></div></div>
+<div class="item"><div class="item-side"><span class="item-number">19</span><span class="demand">변형</span></div><div class="item-body"><p>(p → q) ∧ (¬p → q)를 가장 간단히 한 것을 고르세요.</p><ol class="choices short"><li><span class="choice-label">①</span><span>¬p</span></li><li><span class="choice-label">②</span><span>q</span></li><li><span class="choice-label">③</span><span>p ∨ q</span></li><li><span class="choice-label">④</span><span>T</span></li><li><span class="choice-label">⑤</span><span>F</span></li></ol><div class="work-space"></div></div></div>
+<div class="item"><div class="item-side"><span class="item-number">20</span><span class="demand">기초</span></div><div class="item-body"><p>T를 1, F를 0으로 놓고 ∧를 곱하기(×), ∨를 더하기(+)로 바꾸었을 때, 0과 1을 넣는 모든 경우에 산수 식으로도 성립하는 동치 법칙을 고르세요.</p><ol class="choices long"><li><span class="choice-label">①</span><span>p ∨ p ≡ p</span></li><li><span class="choice-label">②</span><span>p ∨ T ≡ T</span></li><li><span class="choice-label">③</span><span>p ∨ (q ∧ r) ≡ (p ∨ q) ∧ (p ∨ r)</span></li><li><span class="choice-label">④</span><span>p ∧ (q ∨ r) ≡ (p ∧ q) ∨ (p ∧ r)</span></li><li><span class="choice-label">⑤</span><span>p ∨ (p ∧ q) ≡ p</span></li></ol><div class="work-space"></div></div></div>
+<div class="item"><div class="item-side"><span class="item-number">21</span><span class="demand">도전</span></div><div class="item-body"><p>p → (q → r)과 논리적 동치인 것을 고르세요.</p><ol class="choices medium"><li><span class="choice-label">①</span><span>(p → q) → r</span></li><li><span class="choice-label">②</span><span>(p ∨ q) → r</span></li><li><span class="choice-label">③</span><span>(p ∧ q) → r</span></li><li><span class="choice-label">④</span><span>(p → q) ∧ (q → r)</span></li><li><span class="choice-label">⑤</span><span>p → (q ∧ r)</span></li></ol><div class="work-space"></div></div></div>
+<div class="item"><div class="item-side"><span class="item-number">22</span><span class="demand">기초</span></div><div class="item-body"><p>(p ∧ q) ∨ r과 p ∧ (q ∨ r)이 동치가 <strong>아님</strong>을 보여 주는 p, q, r의 진릿값을 고르세요.</p><ol class="choices medium"><li><span class="choice-label">①</span><span>p: T, q: T, r: F</span></li><li><span class="choice-label">②</span><span>p: T, q: F, r: T</span></li><li><span class="choice-label">③</span><span>p: T, q: F, r: F</span></li><li><span class="choice-label">④</span><span>p: F, q: T, r: F</span></li><li><span class="choice-label">⑤</span><span>p: F, q: T, r: T</span></li></ol><div class="work-space"></div></div></div>
+</section>
+<section class="part">
+<h2>3. 변수를 포함한 명제와 한정자</h2>
+<div class="summary"><p class="summary-title">핵심 정리</p>
+<ul>
+  <li><strong>논의영역과 명제함수</strong>: 변수 \(x\)가 속하는 범위를 논의영역 \(D\)라고 합니다. 명제함수 \(P(x)\)는 \(x\)에 \(D\)의 값을 넣어야 비로소 명제가 됩니다.</li>
+  <li><strong>전체한정자</strong> \(\forall x\,P(x)\): \(D\)의 모든 원소에 대해 \(P(x)\)가 참일 때만 참입니다. 거짓임을 보이려면 \(P(x)\)가 거짓인 \(x\) 하나, 곧 반례 하나면 됩니다.</li>
+  <li><strong>존재한정자</strong> \(\exists x\,P(x)\): \(D\)의 원소 가운데 하나라도 \(P(x)\)를 참으로 만들면 참입니다.</li>
+  <li><strong>한정자의 부정</strong>: \(\neg\forall x\,P(x) \equiv \exists x\,\neg P(x)\), \(\neg\exists x\,P(x) \equiv \forall x\,\neg P(x)\)입니다. 부정하면 ∀와 ∃가 맞바뀌고 ¬는 \(P(x)\) 쪽으로 들어갑니다.</li>
+  <li><strong>한정자가 둘일 때</strong>: 왼쪽부터 읽습니다. \(\forall x\,\exists y\,P(x, y)\)는 \(x\)마다 \(y\)를 따로 골라도 되지만, \(\exists y\,\forall x\,P(x, y)\)는 먼저 고른 \(y\) 하나가 모든 \(x\)에 통해야 합니다.</li>
+</ul>
+</div>
+<div class="example"><p class="example-title">보기 3 유한한 논의영역에서 한정자의 진릿값 구하기</p>
+<p>논의영역이 \(D = \{1, 2, 3\}\)이고 명제함수 \(P(x)\)가 \(x^2 \le 4\)일 때, \(\forall x\,P(x)\), \(\exists x\,P(x)\), \(\neg\forall x\,P(x)\)의 진릿값을 구하세요.</p>
+<p class="solution-label">풀이</p>
+<p>원소가 셋뿐이니 모두 넣어 봅니다. \(P(1)\)은 \(1 \le 4\)로 참, \(P(2)\)는 \(4 \le 4\)로 참, \(P(3)\)은 \(9 \le 4\)로 거짓입니다. \(P(2)\)에서 4와 4는 같으므로 '작거나 같다'를 만족한다는 점에 주의합니다.</p>
+<p>\(\forall x\,P(x)\)는 모든 원소에서 참이어야 하는데 3이 반례이므로 거짓입니다. \(\exists x\,P(x)\)는 1 하나만으로도 참입니다. \(\neg\forall x\,P(x)\)는 \(\exists x\,\neg P(x)\), 곧 '\(x^2 &gt; 4\)인 \(x\)가 있다'와 같고, \(x = 3\)이 있으므로 참입니다. \(\forall x\,P(x)\)가 거짓이니 그 부정이 참이라는 것과도 맞습니다.</p>
+</div>
+<div class="item"><div class="item-side"><span class="item-number">23</span><span class="demand">기초</span></div><div class="item-body"><p>정수 \(x\), \(y\)에 대한 명제함수 \(P(x, y)\)가 \(x = 2y + 1\)일 때, 참인 명제를 고르세요.</p><ol class="choices short"><li><span class="choice-label">①</span><span>\(P(3, 7)\)</span></li><li><span class="choice-label">②</span><span>\(P(4, 3)\)</span></li><li><span class="choice-label">③</span><span>\(P(5, 3)\)</span></li><li><span class="choice-label">④</span><span>\(P(6, 3)\)</span></li><li><span class="choice-label">⑤</span><span>\(P(7, 3)\)</span></li></ol><div class="work-space"></div></div></div>
+<div class="item"><div class="item-side"><span class="item-number">24</span><span class="demand">기초</span></div><div class="item-body"><p>논의영역이 \(D = \{-2, -1, 0, 1, 2\}\)일 때, 참인 명제를 고르세요.</p><ol class="choices medium"><li><span class="choice-label">①</span><span>\(\forall x\,(x^2 \ge 0)\)</span></li><li><span class="choice-label">②</span><span>\(\forall x\,(x^2 &gt; 0)\)</span></li><li><span class="choice-label">③</span><span>\(\exists x\,(x^2 &lt; 0)\)</span></li><li><span class="choice-label">④</span><span>\(\forall x\,(x^3 \ge 0)\)</span></li><li><span class="choice-label">⑤</span><span>\(\exists x\,(x + 3 = 0)\)</span></li></ol><div class="work-space"></div></div></div>
+<div class="item"><div class="item-side"><span class="item-number">25</span><span class="demand">변형</span></div><div class="item-body"><p>논의영역이 \(D = \{1, 2, 3, 4, 5\}\)이고, \(P(x)\): '\(x\)는 소수이다', \(Q(x)\): '\(x\)는 홀수이다'입니다. 소수는 1보다 큰 자연수 가운데 1과 자기 자신으로만 나누어떨어지는 수입니다. 참인 명제를 고르세요.</p><ol class="choices medium"><li><span class="choice-label">①</span><span>\(\forall x\,(P(x) \lor Q(x))\)</span></li><li><span class="choice-label">②</span><span>\(\forall x\,(P(x) \rightarrow Q(x))\)</span></li><li><span class="choice-label">③</span><span>\(\exists x\,(P(x) \land \neg Q(x))\)</span></li><li><span class="choice-label">④</span><span>\(\forall x\,(Q(x) \rightarrow P(x))\)</span></li><li><span class="choice-label">⑤</span><span>\(\exists x\,(P(x) \land x &gt; 5)\)</span></li></ol><div class="work-space"></div></div></div>
+<div class="item"><div class="item-side"><span class="item-number">26</span><span class="demand">기초</span></div><div class="item-body"><p>학생이 한 명 이상 있는 반에서, 명제 '모든 학생이 과제를 제출했다'의 부정을 고르세요.</p><ol class="choices long"><li><span class="choice-label">①</span><span>모든 학생이 과제를 제출하지 않았다.</span></li><li><span class="choice-label">②</span><span>과제를 제출하지 않은 학생이 적어도 한 명 있다.</span></li><li><span class="choice-label">③</span><span>과제를 제출한 학생이 적어도 한 명 있다.</span></li><li><span class="choice-label">④</span><span>과제를 제출하지 않은 학생은 한 명도 없다.</span></li><li><span class="choice-label">⑤</span><span>과제를 제출한 학생도 있고, 제출하지 않은 학생도 있다.</span></li></ol><div class="work-space"></div></div></div>
+<div class="item"><div class="item-side"><span class="item-number">27</span><span class="demand">변형</span></div><div class="item-body"><p>\(\neg\exists x\,(P(x) \land \neg Q(x))\)와 동치인 것을 고르세요.</p><ol class="choices medium"><li><span class="choice-label">①</span><span>\(\exists x\,(\neg P(x) \lor Q(x))\)</span></li><li><span class="choice-label">②</span><span>\(\forall x\,(\neg P(x) \land Q(x))\)</span></li><li><span class="choice-label">③</span><span>\(\forall x\,(P(x) \land \neg Q(x))\)</span></li><li><span class="choice-label">④</span><span>\(\forall x\,(P(x) \rightarrow Q(x))\)</span></li><li><span class="choice-label">⑤</span><span>\(\forall x\,(Q(x) \rightarrow P(x))\)</span></li></ol><div class="work-space"></div></div></div>
+<div class="item"><div class="item-side"><span class="item-number">28</span><span class="demand">기초</span></div><div class="item-body"><p>\(x\), \(y\)의 논의영역이 모두 \(D = \{1, 2, 3\}\)이고 \(P(x, y)\)가 \(x + y = 4\)일 때, 참인 명제를 고르세요.</p><ol class="choices medium"><li><span class="choice-label">①</span><span>\(\exists y\,\forall x\,P(x, y)\)</span></li><li><span class="choice-label">②</span><span>\(\forall x\,\forall y\,P(x, y)\)</span></li><li><span class="choice-label">③</span><span>\(\forall x\,\exists y\,P(x, y)\)</span></li><li><span class="choice-label">④</span><span>\(\forall x\,\exists y\,(x + y = 5)\)</span></li><li><span class="choice-label">⑤</span><span>\(\forall x\,\exists y\,(x + y = 4 \land x \ne y)\)</span></li></ol><div class="work-space"></div></div></div>
+<div class="item"><div class="item-side"><span class="item-number">29</span><span class="demand">변형</span></div><div class="item-body"><p>실수 \(x\), \(y\)에 대한 명제함수 \(P(x, y)\)가 \(x + y = 0\)일 때, 옳은 설명을 고르세요.</p><ol class="choices long"><li><span class="choice-label">①</span><span>\(\forall x\,\exists y\,P(x, y)\)는 참이다. \(x\)가 무엇이든 \(y = -x\)로 고르면 되기 때문이다.</span></li><li><span class="choice-label">②</span><span>\(\forall x\,\exists y\,P(x, y)\)는 거짓이다. \(x = 0\)이면 \(x + y = 0\)을 만족하는 \(y\)가 없기 때문이다.</span></li><li><span class="choice-label">③</span><span>\(\exists y\,\forall x\,P(x, y)\)는 참이다. \(y = 0\)으로 고르면 \(x = 0\)일 때 \(x + y = 0\)이기 때문이다.</span></li><li><span class="choice-label">④</span><span>\(\exists y\,\forall x\,P(x, y)\)는 참이다. 모든 \(x\)에 대해 \(y = -x\)로 고를 수 있기 때문이다.</span></li><li><span class="choice-label">⑤</span><span>\(\forall x\,\exists y\,P(x, y)\)와 \(\exists y\,\forall x\,P(x, y)\)는 진릿값이 같다. 한정자의 순서는 진릿값에 영향을 주지 않기 때문이다.</span></li></ol><div class="work-space"></div></div></div>
+</section>
+<section class="part">
+<h2>4. 추론</h2>
+<div class="summary"><p class="summary-title">핵심 정리</p>
+<ul>
+  <li><strong>정당한 추론</strong>: 전제가 모두 참인 모든 경우에 결론도 참인 추론입니다. 진리표에서 전제가 모두 참인 줄만 골라, 그 줄에서 결론이 모두 참인지 봅니다. 전제가 모두 참인데 결론이 거짓인 줄이 하나라도 있으면 부당한 추론입니다.</li>
+  <li><strong>항진명제로 옮기기</strong>: (전제 ∧ 전제) → 결론이 항진명제이면 정당한 추론입니다.</li>
+  <li><strong>닮았지만 부당한 추론</strong>: p → q, q ∴ p는 후건 긍정의 오류, p → q, ¬p ∴ ¬q는 전건 부정의 오류입니다. 역과 이를 원래 명제처럼 쓴 것입니다.</li>
+</ul>
+<table class="prose-table">
+  <caption>이 장의 논리적 추론 법칙</caption>
+  <thead><tr><th>법칙</th><th>추론 꼴</th></tr></thead>
+  <tbody>
+    <tr><td>논리곱</td><td>p, q ∴ p ∧ q</td></tr>
+    <tr><td>선언적 부가</td><td>p ∴ p ∨ q</td></tr>
+    <tr><td>단순화</td><td>p ∧ q ∴ p (또는 q)</td></tr>
+    <tr><td>긍정논법</td><td>p, p → q ∴ q</td></tr>
+    <tr><td>부정논법</td><td>¬q, p → q ∴ ¬p</td></tr>
+    <tr><td>선언적 삼단논법</td><td>p ∨ q, ¬p ∴ q</td></tr>
+    <tr><td>가설적 삼단논법</td><td>p → q, q → r ∴ p → r</td></tr>
+  </tbody>
+</table>
+</div>
+<div class="example"><p class="example-title">보기 4 추론이 정당한지 판단하기</p>
+<p>추론 ¬p → q, ¬q ∴ p가 정당한지 판단하세요.</p>
+<p class="solution-label">풀이</p>
+<p>진리표를 만들고, 전제 ¬p → q와 ¬q가 모두 참인 줄만 봅니다.</p>
+<table class="truth"><caption>보기 4의 두 전제</caption><thead><tr><th>p</th><th>q</th><th>¬p → q</th><th>¬q</th></tr></thead><tbody><tr><td>T</td><td>T</td><td>T</td><td>F</td></tr><tr><td>T</td><td>F</td><td>T</td><td>T</td></tr><tr><td>F</td><td>T</td><td>T</td><td>F</td></tr><tr><td>F</td><td>F</td><td>F</td><td>T</td></tr></tbody></table>
+<p>¬q가 참인 줄은 둘째 줄과 넷째 줄입니다. 그 가운데 ¬p → q도 참인 것은 둘째 줄뿐입니다. 넷째 줄은 ¬p가 T, q가 F라서 함축이 거짓입니다. 전제가 모두 참인 줄은 둘째 줄 하나이고, 거기서 결론 p는 T입니다. 따라서 정당한 추론입니다.</p>
+<p>추론 법칙으로도 볼 수 있습니다. ¬p → q에서 결론 q가 거짓(¬q)이므로 부정논법으로 조건을 부정한 ¬(¬p)를 얻고, 이중 부정법칙으로 p가 됩니다. 법칙의 꼴 속 p 자리에 ¬p 같은 식이 들어가도 법칙은 그대로 쓸 수 있습니다.</p>
+</div>
+<div class="item"><div class="item-side"><span class="item-number">30</span><span class="demand">기초</span></div><div class="item-body"><p>정당한 추론을 고르세요.</p><ol class="choices medium"><li><span class="choice-label">①</span><span>p → q, q ∴ p</span></li><li><span class="choice-label">②</span><span>p → q, ¬p ∴ ¬q</span></li><li><span class="choice-label">③</span><span>p ∨ q, p ∴ ¬q</span></li><li><span class="choice-label">④</span><span>p → q ∴ q → p</span></li><li><span class="choice-label">⑤</span><span>p → q, ¬q ∴ ¬p</span></li></ol><div class="work-space"></div></div></div>
+<div class="item"><div class="item-side"><span class="item-number">31</span><span class="demand">기초</span></div><div class="item-body"><p>다음 추론에 쓰인 추론 법칙을 고르세요.</p><p class="quote">비밀번호를 세 번 틀리면 계정이 잠긴다. 계정이 잠기면 관리자에게 문의해야 한다. 그러므로 비밀번호를 세 번 틀리면 관리자에게 문의해야 한다.</p><ol class="choices medium"><li><span class="choice-label">①</span><span>긍정논법</span></li><li><span class="choice-label">②</span><span>부정논법</span></li><li><span class="choice-label">③</span><span>선언적 삼단논법</span></li><li><span class="choice-label">④</span><span>가설적 삼단논법</span></li><li><span class="choice-label">⑤</span><span>단순화</span></li></ol><div class="work-space"></div></div></div>
+<div class="item"><div class="item-side"><span class="item-number">32</span><span class="demand">기초</span></div><div class="item-body"><p><strong>부당한</strong> 추론을 고르세요.</p><ol class="choices long"><li><span class="choice-label">①</span><span>비가 오면 경기가 취소된다. 비가 왔다. 그러므로 경기가 취소되었다.</span></li><li><span class="choice-label">②</span><span>비가 오면 경기가 취소된다. 경기가 취소되었다. 그러므로 비가 왔다.</span></li><li><span class="choice-label">③</span><span>비가 오면 경기가 취소된다. 경기가 취소되지 않았다. 그러므로 비가 오지 않았다.</span></li><li><span class="choice-label">④</span><span>비가 오거나 바람이 불었다. 비가 오지 않았다. 그러므로 바람이 불었다.</span></li><li><span class="choice-label">⑤</span><span>비가 오면 경기가 취소된다. 경기가 취소되면 표값을 돌려준다. 그러므로 비가 오면 표값을 돌려준다.</span></li></ol><div class="work-space"></div></div></div>
+<div class="item"><div class="item-side"><span class="item-number">33</span><span class="demand">변형</span></div><div class="item-body"><p><strong>부당한</strong> 추론을 고르세요.</p><ol class="choices medium"><li><span class="choice-label">①</span><span>p → q, p → r ∴ q ∧ r</span></li><li><span class="choice-label">②</span><span>p → q, q → r ∴ p → r</span></li><li><span class="choice-label">③</span><span>p ∨ q, p → r, q → r ∴ r</span></li><li><span class="choice-label">④</span><span>p → q, q → r, ¬r ∴ ¬p</span></li><li><span class="choice-label">⑤</span><span>p ∧ q, q → r ∴ p ∧ r</span></li></ol><div class="work-space"></div></div></div>
+<div class="item"><div class="item-side"><span class="item-number">34</span><span class="demand">기초</span></div><div class="item-body"><p>추론 p ∨ q, ¬p ∴ q가 정당한 추론이라는 것을 바르게 나타낸 것을 고르세요.</p><ol class="choices long"><li><span class="choice-label">①</span><span>[(p ∨ q) ∧ ¬p] → q가 사건명제이다.</span></li><li><span class="choice-label">②</span><span>(p ∨ q) ∧ ¬p ∧ q가 항진명제이다.</span></li><li><span class="choice-label">③</span><span>[(p ∨ q) ∧ ¬p] → q가 항진명제이다.</span></li><li><span class="choice-label">④</span><span>q → [(p ∨ q) ∧ ¬p]가 항진명제이다.</span></li><li><span class="choice-label">⑤</span><span>[(p ∨ q) ∧ ¬p] ↔ q가 항진명제이다.</span></li></ol><div class="work-space"></div></div></div>
+<div class="item"><div class="item-side"><span class="item-number">35</span><span class="demand">도전</span></div><div class="item-body"><p>두 전제 p → q, ¬r → ¬q에 전제 (가)를 하나 더하면 결론 r을 정당하게 끌어낼 수 있습니다. (가)에 알맞은 것을 고르세요.</p><ol class="choices short"><li><span class="choice-label">①</span><span>¬p</span></li><li><span class="choice-label">②</span><span>¬r</span></li><li><span class="choice-label">③</span><span>r → p</span></li><li><span class="choice-label">④</span><span>q → r</span></li><li><span class="choice-label">⑤</span><span>p</span></li></ol><div class="work-space"></div></div></div>
+<div class="item"><div class="item-side"><span class="item-number">36</span><span class="demand">기초</span></div><div class="item-body"><p>전제 A, B, C, D에서 추론 법칙으로 새 명제를 얻었습니다. 법칙을 <strong>잘못</strong> 쓴 줄을 고르세요.</p><table class="derivation"><tr><td class="step-sign">A</td><td>p → q</td><td class="step-reason">전제</td></tr><tr><td class="step-sign">B</td><td>q → r</td><td class="step-reason">전제</td></tr><tr><td class="step-sign">C</td><td>r ∨ s</td><td class="step-reason">전제</td></tr><tr><td class="step-sign">D</td><td>¬s</td><td class="step-reason">전제</td></tr><tr><td class="step-sign">(가) E</td><td>r</td><td class="step-reason">C, D에 선언적 삼단논법</td></tr><tr><td class="step-sign">(나) F</td><td>q</td><td class="step-reason">B, E에 긍정논법</td></tr><tr><td class="step-sign">(다) G</td><td>p → r</td><td class="step-reason">A, B에 가설적 삼단논법</td></tr><tr><td class="step-sign">(라) H</td><td>r ∨ p</td><td class="step-reason">E에 선언적 부가</td></tr><tr><td class="step-sign">(마) I</td><td>r ∧ ¬s</td><td class="step-reason">E, D에 논리곱</td></tr></table><ol class="choices short"><li><span class="choice-label">①</span><span>(가)</span></li><li><span class="choice-label">②</span><span>(나)</span></li><li><span class="choice-label">③</span><span>(다)</span></li><li><span class="choice-label">④</span><span>(라)</span></li><li><span class="choice-label">⑤</span><span>(마)</span></li></ol><div class="work-space"></div></div></div>
+</section>
+<section class="part">
+<h2>5. 섞어 풀기</h2>
+<div class="note"><p class="note-title">풀기 전에</p><p>1절부터 4절까지의 유형이 섞여 있습니다. 어느 절의 방법을 쓸지부터 스스로 정해야 합니다. 앞 문제를 다 푼 뒤 며칠 지나서, 해설과 핵심 정리를 보지 않고 풀어 보세요.</p></div>
+<div class="item"><div class="item-side"><span class="item-number">37</span><span class="demand">기초</span></div><div class="item-body"><p>진리표의 ㉠ 열에 알맞은 명제를 고르세요.</p><table class="truth"><thead><tr><th>p</th><th>q</th><th>㉠</th></tr></thead><tbody><tr><td>T</td><td>T</td><td>F</td></tr><tr><td>T</td><td>F</td><td>T</td></tr><tr><td>F</td><td>T</td><td>F</td></tr><tr><td>F</td><td>F</td><td>F</td></tr></tbody></table><ol class="choices short"><li><span class="choice-label">①</span><span>¬p ∧ q</span></li><li><span class="choice-label">②</span><span>p ⊕ q</span></li><li><span class="choice-label">③</span><span>p ∧ ¬q</span></li><li><span class="choice-label">④</span><span>p → q</span></li><li><span class="choice-label">⑤</span><span>p ∨ ¬q</span></li></ol><div class="work-space"></div></div></div>
+<div class="item"><div class="item-side"><span class="item-number">38</span><span class="demand">기초</span></div><div class="item-body"><p>\(\forall x\,(P(x) \rightarrow Q(x))\)가 거짓임을 보이려고 합니다. 논의영역에서 어떤 \(x\)를 하나 찾으면 되는지 고르세요.</p><ol class="choices medium"><li><span class="choice-label">①</span><span>\(P(x)\)와 \(Q(x)\)가 모두 참인 \(x\)</span></li><li><span class="choice-label">②</span><span>\(P(x)\)와 \(Q(x)\)가 모두 거짓인 \(x\)</span></li><li><span class="choice-label">③</span><span>\(P(x)\)는 거짓이고 \(Q(x)\)는 참인 \(x\)</span></li><li><span class="choice-label">④</span><span>\(P(x)\)는 참이고 \(Q(x)\)는 거짓인 \(x\)</span></li><li><span class="choice-label">⑤</span><span>\(Q(x)\)가 거짓인 \(x\)</span></li></ol><div class="work-space"></div></div></div>
+<div class="item"><div class="item-side"><span class="item-number">39</span><span class="demand">기초</span></div><div class="item-body"><p>옳지 <strong>않은</strong> 것을 고르세요.</p><ol class="choices long"><li><span class="choice-label">①</span><span>p와 p ∨ q는 논리적 동치이다.</span></li><li><span class="choice-label">②</span><span>p ∧ q에서 p를 끌어내는 추론은 정당하다.</span></li><li><span class="choice-label">③</span><span>p에서 p ∨ q를 끌어내는 추론은 정당하다.</span></li><li><span class="choice-label">④</span><span>p ∧ (p ∨ q) ≡ p이다.</span></li><li><span class="choice-label">⑤</span><span>p → (p ∨ q)는 항진명제이다.</span></li></ol><div class="work-space"></div></div></div>
+<div class="item"><div class="item-side"><span class="item-number">40</span><span class="demand">변형</span></div><div class="item-body"><p>세 문장 (가), (나), (다)가 모두 참일 때, 반드시 참인 것을 고르세요.</p><p class="quote">(가) 숙제를 끝냈으면 게임을 했다.<br>(나) 게임을 했으면 늦게 잤다.<br>(다) 늦게 잤다.</p><ol class="choices medium"><li><span class="choice-label">①</span><span>숙제를 끝냈다.</span></li><li><span class="choice-label">②</span><span>숙제를 끝냈으면 늦게 잤다.</span></li><li><span class="choice-label">③</span><span>게임을 했다.</span></li><li><span class="choice-label">④</span><span>숙제를 끝내지 않았다.</span></li><li><span class="choice-label">⑤</span><span>게임을 했으면 숙제를 끝냈다.</span></li></ol><div class="work-space"></div></div></div>
+</section>
+</body>
+</html>

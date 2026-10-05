@@ -1,0 +1,150 @@
+12장. 알고리즘
+
+ 1. 알고리즘의 개념
+ 2. 알고리즘의 효율성
+ 3. 다양한 알고리즘
+
+                                        COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+1. 알고리즘의 개념
+
+ 1) 알고리즘의 정의
+
+                                        COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+1-1) 알고리즘의 정의-1
+
+ 알고리즘(Algorithm)
+
+   ▪ 문제를 해결하기 위한 체계적 단계,
+      계산을 수행하기 위한 명확한 명령어의 집합
+      ① 입력(input): 문제와 관련된 입력이 반드시
+               있어야 함
+      ② 출력(output): 입력을 처리한 출력(결과)이
+               반드시 있어야 함
+      ③ 정확성(correctness): 입력을 이용한 문제 해결
+               과정과 출력은 논리적이고 정확해야 함
+      ④ 유한성(finiteness): 제한된 수의 입력과 명령
+               단계를 거쳐 출력을 내고 반드시 종료해야
+         함
+
+                                        COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+1-1) 알고리즘의 정의-2
+
+ 알고리즘(Algorithm)
+
+   ▪ 문제를 해결하기 위한 체계적 단계,
+      계산을 수행하기 위한 명확한 명령어의 집합
+      ⑤ 효율성(effectiveness): 문제 해결 과정이
+               효율적이어야 함
+      ⑥ 일반성(generality): 같은 유형의 문제에 대해
+               항상 적용될 수 있어야 함
+      ⑦ 확정성(definiteness, 명확성): 같은 입력에 대해
+               출력이 항상 (명확)확정적이어야 함
+
+                                        COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+1-1) 알고리즘의 정의-3
+
+ 순서도(Flow Chart)
+
+   ▪ 명령의 종류와 기능에 따라 도표를 만들고
+     명령들의 순서대로 도표를 나열해 표현한 방식
+
+ Start  sum=sum+
+sum=0         1
+
+  i=1      i=i+1
+
+  End   i<=10      Yes
+
+        No
+
+        Print sum
+
+COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+1-1) 알고리즘의 정의-4
+
+ 의사코드(Pseudo Code)
+
+▪ 일반적인 언어와 프로그램 코드를 적절히 이용하여
+
+명령들을 나열한 방식
+
+1 algorithm sum1to10( ) {
+
+2 sum=0;
+
+3 i=1;
+
+4 while(i<=10)
+
+5   sum=sum+1;
+
+6   i=i+1;
+
+7 endwhile
+
+8 print sum;
+
+9}
+
+    COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+2. 알고리즘의 효율성
+
+ 1) 복잡도
+
+                                        COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+2-1) 복잡도-1
+
+ 복잡도(Complexity) O(f(n))
+
+   ▪ 알고리즘 수행 시 필요한 시간 또는 공간 비용
+      ① 시간복잡도: 프로그램이 수행되는 시간
+      ② 공간복잡도: 프로그램이 차지하는 기억 공간
+
+   ▪ 시간복잡도: 양의 값을 갖는 함수 f, g가 n≥n0인
+     모든 자연수 n에 대해 f(n)≤c·g(n)이 되는 양의
+     정수 c와 n0이 존재할 때의 표기(Big-O)
+                    f(n)=O(g(n))
+
+                                        COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+2-1) 복잡도-2
+
+   ▪ 다음 함수의 Big-O 표기법은?
+     ① f(n)=10n2-3n+2
+     ② f(n)=1010logn
+     ③ f(n)=n!
+     ④ f(n)=3+1/2n
+     ① f(n)=10n2-3n+2≤10n2+3n2+2n2=15n2,
+                    n≥1(n0=1, c=15) ∴ f(n)=O(n2)
+     ② f(n)=O(logn), n≥1(n0=1, c=1010)
+     ③ f(n)=n!≤nn, n≥1(n0=1, c=1) ∴ f(n)=O(nn)
+     ④ f(n)=3+1/2n≤4, n≥1(n0=1, c=4) ∴ f(n)=O(1)
+
+                                        COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+2-1) 복잡도-3
+
+ 복잡도 간의 관계
+
+▪ O(1)<O(logn)<O(n)<O(nlogn)<O(n2)<O(2n)<O(n!)
+
+▪ [예제] 다음 알고리즘 A의 복잡도는?
+
+1 algorithm A( ) {        i 루프: 1~n
+                          j 루프: 1+2+…+n
+2 a=0;
+                                  =n(n+1)/2
+3 for i=1 to n
+                          (연산 4번: +*-+)
+4   for j=1 to i
+                          f(n)=4n(n+1)/2
+5         a=a+i*(i-j+1);
+
+6   next j
+
+7 next i                  =2n(n+1)
+
+8}                        ≤2n(2n)=4n2
+
+∴ f(n)=O(n2) (n≥1; n0=1, c=4)
+
+    COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+

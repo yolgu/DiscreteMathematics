@@ -1,0 +1,135 @@
+4. 집합의 대수법칙-1
+
+            집합       대수법칙
+
+A∪Ø=A,      A∩U=A    항등법칙(Identity Law)
+
+A∪U=U,      A∩Ø=Ø    지배법칙(Domination Law)
+
+A∪A=A,      A∩A=A    멱등법칙(Idempotent Law)
+
+A∪B=B∪A,    A∩B=B∩A  교환법칙(Commutative Law)
+
+A∪(B∪C)=(A∪B)∪C      결합법칙(Associative Law)
+A∩(B∩C)=(A∩B)∩C
+
+A∪(B∩C)=(A∪B)∩(A∪C)  분배법칙(Distribute Law)
+A∩(B∪C)=(A∩B)∪(A∩C)
+A×(B∩C)=(A×B)∩(A×C)
+A×(B∪C)=(A×B)∪(A×C)
+
+(A')'=A              이중 보법칙(Double Negation
+                     Law)
+
+A∪A'=U,     A∩A'=Ø   보법칙(Complement Law)
+Ø'=U,       U'=Ø
+
+(A∪B)'=A'∩B', (A∩B)'=A'∪B' 드모르간의 법칙(De Morgan's
+                                                    Law)
+
+A∪(A∩B)=A,  A∩(A∪B)=A 흡수법칙(Absorption Law)
+
+            COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+4. 집합의 대수법칙-2
+
+   ▪ [예제 3-24] 드모르간의 법칙을 증명하시오.
+
+      ⑴ (A∪B)'=A'∩B' ⑵ (A∩B)'=A'∪B'
+      ⑴ (A∪B)' ⇔ A'∩B'임을 증명하면 된다.
+
+           x∈(A∪B)' ⇔ x ∉ (A∪B)
+                           ⇔ (x ∉ A)∧(x ∉ B) ⇔ A'∧B'
+
+           ∴ (A∪B)'=A'∩B'
+      ⑵ (A∩B)' ⇔ A'∪B'임을 증명하면 된다.
+
+           x∈(A∩B)' ⇔ x ∉ (A∩B)
+                           ⇔ (x ∉ A)∨(x ∉ B) ⇔ A'∨B'
+
+           ∴ (A∩B)'=A'∪B'
+
+                                        COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+4. 집합의 대수법칙-3
+
+▪ [예제 3-25] 다음의의 흡수법칙을 증명하시오.
+
+  A∩(A∪B)=A, A∪(A∩B)=A
+
+- A∩(A∪B)             ∵ 항등법칙
+       = (A∪Ø)∩(A∪B)  ∵ 분배법칙
+       = A∪(Ø∩B)      ∵ 지배법칙
+       = A∪Ø          ∵ 항등법칙
+       =A
+
+- A∪(A∩B) = (A∩U)∪(A∩B)
+                  = A∩(U∪B) = A∩U = A
+
+COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+4. 집합의 대수법칙-4
+
+▪ [예제] (A∪B)-(A∩B)=A⊕B임을 증명하시오.
+
+- (A∪B)-(A∩B)
+
+= (A∪B)∩(A∩B)' ∵ 차집합 정의
+
+= (A∪B)∩(A'∪B') ∵ 드 모르간 법칙
+
+= {(A∪B)∩A'}∪{(A∪B)∩B')} ∵ 분배
+
+= {(A∩A')∪(B∩A')}∪{(A∩B')∪(B∩B')}
+
+= {Ø∪(B∩A')}∪{(A∩B')∪Ø} ∵ 보법칙
+
+= (B∩A')∪(A∩B') ∵ 항등법칙
+
+= (B-A)∪(A-B) ∵ 차집합 정의
+
+= B⊕A = A⊕B    ∵ 대칭차집합 정의
+
+COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+5. 집합의 분할-1
+
+ 분할(Partition) {A1, A2, …, An}
+  ▪ 공집합이 아닌 임의의 집합 A에 대하여,
+
+     서로소면서 공집합이 아닌 부분집합으로 나누는 것
+
+▪ 분할의 성질
+
+-집합 A가 있을 때, i=1, 2, …, k에 대하여
+
+(1) Ai≠Ø     (2) Ai⊆A
+
+(3) A=A1∪A2∪…∪Ak (4) i≠j면 Ai∩Aj=Ø
+
+▪ 집합류 Ai
+  -집합 A에 대하여 분할의 성질을 가지고 있는
+
+    집합 A의 부분집합
+
+COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+5. 집합의 분할-2
+
+▪ [예제 3-30] 집합 A={a, b, c}의 모든 분할은?
+
+- {{a}, {b}, {c}}
+
+①{a}≠Ø, {b}≠Ø, {c}≠Ø
+
+②{a}⊂A, {b}⊂A, {c}⊂A
+
+③{a}∪{b}∪{c}={a, b, c}=A
+
+④{a}∩{b}=Ø, {b}∩{c}=Ø, {c}∩{a}=Ø
+
+- {{a, b}, {c}}, {{a, c}, {b}}, {{a}, {b, c}}
+
+- {{a, b, c}}
+
+①{a, b, c}≠Ø,      ②{a, b, c}⊂A
+
+③{a, b, c}∪Ø=A, ④{a, b, c}∩Ø=Ø
+
+COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+

@@ -1,0 +1,412 @@
+9장. 트리
+
+ 1. 트리의 개념
+ 2. 이진 트리
+ 3. 이진 탐색 트리
+ 4. 트리의 활용
+
+                                           COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+1. 트리의 개념
+
+ 1) 트리의 정의
+
+                                           COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+1-1) 트리의 정의-1
+
+ 트리(Tree)
+  ▪ 트리 T는 비순환, 연결 그래프로서
+
+     ① 특별한 노드인 루트(root)가 반드시 하나 있음
+
+    ② 트리 T를 구성하는 모든 노드 사이에는 유일한
+
+        단순 경로가 있음
+
+                                 A
+
+   BCD
+
+E  F           G
+
+COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+1-1) 트리의 정의-2
+
+ 서브 트리(Sub Tree)
+  ▪ T를 구성하며 루트가 아닌 노드 v를 루트로 하는
+
+     트리
+
+                  A
+
+   BCD         BCD
+
+E  F  G  E     F                                                 G
+
+   COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+1-1) 트리의 정의-3
+
+ 트리 관련 용어 (1)
+   ▪ 노드(Node): 그래프 T를 구성하는 꼭짓점
+   ▪ 루트(Root): 그래프 T의 맨 위에 있는 시작 노드
+
+   ▪ 부모(Parent) 노드: 어떤 노드의 한 단계 상위
+      노드
+
+   ▪ 자식(Child) 노드: 어떤 노드의 한 단계 하위 노드
+   ▪ 형제(Sibling) 노드: 같은 단계에 있으면서 부모가
+
+                                   같은 노드들
+   ▪ 잎(Leaf) 노드: 자식 노드가 없는 말단 노드
+   ▪ 중간(Internal) 노드: 루트나 잎 노드가 아닌 노드
+
+                                           COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+1-1) 트리의 정의-4
+
+ 트리 관련 용어 (2)
+
+   ▪ 조상(Ancestor) 노드: 루트 노드에서 어떤 노드에
+                       이르는 경로 상에 포함된 모든 노드
+
+   ▪ 자손(Descendant) 노드: 어떤 노드에서 잎 노드에
+                       이르는 경로 상에 포함된 모든 노드
+
+   ▪ 차수(Degree): 어떤 노드에 포함된 자식 노드의
+      수
+
+   ▪ 레벨(Level): 루트 노드를 0으로 시작하여
+        자식 노드로 내려갈 때마다 하나씩 증가하는 단계
+
+   ▪ 트리의 높이/깊이: 트리가 가지는 최대 레벨
+   ▪ 숲(Forest): 루트 노드를 제거하여 얻는 서브 트리
+
+                        집합
+
+                                           COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+1-1) 트리의 정의-5
+
+ [정리 9-1] 트리에서 노드의 수를 v, 변의 수를
+                   e라고 하면, e=v-1이다.
+
+   (증명)-수학적 귀납법
+
+   v=1일 때, e=0이므로 v-1=1-1=0=e이 성립
+   v≤k(k≥1)일 때 e=v-1이 성립한다고 하면(귀납가정)
+   v=k+1일 때, k+1개의 노드로 구성된 트리 T에서
+   임의의 변을 제거하면 두 개의 트리 T1과 T2로 분리,
+   귀납가정에 의해 (T1) e1=v1-1, (T2) e2=v2-1이므로
+   e=e1+e2+1=v1-1+v2-1+1=v1+v2-1=v-1으로 성립
+
+   ※ 루트 노드 이외의 모든 노드는 하나의 부모만 있음
+
+                                           COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+1-1) 트리의 정의-6
+
+ [정리 9-2] 트리에 대한 정리
+   n개의 꼭짓점을 갖는 비순환 연결 그래프 T에 대해
+
+   다음은 동치다.
+
+   ① T는 트리다.
+   ② T의 변의 수는 n-1개다.
+   ③ T에서 변 하나를 제거하면 연결 그래프가 아니다.
+   ④ T에 속하는 서로 다른 꼭짓점 u, v에 대하여,
+
+      u에서 v로 가는 유일한 (단순)경로가 존재한다.
+
+                                           COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+2. 이진 트리
+
+ 1) 이진 트리의 정의
+ 2) 이진 트리의 최대 노드 수
+ 3) 이진 트리의 구현
+ 4) 이진 트리의 순회
+
+                                           COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+2-1) 이진 트리의 정의-1
+
+ 이진 트리(Binary Tree)
+  ▪ 트리 T를 구성하는 부모 노드가 갖는 자식 노드의
+    수가 최대 2(모든 노드의 차수가 2이하)인 트리
+
+높이 2        A     레벨 0
+
+         B     C  레벨 1
+
+      D           G 레벨 2
+
+      COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+2-1) 이진 트리의 정의-2
+
+ 완전 이진 트리(Complete Binary Tree)
+  ▪ 높이가 h일 때 레벨 0부터 h-1까지 모든 노드가
+    두 개씩 채워져 있고(h-2까지 노드의 차수는 2),
+    레벨 h는 왼쪽부터 노드가 채워져 있는 트리
+
+높이 2           A     레벨 0
+
+         B        C  레벨 1
+
+      D     E        레벨 2
+
+      COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+2-1) 이진 트리의 정의-3
+
+ 포화 이진 트리(Full Binary Tree)
+  ▪ 높이가 h일 때 레벨 0에서 h까지 모든 노드가 두
+    개씩 채워져 있는(h-1까지 노드의 차수는 2) 트리
+
+높이 2        A      레벨 0
+
+         B      C  레벨 1
+
+      D     EF     G 레벨 2
+
+      COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+2-1) 이진 트리의 정의-4
+
+ 편향 이진 트리(Skewed Binary Tree)
+
+   ▪ 왼쪽이나 오른쪽 서브 트리만 가지는 트리
+
+      AA
+
+   B      C
+
+D            G
+
+COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+2-2) 이진 트리의 최대 노드 수-
+1
+
+ [정리 9-3①] 이진 트리의 최대 노드 수
+   ① 레벨 k에서 가질 수 있는 최대 노드 수: 2k개
+
+   (증명)-수학적 귀납법
+
+   k=0(레벨 0, 루트 노드)일 때, 20=1이므로 성립
+   k=n(레벨 n)일 때 2n개라고 가정(귀납가정)
+   k=n+1(레벨 n+1)일 때, 레벨 n의 2n개 노드마다
+   최대 2개의 자식 노드가 있으므로 2×2n=2n+1개,
+   ∴ 레벨 k에서 가질 수 있는 최대 노드 수: 2k개.
+
+                                           COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+2-2) 이진 트리의 최대 노드 수-
+2
+
+ [정리 9-3②] 이진 트리의 최대 노드 수
+   ② 높이가 m인 이진 트리의 최대 노드 수: 2m+1-1개
+
+   (증명)-수학적 귀납법
+
+   m=0(레벨 0, 루트 노드)일 때, 20+1-1=1이므로 성립
+   m=n(레벨 n)일 때 2n+1-1개라고 가정(귀납가정)
+   m=n+1(레벨 n+1)일 때, [정리 9-3①]에 의해 레벨
+   n+1에 최대 2n+1개의 노드가 있으므로 높이가
+   n+1인 이진 트리의 최대 노드 수는 2n+1-
+   1+2n+1=2n+2-1개,
+   ∴ 높이가 m인 이진 트리의 최대 노드 수: 2m+1-1개.
+
+                                           COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+2-2) 이진 트리의 최대 노드 수-
+3
+
+ [정리 9-3③] 이진 트리의 최대 노드 수
+   ③ 높이가 m인 이진 트리의 최소 노드 수: m+1개
+
+   (증명)-수학적 귀납법
+
+   m=0(레벨 0, 루트 노드)일 때, 0+1=1이므로 성립
+   m=n(레벨 n)일 때 n+1개라고 가정(귀납가정)
+   m=n+1(레벨 n+1)일 때, 레벨 n+1에 최소 1개의
+   노드가 있으므로 높이가 n+1인 이진 트리의 최소
+   노드 수는 n+1+1=n+2개,
+   ∴ 높이가 m인 이진 트리의 최소 노드 수: m+1개.
+
+                                           COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+2-2) 이진 트리의 최대 노드 수-
+4
+
+ [예제 9-7] 다음 질문에 답하시오.
+   ▪ 전체 노드 수가 68개인 완전 이진 트리의 높이는?
+      -68=26+4=(25+1-1)+5 ∴ 높이: 6(=5+1)
+   ▪ 높이가 3인 왼쪽 편향 이진 트리의 최대 노드 수는?
+      -4(=3+1)
+   ▪ 높이가 5인 완전 이진 트리의 레벨 3에 있는 최대
+
+      노드 수는?
+
+      -8(=23)
+   ▪ 높이가 4인 포화 완전 이진 트리의 총 노드 수는?
+
+      -31(=24+1-1)
+
+                                           COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+2-3) 이진 트리의 구현-1
+
+ 배열로 구현한 이진 트리 (1)
+
+   ▪ 완전 이진 트리 기준의 배열 및 인덱스 규칙
+
+                 1A      0 (비움)
+         2B              1A
+       D4 E5             2B
+                         3
+                         4D
+                         5E
+
+▪ 노드 인덱스 n의 왼쪽 자식 노드 인덱스=2n
+
+            오른쪽 자식 노드 인덱스=2n+1
+
+▪  노드  인덱스  n의  부모   노드  인덱스=  ������
+                               ������
+
+       COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+2-3) 이진 트리의 구현-2
+
+ 배열로 구현한 이진 트리 (2)
+
+   ▪ 트리 중간의 노드 삽입 · 삭제 비효율적
+
+0            0               0
+1A
+2B           1A              1A
+3C
+4D           2B              2B
+5E
+6F   인덱스 5에  3C      인덱스 5의  3C
+7G  노드 N 삽입         노드 N 삭제
+             4  D            4                                    D
+             5  N←           5                                    E↑
+
+             6 E↓            6 F↑
+             7 F↓            7 G↑
+             8 G↓
+
+▪ 메모리 낭비 가능성 (편향 이진 트리)
+
+    COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+2-3) 이진 트리의 구현-3
+
+ 연결리스트로 구현한 이진 트리
+
+▪ 노드:     왼쪽 자식  데이터  오른쪽 자식
+          노드 주소        노드 주소
+
+             A        L1 A null
+
+       B         L2 B R2
+
+D         E      null D null null E null
+
+▪ 트리 중간의 노드 삽입 · 삭제 (메모리 사용) 효율적
+
+          COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+2-4) 이진 트리의 순회-1
+
+ 순회(Traversal): 모든 노드를 한 번씩 방문
+   ▪ 항상 루트(레벨 0)에서 시작, 왼쪽에서 오른쪽으로
+
+ 전위순회(Preorder Traversal): P-L-R
+
+   ▪ 부모 노드 → 왼쪽 자식 노드 → 오른쪽 자식 노드
+
+ 중위순회(Inorder Traversal): L-P-R
+
+   ▪ 왼쪽 자식 노드 → 부모 노드 → 오른쪽 자식 노드
+
+ 후위순회(Postorder Traversal): L-R-P
+
+   ▪ 왼쪽 자식 노드 → 오른쪽 자식 노드 → 부모 노드
+
+                                           COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+2-4) 이진 트리의 순회-2
+
+ 전위순회: A - B - D - E - C - F - L - M - G
+
+      A             A
+
+   B      C      B                                                  C
+
+D     EF     GD     EF                                                 G
+
+      LM            LM
+
+      COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+2-4) 이진 트리의 순회-3
+
+ 중위순회: D - B - E - A - L - F - M - C - G
+
+      A             A
+
+   B      C      B                                                  C
+
+D     EF     GD     EF                                                 G
+
+      LM            LM
+
+      COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+2-4) 이진 트리의 순회-4
+
+ 후위순회: D - E - B - L - M - F - G - C - A
+
+      A             A
+
+   B      C      B                                                  C
+
+D     EF     GD     EF                                                 G
+
+      LM            LM
+
+      COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+2-4) 이진 트리의 순회-5
+
+▪ 수식 (x/y)+(w-z)×v에 대한 표기
+                            +
+
+   /      ×
+
+x     y-                       v
+
+                             wz
+
+▪ 전위표기(연산자-피연산자1-피연산자2): +/xy×-wzv
+▪ 중위표기(피연산자1-연산자-피연산자2): x/y+w-z×v
+▪ 후위표기(피연산자1-피연산자2-연산자): xy/wz-v×+
+
+COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+3. 이진 탐색 트리
+
+ 1) 이진 탐색 트리의 정의
+
+                                           COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+3-1) 이진 탐색 트리의 정의-1
+
+ 이진 탐색 트리(Binary Search Tree)
+
+   ▪ 노드가 가지는 데이터의 크기에 따라 노드의
+      위치를 탐색할 수 있는 트리
+       -트리의 모든 원소는 서로 다른 유일 키를 가진다.
+       -왼쪽 서브 트리의 원소들 키는 그 루트의 키보다
+         작다.
+       -오른쪽 서브 트리의 원소들 키는 그 루트의 키보다
+         크다.
+
+                                           COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+3-1) 이진 탐색 트리의 정의-2
+
+ 이진 탐색 트리(Binary Search Tree)
+  ▪ < 14, 8, 23, 26, 5, 12, 17, 19, 11 >의 입력에 대한
+
+     이진 탐색 트리
+
+                                   14
+
+   8         23
+
+5     12 17      26
+
+      11     19
+
+COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+

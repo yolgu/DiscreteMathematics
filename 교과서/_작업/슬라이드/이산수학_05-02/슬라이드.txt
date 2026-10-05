@@ -1,0 +1,149 @@
+4. 합성관계
+
+ 1) 합성관계의 정의
+ 2) 합성관계의 표기
+ 3) 합성관계의 연산
+
+                                        COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+4-1) 합성관계의 정의
+
+ 합성관계(Composition Relation) S∘R
+   ▪ 집합 A에서 집합 B로의 관계 R이 있고,
+     집합 B에서 집합 C로의 관계 S가 있을 때,
+     집합 A에서 집합 C로의 관계 : S∘R
+     ={(a,c)∈A×C|a∈A, b∈B, c∈C, (a,b)∈R, (b,c)∈S}
+   ▪ 관계 R의 공변역(B)과 관계 S의 정의역(B)이
+     같기 때문에 합성관계 S∘R이 성립
+     ∴ 공변역(C)≠정의역(A)이면 R∘S는 구할 수 없다.
+        (R∘S=Ø)
+
+                                        COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+4-2) 합성관계의 표기
+
+   ▪ [예제] 두 집합 A={1, 2, 3}, B={a, b, c}에 대해
+     A에서 B로의 관계 R과 B에서 A로의 관계 S가
+     다음과 같을 때, 합성관계 S∘R과 R∘S를 구하시오.
+      R={(1, b), (1, c), (3, a), (3, c)}
+      S ={(a, 2), (b, 1), (c, 3)}
+      -S∘R={(1, 1), (1, 3), (3, 2), (3, 3)}
+        R∘S={(b, b), (b, c), (c, a), (c, c)}
+
+   ▪ 합성관계는 교환법칙이 성립하지 않는다.
+
+                                        COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+4-3) 합성관계의 연산-1
+
+ R: A→B (A×B) ↔ MR (m×p 행렬)                                  |A|=m
+ S: B→C (B×C) ↔ MS (p×n 행렬)                                   |B|=p
+ ⇒ S∘R=MS∘R=MR⊙MS (m×n 행렬)                                    |C|=n
+
+▪ 관계행렬을 이용하여 관계 R, S의 합성관계 S∘R?
+
+R={(a, 1), (b, 1), (b, 2)}  MR=  1  0  MS=                       1  0
+S={(1, x), (2, y)}               1  1                            0  1
+
+S∘R=MR⊙MS=  1  0⊙1  0
+            1  10   1
+
+=           (1∧1)∨(0∧0)     (1∧0)∨(0∧1)                       =  1  0
+            (1∧1)∨(1∧0)     (1∧0)∨(1∧1)                          1  1
+
+∴ S∘R={(a, x), (b, x), (b, y)} (※ R∘S=Ø)
+
+COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+4-3) 합성관계의 연산-2
+
+ 합성관계의 거듭제곱 Rn
+
+▪ 집합 A에 대한 관계 R에 대하여 n=1, 2, 3, …일 때
+
+거듭제곱    Rn=ቊ������������∘������������_������  ������=������ 일 때
+                          ������>������ 일 때
+
+▪ [예제] 집합 A={1, 2}에 대한 관계 R의 R2, R3, R4?
+
+   MR=  0  1          R={(1, 2), (2, 1)}
+        1  0
+
+R2=MR2=MR⊙MR=   0  1  ⊙   0  1
+                1  0      1  0
+
+=  (0∧0)∨(1∧1)  (0∧1)∨(1∧0)     =  1  0
+   (1∧0)∨(0∧1)  (1∧1)∨(0∧0)        0  1
+
+   COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+4-3) 합성관계의 연산-3
+
+▪ [예제] 집합 A={1, 2}에 대한 관계 R의 R2, R3, R4?
+
+R3=MR3=MR2⊙MR=  1  0  ⊙  0  1
+                0  1     1  0
+
+=  (1∧0)∨(0∧1)  (1∧1)∨(0∧0)    =  0  1
+   (0∧0)∨(1∧1)  (0∧1)∨(1∧0)       1  0
+
+R4=MR4=MR3⊙MR=  0  1  ⊙  0  1
+                1  0     1  0
+
+=  (0∧0)∨(1∧1)  (0∧1)∨(1∧0)    =  1  0
+   (1∧0)∨(0∧1)  (1∧1)∨(0∧0)       0  1
+
+   COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+4-3) 합성관계의 연산-4
+
+ 추이관계와 거듭제곱의 관계
+   ▪ [정리 6-1] 집합 A에 대한 관계 R이 추이관계일
+     필요충분조건은 모든 자연수 n에 대해 Rn⊆R이다.
+
+   ▪ (증명)
+       n=1일 때 R1⊆R 성립 (∵ R1=R)
+       Rk⊆R이라고 가정 (귀납가정)
+       n=k+1일 때, (x, y)∈Rk+1이면 (x, y)∈R∘Rk이므로
+       (x, z)∈Rk이고 (z, y)∈R인 z가 존재한다.
+       귀납가정(Rk⊆R)에 의해 (x, z)∈R이므로
+       (x, y)∈R(∵ 추이관계)이다.
+       ∴ Rk+1⊆R이므로 모든 자연수 n에 대해 Rn⊆R이다.
+
+                                        COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+4-3) 합성관계의 연산-5
+
+▪ [예제] 집합 A={1, 2}에 대한 관계 R={(1,1), (1,2),
+
+  (2,2)}가 추이관계임을 보이시오.
+
+R2=MR2=MR1⊙MR=  1  1  ⊙  1  1
+                0  1     0  1
+
+=  (1∧1)∨(1∧0)  (1∧1)∨(1∧1)    =  1  1  =R                       ∴ R2⊆R
+   (0∧1)∨(1∧0)  (0∧1)∨(1∧1)       0  1
+
+R3=MR3=MR2⊙MR=  1  1⊙1      1
+                0  10       1
+
+=  (1∧1)∨(1∧0)  (1∧1)∨(1∧1)    =  1  1  =R                       ∴ R3⊆R
+   (0∧1)∨(1∧0)  (0∧1)∨(1∧1)       0  1
+
+   COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+4-3) 합성관계의 연산-6
+
+ 기타 연산
+  1) R1∪R2=MR1∪R2=MR1∨MR2 (합집합→부울합)
+         ={(a,b)∈R1∪R2|(a,b)∈R1∨(a,b)∈R2}
+  2) R1∩R2=MR1∩R2=MR1∧MR2 (교집합→부울교차)
+         ={(a,b)∈R1∩R2|(a,b)∈R1∧(a,b)∈R2}
+  3) R1-R2=MR1-R2
+         ={(a,b)∈R1-R2|(a,b)∈R1∨(a,b) ∉ R2}
+
+                                        COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+4-3) 합성관계의 연산-7
+
+   ▪ [예제 6-22] 관계 R1={(1,b), (3,c), (4,a), (4,c)}고,
+     관계 R2={(1,c), (2,a), (3,b), (3,c), (4,c)}일 때
+    1) R1∪R2
+           ={(1,b), (1,c), (2,a), (3,b), (3,c), (4,a), (4,c)}
+    2) R1∩R2={(3, c), (4, c)}
+    3) R1-R2={(1, b), (4, a)}
+    4) R2-R1={(1, c), (2, a), (3, b)}
+
+                                        COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+

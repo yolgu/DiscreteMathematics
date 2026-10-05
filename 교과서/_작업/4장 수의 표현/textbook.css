@@ -1,0 +1,260 @@
+/* 강의 교과서 인쇄용 스타일. A4 한 단, 맑은 고딕.
+   색과 간격은 아래 변수만 쓰고, 장 HTML 안에서 새 색을 만들지 않는다. */
+
+:root {
+  --ink: #1d232b;
+  --ink-soft: #55606c;
+  --paper: #ffffff;
+  --rule: #d3d9e0;
+  --accent: #1f4e79;
+  --accent-soft: #8fb0cf;
+  --definition-tint: #eef3f8;
+  --example-tint: #f6f7f9;
+  --mark-tint: #fff0bf;
+  --fig-line: #34404d;
+  --fig-a: #c9ddf0;
+  --fig-b: #f3d3c1;
+  --fig-highlight: #f2c14e;
+
+  --font-body: "Malgun Gothic", "맑은 고딕", sans-serif;
+  --font-code: Consolas, "D2Coding", "Courier New", monospace;
+  --size-body: 10.5pt;
+  --size-small: 9pt;
+  --leading: 1.75;
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+}
+
+@page {
+  size: A4;
+  margin: 22mm 22mm 24mm;
+  @bottom-center {
+    content: counter(page);
+    font-family: "Malgun Gothic", sans-serif;
+    font-size: 8.5pt;
+    color: #55606c;
+  }
+}
+
+html {
+  print-color-adjust: exact;
+  -webkit-print-color-adjust: exact;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--size-body);
+  line-height: var(--leading);
+  word-break: keep-all;
+  overflow-wrap: break-word;
+  orphans: 2;
+  widows: 2;
+}
+
+p { margin: 0 0 var(--space-3); }
+strong { font-weight: 700; }
+em {
+  font-style: normal;
+  text-decoration: underline;
+  text-decoration-color: var(--accent-soft);
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 3px;
+}
+ul, ol { margin: 0 0 var(--space-3); padding-left: 1.6em; }
+li { margin-bottom: var(--space-1); }
+
+/* 제목 */
+h1, h2, h3, h4 {
+  line-height: 1.4;
+  break-after: avoid;
+  break-inside: avoid;
+}
+h2 {
+  margin: var(--space-6) 0 var(--space-3);
+  padding-bottom: var(--space-1);
+  border-bottom: 1.5px solid var(--accent);
+  color: var(--accent);
+  font-size: 15pt;
+}
+h3 {
+  margin: var(--space-5) 0 var(--space-2);
+  color: var(--accent);
+  font-size: 12pt;
+}
+h4 {
+  margin: var(--space-4) 0 var(--space-2);
+  font-size: 10.5pt;
+}
+
+/* 장 첫머리 */
+.chapter-opener {
+  margin: var(--space-7) 0 var(--space-5);
+  break-after: avoid;
+}
+.chapter-number {
+  margin: 0;
+  color: var(--accent);
+  font-size: 11pt;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+.chapter-opener h1 {
+  margin: var(--space-1) 0 0;
+  font-size: 24pt;
+  line-height: 1.3;
+}
+.chapter-map {
+  margin-bottom: var(--space-6);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--rule);
+}
+
+/* 들어가며: 과목의 첫 장 앞에만 두고, 장 첫머리는 새 쪽에서 시작한다. */
+.preface {
+  break-after: page;
+}
+.preface h1 {
+  margin: var(--space-7) 0 var(--space-5);
+  font-size: 18pt;
+}
+
+/* 정의 */
+.definition {
+  margin: var(--space-4) 0;
+  padding: var(--space-3) var(--space-4);
+  border-left: 3px solid var(--accent);
+  border-radius: 0 4px 4px 0;
+  background: var(--definition-tint);
+  break-inside: avoid;
+}
+.definition > :last-child { margin-bottom: 0; }
+.definition-term {
+  margin: 0 0 var(--space-1);
+  color: var(--accent);
+  font-weight: 700;
+}
+
+/* 예제와 풀이 */
+.example {
+  margin: var(--space-5) 0;
+  padding: var(--space-3) var(--space-4) var(--space-2);
+  border-top: 1.5px solid var(--ink-soft);
+  background: var(--example-tint);
+}
+.example-title {
+  margin: 0 0 var(--space-2);
+  font-weight: 700;
+  break-after: avoid;
+}
+.example .solution-label {
+  margin: var(--space-3) 0 var(--space-1);
+  color: var(--ink-soft);
+  font-size: var(--size-small);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  break-after: avoid;
+}
+
+/* 식을 한 줄씩 바꿔 가는 유도: 왼쪽은 식, 오른쪽은 그 줄에 쓴 법칙 */
+table.derivation {
+  margin: var(--space-2) 0 var(--space-3);
+  border: none;
+}
+table.derivation td {
+  padding: 2px var(--space-3) 2px 0;
+  border: none;
+  background: none;
+  text-align: left;
+  vertical-align: baseline;
+}
+table.derivation td.step-sign { width: 1.5em; color: var(--ink-soft); }
+table.derivation td.step-reason { color: var(--ink-soft); font-size: var(--size-small); }
+
+/* 표 */
+table {
+  margin: var(--space-3) auto var(--space-4);
+  border-collapse: collapse;
+  font-size: 10pt;
+  line-height: 1.5;
+  break-inside: avoid;
+}
+th, td {
+  padding: var(--space-1) var(--space-3);
+  border: 1px solid var(--rule);
+  text-align: center;
+  vertical-align: middle;
+}
+thead th {
+  border-bottom: 1.5px solid var(--ink-soft);
+  background: var(--example-tint);
+  font-weight: 700;
+}
+table.prose-table td { text-align: left; }
+table.truth td { font-variant-numeric: tabular-nums; min-width: 2.2em; }
+tr.mark td, td.mark { background: var(--mark-tint); }
+table.long { break-inside: auto; }
+caption {
+  caption-side: bottom;
+  padding-top: var(--space-2);
+  color: var(--ink-soft);
+  font-size: var(--size-small);
+}
+
+/* 그림 */
+figure {
+  margin: var(--space-4) 0 var(--space-5);
+  text-align: center;
+  break-inside: avoid;
+}
+figure svg { max-width: 100%; height: auto; }
+figcaption {
+  margin-top: var(--space-2);
+  color: var(--ink-soft);
+  font-size: var(--size-small);
+}
+
+/* SVG 안에서 쓰는 이름. 그림마다 색을 따로 정하지 않는다. */
+.fig-line { fill: none; stroke: var(--fig-line); stroke-width: 1.4; }
+.fig-thin { fill: none; stroke: var(--ink-soft); stroke-width: 1; }
+.fig-dashed { fill: none; stroke: var(--ink-soft); stroke-width: 1; stroke-dasharray: 4 3; }
+.fig-region-a { fill: var(--fig-a); fill-opacity: 0.8; }
+.fig-region-b { fill: var(--fig-b); fill-opacity: 0.8; }
+.fig-region-highlight { fill: var(--fig-highlight); fill-opacity: 0.85; }
+.fig-node { fill: var(--paper); stroke: var(--fig-line); stroke-width: 1.4; }
+.fig-text { fill: var(--ink); font-family: var(--font-body); font-size: 13px; }
+.fig-text-soft { fill: var(--ink-soft); font-family: var(--font-body); font-size: 11px; }
+.fig-text-strong { fill: var(--accent); font-family: var(--font-body); font-size: 13px; font-weight: 700; }
+.fig-arrow-head { fill: var(--fig-line); }
+
+/* 수식과 코드 */
+.katex { font-size: 1.08em; }
+.katex-display { margin: var(--space-3) 0; }
+code {
+  font-family: var(--font-code);
+  font-size: 0.92em;
+}
+pre {
+  margin: var(--space-3) 0 var(--space-4);
+  padding: var(--space-3) var(--space-4);
+  border-radius: 4px;
+  background: var(--example-tint);
+  font-size: 9pt;
+  line-height: 1.55;
+  white-space: pre-wrap;
+}
+
+/* 장 끝 */
+.looking-back { margin-top: var(--space-6); }
+.recall { break-before: page; }
+.recall ol li { margin-bottom: var(--space-3); }
+.answers ol { font-size: 10pt; }
+.answers ol li { margin-bottom: var(--space-2); }

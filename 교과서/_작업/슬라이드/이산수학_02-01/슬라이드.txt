@@ -1,0 +1,151 @@
+3장. 집합
+
+ 1. 집합의 개념
+ 2. 집합의 종류
+ 3. 집합의 연산
+ 4. 집합의 대수법칙
+ 5. 집합의 분할
+
+                                        COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+1. 집합의 개념-1
+
+ 집합(Set) 영문 대문자(A, B, C, …)
+
+   ▪ 명확한 기준에 의해 분류되어 공통된 성질을
+      가지며 중복되지 않는 원소(element, member)의
+      모임
+
+ 표기방식
+
+   ▪ 원소나열법: 집합에 포함되는 원소를 일일이 나열
+
+      -예: A={1, 2, 3, 4, 5, 6, 7}={1, 2, 3, …, 7}
+
+   ▪ 조건제시법: 원소의 공통 성질을 조건식으로 제시
+
+      -예: A={x|0<x≤7, x∈N}
+     ※N(자연수) ⊂ Z(정수) ⊂ Q(유리수), I(무리수),
+
+        R(실수=Q∪I ) ⊂ C(복소수)
+
+                                        COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+1. 집합의 개념-2
+
+ 집합과 원소의 포함관계
+  ▪ a가 집합 A의 원소다: a∈A
+  ▪ a가 집합 A의 원소가 아니다: a ∉ A
+
+ 기수(Cardinality) |A|
+  ▪ 집합 A가 포함하는 원소의 수
+
+▪ [예제 3-5] 다음 집합의 기수는?       |A|=9
+                             |B|=∞
+  - A={x|-4≤x≤4, x∈Z}        |C|=0
+  - B={y|-3≤y≤3, y∈Q}
+  - C={z|z3=2, z∈Z}
+
+COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+1. 집합의 개념-3
+
+ 유한집합(Finite Set) / 무한집합(Infinite Set)
+
+   ▪ 유한집합: 포함되는 원소의 수가 유한한 집합
+   ▪ 무한집합: 포함되는 원소의 수가 무한한 집합
+
+ 상등(Equal) A=B
+   ▪ 두 집합 A, B에 속하는 원소가 동일할 때
+     "두 집합 A와 B가 서로 같다(상등이다)."
+      - A=B ⇔ (a∈A∧a∈B)
+
+                                        COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+1. 집합의 개념-4
+
+▪ [예제 3-8] 다음 중 상등인 집합끼리 짝지으시오.
+
+A={a|-3<a≤3, a∈Z}       B={1, 2, 4, 8, …}
+
+C={c|c=2k, k≥0, k∈Z} D={d|d∈R}
+
+E={-2, -1, 0, 1, 2, 3}
+
+F={e|e는 유리수거나 무리수}
+
+A, C의 조건제시법을 원소나열법으로 표기하면,
+A={-2, -1, 0, 1, 2, 3} C={1, 2, 4, 8, …}
+∴ A=E, B=C, D=F
+
+COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+2. 집합의 종류-1
+
+ 전체집합(Universal Set) U
+
+   ▪ 논의 대상이 되는 원소 전체를 포함하는 집합
+
+ 공집합(Empty Set) Ø 또는 { }
+
+   ▪ 하나의 원소도 포함하지 않는 집합, |Ø|=0
+
+ 부분집합(Subset) A⊆B
+   ▪ 집합 A의 모든 원소가 집합 B에 포함됨. |A|≤|B|
+
+ 진부분집합(Proper Subset) A⊂B
+   ▪ 집합 A의 모든 원소가 집합 B에 포함되지만
+     집합 A와 집합 B가 상등이 아님. |A|<|B|
+
+                                        COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+2. 집합의 종류-2
+
+ 집합 간 포함관계 정리(1)
+   ▪ 모든 집합 A에 대해 A⊆A
+      -집합 A에 속하는 모든 원소 a에 대해
+        a∈A이므로 A⊆A가 성립
+   ▪ 모든 집합 A에 대해 Ø⊆A
+      -(함축명제 a∈Ø→a∈A이 참임을 이용)
+        공집합에는 원소가 없으므로 a∈Ø는 거짓
+        조건이 거짓이므로 a∈Ø→a∈A는 항상 참
+        ∴ Ø⊆A는 참
+        (※ 부분집합: a∈A→a∈B가 참이면 A⊆B)
+
+                                        COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+2. 집합의 종류-3
+
+ 집합 간 포함관계 정리(2)
+   ▪ 모든 집합 A에 대해 A⊆U
+      -집합 U는 전체집합이므로 논의 대상의
+        모든 원소를 포함. 즉, 모든 집합 A에 대해
+        a∈A이면 a∈U. ∴ A⊆U
+   ▪ 집합 A, B, C에 대해 A⊆B고 B⊆C면 A⊆C
+      -A⊆B에 의해 x∈A이면 x∈B이고,
+        B⊆C에 의해 x∈B이면 x∈C이다.
+        결국, x∈A이면 x∈C이므로 A⊆C.
+        ∴ A⊆B고 B⊆C면 A⊆C
+
+                                        COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+2. 집합의 종류-4
+
+ 집합 간 포함관계 정리(3)
+   ▪ 집합 A, B에 대해 A=B ⇔ (A⊆B∧B⊆A)
+      -원소 x에 대해 A⊆B일 경우 x∈A면 x∈B.
+        또, B⊆A일 경우 x∈B면 x∈A.
+        즉, 원소 x는 집합 A의 원소면서 집합 B의 원소.
+        (x∈A∧x∈B) ⇔ A=B (상등의 정의)
+        ∴ A=B ⇔ (A⊆B∧B⊆A)
+
+                                        COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+2. 집합의 종류-5
+
+▪ [예제 3-10] 집합 A와 B, 집합 B와 C, 집합 B와
+ E, 집합 C와 E, 집합 C와 D 간의 포함관계는?
+ A={a}, B={a, b, w, x, y}, C={x, y}, D={w, x},
+ E={a, b, w, x, y, z}
+
+  A⊂B, C⊂B, B⊂E, C⊂E (A⊂E),
+  C⊄D 또는 C⊅D 또는 C⊈D 또는 C⊉D.
+
+▪ [예제 3-11] 집합 A={{a, b}, c, {d}}일 때
+
+{a, b}∈A,  c∈A,
+{{d}}⊂A,   {{a, b}, c, {d}}=A
+
+COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+

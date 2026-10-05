@@ -1,0 +1,168 @@
+2. 그래프의 종류
+
+ 1) 부분 그래프와 부분신장 그래프
+ 2) 동형 그래프
+ 3) 평면 그래프
+ 4) 연결 그래프
+ 5) 완전 그래프
+ 6) 정규 그래프
+ 7) 이분 그래프와 완전이분 그래프
+
+                                          COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+2-1) 부분·부분신장 그래프
+
+ 부분 그래프(Subgraph)
+  ▪ 그래프 G=(V, E)에 대하여,
+    V'⊆V이고, E'⊆E인 그래프 G'=(V', E')
+
+ 부분신장 그래프(Spanning Graph)
+
+▪ 그래프 G=(V, E)에 대하여,
+
+V'=V이고, E'⊆E인 그래프 G'=(V', E')
+
+   b      b                                                         b
+
+a     ca              a                                                c
+
+   d      d                                                         d
+
+그래프 G 부분 그래프          부분신장 그래프
+
+      COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+2-2) 동형 그래프-1
+
+ 동형 그래프(Isomorphic Graph)
+   ▪ 그래프 G=(V, E)와 G'=(V', E')에 대하여,
+     함수 f : V→V'가 u, v∈V에 대해
+     (u, v)∈E ⇔ (f(u), f(v))∈E'인 전단사함수일 때
+     그래프 G=(V, E)와 G'=(V', E')는 동형 그래프
+
+                                          COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+2-2) 동형 그래프-2
+
+▪ G=(V, E), V={a, b, c, d},
+ E={(a, b), (a, c), (a, d), (b, c), (b, d), (c, d)}
+
+▪ G'=(V', E'), V'={1, 2, 3, 4},
+ E'={(1, 2), (1, 3), (1, 4), (2, 3), (2, 4), (3, 4)}
+
+-f={(a, 1), (b, 2), (c, 3), (d, 4)}
+
+∀u, v∈V : (u, v)∈E ⇔ (f(u), f(v))∈E'
+
+∴ G와 G'은 동형 그래프                         2
+
+   a  b
+
+G                                    1                              G'
+
+   c  d  3                                                          4
+
+      COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+2-3) 평면 그래프-1
+
+ 평면 그래프(Planar Graph)
+   ▪ 그래프 G=(V, E)를 평면에 그릴 때, 꼭짓점이 아닌
+
+      곳에서는 어떤 변도 교차하지 않는 그래프
+
+①  면의 종류: ①, ②
+
+②
+
+COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+2-3) 평면 그래프-2
+
+ [정리 8-2] 꼭짓점, 변, 면의 관계 정리
+                    (오일러 공식에 대한 정리)
+
+   ▪ 연결된 평면 그래프 G에서 꼭짓점의 수를 v, 변의
+     수를 e, 면의 수를 s라고 할 때 다음 오일러 공식이
+     성립한다: v-e+s=2.
+
+   (증명)-수학적 귀납법
+
+   ① e=1일 때 1-1+2=2(루프) / 2-1+1=2(루프 아님)
+   ② e=k일 때 v-k+s=2라고 가정(귀납가정)
+   ③ e=k+1일 때
+
+      - 꼭지점 추가(면 불변): (v+1)-(k+1)+s=2 (성립)
+      - 변만 추가(면 증가): v-(k+1)+(s+1)=2 (성립)
+
+                                          COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+2-4) 연결 그래프
+
+ 연결 그래프(Connected Graph)
+   ▪ 그래프 G=(V, E)내에 있는 임의의 꼭짓점 u, v간에
+
+      경로가 있는 그래프
+
+                                          COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+2-5) 완전 그래프
+
+ 완전 그래프(Complete Graph)
+   ▪ 그래프 G=(V, E)내에 있는 모든 꼭짓점 u, v간에
+
+      변이 있는 그래프
+
+   ▪ n개의 꼭짓점을 가진 완전 그래프는 Kn으로 표기
+   ▪ 완전 그래프에서 꼭짓점 수가 n이고 루프가 없을 때,
+
+     꼭짓점의 차수는 모두 n-1이다.
+     (루프가 있다면 모든 꼭짓점의 차수는 n이다.)
+
+                                          COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+2-6) 정규 그래프
+
+ 정규 그래프(Regular Graph)
+   ▪ 그래프 G=(V, E)내에 있는 모든 꼭짓점의 차수가
+
+      같은 그래프
+
+   ▪ 각 꼭짓점의 차수가 모두 k인 경우 k-정규 그래프로
+
+      표기
+
+                                          COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+2-7) 이분·완전이분 그래프-1
+
+ 이분 그래프(Bipartite Graph)
+   ▪ 그래프 G=(V, E)에서 꼭짓점 집합 V가 V=V1∪V2,
+     V1∩V2=Ø을 만족하는 두 집합 V1과 V2로 분리되고,
+     그래프의 모든 변이 V1의 한 꼭짓점에서 V2의 한
+
+      꼭짓점으로 연결되는 그래프
+   ▪ 꼭짓점의 집합을 V1과 V2로 나눌 때 같은 집합 내의
+
+      꼭짓점 간에는 변이 존재하지 않는다.
+
+ 완전이분 그래프(Complete Bipartite Graph)
+   ▪ 이분 그래프 G=(V, E)에서 V1의 모든 꼭짓점과
+     V2의 모든 꼭짓점 사이에 변이 있는 그래프
+   ▪ |V1|=m, |V2|=n일 때 Km,n으로 표기(m×n개의 변)
+
+                                          COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+2-7) 이분·완전이분 그래프-2
+
+▪ [예제] 다음 그래프를 이분 그래프로 그릴 수
+
+있는지 판별하고, 완전이분 그래프인 경우에는
+
+완전이분 그래프 기호로 표기하시오.
+
+   b     ca                                                      b
+
+a     d                                                          c
+                                                                 e
+
+   e     fd                                                      f
+
+-(a, b), (a, c), (a, e), (a, f)
+
+(d, b), (d, c), (d, e), (d, f)
+
+-완전이분 그래프 K2,4 (2×4=8개의 변)
+
+   COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+

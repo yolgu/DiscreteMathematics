@@ -1,0 +1,116 @@
+3. 합성함수
+
+ 1) 합성함수의 정의
+ 2) 합성함수의 정의역과 공변역
+ 3) 합성함수의 연산
+ 4) 합성함수의 성질
+
+                                        COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+3-1) 합성함수의 정의
+
+ 합성함수(Composition Function) g∘f
+  ▪ 두 함수 f : A→B, g : B→C에 대하여,
+     집합 A의 각 원소를 집합 C의 원소에 대응하는 함수
+              g∘f=(g∘f)(x)=g(f(x)), ∀x∈A
+
+      g∘f
+
+A  f  B     g  C
+
+                  ※ f 의 공변역
+
+x     f(x)     g(x) =g의 정의역
+
+▪ 합성함수는 교환법칙이 성립하지 않는다.
+
+   COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+3-2) 합성함수 정의역과 공변역
+
+   ▪ [예제 7-9] 세 집합 A={a, b, c, d}, B={1, 2, 3},
+     C={x, y, z}에 대해 두 함수 f : A→B, g : B→C의
+     합성함수 g∘f와 그 정의역, 공변역을 구하시오.
+      f={(a, 2), (b, 3), (c, 1), (d, 2)}
+      g={(1, z), (2, y), (3, x)}
+      -g∘f :(a, 2)·(2, y)→(a, y), (b, 3)·(3, x)→(b, x),
+             (c, 1)·(1, z)→(c, z), (d, 2)·(2, y)→(d, y)
+        ∴ g∘f={(a, y), (b, x), (c, z), (d, y)} (※ f∘g=Ø)
+      -g∘f의 정의역= f 의 정의역=집합 A
+        g∘f의 공변역=g의 공변역=집합 C
+
+                                        COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+3-3) 합성함수의 연산-1
+
+   ▪ [예제 7-13] 두 함수 f : R→R, g: R→R에 대해
+     f(x)=x3+2x, g(x)=x-5일 때, 다음을 구하시오.
+      ① g∘f =g(f(x))=g(x3+2x)=(x3+2x)-5=x3+2x-5
+      ② f∘g =f(g(x))=f(x-5)=(x-5)3+2(x-5)
+             =x3-15x2+77x-135
+      ③ f∘f =f(f(x))=f(x3+2x)=(x3+2x)3+2(x3+2x)
+
+               =x9+6x7+12x5+10x3+4x
+
+      ④ g∘g=g(g(x))=g(x-5)=(x-5)-5=x-10
+
+                                        COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+3-3) 합성함수의 연산-2
+
+   ▪ [예제] 집합 A={1, 2, 3, 4}, B={a, b, c, d, e},
+     C={x, y, z}, D={11, 12, 13, 14}에 대하여,
+
+      세 함수가 아래와 같을 때 다음을 구하시오.
+
+     f : A→B, f={(1, c), (2, a), (3, e), (4, b)}
+     g : B→C, g={(a, x), (b, y), (c, y), (d, z), (e, z)}
+     h : C→D, h={(x, 12), (y, 11), (z, 14)}
+      ① h∘(g∘f)=h∘{(1, y), (2, x), (3, z), (4, y)}
+
+                       ={(1, 11), (2, 12), (3, 14), (4, 11)}
+
+      ② (h∘g)∘f={(a, 12), (b, 11), (c, 11), (d, 14), (e, 14)}∘f
+
+                       ={(2, 12), (4, 11), (1, 11), (3, 14)}
+    ▪ 합성함수는 결합법칙이 성립한다.
+
+                                        COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+3-4) 합성함수의 성질-1
+
+ 합성함수 성질의 특징
+   ▪ 함수 f : A→B, g : B→C의 합성함수 g∘f에 대하여
+     ① f와 g가 단사함수면 g∘f도 단사함수다.
+        단사함수 f : ∀a1,a2∈A, a1≠a2→f(a1)≠f(a2)∈A
+        단사함수 g : f(a1)≠f(a2)→g(f(a1))≠g(f(a2))∈C
+     ② f와 g가 전사함수면 g∘f도 전사함수다.
+
+       전사함수 f : ∀b∈B, f(a)=b인 a∈A가 존재
+
+        전사함수 g : ∀c∈C, g(f(a))=c인 f(a)∈B가
+
+         존재
+
+     ③ f와 g가 전단사함수면 g∘f도 전단사함수다.
+
+         ①, ②에 의해 증명.
+
+                                        COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+3-4) 합성함수의 성질-2
+
+ 합성함수 성질의 특징
+   ▪ 함수 f : A→B, g : B→C의 합성함수 g∘f에 대하여
+     ④ g∘f가 단사함수면 f도 단사함수다.
+        단사함수 g∘f : ∀a1,a2∈A,
+          a1≠a2 → g(f(a1))≠g(f(a2))∈C ∴ f(a1)≠f(a2)
+     ⑤ g∘f가 전사함수면 g도 전사함수다.
+        전사함수 g∘f : ∀c∈C, g(f(a))=c인 a∈A가
+
+         존재
+
+        f(a)=b∈B일 때, ∀c∈C, g(b)=c인 b∈B가
+
+         존재
+
+     ⑥ g∘f가 전단사함수면 f는 단사, g는 전사 함수다.
+
+         ④, ⑤에 의해 증명.
+
+                                        COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+

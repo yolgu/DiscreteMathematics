@@ -1,0 +1,170 @@
+6-2) 부분순서관계-1
+
+ 부분순서(Partial Order)
+   ▪ 집합 A에 대한 관계 R이 반사관계, 반대칭관계,
+
+      추이관계가 성립하는 관계.
+
+     집합 A는 부분순서집합(Partial ordered set)
+
+   ▪ 반대칭관계
+
+      -(a, b)∈R이고 a≠b이면 (b, a) ∉ R
+
+                                        COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+6-2) 부분순서관계-2
+
+   ▪ [예제 6-34] 자연수 집합 N에 대한 관계
+     R={(a,b)∈N×N|a≤b}는 무슨 관계인가?
+      -∀a∈N: (a, a)∈R → a≤a ∴ 관계 R은 반사관계
+        ∀a, b∈N: (a, b)∈R, 즉 a≤b이면 a≠b일 때
+        b≤a는 성립하지 않기 때문에 (b, a) ∉ R
+                                      ∴ 관계 R은 반대칭관계
+        ∀a, b, c∈N: (a, b)∈R, (b, c)∈R이면 a≤b, b≤c
+        이며 a≤c이므로 (a, c)∈R ∴ 관계 R은 추이관계
+        따라서, 관계 R은 부분순서관계이다.
+
+                                        COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+6-2) 부분순서관계-3
+
+ 비교가능/불가능(Comparable/Incomparable)
+   ▪ 집합 A에 대한 부분순서관계 R에서 a, b∈A일 때,
+     a≼b 또는 a≽b이면 a와 b는 비교가능이라 하고,
+     a⋠b 또는 a⋡b이면 a와 b는 비교불가능이라 한다.
+      -a≼b: "a가 b보다 우선한다."
+
+ 완전순서(Total Order)
+   ▪ 집합 A에 대한 부분순서관계 R에서
+     집합 A의 모든 원소의 순서쌍을 비교할 수 있으면
+     관계 R을 완전순서관계라 하고,
+     집합 A를 완전순서집합이라 한다.
+
+                                        COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+6-2) 부분순서관계-4
+
+ 하세도표(Hasse Diagram) 그리는 규칙
+
+   ① 부분순서관계에 대한 방향그래프에서
+      루프는 생략한다.
+
+  ② 부분순서집합 A의 서로 다른 원소 a, b에 대하여,
+     a≼b이면, 정점 a를 정점 b보다 아래쪽에 그린다.
+
+  ③ ②에서 a≠k≠b, a≼k≼b인 k가 A에 존재하지 않으면,
+     정점 a에서 정점 b로 가는 선을 그린다.
+
+                                        COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+6-2) 부분순서관계-5
+
+▪ 집합 A={1, 2, 4}에 대한 관계 R={(a, b)∈A×A|
+ a는 b의 약수}이 부분순서관계인지 판별하고,
+
+  부분순서관계라면 하세도표를 그리시오.
+
+▪ R={(1,1), (1,2), (1,4), (2,2), (2,4), (4,4)}
+
+(1,1)∈R, (2,2)∈R, (4,4)∈R ∴ 관계 R은
+
+반사관계
+
+(1,2)∈R → (2,1) ∉ R, (1,4)∈R → (4,1) ∉ R,
+
+(2,4)∈R → (4,2) ∉ R  ∴ 관계 R은
+
+반대칭관계
+
+                           111 111 111
+R2=R∘R=MR⊙MR= 0 1 1 ⊙ 0 1 1 = 0 1 1 =R
+
+                           001 001 001
+
+R2⊆R, R3⊆R → Rn⊆R ∴ 관계 R은 추이관계
+
+COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+6-2) 부분순서관계-6
+
+   ▪ 집합 A={1, 2, 4}에 대한 관계 R={(a, b)∈A×A|
+     a는 b의 약수}이 부분순서관계인지 판별하고,
+
+      부분순서관계라면 하세도표를 그리시오.
+
+      ∴ 관계 R은 부분순서관계
+
+               4·
+               2·
+               1·
+
+                                        COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+6-2) 부분순서관계-7
+
+▪ 집합 A={a, b, c, d, e}에 대한 부분순서관계
+ R={(a,a), (a,c), (a,e), (b,b), (b,c), (b,d), (b,e),
+ (c,c), (c,e), (d,d), (d,e), (e,e)}에 대한 하세도표를
+
+  그리시오.
+
+a≼c  a≼e           ·e
+                ·c ·d
+b≼c b≼d b≼e  ·a ·b
+
+     c≼e
+
+     d≼e
+
+     COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+6-2) 부분순서관계-8
+
+ 극대원소(Maximal Element)
+   ▪ 부분순서집합 A의 원소 a에 대하여,
+     a≺b인 원소 b가 A에 존재하지 않는 경우, 원소 a
+     (a=b는 무방)
+
+ 극소원소(Minimal Element)
+   ▪ 부분순서집합 A의 원소 a에 대하여,
+     a≻b인 원소 b가 A에 존재하지 않는 경우, 원소 a
+     (a=b는 무방)
+
+                                        COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+6-2) 부분순서관계-9
+
+ 최대원소(Greatest Element)
+   ▪ 부분순서집합 A의 모든 원소 a에 대하여,
+     a≺b인 A의 원소 b (a≠b)
+
+ 최소원소(Least Element)
+   ▪ 부분순서집합 A의 모든 원소 a에 대하여,
+     a≻b인 A의 원소 b (a≠b)
+
+                                        COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+6-2) 부분순서관계-10
+
+   ▪ 다음 하세도표에서 극대원소, 극소원소, 최대원소,
+      최소원소를 구하시오.
+
+                 ·a
+             ·b ·c
+
+                 ·d
+             ·e ·f
+
+      -극대원소 a, 극소원소 e, f,
+        최대원소 a, 최소원소 없음
+
+                                        COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+5. 관계의 폐포-5
+
+   ▪ [정리 6-2] 연결관계 R*는 관계 R의 추이폐포다.
+   ▪ (증명)
+
+       (a, b)∈R*, (b, c)∈R*라고 가정하면,
+       자연수 m, n에 대하여 (a, b)∈Rm, (b, c)∈Rn이다.
+       (a, b)∈Rm의 경우 x1, x2,…, xm-1에 대하여,
+       (a, x1)∈R, (x1, x2)∈R, …, (xm-2, xm-1)∈R, (xm-1, b)∈R.
+       (b, c)∈Rn의 경우 y1, y2,…, yn-1에 대하여,
+       (b, y1)∈R, (y1, y2)∈R, …, (yn-2, yn-1)∈R, (yn-1, c)∈R.
+       (a, c)∈Rm+n ⇒ (a, c)∈R*이므로 R*는 추이관계.
+       R*가 R을 포함하면서(R*=R∪…) 추이관계이므로
+       연결관계 R*는 관계 R의 추이폐포다.
+
+                                        COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+

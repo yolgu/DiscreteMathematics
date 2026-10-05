@@ -1,0 +1,126 @@
+4. 함수의 종류
+
+ 1) 항등함수
+ 2) 역함수
+ 3) 상수함수
+ 4) 특성함수
+ 5) 바닥함수와 천정함수
+
+                                        COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+4-1) 항등함수-1
+
+ 항등함수(Identity Function) IA
+   ▪ 집합 A에 대한 함수 f : A→A가 f(a)=a로 정의되는
+
+      함수
+
+   ▪ [예제 7-16] 집합 A={-1, 0, 1}에 대해 f : A→A인
+     함수 f(x)=x5은 어떤 함수인가?
+      -f(-1)=(-1)5=-1, f(0)=(0)5=0, f(1)=(1)5=1
+        ∴ 함수 f(x)=x5은 항등함수(IA)이다.
+
+                                        COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+4-1) 항등함수-2
+
+ [정리 7-3] 항등함수와의 합성
+   ▪ 함수 f : A→B이고, 집합 A에 대한 항등함수가 IA,
+     집합 B에 대한 항등함수가 IB일 때, f∘IA=IB∘f=f.
+   ▪ [예제] 집합 A={1, 2}, 집합 B={a, b, c}에 대한 함수
+     f={(1, c), (2, a)}로 [정리 7-3]의 성립을 보이시오.
+      -IA={(1, 1), (2, 2)}, IB={(a, a), (b, b), (c, c)}
+        (f∘IA)(1)=f(IA(1))=f(1)=c, (f∘IA)(2)=a
+                           ∴ f∘IA=f
+        (IB∘f)(1)=IB(f(1))=IB(c)=c, (IB∘f)(2)=a
+                           ∴ IB∘f=f
+
+                                        COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+4-2) 역함수-1
+
+ 역함수(Inverse Function) f -1
+   ▪ 전단사함수 f : A→B에 대해 A→B로 대응되는 함수
+         a∈A, b∈B에 대해 f(a)=b일 때 f -1(b)=a
+      -f(a): 가역함수
+      -f -1(b): 역함수
+
+                                        COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+4-2) 역함수-2
+
+▪ [예제] 함수 f : Z×Z→Z×Z, f(x, y)=(-y, -x)는
+
+  가역함수인가? 가역함수이면 역함수를 구하시오.
+
+-∀(x1, y1),(x2, y2)∈Z×Z, (x1, y1)≠(x2, y2)→
+ f(x1, y1)=(-y1, -x1)≠(-y2, -x2)=f(x2, y2)∈Z×Z
+                                  ∴ f는 단사함수
+
+∀(-y, -x)∈Z×Z, f(x, y)=(-y, -x)인
+
+(x, y)∈Z×Z가 존재  ∴ f는 전사함수
+
+f(x, y)=(-y, -x)는 전단사함수, 가역함수,
+
+                역함수 f -1(-y, -x)=(x, y)
+
+COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+4-2) 역함수-3
+
+ [정리 7-4] 항등함수와 역함수의 관계
+   ▪ 전단사함수 f : A→B, g : B→C에 대해
+     ① f -1∘f =IA, ② f ∘f -1=IB, ③ (g ∘f )-1=f -1∘g -1
+      -a∈A, b∈B, c∈C에 대해 f, g는 전단사함수므로
+        f(a)=b→f -1(b)=a, g(b)=c→g-1(c)=b.
+     ① (f -1∘f )(a)=f -1(f (a))=f -1(b)=a=IA
+     ② (f ∘f -1)(b)=f (f -1(b))=f (a)=b=IB
+     ③ (f -1∘g -1)∘(g ∘f )=f -1∘(g -1∘g )∘f =f -1∘(IB∘f )
+        =f -1∘f =IA = (g ∘f )-1∘(g ∘f ) Q.E.D.
+
+                                        COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+4-3) 상수함수
+
+ 상수함수(Constant Function)
+   ▪ 함수 f : A→B에서 집합 A의 모든 원소가 집합 B의
+
+      원소 하나에만 대응되는 함수
+
+             ∀x∈A, ∃b∈B : f(x)=b
+
+                                        COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+4-4) 특성함수
+
+ 특성함수(Equivalence Class) fA
+  ▪ 전체집합 U에 속한 어떤 집합 A에 대해 다음과
+
+같은 성질을 갖는 함수
+
+fA(x) = ቊ10  x∈A일 때
+             x ∉ A일 때
+
+▪ 관계행렬과 유사!
+
+COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+4-5) 바닥함수와 천정함수-1
+
+ 바닥함수(Floor Function) ⌊x⌊
+  최대정수함수(Greatest Integer Function)
+   ▪ x∈R에 대해 x와 같거나 x보다 작은 정수들 중
+
+      가장 큰 정수를 대응하는 함수
+
+             ⌊x⌊= n ⇔ n≤x<n+1
+ 천정함수(Ceiling Function) ⌊x⌊
+
+  최소정수함수(Least Integer Function)
+   ▪ x∈R에 대해 x와 같거나 x보다 큰 정수들 중
+
+      가장 작은 정수를 대응하는 함수
+
+             ⌊x⌊= n ⇔ n-1<x≤n
+
+                                        COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+4-5) 바닥함수와 천정함수-2
+
+▪ x-1 < ⌊x⌊≤ x ≤ ⌊x⌊<x+1  y=⌊x⌊
+           y=⌊x⌊
+
+COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+

@@ -1,0 +1,217 @@
+7장. 함수
+
+ 1. 함수의 개념
+ 2. 함수의 성질에 따른 분류
+ 3. 합성함수
+ 4. 함수의 종류
+
+                                        COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+1. 함수의 개념
+
+ 1) 함수의 정의
+ 2) 함수와 관계
+ 3) 함수의 상, 정의역, 공변역, 치역
+ 4) 함수의 연산(합과 곱)
+
+                                        COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+1-1) 함수의 정의
+
+ 함수(Function) f : A→B
+   ▪ 집합 A에서 집합 B로 가는 관계가 성립할 때,
+     집합 A의 원소 a에 대해 집합 B의 원소 b 하나가
+
+      대응되는 관계
+
+             a∈A, b∈B, (a, b)∈f → f(a)=b
+ 대응(Correspondence)
+
+   ▪ 집합 A의 원소 a에 대해 집합 B의 원소 b가
+     확정되는 경우 "b는 a에 대응한다"고 함
+
+                                        COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+1-2) 함수와 관계-1
+
+ 관계와 함수의 차이
+   ▪ 관계(R : A → B)
+      -집합 A 원소가 집합 B 원소와 대응하지 않을 수 있음
+      -하나의 집합 A 원소가 하나 이상의 집합 B
+
+         원소와 대응할 수 있음
+
+   ▪ 함수(f : A → B)
+      -집합 A의 모든 원소는 집합 B 원소와 반드시
+
+         대응
+
+      -하나의 집합 A 원소는 반드시 하나의 집합 B
+        원소와 대응해야 함. (하나의 집합 B 원소는 하나
+        이상의 집합 A 원소와 대응할 수 있음)
+
+                                        COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+1-2) 함수와 관계-2
+
+   ▪ [예제 7-1] 집합 A={x, y, z}, 집합 B={a, b}일 때
+
+      함수인지 아닌지 판별하시오.
+
+     1) {(x, a), (z, b)}
+         집합 A의 원소 중 y가 집합 B의 원소에
+
+          대응되지 않으므로 함수가 아니다.
+
+     2) {(x, a), (y, b), (z, b)}
+         집합 A의 모든 원소가 집합 B에 대응되는
+
+          원소를 하나씩 가지므로 함수다.
+
+     3) {(x, b), (y, a), (y, b), (z, a)}
+         집합 A의 원소 중 y가 집합 B의 두 개의 원소에
+
+          대응하므로 함수가 아니다.
+
+                                        COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+1-3) 함수의 정의역, 공변역-1
+
+ 상(Image), 정의역, 공변역, 치역
+   ▪ 집합 A에서 집합 B로 가는 함수 f : A→B에 대하여,
+      -상(함수값): 집합 A의 원소 a에 대응하는
+                       집합 B의 원소 b = f(a)
+      -정의역 dom(f): 집합 A
+      -공변역 codom(f): 집합 B
+      -치역 ran(f)={f(a)|a∈A}: 상(함수값)의 집합
+
+                                        COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+1-3) 함수의 정의역, 공변역-2
+
+▪ [예제] 다음이 함수인지 판별하고,
+           함수이면 정의역, 공변역, 치역을 구하시오.
+
+A         B        집합 A의 원소 중 d에
+
+dabc····  ····  1  대응되는 상이 집합 B에
+                2
+                   없으므로 함수가 아님
+                3  ∴ 정의역, 공변역, 치역을
+                4
+
+                   구할 수 없음
+
+-f : R→R, f(x)= ������ − ������������
+  x2>9: 함수 아님.
+  x2≤9: 함수. ∴ 정의역={x|-3≤x≤3, x∈R}
+  공변역={y|y∈R}, 치역={f(x)|-3≤f(x)≤3, f(x)∈R}
+
+          COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+1-4) 함수의 연산(합과 곱)
+
+ 함수의 합(Sum)과 곱(Product)
+   ▪ 두 함수 f : X→R, g : Y→R에 대해
+             (f+g)(x)=f(x)+g(x)
+             (fg)(x)=f(x) · g(x)
+
+   ▪ 함수의 합과 곱에 대한 정의역
+
+             dom(f+g)=dom(fg)=dom(f)∩dom(g)
+   ▪ [예제] f(x)={x- ������|-15<x<∞, x∈R}
+
+             g(x)={|x| |-30<x<30, x∈R}
+      -(f+g)(x)=(x- ������)+|x| (fg)(x)=(x- ������) · |x|
+
+        dom(f+g)=dom(fg)={-15<x<30, x∈R}
+
+                                        COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+2. 함수의 성질에 따른 분류
+
+ 1) 단사함수
+ 2) 전사함수
+ 3) 전단사함수
+
+                                        COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+2-1) 단사함수
+
+ 단사함수(Injective/One-to-one Function)
+  ▪ 함수 f : X→Y에서 x1, x2∈X에 대하여
+    x1≠x2이면 f(x1)≠f(x2)인 함수
+    |dom(f)|=|ran(f)|≤|codom(f)|
+
+A     B                A                                            B
+
+a·    ··· 1 a·                                                      ···1
+cb··      2            cb··                                             2
+          3                                                             3
+d·    ·4                                                            ·4
+
+▪ [예] f : N→Z, f(x)=x
+
+      COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+2-2) 전사함수
+
+ 전사함수(Subjective/Onto Function)
+  ▪ 함수 f : X→Y에서 y∈Y에 대하여
+    f(x)=y인 x∈X가 적어도 하나 존재하는 함수
+    |dom(f)|≥|ran(f)|=|codom(f)|
+
+A     B                  A                                          B
+
+a·      · 1 a·                                                        ·1
+cb··  ··  2              cb··                                       ··  2
+d·        3                                                             3
+                         d·                                           ·4
+
+▪ [예] f : Z→Z, f(x)=|x|
+
+      COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+2-3) 전단사함수
+
+ 전단사함수(Bijective/One-to-one Onto Function)
+
+   ▪ 단사함수면서 전사함수인 함수
+
+    |dom(f)|=|ran(f)|=|codom(f)|
+
+A   B
+
+a·  ·1
+b·  ·2
+c·  ·3
+d·  ·4
+
+▪ [예] f : Z→Z, f(x)=x
+
+    COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+2. 함수의 분류-1
+
+   ▪ [예제 7-8(1)] 다음 함수들은 어떤 함수인가?
+
+      -f1 : R→R, f1(x)=2x
+        f2 : Z→Z+, f2(x)=|x|+1
+
+      ∀x1,x2∈R, x1≠x2→f1(x1)≠f1(x2)∈R : 단사함수,
+      f1(x)=-1인 경우를 만족하는 x∈R가 존재하지
+      않으므로 전사함수 아님. ∴ f1은 단사함수
+      -1≠1→f2(-1)=f2(1)=2∈Z+이므로 단사함수 아님,
+      ∀y∈Z+, f2(x)=y인 x∈Z가 존재 : 전사함수.
+
+                                        ∴ f2는 전사함수
+
+                                        COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+2. 함수의 분류-2
+
+   ▪ [예제 7-8(2)] 다음 함수들은 어떤 함수인가?
+
+      -f3 : Z-→N, f3(x)=|x|
+        f4 : Z→Z, f4(x)=x2
+
+      ∀x1, x2∈Z-, x1≠x2→f3(x1)≠f3(x2)∈N : 단사함수,
+      ∀y∈N, f3(x)=y인 x∈Z-가 존재 : 전사함수.
+
+                                        ∴ f3은 전단사함수
+      -1≠1→f4(-1)=f4(1)=1∈Z이므로 단사함수 아님,
+      f4(x)=-1인 경우를 만족하는 x∈Z가 존재하지
+
+       않으므로 전사함수 아님.
+
+                                  ∴ f4는 어떤 함수도 아님
+
+                                        COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+

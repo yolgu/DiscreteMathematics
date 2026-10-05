@@ -1,0 +1,146 @@
+10장. 순열, 조합, 확률
+
+ 1. 합의 법칙과 곱의 법칙
+ 2. 순열
+ 3. 조합
+ 4. 이항계수
+ 5. 확률
+ 6. 확률분포
+
+                                         COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+1. 합의 법칙과 곱의 법칙
+
+ 1) 합의 법칙과 곱의 법칙의 정의
+
+                                         COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+1-1) 합/곱 법칙의 정의-1
+
+ 합의 법칙(Rule of Sum)
+   ▪ 두 사건 A, B의 경우의 수가 |A|=m, |B|=n일 때,
+     A∩B=Ø이라면, 사건 A 또는 사건 B가 일어날
+     경우의 수는 m+n. |A∪B|=|A|+|B|=m+n
+   ▪ [예제 10-2] 빵 5가지와 우유 2가지, 주스 4가지,
+                     과일 3가지가 있을 때,
+
+       -빵, 우유, 주스, 과일 중에 하나만 선택할 수 있는
+         경우의 수는?
+
+      -5+2+4+3=14 ∴14가지
+
+                                         COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+1-1) 합/곱 법칙의 정의-2
+
+ 곱의 법칙(Rule of Product)
+
+▪ 두 사건 A, B의 경우의 수가 |A|=m, |B|=n일 때,
+
+사건 A와 사건 B가 동시에 일어날 경우의 수는
+
+m×n.  |A×B|=|A|×|B|=m×n
+
+▪ [예제 10-2] 빵 5가지와 우유 2가지, 주스 4가지,
+                  과일 3가지가 있을 때,
+
+   -빵, 우유, 주스, 과일을 각 하나씩 선택할 수 있는
+     경우의 수는?
+
+-5×2×4×3=120 ∴120가지
+
+      COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+2. 순열
+
+ 1) 순열의 정의
+ 2) 중복순열
+ 3) 같은 원소를 포함하는 순열
+
+                                         COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+2-1) 순열의 정의-1
+
+ 순열(Permutation) nPr
+   ▪ 서로 다른 n개의 원소 중 중복하지 않고 r개를
+
+      선택하여 순서대로 나열한 것
+
+             nPr=n·(n-1)·(n-2)·… ·(n-r+1), 0≤r≤n
+   ▪ [예제10-6] 30명의 회원 중에서 회장, 부회장,
+
+      총무를 각 한 명씩 선출하는 모든 경우의 수는?
+
+      -30P3=30×29×28=24360
+
+                                         COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+2-1) 순열의 정의-2
+
+ 순열에 관한 공식
+
+①  nPr=n·(n-1)·(n-2)·… ·(n-r+1)=   ������!   !
+                                  ������−������
+
+② nPn=n!            ※ 0!=1
+
+③ nP0=    ������!  !=1
+        ������−������
+
+▪ [예제 10-11] 두 여자와 네 남자를 줄 세울 때
+  여자끼리 ①이웃하게, ②이웃하지 않게 세우는
+  경우의 수는?
+
+   ① 5!×2!=240
+   ② 4!×5P2=24×5×4=480
+
+          COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+2-1) 순열의 정의-3
+
+   ▪ [예제 10-10] 서로 다른 네 문자 a, b, c, d를 이용해
+
+      ① 만들어지는 순열은 몇 가지인가?
+
+     ② 사전적 순서로 bdac는 몇 번째 순열인가?
+     ③ 사전적 순서로 20번째 오는 순열은 무엇인가?
+     ① 4P4=4!=24
+     ② 3!(a***) + 2×2!(ba**, bc**) + 1 = 11 (번째)
+     ③ 3!×3(a***, b***, c***) + 2(dabc, dacb)
+
+        ∴dacb
+
+                                         COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+2-2) 중복순열
+
+ 중복순열 n∏r
+  ▪ 서로 다른 n개의 원소 중 중복을 허용하며 r개를
+
+선택하여 순서대로 나열한 것      n∏r=nr
+
+▪ [예제 10-13] a, b, c, d, e 중 세 문자를 나열할 때
+
+  ①중복을 허락하지 않고, ②중복을 허락할 경우에
+  몇 가지가 나올까?
+
+① 5P3=5×4×3=60 (가지)
+② 5∏3=53=125 (가지)
+
+※ 사과 5개를 바구니 3개에 담는 방법의 수= 3∏5
+
+COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+2-3) 같은 원소를 포함하는 순열
+
+ 중복된 원소를 포함하는 집합에 대한 순열
+
+▪ n개 중에서 같은 것이 p개, q개, r개, …, s개 있을 때,
+
+n개를 나열하는 경우의 수
+
+         ������!               p+q+r+…+s=n
+������!×������!×������!×⋯×������!
+
+▪ [예제 10-19] A에서 B까지 최단 경로의 수는?
+
+                        B  - a 구간 5번, b 구간 4번
+b
+b                          ∴������!���×���!������!  =  ������×������×������×������        =  126
+b                                          ������×������×������×������
+b
+Aa a a a a
+
+COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+

@@ -1,0 +1,210 @@
+5. 역행렬-1
+
+ 역행렬(Inverse Matrix) A-1
+  ▪ 정사각행렬 A에 대해 AB=BA=I를 만족하는 행렬
+
+B
+        AA-1=A-1A=I
+
+▪ [예제 5-13] 행렬 A =   1     2  의  역행렬을
+                     1     3
+구하시오.
+
+12  wx   =    w+2y   x+2z     =  1  0
+13  yz        w+3y   x+3z        0  1
+
+w+2y=1, x+2z=0, w+3y=0, x+3z=1
+
+w=3, x=-2, y=-1, z=1
+
+∴ A-1 =    3  -2
+         -1     1
+
+    COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+5. 역행렬-2
+
+ 행렬식을 이용한 역행렬
+
+                        ������
+
+            A-1=������������������(������)[Aij]T (단, det(A)≠0)
+
+A:  a  b  wx    =  10          aw+by=1, ax+bz=0
+    c  d  yz       01          cw+dy=0, cx+dz=1
+
+-w=d/(ad-bc)=d/det(A),
+
+    x=(-b)/det(A), y=(-c)/det(A), z=a/det(A)
+
+-A11=d, A12=-c, A21=-b, A22=a
+
+A-1 =     w  x         ������       d  -b   = ������������������������(������)[Aij]T
+          y  z                 -c    a
+                =
+
+                   ������������������(������)
+
+          COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+5. 역행렬-3
+
+ 수반행렬 [Aij]T
+
+   ▪ 여인수행렬에 대한 전치행렬
+
+ 가역행렬(Invertible/Nonsingular Matrix)
+
+   ▪ 역행렬이 존재하는 행렬
+
+ 특이행렬(Singular Matrix)
+
+   ▪ 역행렬이 존재하지 않는 행렬
+
+      -행렬식이 0인 경우 (det(A)=0)
+
+                                        COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+6. 연립 1차 방정식
+
+ 1) 가우스 소거법
+ 2) 가우스 조르단 소거법
+
+                                        COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+6. 연립 1차 방정식-1
+
+ 1차 방정식, 선형방정식(Linear Equation)
+   ▪ a1, a2, …, an, b가 실수일 때 다음과 같은 식
+             a1x1 + a2x2 + … + anxn = b
+      - a1, a2, …, an: 계수, b: 상수, x1, x2, …, xn: 미지수
+   ▪ 1차 방정식의 변수는 n제곱, 제곱근, 삼각함수,
+
+      대수함수, 지수함수 등의 변수로 사용되지 않음
+
+ 해(Solution)
+   ▪ 1차 방정식의 미지수 x1=s1, x2=s2, …, xn=sn을
+     만족하는 s1, s2, …, sn
+
+                                        COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+6. 연립 1차 방정식-2
+
+ 연립 1차 방정식(System of Linear Equation)
+  ▪ 1차 방정식 m개로 구성된 방정식
+        a11x1+ a12x2+…+ a1nxn = b1
+        a21x1+ a22x2+…+ a2nxn = b2
+                        …
+       am1x1+am2x2+…+amnxn = bm
+
+      a11 a12 … a1n         x1         b1
+
+A= a21 a22 … a2n ,   X= x2 ,    B= b2
+
+        …………                 …          …
+
+      am1 am2 … amn         xn        bm
+
+COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+6. 연립 1차 방정식-3
+
+ 첨가행렬(Augmented Matrix)
+   ▪ 연립 1차 방정식의 계수행렬 A와 상수행렬 B를
+
+      다음과 같은 형태로 구성한 행렬
+               a11 a12 … a1n b1
+              a21 a22 … a2n b2
+
+                  ……………
+
+              am1 am2 … amn bm
+
+                                        COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+6-1) 가우스 소거법-1
+
+ 가우스 행렬(Gauss Matrix)
+
+▪ 계수행렬의 대각원소들을 모두 1로 만들고,
+
+대각원소를 기준으로 아래쪽 원소들은 모두 0으로
+
+만든 후 위쪽 원소들은 계수들로 남겨놓은 형태의
+
+첨가행렬  1 a12 … a1n c1
+
+      0  1 … a2n c2
+
+      ……………
+
+                           0 0…1  cm
+
+ 가우스 행렬을 만들기 위한 연산
+
+1) 한 행에 0이 아닌 상수를 곱한다.
+
+2) 상수배한 행과 다른 행을 더해 원소를 0으로 만든다.
+
+3) 필요에 따라 행을 교환할 수 있다.
+
+COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+6-1) 가우스 소거법-2
+
+   ������ + ������������ + ������������ = ������     1 2 31
+ቐ ������ + ������������ + ������������ = ������      1 3 61
+                             2 6 13 5
+  ������������ + ������������ + ������������������ = ������  ② 3행=1행×(-2)+3행
+ ① 2행=1행×(-1)+2행
+                                 1 2 31
+     1 2 31                      0 1 30
+     0 1 30                      0 2 73
+     2 6 13 5
+                                   ������ + ������������ + ������������ = ������
+ ③ 3행=2행×(-2)+3행                 ቐ ������ + ������������ = ������
+     1 2 31
+     0 1 30                                      ������ = ������
+     0 0 13
+                             ∴ z=3, y=-9, x=10
+
+COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+6-2) 가우스 조르단 소거법-1
+
+������ + ������������ + ������������ = ������      1 2 31
+
+ቐ ������ + ������������ + ������������ = ������    1 3 61
+
+������������ + ������������ + ������������������ = ������  2 6 13 5
+
+①,②,③=가우스 소거법 ④ 1행=2행×(-2)+1행
+
+1 2 31                     1 0 -3 1
+
+0 1 30                     0 1 30
+
+0 0 13                     0 0 13
+
+⑤ 1행=3행×3+1행               ⑥ 2행=3행×(-3)+2행
+
+1 0 0 10                   1 0 0 10
+0130                       0 1 0 -9
+
+0013                       0013
+
+※ 계수행렬을 단위행렬로 만들면 상수행렬이 해!
+
+COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+6-2) 가우스 조르단 소거법-2
+
+ 가우스 조르단 소거법을 이용한 역행렬
+
+   a11 a12 … a1n 1 0 … 0
+   a21 a22 … a2n 0 1 … 0
+
+    ……………………
+
+   an1 an2 … ann 0 0 … 1
+
+   1 0 … 0 a11-1 a12-1 … a1n-1
+
+⇒  0  1  …  0 a21-1 a22-1  …                                     a2n-1
+         …                 …
+   …  …     …… …                                                  …
+
+   0 0 … 1 an1-1 an2-1 … ann-1
+
+   COPYRIGHTS@UNIWISE AND SIN-HEUNG CHEOL. ALL RIGHTS RESERVED.
+
