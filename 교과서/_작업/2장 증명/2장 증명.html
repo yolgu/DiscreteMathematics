@@ -1,0 +1,468 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>2장 증명</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body, {delimiters: [{left: '\\[', right: '\\]', display: true}, {left: '\\(', right: '\\)', display: false}], throwOnError: false, errorColor: '#cc0001', output: 'html'})"></script>
+<!-- errorColor는 print_pdf.py가 그리지 못한 수식을 찾는 표지다. 바꾸지 않는다. -->
+<link rel="stylesheet" href="textbook.css">
+</head>
+<body>
+
+<header class="chapter-opener">
+  <p class="chapter-number">2장</p>
+  <h1>증명</h1>
+</header>
+
+<section class="chapter-map">
+  <p>1장에서는 명제의 참과 거짓을 계산하고, 참인 전제에서 결론을 끌어내는 추론 법칙을 배웠습니다. 이 장은 그 도구로 한 가지 물음에 답합니다. 어떤 명제가 참이라는 것을 어떻게 확실히 보일 수 있을까요?</p>
+  <p>먼저 증명이 무엇에서 출발하는지, 곧 공리와 정의와 정리를 정리하고 증명의 뜻을 정합니다. 이어서 함축명제 p → q를 있는 그대로 보이는 직접증명법을 배웁니다. 간접증명법은 1장에서 배운 동치를 이용해 증명할 명제를 다루기 쉬운 꼴로 바꾸거나(대우증명법, 모순증명법), '모든'이나 '어떤'이 붙은 명제를 예 하나로 판정합니다(반례증명법, 존재증명법). 마지막 수학적 귀납법은 끝없이 많은 자연수에 대한 명제를 세 단계로 증명합니다. '정수 \(n\)이 3의 배수면 \(n^3\)도 3의 배수'라는 같은 명제를 세 가지 방법으로 증명하니, 방법끼리 견주어 가며 읽어 보세요.</p>
+</section>
+
+<section>
+  <h2>1. 증명의 정의</h2>
+  <p>증명은 이미 참이라고 알고 있는 것에서 출발합니다. 그 출발점이 어떤 것이냐에 따라 공리, 정의, 정리라는 이름이 붙습니다. 이 셋을 먼저 정리한 뒤 증명이 무엇인지 정하겠습니다.</p>
+
+  <div class="definition">
+    <p class="definition-term">공리(axiom)</p>
+    <p>별도의 증명 없이 참(T)으로 받아들여 이용하는 명제를 공리라고 합니다. 증명이 필요 없는 명제라는 뜻에서 무증명 명제라고도 합니다.</p>
+  </div>
+  <p>예를 들어 '실수 \(a\), \(b\)에 대해 \(a = b\)이면 \(a + 1 = b + 1\)이다'는 누구도 따로 증명하라고 하지 않고 참으로 받아들입니다. 공리가 필요한 까닭은 증명의 구조에 있습니다. 어떤 명제를 증명하려면 이미 참인 명제가 있어야 하고, 그 명제가 참이라는 것도 또 다른 명제에 기대야 합니다. 이렇게 거슬러 올라가는 일이 끝없이 이어지지 않으려면 어딘가에 멈출 출발점이 있어야 합니다. 공리가 바로 그 출발점입니다.</p>
+
+  <div class="definition">
+    <p class="definition-term">정의(definition)</p>
+    <p>논의의 대상을 보편화하기 위해 사용하는 용어나 기호의 의미를 확실하게 규정한 문장이나 식을 정의라고 합니다.</p>
+  </div>
+  <p>정의는 일종의 약속입니다. 1장에서 명제를 '참이나 거짓으로 판별할 수 있는 문장이나 수식'으로 정의한 것이 그 예입니다. 한번 정의한 말은 처음부터 끝까지 같은 뜻으로만 씁니다. 중간에 뜻이 바뀌면 그 말을 쓴 증명이 모두 흔들리기 때문입니다. 증명에서 정의는 말을 식으로 옮기는 다리 구실도 합니다. 2절에서 '3의 배수'의 정의를 써서 문장을 식으로 바꾸는 장면을 보게 됩니다.</p>
+
+  <div class="definition">
+    <p class="definition-term">정리(theorem)</p>
+    <p>공리와 정의를 통해 참으로 확인된 명제를 정리라고 합니다.</p>
+  </div>
+  <p>피타고라스 정리처럼 '정리'라는 이름이 붙은 명제는 모두 이렇게 참임이 확인된 것입니다. 정리를 확인할 때는 공리와 정의뿐 아니라 앞서 참으로 확인된 다른 정리도 씁니다. 한번 증명된 정리는 다음 증명의 재료가 됩니다.</p>
+
+  <div class="definition">
+    <p class="definition-term">증명(proof)</p>
+    <p>하나의 명제가 참임을 확인하는 과정을 증명이라고 합니다.</p>
+  </div>
+  <p>정리가 참으로 확인된 결과라면, 증명은 그 결과에 이르는 과정입니다. 그림 2-1처럼 증명은 공리, 정의, 앞서 증명된 정리를 전제로 삼아 1장에서 배운 정당한 추론을 한 걸음씩 이어 가고, 마지막에 증명하려던 명제에 닿습니다. 1장의 추론 법칙이 증명의 한 걸음 한 걸음이 되는 셈입니다.</p>
+
+  <figure>
+    <svg width="460" height="166" viewBox="0 0 460 166" role="img" aria-label="공리, 정의, 앞서 증명된 정리에서 정당한 추론을 이어 가는 증명을 거쳐 정리를 얻고, 그 정리가 다음 증명의 재료가 되는 흐름">
+      <defs>
+        <marker id="arrow-2-1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M0,0 L10,5 L0,10 z" class="fig-arrow-head"/>
+        </marker>
+      </defs>
+      <rect x="10" y="12" width="130" height="34" class="fig-node"/>
+      <text x="75" y="34" class="fig-text" text-anchor="middle">공리</text>
+      <rect x="10" y="58" width="130" height="34" class="fig-node"/>
+      <text x="75" y="80" class="fig-text" text-anchor="middle">정의</text>
+      <rect x="10" y="104" width="130" height="34" class="fig-node"/>
+      <text x="75" y="126" class="fig-text" text-anchor="middle">앞서 증명된 정리</text>
+      <rect x="190" y="48" width="160" height="54" class="fig-node"/>
+      <text x="270" y="70" class="fig-text-strong" text-anchor="middle">증명</text>
+      <text x="270" y="90" class="fig-text-soft" text-anchor="middle">정당한 추론을 이어 감</text>
+      <rect x="390" y="58" width="60" height="34" class="fig-node"/>
+      <text x="420" y="80" class="fig-text" text-anchor="middle">정리</text>
+      <line x1="140" y1="29" x2="188" y2="62" class="fig-line" marker-end="url(#arrow-2-1)"/>
+      <line x1="140" y1="75" x2="188" y2="75" class="fig-line" marker-end="url(#arrow-2-1)"/>
+      <line x1="140" y1="121" x2="188" y2="88" class="fig-line" marker-end="url(#arrow-2-1)"/>
+      <line x1="350" y1="75" x2="388" y2="75" class="fig-line" marker-end="url(#arrow-2-1)"/>
+      <path d="M420,92 L420,158 L75,158 L75,140" class="fig-dashed" marker-end="url(#arrow-2-1)"/>
+      <text x="250" y="152" class="fig-text-soft" text-anchor="middle">다음 증명의 재료가 됨</text>
+    </svg>
+    <figcaption>그림 2-1 증명의 재료와 증명, 정리의 관계</figcaption>
+  </figure>
+
+  <p>증명하는 방법은 크게 세 가지입니다. 명제를 있는 그대로 보이는 직접증명법, 명제를 동치인 다른 꼴로 바꾸거나 명제의 꼴을 이용하는 간접증명법, 자연수에 관한 명제를 세 단계로 보이는 수학적 귀납법입니다. 간접증명법 안에는 다시 몇 가지 방법이 있습니다.</p>
+</section>
+
+<section>
+  <h2>2. 직접증명법</h2>
+  <div class="definition">
+    <p class="definition-term">직접증명법(direct proof)</p>
+    <p>함축명제 p → q가 참이 됨을, 다른 명제로 바꾸지 않고 그대로 증명하는 방법을 직접증명법이라고 합니다. p가 참이라고 놓고, 공리와 정의와 정리를 이용해 q가 참임을 이끌어 냅니다.</p>
+  </div>
+  <p>p가 참인 경우만 생각해도 되는 까닭은 함축의 진리표에 있습니다. p가 거짓인 두 줄에서 p → q는 q와 상관없이 늘 참입니다. p → q가 거짓이 될 수 있는 경우는 p가 참이고 q가 거짓인 경우 하나뿐입니다. 그러니 p가 참일 때 q도 반드시 참임을 보이면 그 경우는 일어날 수 없고, p → q는 참이 됩니다.</p>
+
+  <div class="example">
+    <p class="example-title">예제 2-5</p>
+    <p>정수 \(n\)이 3의 배수면 \(n^3\)도 3의 배수임을 증명하세요.</p>
+    <p class="solution-label">풀이</p>
+    <p>먼저 문장을 명제 둘로 나눕니다.</p>
+    <ul>
+      <li>p: 정수 \(n\)이 3의 배수다.</li>
+      <li>q: \(n^3\)은 3의 배수다.</li>
+    </ul>
+    <p>증명할 것은 p → q, 곧 '정수 \(n\)이 3의 배수면 \(n^3\)은 3의 배수다'입니다. 직접증명법이므로 p가 참이라고 놓고 출발합니다.</p>
+    <p>그런데 '3의 배수'라는 말로는 계산을 할 수 없습니다. 여기서 정의가 다리가 됩니다. 정수 \(n\)이 3의 배수라는 것은 \(n = 3k\)가 되는 정수 \(k\)가 있다는 뜻입니다. 이것을 \(n = 3k\ (k \in Z)\)로 씁니다. \(Z\)는 정수 전체의 집합이고, 기호 \(\in\)은 '~에 속한다'로 읽습니다. \(k \in Z\)는 '\(k\)는 \(Z\)에 속한다', 곧 \(k\)가 정수라는 뜻입니다.</p>
+    <p>목표는 \(n^3\)을 '3 × 정수' 꼴로 쓰는 것입니다. 그래야 q에 나오는 '3의 배수'의 정의에 맞기 때문입니다.</p>
+    <table class="derivation">
+      <tr><td class="step-sign"></td><td>\(n^3\)</td><td class="step-reason"></td></tr>
+      <tr><td class="step-sign">=</td><td>\((3k)^3\)</td><td class="step-reason">\(n = 3k\)를 넣음</td></tr>
+      <tr><td class="step-sign">=</td><td>\(27k^3\)</td><td class="step-reason">거듭제곱을 풂</td></tr>
+      <tr><td class="step-sign">=</td><td>\(3(9k^3)\)</td><td class="step-reason">3을 앞으로 묶어 냄</td></tr>
+    </table>
+    <p>마지막 줄에서 \(9k^3\)이 정수인지 확인해야 합니다. 정수끼리 더하거나 빼거나 곱한 결과는 언제나 정수입니다. 이처럼 어떤 수의 모임 안에서 계산한 결과가 늘 그 모임 안에 남을 때, 그 모임은 그 연산에 <em>닫혀 있다</em>(closed)고 합니다. 정수는 덧셈, 뺄셈, 곱셈에 닫혀 있습니다. 나눗셈에는 닫혀 있지 않습니다. 1 ÷ 2는 정수가 아닙니다.</p>
+    <p>\(k\)가 정수이므로 \(9k^3 = 9 \times k \times k \times k\)도 정수입니다. 따라서 \(n^3 = 3(9k^3)\)은 3의 배수이고, q가 참입니다.</p>
+    <p>∴ 함축명제 p → q는 참입니다. Q.E.D.</p>
+  </div>
+  <p>증명 끝의 Q.E.D.는 증명을 마쳤다는 표시입니다. '이것이 보이려던 것이었다'라는 뜻의 라틴어 문구를 줄인 것입니다.</p>
+  <p>이 증명의 흐름을 정리하면, 가정 p를 정의로 식으로 옮기고, 계산과 이미 아는 성질로 식을 바꾸어, 결론 q의 정의에 맞는 꼴에 닿았습니다. 직접증명법은 대개 이 길을 따릅니다. 이 계산은 다음 절의 다른 증명법에서도 그대로 다시 쓰입니다.</p>
+</section>
+
+<section>
+  <h2>3. 간접증명법</h2>
+  <div class="definition">
+    <p class="definition-term">간접증명법(indirect proof)</p>
+    <p>증명할 명제를 그대로 보이지 않고, 동치인 다른 형태로 변형하거나 명제의 형태를 이용하여 증명하는 방법을 간접증명법이라고 합니다. 함축명제 p → q라면 ¬q → ¬p나 ¬(p ∧ ¬q)처럼 동치인 다른 꼴로 바꾸어 증명합니다.</p>
+  </div>
+  <p>동치인 두 명제는 진릿값이 늘 같습니다. 그래서 둘 가운데 증명하기 쉬운 쪽을 증명하면 다른 쪽도 증명한 셈이 됩니다. 1장에서 진리표와 동치 법칙으로 여러 동치를 확인해 둔 것이 여기서 쓰입니다. 이 절에서는 다음 세 가지를 차례로 봅니다.</p>
+  <ol>
+    <li>대우증명법: p → q 대신 대우 ¬q → ¬p를 증명합니다.</li>
+    <li>모순증명법: p → q 대신 p ∧ ¬q가 거짓임을 보입니다.</li>
+    <li>반례증명법과 존재증명법: '모든'이나 '어떤'이 붙은 명제를 예 하나로 판정합니다.</li>
+  </ol>
+
+  <h3>3-1) 대우증명법</h3>
+  <div class="definition">
+    <p class="definition-term">대우증명법(proof by contraposition)</p>
+    <p>함축명제 p → q가 대우 ¬q → ¬p와 동치임을 이용하여 증명하는 방법을 대우증명법이라고 합니다.</p>
+  </div>
+  <p>1장에서 본 것처럼 명제와 그 대우는 진릿값이 늘 같습니다. 명제가 참이면 대우도 참이고, 대우가 참이면 명제도 참입니다. 그러니 ¬q → ¬p를 증명하면 p → q를 증명한 것이 됩니다.</p>
+  <p>대우를 만들 때는 가정과 결론을 모두 부정하고 자리도 바꿉니다. 부정만 하고 자리를 바꾸지 않은 ¬p → ¬q는 대우가 아니라 이이고, 이는 원래 명제와 동치가 아닙니다. ¬p → ¬q를 증명해서는 p → q를 증명한 것이 되지 않으니 주의하세요.</p>
+  <p>대우증명법은 가정 p가 '~이 아니다'처럼 부정문일 때 특히 쓸모가 있습니다. '3의 배수가 아니다'에서 출발하면 \(n\)을 어떤 식으로 써야 할지 막막합니다. 부정하면 '3의 배수다'가 되어 정의대로 \(n = 3k\)로 바로 옮겨집니다.</p>
+
+  <div class="example">
+    <p class="example-title">예제 2-14</p>
+    <p>\(n^3\)이 3의 배수가 아니면 정수 \(n\)이 3의 배수가 아님을 증명하세요.</p>
+    <p class="solution-label">풀이</p>
+    <p>명제 둘을 정하고, 대우에 쓸 부정도 함께 적습니다.</p>
+    <ul>
+      <li>p: \(n^3\)이 3의 배수가 아니다.</li>
+      <li>q: 정수 \(n\)이 3의 배수가 아니다.</li>
+      <li>¬p: \(n^3\)이 3의 배수다.</li>
+      <li>¬q: 정수 \(n\)이 3의 배수다.</li>
+    </ul>
+    <p>¬p는 '3의 배수가 아니다'를 한 번 더 부정한 것이므로, 이중 부정법칙에 따라 '3의 배수다'가 됩니다. ¬q도 마찬가지입니다. 이 예제의 p, q는 예제 2-5의 p, q와 다릅니다. 예제마다 p, q를 새로 정한다는 점을 놓치지 마세요.</p>
+    <p>이제 p → q 대신 대우 ¬q → ¬p, 곧 '정수 \(n\)이 3의 배수면 \(n^3\)은 3의 배수다'를 증명합니다. 이것은 예제 2-5에서 이미 증명한 명제입니다. 예제 2-5에 의해 ¬q → ¬p가 참입니다.</p>
+    <p>∴ 이와 동치인 p → q도 참입니다. Q.E.D.</p>
+  </div>
+  <p>예제 2-14의 명제는 예제 2-5 명제의 대우입니다. 역으로 착각하기 쉬우니 견주어 두세요. 예제 2-5의 역은 '\(n^3\)이 3의 배수면 \(n\)은 3의 배수다'입니다. 역은 원래 명제와 동치가 아니므로, 이 역은 예제 2-5에서 저절로 따라 나오지 않고 따로 증명해야 합니다.</p>
+
+  <h3>3-2) 모순증명법</h3>
+  <div class="definition">
+    <p class="definition-term">모순증명법(귀류법, proof by contradiction)</p>
+    <p>함축명제 p → q가 ¬(p ∧ ¬q)와 동치임을 이용하여 증명하는 방법을 모순증명법이라고 합니다.</p>
+  </div>
+  <p>먼저 이 동치가 왜 성립하는지 1장의 동치 법칙으로 확인합니다. 함축법칙으로 →를 없애고, ¬( ) 꼴로 묶을 수 있도록 q를 ¬(¬q)로 바꾼 다음, 드모르간의 법칙으로 ¬를 바깥으로 꺼냅니다.</p>
+  <table class="derivation">
+    <tr><td class="step-sign"></td><td>p → q</td><td class="step-reason"></td></tr>
+    <tr><td class="step-sign">≡</td><td>¬p ∨ q</td><td class="step-reason">함축법칙</td></tr>
+    <tr><td class="step-sign">≡</td><td>¬p ∨ ¬(¬q)</td><td class="step-reason">이중 부정법칙</td></tr>
+    <tr><td class="step-sign">≡</td><td>¬(p ∧ ¬q)</td><td class="step-reason">드모르간의 법칙</td></tr>
+  </table>
+  <p>둘째 줄의 ¬p ∨ q는 논리합입니다. 이것을 '¬p이면 q', 곧 ¬p → q로 읽으면 안 됩니다. ¬p → q는 함축법칙에 따라 ¬(¬p) ∨ q, 곧 p ∨ q가 되어 p → q와 다른 명제입니다.</p>
+  <p>¬(p ∧ ¬q)가 무슨 뜻인지는 표 2-1에서 보입니다. p ∧ ¬q가 참인 줄은 둘째 줄, 곧 p가 참이고 q가 거짓인 줄 하나뿐입니다. 그리고 이 줄이 바로 p → q가 거짓이 되는 유일한 경우입니다. 비와 우산으로 옮기면 p ∧ ¬q는 '비가 오는데 우산을 챙기지 않은 경우'입니다. 약속 p → q가 참이라는 것은 이 경우가 일어나지 않는다는 것과 같은 말입니다.</p>
+
+  <table class="truth">
+    <caption>표 2-1 p → q와 ¬(p ∧ ¬q)의 진리표</caption>
+    <thead>
+      <tr><th>p</th><th>q</th><th>¬q</th><th>p ∧ ¬q</th><th>¬(p ∧ ¬q)</th><th>p → q</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>T</td><td>T</td><td>F</td><td>F</td><td>T</td><td>T</td></tr>
+      <tr class="mark"><td>T</td><td>F</td><td>T</td><td>T</td><td>F</td><td>F</td></tr>
+      <tr><td>F</td><td>T</td><td>F</td><td>F</td><td>T</td><td>T</td></tr>
+      <tr><td>F</td><td>F</td><td>T</td><td>F</td><td>T</td><td>T</td></tr>
+    </tbody>
+  </table>
+
+  <p>그래서 모순증명법은 p ∧ ¬q가 참이라고 가정하고, 그 가정에서 말이 안 되는 결과를 이끌어 냅니다. 대개 어떤 명제와 그 부정이 함께 참이라는 결과, 곧 q ∧ ¬q 같은 모순명제에 이릅니다. 모순명제는 어떤 경우에도 참이 될 수 없으므로 처음 가정한 p ∧ ¬q가 거짓입니다. 그러면 ¬(p ∧ ¬q)가 참이고, 이와 동치인 p → q도 참입니다. 가정이 모순에 이른다는 데서 모순증명법이라는 이름이 붙었습니다.</p>
+
+  <div class="example">
+    <p class="example-title">예제 2-23</p>
+    <p>정수 \(n\)이 3의 배수면 \(n^3\)도 3의 배수임을 모순증명법으로 증명하세요.</p>
+    <p class="solution-label">풀이</p>
+    <p>예제 2-5와 같은 명제이고, p, q도 같게 정합니다.</p>
+    <ul>
+      <li>p: 정수 \(n\)이 3의 배수다.</li>
+      <li>q: \(n^3\)은 3의 배수다.</li>
+      <li>¬q: \(n^3\)은 3의 배수가 아니다.</li>
+      <li>p ∧ ¬q: \(n\)은 3의 배수고, \(n^3\)은 3의 배수가 아니다.</li>
+    </ul>
+    <p>p ∧ ¬q가 참이라고 가정해 봅니다. 그러면 p가 참이므로, 곧 \(n\)이 3의 배수이므로 \(n = 3k\ (k \in Z)\)로 쓸 수 있습니다. 예제 2-5와 같은 계산으로 \(n^3 = (3k)^3 = 27k^3 = 3(9k^3)\)이므로 \(n^3\)은 3의 배수, 곧 q가 참입니다.</p>
+    <p>그런데 가정에 따르면 ¬q도 참이므로 q ∧ ¬q가 참이어야 합니다. q ∧ ¬q는 모순명제라 참일 수 없습니다. 따라서 명제 p ∧ ¬q는 거짓이고, ¬(p ∧ ¬q)는 참입니다.</p>
+    <p>∴ 이와 동치인 p → q는 참입니다. Q.E.D.</p>
+  </div>
+
+  <h3>3-3) 반례증명법과 존재증명법</h3>
+  <p>이 두 방법은 명제에 '모든'이나 '어떤'이 붙어 있을 때 씁니다. 1장에서 배운 전체한정자 ∀나 존재한정자 ∃가 붙은 명제입니다.</p>
+  <div class="definition">
+    <p class="definition-term">반례증명법(proof by counter-example)</p>
+    <p>명제에 모순이 되는 예를 찾아 증명하는 방법을 반례증명법이라고 합니다. '모든 \(x\)에 대해 \(P(x)\)이다', 곧 \(\forall x\,P(x)\)가 거짓임을, \(P(x)\)를 거짓으로 만드는 \(x\) 하나(반례)를 찾아 보입니다.</p>
+  </div>
+  <p>반례 하나로 충분한 까닭은 1장의 한정자의 부정에 있습니다. \(\neg\forall x\,P(x) \equiv \exists x\,\neg P(x)\)이므로, \(P(x)\)가 거짓인 \(x\)가 하나라도 있으면, 곧 \(\exists x\,\neg P(x)\)가 참이면 \(\forall x\,P(x)\)는 거짓입니다. 그러니 반례증명법이 실제로 참임을 보이는 명제는 \(\exists x\,\neg P(x)\)입니다.</p>
+  <p>반대로 성립하는 예를 아무리 많이 들어도 \(\forall x\,P(x)\)가 참이라는 증명은 되지 않습니다. 아직 확인하지 않은 \(x\) 가운데 반례가 있을 수 있기 때문입니다. 반례증명법은 '모든 ~에 대해 성립하는가'라는 물음에 '아니다'라고 답할 때 쓰는 방법입니다.</p>
+
+  <div class="example">
+    <p class="example-title">예제 2-32</p>
+    <p>모든 실수 \(a\)에 대해 \((a+1)^2 \ge a^2\)인가요?</p>
+    <p class="solution-label">풀이</p>
+    <p>\(a + 1\)은 언제나 \(a\)보다 큽니다. 그렇다면 둘을 제곱해도 크기 순서가 그대로일까요? 음수가 끼면 그렇지 않습니다. \(0 &gt; -1\)이지만 \(0^2 = 0\)은 \((-1)^2 = 1\)보다 작습니다. 그래서 \(a + 1\)이 0이 되는 \(a = -1\)을 넣어 봅니다.</p>
+    <p>\[(-1+1)^2 = 0 &lt; 1 = (-1)^2\]</p>
+    <p>\(a = -1\)에서 부등식이 성립하지 않으므로 \(a = -1\)이 반례입니다. 따라서 모든 실수 \(a\)에 대해 \((a+1)^2 \ge a^2\)이 성립하는 것은 아닙니다.</p>
+  </div>
+  <p>그림 2-2는 두 식을 \(a\)에 대한 그래프로 그린 것입니다. 두 포물선은 \(a = -\tfrac{1}{2}\)에서 만나고, 그보다 왼쪽에서는 \((a+1)^2\)이 \(a^2\)보다 작습니다. 실제로 \((a+1)^2 - a^2 = 2a + 1\)이므로, \(a &lt; -\tfrac{1}{2}\)이면 이 차가 음수입니다. 이 구간의 \(a\)는 모두 반례이고, \(a = -1\)은 그 가운데 하나입니다. 반례는 하나만 찾으면 되므로 계산이 쉬운 값을 고르면 됩니다.</p>
+
+  <figure>
+    <svg width="440" height="262" viewBox="0 0 440 262" role="img" aria-label="a에 대한 두 포물선 a 제곱과 a 더하기 1의 제곱. 두 곡선은 a가 마이너스 2분의 1일 때 만나고, 그 왼쪽에서는 a 더하기 1의 제곱이 더 작다. a가 마이너스 1일 때 a 제곱은 1, a 더하기 1의 제곱은 0이다.">
+      <defs>
+        <marker id="arrow-2-2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M0,0 L10,5 L0,10 z" class="fig-arrow-head"/>
+        </marker>
+      </defs>
+      <rect x="50" y="30" width="180" height="190" class="fig-region-a"/>
+      <text x="140" y="22" class="fig-text-soft" text-anchor="middle">a &lt; −1/2인 a는 모두 반례</text>
+      <line x1="40" y1="220" x2="428" y2="220" class="fig-thin" marker-end="url(#arrow-2-2)"/>
+      <text x="426" y="240" class="fig-text" text-anchor="middle">a</text>
+      <line x1="275" y1="224" x2="275" y2="26" class="fig-thin" marker-end="url(#arrow-2-2)"/>
+      <line x1="95" y1="217" x2="95" y2="223" class="fig-thin"/>
+      <line x1="185" y1="217" x2="185" y2="223" class="fig-thin"/>
+      <line x1="230" y1="217" x2="230" y2="223" class="fig-thin"/>
+      <line x1="365" y1="217" x2="365" y2="223" class="fig-thin"/>
+      <text x="95" y="238" class="fig-text-soft" text-anchor="middle">−2</text>
+      <text x="185" y="238" class="fig-text-soft" text-anchor="middle">−1</text>
+      <text x="230" y="238" class="fig-text-soft" text-anchor="middle">−1/2</text>
+      <text x="282" y="238" class="fig-text-soft" text-anchor="middle">0</text>
+      <text x="365" y="238" class="fig-text-soft" text-anchor="middle">1</text>
+      <polyline points="90.5,30.9 95.0,40.0 99.5,48.9 104.0,57.6 108.5,66.0 113.0,74.2 117.5,82.2 122.0,90.0 126.5,97.5 131.0,104.8 135.5,111.9 140.0,118.8 144.5,125.4 149.0,131.8 153.5,138.0 158.0,144.0 162.5,149.7 167.0,155.2 171.5,160.5 176.0,165.6 180.5,170.4 185.0,175.0 189.5,179.4 194.0,183.6 198.5,187.5 203.0,191.2 207.5,194.7 212.0,198.0 216.5,201.0 221.0,203.8 225.5,206.4 230.0,208.8 234.5,210.9 239.0,212.8 243.5,214.5 248.0,216.0 252.5,217.2 257.0,218.2 261.5,219.0 266.0,219.6 270.5,219.9 275.0,220.0 279.5,219.9 284.0,219.5 288.5,219.0 293.0,218.2 297.5,217.2 302.0,215.9 306.5,214.5 311.0,212.8 315.5,210.9 320.0,208.7 324.5,206.4 329.0,203.8 333.5,201.0 338.0,197.9 342.5,194.7 347.0,191.2 351.5,187.5 356.0,183.5 360.5,179.4 365.0,175.0 369.5,170.4 374.0,165.5 378.5,160.5 383.0,155.2 387.5,149.7 392.0,143.9 396.5,138.0 401.0,131.8 405.5,125.4 410.0,118.7" class="fig-dashed"/>
+      <polyline points="50.0,118.8 54.5,125.4 59.0,131.8 63.5,138.0 68.0,143.9 72.5,149.7 77.0,155.2 81.5,160.5 86.0,165.5 90.5,170.4 95.0,175.0 99.5,179.4 104.0,183.5 108.5,187.5 113.0,191.2 117.5,194.7 122.0,197.9 126.5,201.0 131.0,203.8 135.5,206.4 140.0,208.7 144.5,210.9 149.0,212.8 153.5,214.5 158.0,215.9 162.5,217.2 167.0,218.2 171.5,219.0 176.0,219.5 180.5,219.9 185.0,220.0 189.5,219.9 194.0,219.6 198.5,219.0 203.0,218.2 207.5,217.2 212.0,216.0 216.5,214.5 221.0,212.8 225.5,210.9 230.0,208.8 234.5,206.4 239.0,203.8 243.5,201.0 248.0,198.0 252.5,194.7 257.0,191.2 261.5,187.5 266.0,183.6 270.5,179.4 275.0,175.0 279.5,170.4 284.0,165.6 288.5,160.5 293.0,155.2 297.5,149.7 302.0,144.0 306.5,138.0 311.0,131.8 315.5,125.4 320.0,118.8 324.5,111.9 329.0,104.8 333.5,97.5 338.0,90.0 342.5,82.2 347.0,74.2 351.5,66.0 356.0,57.6 360.5,48.9 365.0,40.0 369.5,30.9" class="fig-line"/>
+      <text x="376" y="44" class="fig-text" text-anchor="start">(a+1)<tspan dy="-5" class="fig-text-soft">2</tspan></text>
+      <text x="414" y="122" class="fig-text" text-anchor="start">a<tspan dy="-5" class="fig-text-soft">2</tspan></text>
+      <line x1="185" y1="220" x2="185" y2="175" class="fig-dashed"/>
+      <circle cx="185" cy="175" r="3.5" class="fig-arrow-head"/>
+      <circle cx="185" cy="220" r="3.5" class="fig-arrow-head"/>
+      <circle cx="230" cy="208.8" r="3" class="fig-arrow-head"/>
+      <text x="192" y="172" class="fig-text" text-anchor="start">a<tspan dy="-5" class="fig-text-soft">2</tspan><tspan dy="5"> = 1</tspan></text>
+      <text x="185" y="256" class="fig-text" text-anchor="middle">(a+1)<tspan dy="-5" class="fig-text-soft">2</tspan><tspan dy="5"> = 0</tspan></text>
+    </svg>
+    <figcaption>그림 2-2 \(a^2\)(점선)과 \((a+1)^2\)(실선)의 그래프</figcaption>
+  </figure>
+
+  <div class="definition">
+    <p class="definition-term">존재증명법(existence proof)</p>
+    <p>명제가 참이 되는 예를 찾아 증명하는 방법을 존재증명법이라고 합니다. '어떤 \(x\)에 대해 \(P(x)\)이다', 곧 \(\exists x\,P(x)\)가 참임을, \(P(x)\)를 참으로 만드는 \(x\) 하나를 찾아 보입니다.</p>
+  </div>
+  <p>존재한정자의 뜻 그대로, \(P(x)\)를 참으로 만드는 \(x\)가 하나라도 있으면 \(\exists x\,P(x)\)는 참입니다. 반례증명법과 짝을 이루어, 반례증명법은 ∀가 붙은 명제가 거짓임을, 존재증명법은 ∃가 붙은 명제가 참임을 예 하나로 보입니다. 거꾸로 \(\exists x\,P(x)\)가 거짓임을 보이려면, \(\neg\exists x\,P(x) \equiv \forall x\,\neg P(x)\)이므로 모든 \(x\)에서 \(P(x)\)가 거짓임을 보여야 합니다. 이때는 예 하나로 끝나지 않습니다.</p>
+
+  <div class="example">
+    <p class="example-title">예제 2-35</p>
+    <p>어떤 실수 \(a\)에 대해 \((a+1)^2 \ge a^2\)인가요?</p>
+    <p class="solution-label">풀이</p>
+    <p>\(a = 1\)을 넣으면 \((1+1)^2 = 4 \ge 1 = 1^2\)입니다. 부등식을 만족하는 실수 \(a\)가 있으므로, 어떤 실수 \(a\)에 대해 \((a+1)^2 \ge a^2\)이 성립합니다.</p>
+    <p>\(a = 0\)을 넣어도 \(1 \ge 0\)으로 성립합니다. 그림 2-2에서 보면 \(a \ge -\tfrac{1}{2}\)인 \(a\)는 모두 이 예가 될 수 있습니다.</p>
+  </div>
+  <p>예제 2-32와 2-35는 같은 부등식에 붙은 한정자만 다릅니다. '모든'이 붙으면 거짓이고 반례 하나로 판정하며, '어떤'이 붙으면 참이고 예 하나로 판정합니다. 지금까지 본 간접증명법 넷을 모으면 표 2-2와 같습니다.</p>
+
+  <table class="prose-table">
+    <caption>표 2-2 간접증명법 넷이 대신 보이는 것</caption>
+    <thead>
+      <tr><th>방법</th><th>증명할 것</th><th>대신 보이는 것</th><th>근거</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>대우증명법</td><td>p → q가 참</td><td>¬q → ¬p가 참</td><td>p → q ≡ ¬q → ¬p</td></tr>
+      <tr><td>모순증명법</td><td>p → q가 참</td><td>p ∧ ¬q가 거짓</td><td>p → q ≡ ¬(p ∧ ¬q)</td></tr>
+      <tr><td>반례증명법</td><td>\(\forall x\,P(x)\)가 거짓</td><td>\(P(x)\)가 거짓인 \(x\) 하나</td><td>\(\neg\forall x\,P(x) \equiv \exists x\,\neg P(x)\)</td></tr>
+      <tr><td>존재증명법</td><td>\(\exists x\,P(x)\)가 참</td><td>\(P(x)\)가 참인 \(x\) 하나</td><td>존재한정자의 뜻</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h2>4. 수학적 귀납법</h2>
+  <p>'모든 자연수 \(n\)에 대해 ~이다'라는 명제는 이산수학에서 아주 자주 나옵니다. 이산수학은 1, 2, 3, …처럼 하나씩 늘어나며 일정한 규칙을 따르는 대상을 많이 다루기 때문입니다. 그런데 자연수는 끝없이 많아서 하나씩 확인할 수 없고, 3절에서 보았듯이 예를 아무리 많이 들어도 '모든'이 붙은 명제가 참이라는 증명은 되지 않습니다. 이럴 때 쓰는 방법이 수학적 귀납법입니다.</p>
+
+  <div class="definition">
+    <p class="definition-term">수학적 귀납법(mathematical induction)</p>
+    <p>자연수 \(n\)에 관한 명제 \(P(n)\)이 모든 자연수 \(n\)에 대해 성립함을 다음 세 단계의 과정으로 증명하는 방법을 수학적 귀납법이라고 합니다.</p>
+    <ol>
+      <li>기본 과정(기본 단계, basis step): 논의영역의 초깃값에 대해, 곧 \(P(1)\)이 참임을 증명합니다.</li>
+      <li>귀납 가정(inductive hypothesis): 임의의 자연수 \(k\)에 대해 \(P(k)\)가 참이라고 가정합니다.</li>
+      <li>귀납 단계(inductive step): 귀납 가정을 이용해 \(P(k+1)\)이 참임을 증명합니다.</li>
+    </ol>
+  </div>
+  <p>여기서 \(P(n)\)은 1장에서 배운 명제함수입니다. \(n\)에 값을 넣어야 비로소 참, 거짓이 정해지는 명제가 됩니다. 기본 과정의 \(P(1)\)은 가정하는 것이 아니라 \(n\)에 1을 넣어 직접 계산해 보이는 것입니다. 세 단계 가운데 가정하는 것은 귀납 가정의 \(P(k)\) 하나뿐입니다.</p>
+  <p>초깃값은 논의영역에서 가장 작은 값입니다. 명제가 \(n \ge 1\)에 대한 것이면 1이고, 0부터 시작하는 명제라면 기본 과정에서 \(P(0)\)을 확인합니다.</p>
+
+  <h4>세 단계로 충분한 까닭</h4>
+  <p>귀납 단계에서 증명하는 것을 정확히 말하면, 임의의 \(k\)에 대해 '\(P(k)\)가 참이면 \(P(k+1)\)도 참'이라는 함축명제 \(P(k) \rightarrow P(k+1)\)입니다. \(P(k)\)를 참이라고 놓고 \(P(k+1)\)이 참임을 이끌어 내므로, 귀납 단계는 2절의 직접증명법 그대로입니다. 귀납 가정은 이 직접증명법의 출발점인 셈입니다.</p>
+  <p>이제 기본 과정과 귀납 단계를 이어 봅니다. 기본 과정에서 \(P(1)\)이 참입니다. 귀납 단계를 \(k = 1\)에 쓰면 \(P(1) \rightarrow P(2)\)가 참이므로, 1장의 긍정논법에 따라 \(P(2)\)가 참입니다. 다시 \(k = 2\)에 쓰면 \(P(2) \rightarrow P(3)\)에서 \(P(3)\)이 참입니다. 그림 2-3처럼 이 사슬은 어떤 자연수에도 닿습니다. 자연수는 1에서 시작해 1씩 더해 가면 모두 만날 수 있기 때문입니다.</p>
+
+  <figure>
+    <svg width="470" height="96" viewBox="0 0 470 96" role="img" aria-label="P(1)에서 P(2), P(3), P(4)로 화살표가 이어지는 사슬. P(1) 아래에 기본 과정, 화살표 아래에 귀납 단계 P(k)에서 P(k+1)">
+      <defs>
+        <marker id="arrow-2-3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M0,0 L10,5 L0,10 z" class="fig-arrow-head"/>
+        </marker>
+      </defs>
+      <rect x="10" y="30" width="56" height="30" class="fig-node"/>
+      <text x="38" y="50" class="fig-text" text-anchor="middle">P(1)</text>
+      <rect x="110" y="30" width="56" height="30" class="fig-node"/>
+      <text x="138" y="50" class="fig-text" text-anchor="middle">P(2)</text>
+      <rect x="210" y="30" width="56" height="30" class="fig-node"/>
+      <text x="238" y="50" class="fig-text" text-anchor="middle">P(3)</text>
+      <rect x="310" y="30" width="56" height="30" class="fig-node"/>
+      <text x="338" y="50" class="fig-text" text-anchor="middle">P(4)</text>
+      <text x="410" y="50" class="fig-text" text-anchor="middle">…</text>
+      <line x1="66" y1="45" x2="108" y2="45" class="fig-line" marker-end="url(#arrow-2-3)"/>
+      <line x1="166" y1="45" x2="208" y2="45" class="fig-line" marker-end="url(#arrow-2-3)"/>
+      <line x1="266" y1="45" x2="308" y2="45" class="fig-line" marker-end="url(#arrow-2-3)"/>
+      <line x1="366" y1="45" x2="392" y2="45" class="fig-line" marker-end="url(#arrow-2-3)"/>
+      <text x="87" y="24" class="fig-text-soft" text-anchor="middle">k = 1</text>
+      <text x="187" y="24" class="fig-text-soft" text-anchor="middle">k = 2</text>
+      <text x="287" y="24" class="fig-text-soft" text-anchor="middle">k = 3</text>
+      <text x="38" y="82" class="fig-text-strong" text-anchor="middle">기본 과정</text>
+      <text x="237" y="82" class="fig-text-soft" text-anchor="middle">귀납 단계 P(k) → P(k+1)을 차례로 씀</text>
+    </svg>
+    <figcaption>그림 2-3 기본 과정과 귀납 단계로 이어지는 긍정논법의 사슬</figcaption>
+  </figure>
+
+  <p>수학적 귀납법을 자연수에 관한 명제에만 쓰는 것도 이 때문입니다. 0, 1, 2, …처럼 초깃값에서 1씩 나아가는 정수에 관한 명제에도 같은 이유로 쓸 수 있습니다. 실수에는 '바로 다음 수'가 없어서, \(k\)에서 \(k + 1\)로 건너뛰는 사슬로는 1과 2 사이의 수에 닿지 못합니다. 실수 전체에 관한 명제를 수학적 귀납법으로 증명하는 것은 잘못된 방법입니다.</p>
+  <p>기본 과정을 빠뜨려도 안 됩니다. 귀납 단계만 있으면 사슬의 고리는 있어도 첫 고리가 없어서, 어느 \(P(n)\)도 참이라고 말할 수 없습니다.</p>
+
+  <p>첫 예제에는 팩토리얼이 나옵니다. \(n!\)은 '\(n\) 팩토리얼'이라고 읽고, 1부터 \(n\)까지의 자연수를 모두 곱한 값 \(n! = 1 \times 2 \times \cdots \times n\)을 뜻합니다. \(n\)의 계승(factorial)이라고도 합니다.</p>
+
+  <div class="example">
+    <p class="example-title">예제 2-41</p>
+    <p>\(n \ge 1\)일 때 \(n! \ge 2^{n-1}\)이 성립함을 증명하세요.</p>
+    <p class="solution-label">풀이</p>
+    <p>\(P(n)\): \(n! \ge 2^{n-1}\)으로 놓습니다. \(n \ge 1\)이므로 초깃값은 1입니다.</p>
+    <p><strong>기본 과정</strong> \(n = 1\)을 넣으면 \(1! = 1\)이고 \(2^{1-1} = 2^0 = 1\)이므로 \(1! \ge 2^{1-1}\)입니다. \(P(1)\)은 참입니다.</p>
+    <p><strong>귀납 가정</strong> 임의의 자연수 \(k\)에 대해 \(P(k)\): \(k! \ge 2^{k-1}\)이 성립한다고 가정합니다. \(k\)는 자연수이므로 \(k \ge 1\)입니다.</p>
+    <p><strong>귀납 단계</strong> \(P(k+1)\): \((k+1)! \ge 2^{(k+1)-1}\)이 성립함을 증명합니다. 귀납 가정은 \(k!\)에 대한 것이니, 왼쪽의 \((k+1)!\)에서 \(k!\)을 꺼내는 것이 첫 목표입니다. 팩토리얼의 뜻에서 \((k+1)!\)은 \(k!\)에 \(k+1\)을 곱한 것입니다.</p>
+    <table class="derivation">
+      <tr><td class="step-sign"></td><td>\((k+1)!\)</td><td class="step-reason"></td></tr>
+      <tr><td class="step-sign">=</td><td>\(k!\,(k+1)\)</td><td class="step-reason">팩토리얼의 뜻</td></tr>
+      <tr><td class="step-sign">≥</td><td>\(2^{k-1}(k+1)\)</td><td class="step-reason">귀납 가정의 양변에 양수 \(k+1\)을 곱함</td></tr>
+      <tr><td class="step-sign">≥</td><td>\(2^{k-1} \times 2\)</td><td class="step-reason">\(k \ge 1\)이므로 \(k + 1 \ge 2\)</td></tr>
+      <tr><td class="step-sign">=</td><td>\(2^{k}\)</td><td class="step-reason">지수법칙</td></tr>
+      <tr><td class="step-sign">=</td><td>\(2^{(k+1)-1}\)</td><td class="step-reason">지수를 \(k+1\)이 보이게 고쳐 씀</td></tr>
+    </table>
+    <p>셋째 줄에서는 귀납 가정 \(k! \ge 2^{k-1}\)의 양변에 \(k+1\)을 곱했습니다. \(k+1\)은 양수이므로 부등식의 방향이 그대로입니다. 넷째 줄에서는 \(k \ge 1\)이라 \(k + 1 \ge 2\)라는 것을 썼습니다. 가장 작은 \(k = 1\)에서도 \(k + 1\)은 2이므로, \(k+1\)을 2로 바꾸면 값이 작아지거나 같습니다. ≥와 =가 이어지면 처음과 끝 사이에도 ≥가 성립하므로 \((k+1)! \ge 2^{(k+1)-1}\), 곧 \(P(k+1)\)이 참입니다.</p>
+    <p>∴ 수학적 귀납법에 따라 \(n \ge 1\)일 때 \(n! \ge 2^{n-1}\)이 성립합니다. Q.E.D.</p>
+  </div>
+
+  <p>둘째 예제는 비트(bit)의 나열을 셉니다. 비트는 0 또는 1 가운데 하나만 담는 자리입니다. 먼저 4비트로 확인해 봅니다. 자리마다 0 또는 1만 올 수 있으므로 4비트 나열은 표 2-3의 16가지입니다. 자리 넷에 각각 두 가지가 오므로 \(2 \times 2 \times 2 \times 2 = 2^4 = 16\)입니다.</p>
+
+  <table>
+    <caption>표 2-3 4비트 나열 16가지</caption>
+    <thead>
+      <tr><th>앞 두 비트</th><th colspan="4">4비트 나열</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>00</td><td>0000</td><td>0001</td><td>0010</td><td>0011</td></tr>
+      <tr><td>01</td><td>0100</td><td>0101</td><td>0110</td><td>0111</td></tr>
+      <tr><td>10</td><td>1000</td><td>1001</td><td>1010</td><td>1011</td></tr>
+      <tr><td>11</td><td>1100</td><td>1101</td><td>1110</td><td>1111</td></tr>
+    </tbody>
+  </table>
+
+  <p>\(n\)비트라면 2를 \(n\)번 곱해 \(2^n\)이 될 것 같습니다. 이 '\(n\)번 곱한다'는 말 속의 '…'을 빈틈없이 만드는 것이 수학적 귀납법입니다.</p>
+
+  <div class="example">
+    <p class="example-title">예제 2-42</p>
+    <p>\(n\)비트의 나열로 나타낼 수 있는 데이터의 최대 개수는 \(2^n\)임을 증명하세요.</p>
+    <p class="solution-label">풀이</p>
+    <p>\(P(n)\): '\(n\)비트의 나열로 나타낼 수 있는 데이터의 최대 개수는 \(2^n\)이다'로 놓습니다. \(P(n)\)은 개수 \(2^n\) 자체가 아니라, 개수가 \(2^n\)이라는 명제라는 점에 주의하세요. 초깃값은 1입니다.</p>
+    <p><strong>기본 과정</strong> \(n = 1\)을 넣으면, 1비트로 나타낼 수 있는 데이터는 0 또는 1의 두 개이고 \(2^1 = 2\)입니다. \(P(1)\)은 참입니다.</p>
+    <p><strong>귀납 가정</strong> 임의의 자연수 \(k\)에 대해 \(P(k)\), 곧 \(k\)비트로 나타낼 수 있는 데이터가 \(2^k\)개라고 가정합니다.</p>
+    <p><strong>귀납 단계</strong> \(P(k+1)\), 곧 \((k+1)\)비트로 \(2^{k+1}\)개를 나타낼 수 있음을 증명합니다. \((k+1)\)비트 나열은 \(k\)비트 나열의 앞에 1비트를 더 붙인 것입니다. 더 붙인 1비트에는 0 또는 1의 두 가지가 올 수 있으므로, 귀납 가정의 \(k\)비트 나열 \(2^k\)개 하나하나가 \((k+1)\)비트 나열 두 개가 됩니다. 그림 2-4는 \(k = 2\)일 때 이 과정을 보인 것입니다.</p>
+
+    <figure>
+      <svg width="440" height="178" viewBox="0 0 440 178" role="img" aria-label="2비트 나열 00, 01, 10, 11의 앞에 0을 붙이면 000, 001, 010, 011이 되고, 1을 붙이면 100, 101, 110, 111이 되어 3비트 나열 8개가 나온다">
+        <defs>
+          <marker id="arrow-2-4" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 z" class="fig-arrow-head"/>
+          </marker>
+        </defs>
+        <text x="65" y="18" class="fig-text-strong" text-anchor="middle">2비트 (4개)</text>
+        <rect x="20" y="28" width="90" height="116" class="fig-node"/>
+        <text x="65" y="54" class="fig-text" text-anchor="middle">00</text>
+        <text x="65" y="80" class="fig-text" text-anchor="middle">01</text>
+        <text x="65" y="106" class="fig-text" text-anchor="middle">10</text>
+        <text x="65" y="132" class="fig-text" text-anchor="middle">11</text>
+        <text x="340" y="18" class="fig-text-strong" text-anchor="middle">3비트 (8개)</text>
+        <rect x="250" y="30" width="180" height="36" class="fig-node"/>
+        <text x="272.5" y="53" class="fig-text" text-anchor="middle"><tspan class="fig-text-strong">0</tspan>00</text>
+        <text x="317.5" y="53" class="fig-text" text-anchor="middle"><tspan class="fig-text-strong">0</tspan>01</text>
+        <text x="362.5" y="53" class="fig-text" text-anchor="middle"><tspan class="fig-text-strong">0</tspan>10</text>
+        <text x="407.5" y="53" class="fig-text" text-anchor="middle"><tspan class="fig-text-strong">0</tspan>11</text>
+        <rect x="250" y="108" width="180" height="36" class="fig-node"/>
+        <text x="272.5" y="131" class="fig-text" text-anchor="middle"><tspan class="fig-text-strong">1</tspan>00</text>
+        <text x="317.5" y="131" class="fig-text" text-anchor="middle"><tspan class="fig-text-strong">1</tspan>01</text>
+        <text x="362.5" y="131" class="fig-text" text-anchor="middle"><tspan class="fig-text-strong">1</tspan>10</text>
+        <text x="407.5" y="131" class="fig-text" text-anchor="middle"><tspan class="fig-text-strong">1</tspan>11</text>
+        <line x1="110" y1="70" x2="248" y2="48" class="fig-line" marker-end="url(#arrow-2-4)"/>
+        <line x1="110" y1="106" x2="248" y2="126" class="fig-line" marker-end="url(#arrow-2-4)"/>
+        <text x="172" y="46" class="fig-text-soft" text-anchor="middle">앞에 0을 붙임</text>
+        <text x="172" y="140" class="fig-text-soft" text-anchor="middle">앞에 1을 붙임</text>
+        <text x="340" y="168" class="fig-text" text-anchor="middle">4 × 2 = 8</text>
+      </svg>
+      <figcaption>그림 2-4 2비트 나열의 앞에 0이나 1을 붙여 만든 3비트 나열</figcaption>
+    </figure>
+
+    <p>이렇게 만든 나열은 서로 겹치지 않습니다. 뒤의 \(k\)비트가 다르거나 앞에 붙인 비트가 다르기 때문입니다. 또 \((k+1)\)비트 나열은 모두 이렇게 만들어집니다. 맨 앞 비트를 떼어 내면 \(k\)비트 나열이 남기 때문입니다. 따라서 \((k+1)\)비트로 나타낼 수 있는 데이터는 \(2^k \times 2 = 2^{k+1}\)개이고, \(P(k+1)\)이 참입니다.</p>
+    <p>∴ 수학적 귀납법에 따라 \(n\)비트의 나열로 나타낼 수 있는 데이터의 최대 개수는 \(2^n\)입니다. Q.E.D.</p>
+  </div>
+</section>
+
+<section class="looking-back">
+  <h2>장을 마치며</h2>
+  <p>이 장의 증명은 모두 같은 틀을 따릅니다. 공리, 정의, 앞서 증명된 정리에서 출발해, 1장에서 배운 정당한 추론을 한 걸음씩 이어 증명하려는 명제에 닿습니다. 증명법이 여럿인 까닭은 그 명제에 어떤 꼴로 닿느냐가 다르기 때문입니다.</p>
+  <p>'정수 \(n\)이 3의 배수면 \(n^3\)도 3의 배수'라는 명제를 다시 떠올려 보세요. 예제 2-5, 2-14, 2-23에는 \(n = 3k\)에서 \(n^3 = 3(9k^3)\)에 이르는 같은 계산이 들어 있습니다. 직접증명법은 이 계산으로 q가 참임을 보였고, 대우증명법은 같은 계산이 대우를 증명한다는 점을 이용했으며, 모순증명법은 이 계산으로 p ∧ ¬q라는 가정이 모순에 이름을 보였습니다. 간접증명법이 기댄 것은 모두 1장의 동치였습니다. 명제와 대우의 동치, 함축법칙과 이중 부정법칙과 드모르간의 법칙, 그리고 한정자의 부정입니다. 수학적 귀납법은 직접증명법으로 \(P(k) \rightarrow P(k+1)\)을 한 번 증명해 두고, 기본 과정의 \(P(1)\)에서 출발해 긍정논법을 되풀이하여 모든 자연수에 닿습니다. 1장에서 계산하던 참과 거짓이 이 장에서는 명제가 참임을 보이는 도구가 된 것입니다.</p>
+  <p>다음 장에서는 집합을 다룹니다. 이 장에서 정수 전체를 \(Z\)로, '속한다'를 \(\in\)으로 잠깐 썼는데, 이런 집합의 기호와 개념을 3장에서 정식으로 배웁니다.</p>
+</section>
+
+<section class="recall">
+  <h2>떠올려 보기</h2>
+  <ol>
+    <li>공리와 정리는 어떻게 다릅니까?</li>
+    <li>직접증명법으로 p → q를 증명할 때 p가 참인 경우만 생각해도 되는 까닭은 무엇입니까?</li>
+    <li>예제 2-5에서 \(n^3 = 3(9k^3)\)을 얻은 뒤 \(n^3\)이 3의 배수라고 결론 내릴 수 있는 까닭은 무엇입니까?</li>
+    <li>대우증명법으로 p → q를 증명하려면 무엇을 증명합니까? ¬p → ¬q를 증명하면 안 되는 까닭은 무엇입니까?</li>
+    <li>예제 2-14의 명제는 예제 2-5 명제의 역, 이, 대우 가운데 무엇입니까?</li>
+    <li>p → q ≡ ¬(p ∧ ¬q)를 보일 때 차례로 쓰는 세 법칙은 무엇입니까?</li>
+    <li>모순증명법에서 일어날 수 없음을 보이는 경우는 p → q의 진리표에서 어느 줄입니까? 이름에 '모순'이 들어간 까닭은 무엇입니까?</li>
+    <li>'모든 실수 \(a\)에 대해 \((a+1)^2 \ge a^2\)'이 거짓임을 보이려면 어떻게 합니까? 성립하는 예를 많이 들면 이 명제가 참이라고 할 수 있습니까?</li>
+    <li>반례증명법이 실제로 참임을 보이는 명제를 한정자를 써서 나타내면 무엇입니까?</li>
+    <li>수학적 귀납법의 세 단계에서 가정하는 것과 증명하는 것을 구분해 보세요.</li>
+    <li>세 단계만으로 모든 자연수 \(n\)에 대해 \(P(n)\)이 참이라고 할 수 있는 까닭은 무엇입니까? 실수에 관한 명제에 쓸 수 없는 까닭은 무엇입니까?</li>
+    <li>예제 2-41의 귀납 단계에서 \(k \ge 1\)은 어디에 쓰였습니까?</li>
+  </ol>
+</section>
+
+<section class="answers">
+  <h2>짧은 답</h2>
+  <ol>
+    <li>공리는 증명 없이 참으로 받아들이는 명제이고, 정리는 공리와 정의, 앞서 증명된 정리를 통해 참으로 확인된 명제입니다.</li>
+    <li>p가 거짓이면 p → q는 q와 상관없이 늘 참이기 때문입니다. p → q가 거짓이 될 수 있는 경우는 p가 참이고 q가 거짓인 경우뿐입니다.</li>
+    <li>\(k\)가 정수이고 정수는 곱셈에 닫혀 있으므로 \(9k^3\)도 정수입니다. 그래서 \(n^3\)이 '3 × 정수' 꼴이 되어 3의 배수의 정의에 맞습니다.</li>
+    <li>대우 ¬q → ¬p를 증명합니다. ¬p → ¬q는 이이고, 이는 원래 명제와 동치가 아니기 때문입니다.</li>
+    <li>대우입니다. 예제 2-14 명제의 대우가 예제 2-5의 명제이므로, 예제 2-5의 증명으로 예제 2-14가 증명됩니다.</li>
+    <li>함축법칙(¬p ∨ q), 이중 부정법칙(¬p ∨ ¬(¬q)), 드모르간의 법칙(¬(p ∧ ¬q))입니다.</li>
+    <li>p가 참이고 q가 거짓인 둘째 줄, 곧 p ∧ ¬q가 참인 줄입니다. p ∧ ¬q를 가정하면 q ∧ ¬q 같은 모순명제에 이르러 가정이 거짓임을 보이기 때문입니다.</li>
+    <li>반례 하나를 보이면 됩니다. 예를 들어 \(a = -1\)이면 \(0 &lt; 1\)입니다. 예를 많이 들어도 확인하지 않은 값에 반례가 있을 수 있으므로 참이라는 증명은 되지 않습니다.</li>
+    <li>\(\exists x\,\neg P(x)\)입니다. 이것은 \(\neg\forall x\,P(x)\)와 동치이므로 \(\forall x\,P(x)\)가 거짓이라는 뜻입니다.</li>
+    <li>기본 과정에서는 \(P(1)\)을 증명하고, 귀납 가정에서는 \(P(k)\)를 가정하며, 귀납 단계에서는 그 가정을 이용해 \(P(k+1)\)을 증명합니다. 가정하는 것은 \(P(k)\) 하나뿐입니다.</li>
+    <li>\(P(1)\)과 \(P(1) \rightarrow P(2)\)에서 긍정논법으로 \(P(2)\)가 나오고, 같은 방식으로 \(P(3)\), \(P(4)\), …가 나와 사슬이 모든 자연수에 닿기 때문입니다. 실수에는 바로 다음 수가 없어서 이 사슬이 모든 실수에 닿지 못합니다.</li>
+    <li>\(2^{k-1}(k+1) \ge 2^{k-1} \times 2\)로 넘어가는 줄에 쓰였습니다. \(k \ge 1\)이라 \(k + 1 \ge 2\)이기 때문입니다.</li>
+  </ol>
+</section>
+
+</body>
+</html>

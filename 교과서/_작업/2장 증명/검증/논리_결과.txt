@@ -1,0 +1,86 @@
+===== 2 직접증명법: p가 거짓인 줄은 p → q가 늘 참 =====
+### 성립해야 함: table p → q
+p | q | p → q
+--+---+------
+T | T |   T  
+T | F |   F  
+F | T |   T  
+F | F |   T  
+
+p → q: 사건명제(contingency)
+
+### 성립해야 함: equiv F → q T
+동치입니다: F → q ≡ T
+
+===== 3-1 대우증명법 =====
+### 성립해야 함: equiv p → q ¬q → ¬p
+동치입니다: p → q ≡ ¬q → ¬p
+
+### 성립하지 않아야 함: equiv p → q ¬p → ¬q
+동치가 아닙니다: p → q 와 ¬p → ¬q
+  반례 p=T, q=F: 왼쪽 F, 오른쪽 T
+
+### 성립하지 않아야 함: equiv p → q q → p
+동치가 아닙니다: p → q 와 q → p
+  반례 p=T, q=F: 왼쪽 F, 오른쪽 T
+
+### 성립해야 함: argument ¬q → ¬p --conclusion p → q
+타당한 추론입니다: ¬q → ¬p ⊢ p → q
+
+### 성립하지 않아야 함: argument ¬p → ¬q --conclusion p → q
+부당한 추론입니다: ¬p → ¬q 로부터 p → q
+  전제가 모두 참인데 결론이 거짓인 경우: p=T, q=F
+
+### 성립해야 함: equiv ¬(¬q) q
+동치입니다: ¬(¬q) ≡ q
+
+===== 3-2 모순증명법: 유도 세 줄과 표 2-1 =====
+### 성립해야 함: chain p → q ¬p ∨ q ¬p ∨ ¬(¬q) ¬(p ∧ ¬q)
+1단계 성립: p → q ≡ ¬p ∨ q
+2단계 성립: ¬p ∨ q ≡ ¬p ∨ ¬(¬q)
+3단계 성립: ¬p ∨ ¬(¬q) ≡ ¬(p ∧ ¬q)
+
+### 성립해야 함: table ¬q p ∧ ¬q ¬(p ∧ ¬q) p → q
+p | q | ¬q | p ∧ ¬q | ¬(p ∧ ¬q) | p → q
+--+---+----+--------+-----------+------
+T | T | F  |   F    |     T     |   T  
+T | F | T  |   T    |     F     |   F  
+F | T | F  |   F    |     T     |   T  
+F | F | T  |   F    |     T     |   T  
+
+¬q: 사건명제(contingency)
+p ∧ ¬q: 사건명제(contingency)
+¬(p ∧ ¬q): 사건명제(contingency)
+p → q: 사건명제(contingency)
+
+### 성립해야 함: equiv ¬p → q p ∨ q
+동치입니다: ¬p → q ≡ p ∨ q
+
+### 성립하지 않아야 함: equiv ¬p → q p → q
+동치가 아닙니다: ¬p → q 와 p → q
+  반례 p=T, q=F: 왼쪽 T, 오른쪽 F
+
+### 성립해야 함: equiv q ∧ ¬q F
+동치입니다: q ∧ ¬q ≡ F
+
+### 성립해야 함: argument (p ∧ ¬q) → (q ∧ ¬q) --conclusion p → q
+타당한 추론입니다: (p ∧ ¬q) → (q ∧ ¬q) ⊢ p → q
+
+### 성립해야 함: argument p → q p ∧ ¬q --conclusion q ∧ ¬q
+타당한 추론입니다: p → q, p ∧ ¬q ⊢ q ∧ ¬q
+
+### 성립해야 함: argument ¬(p ∧ ¬q) --conclusion p → q
+타당한 추론입니다: ¬(p ∧ ¬q) ⊢ p → q
+
+===== 4 수학적 귀납법: 긍정논법의 사슬 =====
+### 성립해야 함: argument p1 p1 → p2 --conclusion p2
+타당한 추론입니다: p1, p1 → p2 ⊢ p2
+
+### 성립해야 함: argument p1 p1 → p2 p2 → p3 p3 → p4 --conclusion p4
+타당한 추론입니다: p1, p1 → p2, p2 → p3, p3 → p4 ⊢ p4
+
+### 성립하지 않아야 함: argument p1 → p2 p2 → p3 p3 → p4 --conclusion p4
+부당한 추론입니다: p1 → p2, p2 → p3, p3 → p4 로부터 p4
+  전제가 모두 참인데 결론이 거짓인 경우: p1=F, p2=F, p3=F, p4=F
+
+기대와 다른 결과: 0

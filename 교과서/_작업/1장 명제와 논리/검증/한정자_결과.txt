@@ -1,0 +1,10 @@
+예제 1-24: P(1, 2) = False / P(2, 1) = True
+예제 1-26: D = [1, 2, 3, 4] / P(x) 값 = {1: True, 2: True, 3: True, 4: False}
+  ∀xP(x) = False / ∃xP(x) = True
+  반례: [4] / 예: [1, 2, 3]
+한정자의 부정(16가지 P 모두): True
+예제 1-27 ③ y=|x|+1로 x^2<y^2: True (점 245개)
+  ④ y=0이면 x^2<0인 x가 없음: True
+  ∃y∀x: x=y이면 늘 거짓: True
+  x^2<y^2 ⇔ |x|<|y|: True
+x+1≥2 ⇔ x≥1: True

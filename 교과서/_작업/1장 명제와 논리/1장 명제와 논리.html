@@ -1,0 +1,744 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>1장 명제와 논리</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body, {delimiters: [{left: '\\[', right: '\\]', display: true}, {left: '\\(', right: '\\)', display: false}], throwOnError: false, errorColor: '#cc0001', output: 'html'})"></script>
+<!-- errorColor는 print_pdf.py가 그리지 못한 수식을 찾는 표지다. 바꾸지 않는다. -->
+<link rel="stylesheet" href="textbook.css">
+</head>
+<body>
+
+<section class="preface">
+  <h1>들어가며</h1>
+  <p>보는 사람에 따라 얼굴로도, 악기를 부는 사람으로도 보이는 그림이 있습니다. 그림은 사람마다 달리 보여도 괜찮지만, 수학의 문장은 누가 읽어도 뜻이 하나로 정해져야 합니다. 이 차이가 공부하는 방법도 바꿉니다.</p>
+  <p>수학에서 가장 먼저 할 일은 용어와 정의와 개념을 정확히 이해하는 것입니다. 나머지 대부분은 정의에서 추론하고 유도해서 얻습니다. 정의를 정확히 이해하면 따로 외우려 하지 않아도 그것이 오래가는 기억이 됩니다. 이 책이 정의마다 그 정의가 왜 그렇게 정해졌는지를 공들여 설명하는 것도 이 때문입니다.</p>
+  <p>예습보다 복습에 힘을 쏟으세요. 처음 배울 때 지식은 촘촘한 그물처럼 엮이지만, 다시 보지 않으면 그물코가 점점 넓어져 알던 것까지 빠져나갑니다. 처음 읽을 때 정확히 이해하고, 복습으로 빈틈을 메워 배운 것을 자기 것으로 만드세요.</p>
+  <p>용어마다 처음 나올 때 영어 이름을 함께 적었습니다. 다른 책이나 자료에서 같은 개념을 알아볼 수 있도록 영어 용어도 함께 익혀 두세요.</p>
+  <p>본문의 예제는 풀이를 읽기 전에 먼저 풀어 보고, 복습할 때 한 번 더 직접 풀어 보세요. 장 끝의 떠올려 보기는 책을 덮고 답해 보는 질문입니다.</p>
+</section>
+
+<header class="chapter-opener">
+  <p class="chapter-number">1장</p>
+  <h1>명제와 논리</h1>
+</header>
+
+<section class="chapter-map">
+  <p>이산수학은 연속으로 변하는 양 대신 낱낱이 떨어진 대상을 다룹니다. 그 가운데 가장 단순한 것이 참과 거짓, 두 값만 있는 세계입니다. 이 장은 두 가지 물음에 답합니다. 참과 거짓을 어떻게 계산할 수 있을까? 그리고 참인 것에서 무엇을 확실하게 끌어낼 수 있을까?</p>
+  <p>1절에서는 참과 거짓이 정해진 문장인 명제를 정의하고, 명제를 잇는 논리 연산자로 복잡한 명제를 만들어 진리표로 값을 계산합니다. 특히 "p이면 q이다"라는 함축과, 그 조건과 결론을 바꾸거나 부정한 역, 이, 대우를 견주다 보면 생김새는 다른데 진릿값이 늘 같은 짝이 나타납니다. 2절은 이런 짝을 논리적 동치라 부르고, 동치 법칙으로 진리표 없이 식을 바꾸는 방법을 익힙니다. 3절은 \(x + 1 \ge 2\)처럼 변수가 들어 있어 그대로는 명제가 아닌 문장을 한정자로 명제로 만드는 방법을 다룹니다. 4절에서는 참인 전제에서 결론을 끌어내는 추론이 언제 정당한지 판단하고, 그때 쓰는 추론 법칙을 정리합니다.</p>
+</section>
+
+<section>
+  <h2>1. 명제(Proposition)</h2>
+
+  <h3>1-1) 명제의 정의</h3>
+  <p>수학의 문장은 누가 읽어도 참인지 거짓인지가 하나로 정해져야 합니다. 이 요구를 그대로 정의로 삼은 것이 명제입니다.</p>
+  <div class="definition">
+    <p class="definition-term">명제(proposition)</p>
+    <p>참(true)인지 거짓(false)인지를 구분할 수 있는 문장이나 수식을 명제라고 합니다. 명제는 영어 소문자 p, q, r 등으로 나타냅니다.</p>
+  </div>
+  <p>정의의 핵심은 구분할 수 있다는 데 있습니다. 보는 사람에 따라, 또는 상황에 따라 참이 되기도 하고 거짓이 되기도 하는 문장은 명제가 아닙니다. 의문문이나 명령문처럼 참과 거짓을 따질 수 없는 문장도 명제가 아닙니다. 반대로 거짓인 문장은 거짓이라고 분명히 구분되므로 명제입니다. 명제를 "참인 문장"으로 잘못 기억하지 않도록 합니다.</p>
+
+  <div class="example">
+    <p class="example-title">예제 1-1</p>
+    <p>다음은 명제인가? (1) 컴퓨터 가격은 비싸다. (2) \(x + 1 = 2\) (3) \(1 + 1 = 3\)</p>
+    <p class="solution-label">풀이</p>
+    <p>(1) "비싸다"의 기준이 사람과 상황에 따라 달라서 참인지 거짓인지 구분할 수 없습니다. 명제가 아닙니다.</p>
+    <p>(2) \(x\)가 어떤 값이냐에 따라 참이 되기도 하고 거짓이 되기도 합니다. \(x = 1\)이면 참이고, \(x\)를 5로 정하면 \(5 + 1 = 6\)이므로 거짓입니다. \(x\)가 정해지지 않은 채로는 명제가 아닙니다. \(x\)에 값을 정해 주면 그때 비로소 참이나 거짓인 명제가 됩니다. 변수가 들어 있는 이런 문장은 3절에서 따로 다룹니다.</p>
+    <p>(3) 언제나 거짓입니다. 거짓이라고 분명히 구분되므로 거짓인 명제입니다.</p>
+  </div>
+
+  <div class="definition">
+    <p class="definition-term">진릿값(truth value)</p>
+    <p>명제가 참인지 거짓인지를 가리키는 값을 진릿값이라고 합니다. 참은 T(true), 거짓은 F(false)로 씁니다.</p>
+  </div>
+  <p>이 책은 진릿값을 T와 F로 씁니다. 참을 1, 거짓을 0으로 쓰는 책도 있습니다. 컴퓨터에서 전원이 켜진 상태를 1, 꺼진 상태를 0으로 나타내는 것과 같은 생각입니다. 1과 0으로 쓰면 2절에서 보듯 논리 연산을 곱하기와 더하기에 빗대어 볼 수 있습니다.</p>
+
+  <div class="example">
+    <p class="example-title">예제 1-3</p>
+    <p>다음이 명제인지 아닌지를 구분하고, 명제라면 진릿값을 구하시오. "\(2^n = n^2\)을 만족하는 정수 \(n\)이 하나 이상 존재한다."</p>
+    <p class="solution-label">풀이</p>
+    <p>이 문장에는 \(n\)이 들어 있지만, 특정한 \(n\)에 대해 말하는 것이 아니라 그런 \(n\)이 하나 이상 있다고 주장합니다. 그런 \(n\)이 있는지 없는지는 사람에 따라 달라지지 않으므로 명제입니다.</p>
+    <p>하나 이상 있음을 보이려면 하나만 찾으면 됩니다. \(n = 2\)이면 \(2^2 = 4\)이고 \(2^2 = 4\)이므로 양쪽이 같습니다. \(n = 4\)도 \(2^4 = 16\), \(4^2 = 16\)으로 식을 만족합니다. 따라서 이 명제의 진릿값은 참입니다. "하나 이상 존재한다"는 말은 3절의 존재한정자로 다시 만납니다.</p>
+  </div>
+
+  <h3>1-2) 논리 연산자(명제의 결합)</h3>
+  <p>수를 더하기, 빼기, 곱하기, 나누기로 엮어 식을 만들듯이, 명제도 연산자로 엮어 새 명제를 만들 수 있습니다. 명제를 엮는 연산자를 논리 연산자(logical operator)라고 합니다. 대표적인 넷을 차례로 봅니다.</p>
+  <div class="definition">
+    <p class="definition-term">부정(negation, NOT)</p>
+    <p>명제 p에 대하여 "p가 아니다"도 명제입니다. 이것을 p의 부정이라 하고 ¬p로 씁니다. p가 참이면 ¬p는 거짓이고, p가 거짓이면 ¬p는 참입니다.</p>
+  </div>
+  <p>¬p는 "p가 아니다" 또는 "not p"라고 읽습니다. ~p로 쓰는 책도 있지만 이 책은 ¬만 씁니다.</p>
+  <div class="definition">
+    <p class="definition-term">논리곱(conjunction, AND)</p>
+    <p>두 명제 p, q가 모두 참일 때만 참이고, 그렇지 않으면 거짓인 명제를 p와 q의 논리곱이라 하고 p ∧ q로 씁니다.</p>
+  </div>
+  <p>p ∧ q는 "p 그리고 q", "p and q"라고 읽습니다.</p>
+  <div class="definition">
+    <p class="definition-term">논리합(disjunction, OR)</p>
+    <p>두 명제 p, q가 모두 거짓일 때만 거짓이고, 그렇지 않으면 참인 명제를 p와 q의 논리합이라 하고 p ∨ q로 씁니다.</p>
+  </div>
+  <p>p ∨ q는 "p 또는 q", "p or q"라고 읽습니다. 둘 가운데 하나라도 참이면 참이고, 둘 다 참인 경우도 참이라는 점에 주의합니다. 일상어의 "또는"은 둘 가운데 하나만을 뜻할 때가 많지만, 논리합의 "또는"은 둘 다인 경우를 포함합니다.</p>
+  <div class="definition">
+    <p class="definition-term">배타적 논리합(exclusive OR, XOR)</p>
+    <p>두 명제 p, q 가운데 하나만 참일 때 참이고, 그렇지 않으면 거짓인 명제를 p와 q의 배타적 논리합이라 하고 p ⊕ q로 씁니다.</p>
+  </div>
+  <p>p ⊕ q는 "p 배타적 논리합 q", "p xor q"라고 읽습니다. 이름 그대로 논리합이긴 하되 서로를 밀어내는 논리합입니다. 두 명제의 진릿값이 같으면 거짓이고, 다를 때만 참입니다. 일상어의 "둘 중 하나만"에 해당하는 연산자가 이것입니다.</p>
+  <p>연산의 결과를 모든 경우에 대해 적은 표를 진리표(truth table)라고 합니다. 명제가 p와 q 둘이면 각각 T나 F이므로 경우는 네 가지이고, 이 책은 TT, TF, FT, FF 순서로 적습니다. 명제가 하나 늘 때마다 경우가 두 배가 되므로, 명제가 \(n\)개이면 진리표는 \(2^n\)줄입니다. 표 1-1은 네 연산자의 진리표를 한데 모은 것입니다.</p>
+  <table class="truth">
+    <caption>표 1-1 네 논리 연산자의 진리표</caption>
+    <thead><tr><th>p</th><th>q</th><th>¬p</th><th>p ∧ q</th><th>p ∨ q</th><th>p ⊕ q</th></tr></thead>
+    <tbody>
+      <tr><td>T</td><td>T</td><td>F</td><td>T</td><td class="mark">T</td><td class="mark">F</td></tr>
+      <tr><td>T</td><td>F</td><td>F</td><td>F</td><td>T</td><td>T</td></tr>
+      <tr><td>F</td><td>T</td><td>T</td><td>F</td><td>T</td><td>T</td></tr>
+      <tr><td>F</td><td>F</td><td>T</td><td>F</td><td>F</td><td>F</td></tr>
+    </tbody>
+  </table>
+  <p>표 1-1에서 p ∨ q와 p ⊕ q는 첫째 줄에서만 다릅니다. 두 명제가 모두 참인 경우를 참으로 치느냐 아니냐가 두 연산자의 차이 전부입니다. ¬p는 p 하나에만 걸리므로 q와 상관없이 p 열을 뒤집은 값입니다. 논리곱과 논리합에 곱과 합이라는 이름이 붙은 까닭은 2절에서 T를 1, F를 0으로 놓고 다시 봅니다.</p>
+
+  <h3>1-3) 합성명제(명제의 합성)</h3>
+  <div class="definition">
+    <p class="definition-term">합성명제(compound proposition)</p>
+    <p>하나 이상의 명제를 논리 연산자로 결합해 만든 명제를 합성명제라고 합니다. 합성명제를 이루는 각 명제를 구성명제라고 합니다.</p>
+  </div>
+  <p>수와 사칙연산으로 산술식을 만드는 것과 같습니다. 산술식에서 곱하기를 더하기보다 먼저 계산하듯, 논리 연산자에도 계산하는 순서가 있습니다(표 1-2).</p>
+  <table>
+    <caption>표 1-2 논리 연산자의 우선순위</caption>
+    <thead><tr><th>우선순위</th><th>논리 연산자</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>¬</td></tr>
+      <tr><td>2</td><td>∧, ∨</td></tr>
+      <tr><td>3</td><td>→, ↔</td></tr>
+    </tbody>
+  </table>
+  <p>¬를 가장 먼저 계산하고, →와 ↔를 가장 나중에 계산합니다. →와 ↔는 1-4)에서 배울 함축과 쌍방조건명제의 기호입니다. 괄호는 산술식에서처럼 우선순위보다 앞서며, 괄호 안을 먼저 계산하라는 뜻입니다.</p>
+  <p>우선순위에서 가장 헷갈리는 것이 ¬입니다. ¬p ∧ q는 ¬를 먼저 계산하므로 (¬p) ∧ q이고, ¬(p ∧ q)와는 다른 명제입니다. 예를 들어 p가 참, q가 거짓이면 ¬p ∧ q는 거짓이지만 ¬(p ∧ q)는 참입니다. ¬를 괄호 전체에 걸고 싶으면 괄호를 반드시 씁니다. ∧와 ∨는 같은 순위이므로 둘이 섞인 식은 괄호로 순서를 밝혀 씁니다. ∧를 ∨보다 먼저 계산한다고 정하는 책도 있지만, 괄호를 쓰면 어느 쪽으로 읽어도 헷갈리지 않습니다. 표에 없는 ⊕도 괄호로 범위를 밝혀 씁니다.</p>
+  <p>합성명제 가운데에는 구성명제의 진릿값과 상관없이 결과가 한쪽으로만 나오는 특별한 것이 있습니다.</p>
+  <div class="definition">
+    <p class="definition-term">항진명제(tautology), 모순명제(contradiction), 사건명제(우연명제, contingency)</p>
+    <p>구성명제의 진릿값에 상관없이 항상 참인 합성명제를 항진명제라고 합니다. 예: p ∨ ¬p</p>
+    <p>구성명제의 진릿값에 상관없이 항상 거짓인 합성명제를 모순명제라고 합니다. 예: p ∧ ¬p</p>
+    <p>항진명제도 모순명제도 아닌 합성명제를 사건명제라고 합니다.</p>
+  </div>
+  <p>p ∨ ¬p를 확인해 봅니다. p가 참이면 앞쪽 p가 참이므로 전체가 참입니다. p가 거짓이면 ¬p가 참이므로 역시 참입니다. 어느 경우든 참이니 항진명제입니다. p ∧ ¬p는 p와 ¬p 가운데 하나가 늘 거짓이므로 항상 거짓이고, 모순명제입니다(표 1-3). 대부분의 합성명제는 경우에 따라 참도 되고 거짓도 되는 사건명제입니다. 항진명제와 모순명제는 진릿값이 한쪽으로만 나오는 극단적인 경우입니다.</p>
+  <table class="truth">
+    <caption>표 1-3 항진명제 p ∨ ¬p와 모순명제 p ∧ ¬p</caption>
+    <thead><tr><th>p</th><th>¬p</th><th>p ∨ ¬p</th><th>p ∧ ¬p</th></tr></thead>
+    <tbody>
+      <tr><td>T</td><td>F</td><td class="mark">T</td><td class="mark">F</td></tr>
+      <tr><td>F</td><td>T</td><td class="mark">T</td><td class="mark">F</td></tr>
+    </tbody>
+  </table>
+  <p>항진명제와 모순명제는 식 안에서 T와 F로 나타내기도 합니다. 예를 들어 p ∧ T의 T는 "늘 참인 명제", p ∨ F의 F는 "늘 거짓인 명제"라고 읽습니다. p ∧ F, p ∨ T처럼 T와 F가 섞인 식이 어떻게 간단해지는지는 2절의 동치 법칙에서 다룹니다.</p>
+
+  <div class="example">
+    <p class="example-title">예제 1-7</p>
+    <p>합성명제 ¬(p ∧ q) ⊕ (¬p ∨ q)에 대한 진리표를 구하시오.</p>
+    <p class="solution-label">풀이</p>
+    <p>큰 식은 안쪽부터 한 겹씩 계산합니다. 이 식은 ¬(p ∧ q)와 ¬p ∨ q를 ⊕로 이은 것이므로, 두 부분을 먼저 구한 뒤 마지막에 ⊕를 계산합니다.</p>
+    <p>먼저 p ∧ q는 둘 다 참인 첫째 줄만 T입니다. 이것을 부정한 ¬(p ∧ q)는 첫째 줄만 F이고 나머지는 T입니다. 다음으로 ¬p는 p 열을 뒤집은 F, F, T, T이고, 이것과 q의 논리합 ¬p ∨ q는 둘 다 거짓인 둘째 줄만 F입니다. 마지막으로 ¬(p ∧ q)와 ¬p ∨ q의 배타적 논리합은 두 열의 값이 다른 줄만 T입니다. 첫째 줄(F와 T)과 둘째 줄(T와 F)은 값이 다르고, 셋째와 넷째 줄은 둘 다 T로 같으므로 결과는 T, T, F, F입니다(표 1-4).</p>
+    <table class="truth">
+      <caption>표 1-4 예제 1-7의 진리표</caption>
+      <thead><tr><th>p</th><th>q</th><th>p ∧ q</th><th>¬p</th><th>¬(p ∧ q)</th><th>¬p ∨ q</th><th>¬(p ∧ q) ⊕ (¬p ∨ q)</th></tr></thead>
+      <tbody>
+        <tr><td>T</td><td>T</td><td>T</td><td>F</td><td>F</td><td>T</td><td class="mark">T</td></tr>
+        <tr><td>T</td><td>F</td><td>F</td><td>F</td><td>T</td><td>F</td><td class="mark">T</td></tr>
+        <tr><td>F</td><td>T</td><td>F</td><td>T</td><td>T</td><td>T</td><td class="mark">F</td></tr>
+        <tr><td>F</td><td>F</td><td>F</td><td>T</td><td>T</td><td>T</td><td class="mark">F</td></tr>
+      </tbody>
+    </table>
+    <p>결과 열 T, T, F, F는 p 열과 똑같습니다. 생김새가 전혀 다른 두 명제가 모든 경우에 같은 진릿값을 가지는 것입니다. 이런 관계를 2절에서 논리적 동치라고 부릅니다.</p>
+  </div>
+
+  <h3>1-4) 함축(조건명제)</h3>
+  <p>"p이면 q이다" 꼴의 명제는 수학에서 가장 자주 쓰입니다. 이 명제가 언제 참이고 언제 거짓인지 정하려면, 먼저 이 문장이 무엇을 약속하는지 생각해 보는 것이 좋습니다.</p>
+  <p>"비가 오면 우산을 가지고 간다"라는 약속을 생각합니다. p는 "비가 온다", q는 "우산을 가지고 간다"입니다. 비가 와서 우산을 가지고 갔다면 약속을 지킨 것입니다. 비가 오는데 우산을 가지고 가지 않았다면 약속을 어긴 것입니다. 그러면 비가 오지 않은 날은 어떨까요? 이 약속은 비가 올 때에 대해서만 말했으므로, 비가 오지 않은 날에는 우산을 가지고 가든 가지 않든 약속을 어긴 것이 아닙니다. 약속이 깨지는 경우는 비가 오는데 우산을 가지고 가지 않은 경우 하나뿐입니다.</p>
+  <div class="definition">
+    <p class="definition-term">함축(implication), 조건명제</p>
+    <p>두 명제 p, q에 대해 p를 조건(가정, hypothesis), q를 결론(conclusion)으로 하여 "p이면 q이다"라고 하는 명제를 함축 또는 조건명제라 하고 p → q로 씁니다. p → q는 p가 참이고 q가 거짓일 때만 거짓이고, 나머지 경우에는 모두 참입니다.</p>
+  </div>
+  <p>조건은 원인, 결론은 결과라고도 합니다. p → q는 "p이면 q", "p implies q"라고 읽습니다. 표 1-5는 함축의 진리표에 줄마다 비와 우산의 뜻을 붙인 것입니다.</p>
+  <table class="truth">
+    <caption>표 1-5 함축 p → q의 진리표와 비와 우산</caption>
+    <thead><tr><th>p</th><th>q</th><th>p → q</th><th>비와 우산으로 읽으면</th></tr></thead>
+    <tbody>
+      <tr><td>T</td><td>T</td><td>T</td><td>비가 와서 우산을 가지고 갔다(약속을 지킴)</td></tr>
+      <tr class="mark"><td>T</td><td>F</td><td>F</td><td>비가 오는데 우산을 가지고 가지 않았다(약속을 어김)</td></tr>
+      <tr><td>F</td><td>T</td><td>T</td><td>비가 오지 않았지만 우산을 가지고 갔다(어긴 것이 아님)</td></tr>
+      <tr><td>F</td><td>F</td><td>T</td><td>비가 오지 않아 우산을 가지고 가지 않았다(어긴 것이 아님)</td></tr>
+    </tbody>
+  </table>
+  <p>처음 보면 p가 거짓인 셋째, 넷째 줄이 참이라는 것이 이상하게 느껴집니다. 그러나 p → q는 p가 참일 때 q도 참이라는 것만 약속합니다. p가 거짓인 경우에는 약속한 것이 없으니 약속이 깨질 수도 없고, 그래서 참으로 칩니다. 함축이 헷갈릴 때마다 진리표 둘째 줄, 곧 비가 오는데 우산을 두고 나간 경우 하나만 거짓이라고 떠올리면 됩니다.</p>
+  <p>"p이면 q이다"는 여러 말로 표현됩니다. "p일 때마다 q이다", "p는 q이기 위한 충분조건이다", "q는 p이기 위한 필요조건이다"는 모두 p → q를 뜻합니다. 충분조건과 필요조건은 바로 아래에서 자세히 봅니다.</p>
+
+  <h4>충분조건과 필요조건</h4>
+  <p>p → q가 늘 참일 때, 곧 p가 참인 경우에는 언제나 q도 참일 때 p ⇒ q로 쓰고 "p이면 반드시 q"라고 읽습니다. p ⇒ q는 p와 q가 각각 참이라는 뜻이 아닙니다. p가 참인 모든 경우에 q가 참이라는 뜻입니다. 이때 p는 q의 충분조건(sufficient condition), q는 p의 필요조건(necessary condition)이라고 합니다. 화살표의 앞이 충분조건, 뒤가 필요조건입니다.</p>
+  <p>둘을 바꿔 기억하기 쉬우므로, 고등학교에서 배운 진리집합으로 이유를 확인해 둡니다. 변수 x에 관한 조건 p가 있을 때, 전체집합 U의 원소 가운데 p를 참이 되게 하는 것의 모임을 p의 진리집합 P라고 합니다. p ⇒ q이면 p를 참이 되게 하는 원소는 모두 q도 참이 되게 하므로 P ⊂ Q입니다(그림 1-1). P ⊂ Q는 "P는 Q의 부분집합이다"라고 읽습니다.</p>
+  <figure>
+    <svg width="300" height="190" viewBox="0 0 300 190" role="img" aria-label="전체집합 U 안에서 진리집합 P가 진리집합 Q 안에 들어 있는 벤 다이어그램">
+      <rect x="10" y="10" width="280" height="170" class="fig-thin"/>
+      <text x="28" y="32" class="fig-text-soft" text-anchor="middle">U</text>
+      <circle cx="155" cy="97" r="74" class="fig-region-a"/>
+      <circle cx="135" cy="108" r="36" class="fig-region-b"/>
+      <circle cx="155" cy="97" r="74" class="fig-line"/>
+      <circle cx="135" cy="108" r="36" class="fig-line"/>
+      <text x="135" y="113" class="fig-text-strong" text-anchor="middle">P</text>
+      <text x="200" y="62" class="fig-text-strong" text-anchor="middle">Q</text>
+    </svg>
+    <figcaption>그림 1-1 p ⇒ q일 때 진리집합의 포함 관계 P ⊂ Q</figcaption>
+  </figure>
+  <p>P 안에 있기만 하면 Q 안에 있다는 것이 충분히 보장됩니다. 그래서 p는 q의 충분조건입니다. 거꾸로 Q 밖에 있는 원소는 P 안에 있을 수 없으므로, p가 참이려면 q가 참인 것이 꼭 필요합니다. 그래서 q는 p의 필요조건입니다. 작은 집합 쪽이 충분조건, 큰 집합 쪽이 필요조건입니다. 변수가 들어 있는 조건은 3절에서 명제함수로 다시 다룹니다.</p>
+
+  <h4>쌍방조건명제</h4>
+  <p>p → q는 한 방향의 약속입니다. 두 방향을 한꺼번에 약속하는 명제도 있습니다.</p>
+  <div class="definition">
+    <p class="definition-term">쌍방조건명제(쌍방함축, biconditional)</p>
+    <p>두 명제 p, q가 서로 조건이면서 결론인 명제, 곧 "p이면 q이고 q이면 p이다"를 쌍방조건명제라 하고 p ↔ q로 씁니다. p ↔ q는 p와 q의 진릿값이 같을 때만 참입니다.</p>
+  </div>
+  <p>p ↔ q는 "p이면 q이고 q이면 p이다", "p if and only if q"라고 읽습니다. 진릿값이 같은 첫째 줄(둘 다 T)과 넷째 줄(둘 다 F)만 참입니다(표 1-6).</p>
+  <table class="truth">
+    <caption>표 1-6 p ↔ q의 진리표</caption>
+    <thead><tr><th>p</th><th>q</th><th>p ↔ q</th></tr></thead>
+    <tbody>
+      <tr><td>T</td><td>T</td><td>T</td></tr>
+      <tr><td>T</td><td>F</td><td>F</td></tr>
+      <tr><td>F</td><td>T</td><td>F</td></tr>
+      <tr><td>F</td><td>F</td><td>T</td></tr>
+    </tbody>
+  </table>
+  <p>p ↔ q가 늘 참일 때, 곧 p가 참이면 q가 참이고 q가 참이면 p도 참일 때 p ⇔ q로 씁니다. 이때 p와 q는 서로 필요충분조건(necessary and sufficient condition)이라고 합니다. 진리집합으로는 P ⊂ Q이면서 Q ⊂ P, 곧 P = Q입니다.</p>
+  <p>한 방향(p ⇒ q)만 성립하면 p는 q의 충분조건, q는 p의 필요조건입니다. 두 방향이 모두 성립할 때만 필요충분조건입니다. "필요충분조건"이라는 말은 필요가 앞에 오지만 화살표의 앞뒤 순서와는 상관이 없습니다. 양쪽이 서로에게 필요조건이면서 충분조건이라는 뜻입니다.</p>
+
+  <div class="example">
+    <p class="example-title">예제</p>
+    <p>합성명제 (p → q) ∧ (q → p)에 대한 진리표를 구하고 p ↔ q와 견주시오.</p>
+    <p class="solution-label">풀이</p>
+    <p>p → q는 둘째 줄만 F입니다. q → p는 조건과 결론의 자리가 바뀌었으므로, 이번에는 q를 "비가 온다", p를 "우산을 가지고 간다"로 놓고 읽습니다. 비가 오는데(q가 T) 우산을 가지고 가지 않은(p가 F) 셋째 줄만 F입니다. 두 함축의 논리곱은 둘 다 T인 첫째 줄과 넷째 줄만 T입니다(표 1-7).</p>
+    <table class="truth">
+      <caption>표 1-7 (p → q) ∧ (q → p)와 p ↔ q</caption>
+      <thead><tr><th>p</th><th>q</th><th>p → q</th><th>q → p</th><th>(p → q) ∧ (q → p)</th><th>p ↔ q</th></tr></thead>
+      <tbody>
+        <tr><td>T</td><td>T</td><td>T</td><td>T</td><td class="mark">T</td><td class="mark">T</td></tr>
+        <tr><td>T</td><td>F</td><td>F</td><td>T</td><td class="mark">F</td><td class="mark">F</td></tr>
+        <tr><td>F</td><td>T</td><td>T</td><td>F</td><td class="mark">F</td><td class="mark">F</td></tr>
+        <tr><td>F</td><td>F</td><td>T</td><td>T</td><td class="mark">T</td><td class="mark">T</td></tr>
+      </tbody>
+    </table>
+    <p>(p → q) ∧ (q → p)의 열은 p ↔ q의 열과 같습니다. "p이면 q이고 q이면 p이다"라는 쌍방조건명제의 뜻이 진리표로도 확인됩니다.</p>
+  </div>
+
+  <h3>1-5) 역, 이, 대우</h3>
+  <p>함축 p → q가 하나 있으면, 조건과 결론의 자리를 바꾸거나 둘을 부정해서 새 함축 셋을 만들 수 있습니다.</p>
+  <div class="definition">
+    <p class="definition-term">역(converse), 이(inverse), 대우(contraposition, contrapositive)</p>
+    <p>함축 p → q에 대하여 조건과 결론을 바꾼 q → p를 역, 조건과 결론을 모두 부정한 ¬p → ¬q를 이, 조건과 결론을 바꾸고 모두 부정한 ¬q → ¬p를 대우라고 합니다.</p>
+  </div>
+  <p>대우는 역과 이를 함께 한 것입니다. 네 명제의 관계를 사각형으로 그리면 그림 1-2와 같습니다. 가로로 이웃한 둘은 서로 역이고, 세로로 이웃한 둘은 서로 이입니다. 예를 들어 이 ¬p → ¬q의 역은 ¬q → ¬p이고, 역 q → p의 이도 ¬q → ¬p입니다. 대각선으로 마주 보는 둘이 서로 대우입니다. p → q와 ¬q → ¬p가 서로 대우이고, q → p와 ¬p → ¬q도 서로 대우입니다.</p>
+  <figure>
+    <svg width="440" height="200" viewBox="0 0 440 200" role="img" aria-label="네 귀퉁이에 p→q, q→p, ¬p→¬q, ¬q→¬p를 두고 가로는 역, 세로는 이, 대각선은 대우로 이은 사각 관계도">
+      <line x1="170" y1="48" x2="270" y2="48" class="fig-thin"/>
+      <line x1="170" y1="168" x2="270" y2="168" class="fig-thin"/>
+      <line x1="105" y1="66" x2="105" y2="150" class="fig-thin"/>
+      <line x1="335" y1="66" x2="335" y2="150" class="fig-thin"/>
+      <line x1="170" y1="66" x2="270" y2="150" class="fig-line"/>
+      <line x1="270" y1="66" x2="170" y2="150" class="fig-line"/>
+      <rect x="40" y="30" width="130" height="36" rx="4" class="fig-node"/>
+      <rect x="270" y="30" width="130" height="36" rx="4" class="fig-node"/>
+      <rect x="40" y="150" width="130" height="36" rx="4" class="fig-node"/>
+      <rect x="270" y="150" width="130" height="36" rx="4" class="fig-node"/>
+      <text x="105" y="53" class="fig-text" text-anchor="middle">p → q</text>
+      <text x="335" y="53" class="fig-text" text-anchor="middle">q → p</text>
+      <text x="105" y="173" class="fig-text" text-anchor="middle">¬p → ¬q</text>
+      <text x="335" y="173" class="fig-text" text-anchor="middle">¬q → ¬p</text>
+      <text x="220" y="40" class="fig-text-soft" text-anchor="middle">역</text>
+      <text x="220" y="186" class="fig-text-soft" text-anchor="middle">역</text>
+      <text x="92" y="113" class="fig-text-soft" text-anchor="end">이</text>
+      <text x="348" y="113" class="fig-text-soft" text-anchor="start">이</text>
+      <text x="220" y="92" class="fig-text-strong" text-anchor="middle">대우</text>
+      <text x="220" y="136" class="fig-text-strong" text-anchor="middle">대우</text>
+    </svg>
+    <figcaption>그림 1-2 함축 p → q와 역, 이, 대우의 관계. 가로는 역, 세로는 이, 대각선은 대우입니다.</figcaption>
+  </figure>
+  <p>네 명제의 진릿값을 구해 봅니다(표 1-8). p → q는 비가 오는데 우산을 두고 간 둘째 줄만 F입니다. 역 q → p는 조건 q가 참이고 결론 p가 거짓인 셋째 줄만 F입니다. 이 ¬p → ¬q는 조건 ¬p가 참이고 결론 ¬q가 거짓일 때 F인데, 그런 경우는 p가 F, q가 T인 셋째 줄입니다. 대우 ¬q → ¬p는 조건 ¬q가 참이고 결론 ¬p가 거짓일 때, 곧 q가 F이고 p가 T인 둘째 줄만 F입니다.</p>
+  <table class="truth">
+    <caption>표 1-8 원래 명제와 역, 이, 대우의 진리표</caption>
+    <thead><tr><th>p</th><th>q</th><th>p → q</th><th>q → p</th><th>¬p → ¬q</th><th>¬q → ¬p</th></tr></thead>
+    <tbody>
+      <tr><td>T</td><td>T</td><td class="mark">T</td><td>T</td><td>T</td><td class="mark">T</td></tr>
+      <tr><td>T</td><td>F</td><td class="mark">F</td><td>T</td><td>T</td><td class="mark">F</td></tr>
+      <tr><td>F</td><td>T</td><td class="mark">T</td><td>F</td><td>F</td><td class="mark">T</td></tr>
+      <tr><td>F</td><td>F</td><td class="mark">T</td><td>T</td><td>T</td><td class="mark">T</td></tr>
+    </tbody>
+  </table>
+  <p>표 1-8에서 p → q와 대우 ¬q → ¬p는 모든 줄의 진릿값이 같습니다. 어떤 함축이든 그 대우와는 진릿값이 늘 같습니다. 역 q → p와 이 ¬p → ¬q도 서로 대우이므로 진릿값이 늘 같습니다.</p>
+  <p>반면 원래 명제와 역은 진릿값이 늘 같지는 않습니다. 둘째 줄과 셋째 줄에서 다릅니다. "천재이면 악필이다"가 참이라고 해 봅시다. 그래도 그 역 "악필이면 천재이다"가 참이라는 보장은 없습니다. 악필이라고 모두 천재인 것은 아니기 때문입니다. 그림 1-1로 말하면, 천재인 사람의 모임이 악필인 사람의 모임 안에 들어 있어도 거꾸로 들어 있지는 않을 수 있습니다. 반면 대우 "악필이 아니면 천재가 아니다"는 원래 명제가 참이면 반드시 참입니다. 악필인 사람의 모임 밖에 있으면 그 안에 든 천재의 모임 밖에도 있기 때문입니다.</p>
+  <p>역과 대우를 헷갈리지 않도록 합니다. 원래 명제와 진릿값이 늘 같은 것은 역이 아니라 대우입니다. 진리표가 이렇게 늘 같은 관계에 다음 절에서 이름을 붙입니다.</p>
+</section>
+
+<section>
+  <h2>2. 논리적 동치(Logical Equivalence)</h2>
+
+  <h3>2-1) 명제와 논리적 동치</h3>
+  <p>1절에서 생김새는 다른데 진릿값이 늘 같은 짝을 여러 번 만났습니다. 예제 1-7의 결과와 p, 쌍방조건명제와 두 함축의 논리곱, 함축과 그 대우가 그렇습니다.</p>
+  <div class="definition">
+    <p class="definition-term">논리적 동치(logical equivalence)</p>
+    <p>두 (합성)명제 p와 q의 진릿값이 모든 경우에 서로 같을 때, p와 q는 논리적 동치라 하고 p ≡ q로 씁니다.</p>
+  </div>
+  <p>≡는 "동치"라고 읽습니다. 기하학에서는 같은 기호로 도형의 합동을 나타내기도 하지만, 명제에서 ≡는 두 명제의 진릿값이 모든 경우에 같다는 뜻입니다. 두 명제가 같은 문장이라는 뜻이 아닙니다. 생김새가 달라도 진리표의 열이 같으면 동치입니다.</p>
+  <p>동치는 쌍방조건명제로도 말할 수 있습니다. p ↔ q는 두 진릿값이 같을 때 참이므로, p ≡ q는 p ↔ q가 항진명제라는 말과 같습니다. 1-4)의 p ⇔ q도 p ↔ q가 늘 참이라는 뜻이었으므로 동치와 같은 뜻입니다. 이 책은 동치를 ≡로 씁니다.</p>
+
+  <div class="example">
+    <p class="example-title">예제 1-19</p>
+    <p>명제 p → q와 명제 ¬p ∨ q의 진릿값을 구하고, 대우 ¬q → ¬p와도 견주시오.</p>
+    <p class="solution-label">풀이</p>
+    <p>p → q는 둘째 줄만 F입니다. ¬p ∨ q는 ¬p와 q가 모두 거짓일 때만 거짓인데, ¬p가 거짓이려면 p가 참이어야 하므로 p가 T, q가 F인 둘째 줄만 F입니다. 대우 ¬q → ¬p도 1-5)에서 본 대로 둘째 줄만 F입니다(표 1-9).</p>
+    <table class="truth">
+      <caption>표 1-9 예제 1-19의 진리표</caption>
+      <thead><tr><th>p</th><th>q</th><th>¬p</th><th>p → q</th><th>¬p ∨ q</th><th>¬q</th><th>¬q → ¬p</th></tr></thead>
+      <tbody>
+        <tr><td>T</td><td>T</td><td>F</td><td class="mark">T</td><td class="mark">T</td><td>F</td><td class="mark">T</td></tr>
+        <tr><td>T</td><td>F</td><td>F</td><td class="mark">F</td><td class="mark">F</td><td>T</td><td class="mark">F</td></tr>
+        <tr><td>F</td><td>T</td><td>T</td><td class="mark">T</td><td class="mark">T</td><td>F</td><td class="mark">T</td></tr>
+        <tr><td>F</td><td>F</td><td>T</td><td class="mark">T</td><td class="mark">T</td><td>T</td><td class="mark">T</td></tr>
+      </tbody>
+    </table>
+    <p>세 열이 모두 T, F, T, T로 같으므로 p → q ≡ ¬p ∨ q ≡ ¬q → ¬p입니다.</p>
+    <p>p → q ≡ ¬p ∨ q를 비와 우산으로 옮기면, "비가 오면 우산을 가지고 간다"와 "비가 오지 않거나, 우산을 가지고 간다"가 같은 말이라는 뜻입니다. 둘 다 거짓이 되는 경우는 비가 오는데 우산이 없는 경우뿐입니다. 이 동치를 쓰면 →를 ¬와 ∨로 바꿀 수 있습니다. 대우에 같은 꼴을 쓰면 다음과 같습니다.</p>
+    <table class="derivation">
+      <tr><td class="step-sign"></td><td>¬q → ¬p</td><td class="step-reason"></td></tr>
+      <tr><td class="step-sign">≡</td><td>¬(¬q) ∨ ¬p</td><td class="step-reason">→를 ¬와 ∨로 바꿈(p → q ≡ ¬p ∨ q의 꼴)</td></tr>
+      <tr><td class="step-sign">≡</td><td>q ∨ ¬p</td><td class="step-reason">부정을 두 번 하면 원래 명제</td></tr>
+      <tr><td class="step-sign">≡</td><td>¬p ∨ q</td><td class="step-reason">∨의 양쪽을 바꿈</td></tr>
+    </table>
+    <p>대우를 →가 없는 꼴로 바꾸어도 ¬p ∨ q에 닿습니다. 진리표 없이 식만 바꾸어 동치를 보인 셈입니다. 이렇게 식을 바꾸는 데 쓰는 규칙을 모은 것이 다음의 동치 법칙입니다.</p>
+  </div>
+
+  <h3>2-2) 논리적 동치 법칙</h3>
+  <p>동치를 보이는 가장 확실한 방법은 진리표입니다. 그러나 명제가 하나 늘 때마다 진리표의 줄은 두 배로 늘어납니다. 명제가 셋이면 8줄, 다섯이면 32줄입니다. 그래서 자주 쓰는 동치를 법칙으로 정해 두고, 식을 법칙에 따라 한 단계씩 바꾸어 동치를 보입니다. 표 1-10은 이 장에서 쓰는 동치 법칙입니다. 표의 모든 법칙은 진리표로 확인할 수 있습니다.</p>
+  <table class="prose-table">
+    <caption>표 1-10 논리적 동치 법칙. 한 줄의 두 식은 서로 쌍대입니다.</caption>
+    <thead><tr><th>법칙</th><th>식</th><th>쌍대인 식</th></tr></thead>
+    <tbody>
+      <tr><td>항등법칙(identity law)</td><td>p ∧ T ≡ p</td><td>p ∨ F ≡ p</td></tr>
+      <tr><td>지배법칙(domination law)</td><td>p ∧ F ≡ F</td><td>p ∨ T ≡ T</td></tr>
+      <tr><td>부정법칙(negation law)</td><td>p ∧ ¬p ≡ F</td><td>p ∨ ¬p ≡ T</td></tr>
+      <tr><td>이중 부정법칙(double negation law)</td><td colspan="2">¬(¬p) ≡ p</td></tr>
+      <tr><td>멱등법칙(idempotent law)</td><td>p ∧ p ≡ p</td><td>p ∨ p ≡ p</td></tr>
+      <tr><td>교환법칙(commutative law)</td><td>p ∧ q ≡ q ∧ p</td><td>p ∨ q ≡ q ∨ p</td></tr>
+      <tr><td>결합법칙(associative law)</td><td>(p ∧ q) ∧ r ≡ p ∧ (q ∧ r)</td><td>(p ∨ q) ∨ r ≡ p ∨ (q ∨ r)</td></tr>
+      <tr><td>분배법칙(distributive law)</td><td>p ∨ (q ∧ r)<br>≡ (p ∨ q) ∧ (p ∨ r)</td><td>p ∧ (q ∨ r)<br>≡ (p ∧ q) ∨ (p ∧ r)</td></tr>
+      <tr><td>드모르간의 법칙(De Morgan's law)</td><td>¬(p ∧ q) ≡ ¬p ∨ ¬q</td><td>¬(p ∨ q) ≡ ¬p ∧ ¬q</td></tr>
+      <tr><td>흡수법칙(absorption law)</td><td>p ∧ (p ∨ q) ≡ p</td><td>p ∨ (p ∧ q) ≡ p</td></tr>
+      <tr><td>함축법칙(implication law)</td><td colspan="2">p → q ≡ ¬p ∨ q</td></tr>
+    </tbody>
+  </table>
+  <p>표 1-10은 대부분의 법칙을 두 식씩 짝지어 놓았습니다. 한 줄의 두 식은 ∧와 ∨를 맞바꾸고, T와 F를 맞바꾼 관계입니다.</p>
+
+  <h4>쌍대</h4>
+  <div class="definition">
+    <p class="definition-term">쌍대(dual)</p>
+    <p>¬, ∧, ∨, T, F만으로 이루어진 식에서 ∧를 ∨로, ∨를 ∧로, T를 F로, F를 T로 모두 맞바꾼 식을 원래 식의 쌍대라고 합니다.</p>
+  </div>
+  <p>쌍대(雙對)는 짝을 이루어 마주 본다는 뜻이며, 발음이 비슷한 "상대"와는 다른 말입니다. 쌍대에는 중요한 성질이 있습니다. 두 식이 동치이면, 두 식의 쌍대끼리도 동치입니다. 예를 들어 p ∧ T ≡ p가 성립하므로 그 쌍대 p ∨ F ≡ p도 성립합니다. 그래서 짝 가운데 한쪽만 이해하면 다른 쪽은 맞바꾸기만 하면 됩니다. 이중 부정법칙과 함축법칙은 짝이 따로 없습니다. 이중 부정법칙에는 맞바꿀 ∧, ∨, T, F가 없고, 함축법칙에는 쌍대를 만드는 규칙이 다루지 않는 →가 들어 있기 때문입니다.</p>
+
+  <h4>법칙 하나하나</h4>
+  <p><em>항등법칙</em>: p ∧ T는 p의 값을 그대로 따릅니다. ∧는 둘 다 참일 때만 참인데, 한쪽이 늘 참이니 결과는 나머지 p가 정합니다. p ∨ F도 같은 이유로 p입니다. 곱셈에서 1, 덧셈에서 0이 상대를 그대로 두듯이(\(x \times 1 = x\), \(x + 0 = x\)), ∧에서는 T가, ∨에서는 F가 상대를 그대로 둡니다.</p>
+  <p><em>지배법칙</em>: p ∧ F는 p가 무엇이든 거짓입니다. ∧는 하나라도 거짓이면 거짓이기 때문입니다. F가 ∧의 결과를 지배한다고 해서 지배법칙입니다. 쌍대인 p ∨ T ≡ T에서는 T가 ∨의 결과를 지배합니다. 항등법칙과 견주면 차이가 분명합니다. ∧ 쪽에서 p가 T와 만나면 p가 남고, F와 만나면 F가 남습니다.</p>
+  <p><em>부정법칙과 이중 부정법칙</em>: p와 ¬p는 하나가 참이면 다른 하나는 거짓이므로, p ∧ ¬p는 늘 거짓이고 p ∨ ¬p는 늘 참입니다. 1-3)의 모순명제와 항진명제가 바로 이것입니다. 부정을 두 번 하면 원래대로 돌아오므로 ¬(¬p) ≡ p입니다.</p>
+  <p><em>멱등법칙</em>: 자기 자신과 ∧를 하거나 ∨를 해도 자기 자신입니다. 멱등(冪等)은 거듭제곱해도 같다는 뜻입니다. 아래에서 보듯 ∧를 곱하기로 보면 p ∧ p는 p × p인데, 값이 0과 1뿐이므로 p × p는 언제나 p입니다. 보통 수처럼 제곱이라는 새 값이 생기지 않습니다.</p>
+  <p><em>교환법칙과 결합법칙</em>: 교환법칙은 연산자 양쪽의 명제를 바꾸어도 된다는 것입니다. 결합법칙은 같은 연산자가 이어질 때 괄호의 자리를 옮겨도 된다는 것입니다. 그래서 p ∧ q ∧ r처럼 괄호 없이 써도 됩니다. 연산자가 다르면 괄호를 옮길 수 없습니다. (p ∧ q) ∨ r과 p ∧ (q ∨ r)은 p가 F이고 q와 r이 T일 때 앞의 것은 T, 뒤의 것은 F로 다릅니다.</p>
+  <p><em>분배법칙</em>: 연산자가 서로 다를 때 쓰는 법칙입니다. p ∧ (q ∨ r)에서 바깥의 p ∧가 괄호 안의 q와 r에 하나씩 나뉘어 들어가 (p ∧ q) ∨ (p ∧ r)이 됩니다. 쌍대인 p ∨ (q ∧ r) ≡ (p ∨ q) ∧ (p ∨ r)에서는 p ∨가 나뉘어 들어갑니다.</p>
+  <p><em>드모르간의 법칙</em>: 괄호 전체에 걸린 ¬를 괄호 안으로 들일 때 쓰는 법칙입니다. ¬(p ∧ q)의 ¬는 p, ∧, q 세 곳에 모두 들어갑니다. p는 ¬p, q는 ¬q가 되고, ∧는 ∨로 바뀌어 ¬p ∨ ¬q가 됩니다. 말로 옮기면 "p와 q가 둘 다 참인 것은 아니다"는 "p가 거짓이거나 q가 거짓이다"와 같다는 뜻입니다. 연산자를 바꾸는 것을 잊고 ¬p ∧ ¬q로 쓰는 실수가 많습니다. p가 T, q가 F이면 ¬(p ∧ q)는 T, ¬p ∧ ¬q는 F이므로 둘은 동치가 아닙니다. 쌍대인 ¬(p ∨ q) ≡ ¬p ∧ ¬q는 "둘 가운데 어느 것도 참이 아니다"가 "둘 다 거짓이다"와 같다는 뜻입니다.</p>
+  <p><em>흡수법칙</em>: 명제가 참이 되는 경우를 원 안쪽으로 나타내면, ∨는 두 원을 합친 영역(합집합), ∧는 두 원이 겹친 영역(교집합)에 해당합니다(그림 1-3). p ∨ q는 p를 포함하는 영역이므로, 거기에 다시 p와 ∧를 하면 p만 남습니다. 그래서 p ∧ (p ∨ q) ≡ p입니다. 쌍대인 p ∨ (p ∧ q)에서는 p ∧ q가 p 안에 들어 있으므로, p에 더해도 p 그대로입니다. 큰 쪽이 작은 쪽을 삼켜 버리므로 흡수법칙이라고 합니다.</p>
+  <figure>
+    <svg width="628" height="116" viewBox="0 0 628 116" role="img" aria-label="흡수법칙을 보이는 벤 다이어그램 네 개를 한 줄로 놓음. 왼쪽부터 p∨q, p∧(p∨q), p∧q, p∨(p∧q)가 참인 영역을 칠함">
+      <defs>
+        <clipPath id="clip-1-3-p"><circle cx="54" cy="43" r="30"/></clipPath>
+      </defs>
+      <g transform="translate(2,2)">
+        <rect x="0" y="0" width="144" height="86" class="fig-thin"/>
+        <path d="M72,19 A30,30 0 1,0 72,67 A30,30 0 1,0 72,19 Z" class="fig-region-highlight"/>
+        <circle cx="54" cy="43" r="30" class="fig-line"/>
+        <circle cx="90" cy="43" r="30" class="fig-line"/>
+        <text x="41" y="47" class="fig-text" text-anchor="middle">p</text>
+        <text x="103" y="47" class="fig-text" text-anchor="middle">q</text>
+        <text x="72" y="108" class="fig-text" text-anchor="middle">p ∨ q</text>
+      </g>
+      <g transform="translate(162,2)">
+        <rect x="0" y="0" width="144" height="86" class="fig-thin"/>
+        <path d="M72,19 A30,30 0 1,0 72,67 A30,30 0 1,0 72,19 Z" class="fig-region-a"/>
+        <circle cx="54" cy="43" r="30" class="fig-region-highlight"/>
+        <circle cx="54" cy="43" r="30" class="fig-line"/>
+        <circle cx="90" cy="43" r="30" class="fig-line"/>
+        <text x="41" y="47" class="fig-text" text-anchor="middle">p</text>
+        <text x="103" y="47" class="fig-text" text-anchor="middle">q</text>
+        <text x="72" y="108" class="fig-text" text-anchor="middle">p ∧ (p ∨ q) ≡ p</text>
+      </g>
+      <g transform="translate(322,2)">
+        <rect x="0" y="0" width="144" height="86" class="fig-thin"/>
+        <circle cx="90" cy="43" r="30" class="fig-region-highlight" clip-path="url(#clip-1-3-p)"/>
+        <circle cx="54" cy="43" r="30" class="fig-line"/>
+        <circle cx="90" cy="43" r="30" class="fig-line"/>
+        <text x="41" y="47" class="fig-text" text-anchor="middle">p</text>
+        <text x="103" y="47" class="fig-text" text-anchor="middle">q</text>
+        <text x="72" y="108" class="fig-text" text-anchor="middle">p ∧ q</text>
+      </g>
+      <g transform="translate(482,2)">
+        <rect x="0" y="0" width="144" height="86" class="fig-thin"/>
+        <circle cx="54" cy="43" r="30" class="fig-region-highlight"/>
+        <circle cx="54" cy="43" r="30" class="fig-line"/>
+        <circle cx="90" cy="43" r="30" class="fig-line"/>
+        <text x="41" y="47" class="fig-text" text-anchor="middle">p</text>
+        <text x="103" y="47" class="fig-text" text-anchor="middle">q</text>
+        <text x="72" y="108" class="fig-text" text-anchor="middle">p ∨ (p ∧ q) ≡ p</text>
+      </g>
+    </svg>
+    <figcaption>그림 1-3 흡수법칙의 벤 다이어그램. 진하게 칠한 부분이 각 식이 참인 영역이고, 둘째 그림의 옅은 부분은 p ∨ q입니다.</figcaption>
+  </figure>
+  <p><em>함축법칙</em>: 2-1)의 예제 1-19에서 확인한 p → q ≡ ¬p ∨ q입니다. →가 든 식에 다른 법칙을 쓰려면 먼저 이 법칙으로 →를 ¬와 ∨로 바꿉니다.</p>
+
+  <h4>곱하기와 더하기에 빗대기</h4>
+  <p>T를 1, F를 0으로 놓고 ∧를 곱하기, ∨를 더하기로 옮기면 여러 법칙을 산수처럼 이해할 수 있습니다. 논리곱과 논리합이라는 이름도 여기서 왔습니다. 그러나 이 비유에는 끊기는 곳이 있습니다. 1 × 1 = 1은 T ∧ T가 T인 것과 맞지만, 1 + 1 = 2는 T ∨ T가 T인 것과 맞지 않습니다. 0과 1밖에 없는 세계에 2가 나오기 때문입니다. 표 1-11은 법칙마다 이 비유가 통하는지를 정리한 것입니다.</p>
+  <table class="prose-table">
+    <caption>표 1-11 ∧를 곱하기, ∨를 더하기로 옮긴 비유가 통하는 곳과 끊기는 곳</caption>
+    <thead><tr><th>법칙</th><th>논리</th><th>T = 1, F = 0을 넣은 산수</th><th>산수로도 성립하는가</th></tr></thead>
+    <tbody>
+      <tr><td rowspan="2">연산자</td><td>p ∧ q</td><td>p × q</td><td>늘 같음</td></tr>
+      <tr><td>p ∨ q</td><td>p + q</td><td>어긋남<br>(p = q = 1이면 2)</td></tr>
+      <tr><td rowspan="2">항등법칙</td><td>p ∧ T ≡ p</td><td>p × 1 = p</td><td>성립</td></tr>
+      <tr><td>p ∨ F ≡ p</td><td>p + 0 = p</td><td>성립</td></tr>
+      <tr><td rowspan="2">지배법칙</td><td>p ∧ F ≡ F</td><td>p × 0 = 0</td><td>성립</td></tr>
+      <tr><td>p ∨ T ≡ T</td><td>p + 1 = 1</td><td>깨짐<br>(p = 1이면 2)</td></tr>
+      <tr><td rowspan="2">멱등법칙</td><td>p ∧ p ≡ p</td><td>p × p = p</td><td>성립<br>(0과 1뿐이므로)</td></tr>
+      <tr><td>p ∨ p ≡ p</td><td>p + p = p</td><td>깨짐<br>(p = 1이면 2)</td></tr>
+      <tr><td>교환법칙,<br>결합법칙</td><td>p ∧ q ≡ q ∧ p 등</td><td>p × q = q × p 등</td><td>성립</td></tr>
+      <tr><td rowspan="2">분배법칙</td><td>p ∧ (q ∨ r)<br>≡ (p ∧ q) ∨ (p ∧ r)</td><td>p × (q + r)<br>= p × q + p × r</td><td>성립</td></tr>
+      <tr><td>p ∨ (q ∧ r)<br>≡ (p ∨ q) ∧ (p ∨ r)</td><td>p + q × r<br>= (p + q) × (p + r)</td><td>깨짐<br>(p = q = r = 1일 때)</td></tr>
+    </tbody>
+  </table>
+  <p>깨지는 곳은 모두 ∨ 쪽에서 1 + 1이 나오는 경우입니다. 특히 분배법칙의 ∨ 쪽은 비유로 이해하려 하면 틀립니다. 산수로는 1 + 1 × 1 = 2이지만 (1 + 1) × (1 + 1) = 4입니다. 그런데도 논리에서 이 법칙이 성립하는 까닭은 다음 계산에서 드러납니다. 괄호를 곱셈처럼 풀되, 논리의 법칙을 씁니다.</p>
+  <table class="derivation">
+    <tr><td class="step-sign"></td><td>(p ∨ q) ∧ (p ∨ r)</td><td class="step-reason"></td></tr>
+    <tr><td class="step-sign">≡</td><td>(p ∧ p) ∨ (p ∧ r) ∨ (q ∧ p) ∨ (q ∧ r)</td><td class="step-reason">분배법칙(∧가 나뉘어 들어가는 쪽)으로 괄호 풀기</td></tr>
+    <tr><td class="step-sign">≡</td><td>p ∨ (p ∧ r) ∨ (p ∧ q) ∨ (q ∧ r)</td><td class="step-reason">멱등법칙, 교환법칙</td></tr>
+    <tr><td class="step-sign">≡</td><td>(p ∧ (T ∨ r ∨ q)) ∨ (q ∧ r)</td><td class="step-reason">항등법칙(p ≡ p ∧ T)과 분배법칙으로 p 묶기</td></tr>
+    <tr><td class="step-sign">≡</td><td>(p ∧ T) ∨ (q ∧ r)</td><td class="step-reason">지배법칙</td></tr>
+    <tr><td class="step-sign">≡</td><td>p ∨ (q ∧ r)</td><td class="step-reason">항등법칙</td></tr>
+  </table>
+  <p>산수로 같은 계산을 하면 \((p+q)(p+r) = p^2 + pr + qp + qr\)이고, 앞의 세 항 \(p^2 + pr + pq\)가 \(p\)로 줄어야 합니다. 그런데 \(p = q = 1\)이면 \(1 + r + 1\)이 되어 1이 아닙니다. 논리에서는 p ∧ p가 p이고(멱등법칙), T ∨ r ∨ q가 늘 T이므로(지배법칙) p만 남습니다. 비유는 처음 익힐 때 좋은 다리가 되지만, ∨가 1 + 1에 닿는 곳에서는 논리의 법칙으로 돌아와야 합니다.</p>
+  <p>동치 법칙은 대부분 직관으로 바로 이해됩니다. 다만 <strong>분배법칙, 드모르간의 법칙, 흡수법칙 셋은 꼭 기억해 두세요.</strong> 셋 다 처음 보면 바로 와닿지 않고, 동치 증명에서 가장 자주 쓰입니다. 나머지 법칙은 짝 가운데 한쪽을 이해하고 쌍대로 맞바꾸면 됩니다.</p>
+
+  <div class="example">
+    <p class="example-title">예제 1-20</p>
+    <p>¬(p ∨ (¬p ∧ q)) ≡ ¬p ∧ ¬q임을 증명하시오.</p>
+    <p class="solution-label">풀이</p>
+    <p>왼쪽 식을 법칙으로 바꾸어 오른쪽 식에 닿게 합니다. 바깥의 ¬가 괄호 전체에 걸려 있으므로, 먼저 드모르간의 법칙으로 ¬를 안으로 들입니다. p는 ¬p, ¬p ∧ q는 ¬(¬p ∧ q)가 되고 ∨는 ∧로 바뀝니다. 그러면 ¬(¬p ∧ q)에 다시 괄호 전체에 걸린 ¬가 생기므로 드모르간의 법칙을 한 번 더 씁니다. 그때 생기는 ¬(¬p)는 이중 부정법칙으로 p가 됩니다.</p>
+    <p>이제 ¬p ∧ (p ∨ ¬q)는 바깥이 ∧, 괄호 안이 ∨이므로 분배법칙으로 풀 수 있습니다. 풀고 나면 ¬p ∧ p가 나오는데, 이것은 부정법칙으로 F입니다. 마지막으로 F와 ∨를 하면 상대가 그대로 남는다는 항등법칙으로 ¬p ∧ ¬q에 닿습니다.</p>
+    <table class="derivation">
+      <tr><td class="step-sign"></td><td>¬(p ∨ (¬p ∧ q))</td><td class="step-reason"></td></tr>
+      <tr><td class="step-sign">≡</td><td>¬p ∧ ¬(¬p ∧ q)</td><td class="step-reason">드모르간의 법칙</td></tr>
+      <tr><td class="step-sign">≡</td><td>¬p ∧ (¬(¬p) ∨ ¬q)</td><td class="step-reason">드모르간의 법칙</td></tr>
+      <tr><td class="step-sign">≡</td><td>¬p ∧ (p ∨ ¬q)</td><td class="step-reason">이중 부정법칙</td></tr>
+      <tr><td class="step-sign">≡</td><td>(¬p ∧ p) ∨ (¬p ∧ ¬q)</td><td class="step-reason">분배법칙</td></tr>
+      <tr><td class="step-sign">≡</td><td>F ∨ (¬p ∧ ¬q)</td><td class="step-reason">부정법칙</td></tr>
+      <tr><td class="step-sign">≡</td><td>¬p ∧ ¬q</td><td class="step-reason">항등법칙</td></tr>
+    </table>
+    <p>부정법칙은 p ∧ ¬p ≡ F의 꼴이고 항등법칙은 p ∨ F ≡ p의 꼴이므로, 엄밀히는 교환법칙으로 순서를 바꾼 뒤에 쓰는 것입니다. 교환법칙은 이렇게 따로 적지 않고 쓰는 일이 많습니다.</p>
+    <p>같은 동치를 진리표로도 확인할 수 있습니다(표 1-12). ¬p ∧ q는 p가 F, q가 T인 셋째 줄만 T이고, p ∨ (¬p ∧ q)는 둘 다 F인 넷째 줄만 F입니다. 이것을 부정한 ¬(p ∨ (¬p ∧ q))는 넷째 줄만 T입니다. ¬p ∧ ¬q도 넷째 줄만 T이므로 두 식의 열이 같습니다.</p>
+    <table class="truth">
+      <caption>표 1-12 예제 1-20의 진리표</caption>
+      <thead><tr><th>p</th><th>q</th><th>¬p ∧ q</th><th>p ∨ (¬p ∧ q)</th><th>¬(p ∨ (¬p ∧ q))</th><th>¬p ∧ ¬q</th></tr></thead>
+      <tbody>
+        <tr><td>T</td><td>T</td><td>F</td><td>T</td><td class="mark">F</td><td class="mark">F</td></tr>
+        <tr><td>T</td><td>F</td><td>F</td><td>T</td><td class="mark">F</td><td class="mark">F</td></tr>
+        <tr><td>F</td><td>T</td><td>T</td><td>T</td><td class="mark">F</td><td class="mark">F</td></tr>
+        <tr><td>F</td><td>F</td><td>F</td><td>F</td><td class="mark">T</td><td class="mark">T</td></tr>
+      </tbody>
+    </table>
+    <p>동치는 진리표로도, 동치 법칙으로도 보일 수 있습니다. 명제가 많아질수록 법칙 쪽이 훨씬 짧습니다.</p>
+  </div>
+
+  <div class="example">
+    <p class="example-title">예제 1-21</p>
+    <p>(p → q) ∧ (p → ¬q)를 간략히 하시오.</p>
+    <p class="solution-label">풀이</p>
+    <p>→가 들어 있으면 다른 법칙을 쓰기 어려우므로, 먼저 함축법칙으로 두 함축을 ∨로 바꿉니다. p → ¬q는 ¬p ∨ ¬q가 됩니다. 그러면 (¬p ∨ q) ∧ (¬p ∨ ¬q)가 되는데, 두 괄호에 ¬p ∨가 똑같이 들어 있습니다. 이것은 분배법칙 p ∨ (q ∧ r) ≡ (p ∨ q) ∧ (p ∨ r)의 오른쪽 꼴이므로, 분배법칙을 거꾸로 써서 공통인 ¬p를 밖으로 묶어 냅니다. 괄호 안의 q ∧ ¬q는 부정법칙으로 F이고, ¬p ∨ F는 항등법칙으로 ¬p입니다.</p>
+    <table class="derivation">
+      <tr><td class="step-sign"></td><td>(p → q) ∧ (p → ¬q)</td><td class="step-reason"></td></tr>
+      <tr><td class="step-sign">≡</td><td>(¬p ∨ q) ∧ (¬p ∨ ¬q)</td><td class="step-reason">함축법칙</td></tr>
+      <tr><td class="step-sign">≡</td><td>¬p ∨ (q ∧ ¬q)</td><td class="step-reason">분배법칙(거꾸로)</td></tr>
+      <tr><td class="step-sign">≡</td><td>¬p ∨ F</td><td class="step-reason">부정법칙</td></tr>
+      <tr><td class="step-sign">≡</td><td>¬p</td><td class="step-reason">항등법칙</td></tr>
+    </table>
+    <p>분배법칙은 보통 괄호를 푸는 방향으로 떠올리지만, 이 예제처럼 공통인 부분을 묶어 내는 방향으로 쓸 때가 오히려 어렵습니다. 두 괄호에 같은 명제가 같은 연산자로 붙어 있으면 거꾸로 쓰는 분배법칙을 떠올리세요.</p>
+    <p>결과를 비와 우산으로 읽어 봅니다. "비가 오면 우산을 가지고 간다"와 "비가 오면 우산을 가지고 가지 않는다"라는 두 약속을 함께 지킬 수 있는 날은 비가 오지 않는 날뿐입니다. 그래서 결과가 ¬p입니다.</p>
+  </div>
+</section>
+
+<section>
+  <h2>3. 변수를 포함한 명제와 한정자</h2>
+  <p>1-1)에서 \(x + 1 = 2\)는 \(x\)의 값에 따라 참도 되고 거짓도 되므로 명제가 아니라고 했습니다. 이 절에서는 이처럼 변수가 들어 있는 문장을 명제로 다루는 방법을 봅니다.</p>
+  <p>\(x + 1 \ge 2\)를 예로 듭니다. 이 부등식은 \(x \ge 1\)이면 참이고 \(x &lt; 1\)이면 거짓입니다(그림 1-4). \(x\)의 값을 하나로 정해 주면 참이나 거짓이 분명히 정해지므로 명제가 됩니다. 그러나 \(x\)가 1보다 작은 값과 1 이상인 값을 모두 가질 수 있으면, 참인 경우와 거짓인 경우가 섞여 진릿값을 하나로 정할 수 없습니다.</p>
+  <figure>
+    <svg width="440" height="96" viewBox="0 0 440 96" role="img" aria-label="수직선 위에 0, 1, 2를 표시하고 1 이상인 부분을 참, 1보다 작은 부분을 거짓으로 나타낸 그림">
+      <defs>
+        <marker id="arrow-1-4" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M0,0 L10,5 L0,10 z" class="fig-arrow-head"/>
+        </marker>
+      </defs>
+      <line x1="24" y1="50" x2="416" y2="50" class="fig-thin" marker-end="url(#arrow-1-4)"/>
+      <rect x="220" y="46" width="186" height="8" class="fig-region-highlight"/>
+      <line x1="120" y1="43" x2="120" y2="57" class="fig-thin"/>
+      <line x1="220" y1="43" x2="220" y2="57" class="fig-thin"/>
+      <line x1="320" y1="43" x2="320" y2="57" class="fig-thin"/>
+      <circle cx="220" cy="50" r="5" class="fig-arrow-head"/>
+      <text x="120" y="76" class="fig-text" text-anchor="middle">0</text>
+      <text x="220" y="76" class="fig-text" text-anchor="middle">1</text>
+      <text x="320" y="76" class="fig-text" text-anchor="middle">2</text>
+      <text x="410" y="76" class="fig-text-soft" text-anchor="middle">x</text>
+      <text x="313" y="32" class="fig-text-strong" text-anchor="middle">참 (x ≥ 1)</text>
+      <text x="122" y="32" class="fig-text-soft" text-anchor="middle">거짓 (x &lt; 1)</text>
+    </svg>
+    <figcaption>그림 1-4 수직선에서 본 \(x + 1 \ge 2\)의 참과 거짓</figcaption>
+  </figure>
+  <p>변수가 든 문장이 명제가 되는 길은 둘입니다. 변수에 값을 정해 넣거나, 변수가 어느 범위의 값을 두고 하는 말인지를 밝히는 것입니다. 앞의 길이 3-1)의 명제함수이고, 뒤의 길이 3-2)의 한정자입니다.</p>
+
+  <h3>3-1) 명제함수</h3>
+  <div class="definition">
+    <p class="definition-term">논의영역(universe of discourse)</p>
+    <p>명제에 포함된 변수 \(x\)가 속하게 될 범위를 논의영역이라 하고 \(D\)로 씁니다.</p>
+  </div>
+  <p>예를 들어 변수가 자연수, 곧 0보다 큰 정수만을 값으로 가진다면 논의영역은 자연수 전체입니다. 논의영역은 집합이므로 고등학교에서 배운 조건제시법으로도 씁니다. \(\{x \mid x &gt; 0\}\)은 "0보다 큰 \(x\) 전체의 집합"이라고 읽습니다. 세로선 앞에 원소를 나타내는 문자를, 뒤에 원소가 만족할 조건을 씁니다. 논의영역을 \(U\)로 쓰는 책도 있지만 이 책은 \(D\)로 씁니다.</p>
+  <div class="definition">
+    <p class="definition-term">명제함수(propositional function)</p>
+    <p>논의영역 \(D\)에 속하는 변수 \(x\)를 포함하고, \(x\)에 \(D\)의 값을 넣으면 진릿값을 판별할 수 있는 문장이나 수식을 명제함수라 하고 \(P(x)\)로 씁니다.</p>
+  </div>
+  <p>\(P(x)\)는 "P of x"라고 읽습니다. 명제함수를 술어(predicate)라고 부르는 책도 있습니다. 함수라는 이름이 붙은 까닭은, 함수 \(f(x)\)가 \(x\)마다 수 하나를 내놓듯이 \(P(x)\)는 \(x\)마다 명제 하나를 내놓기 때문입니다. \(P(x)\) 자체는 아직 명제가 아닙니다. \(x\)에 값을 넣은 \(P(1)\), \(P(2)\) 같은 것이 명제입니다. 변수가 둘이면 \(P(x, y)\)처럼 씁니다.</p>
+
+  <div class="example">
+    <p class="example-title">예제 1-24</p>
+    <p>명제함수 \(P(x, y)\)가 \(x = 2y\)일 때, \(P(1, 2)\)와 \(P(2, 1)\)의 진릿값을 구하시오.</p>
+    <p class="solution-label">풀이</p>
+    <p>명제함수에 값을 넣으면 명제가 됩니다. \(P(1, 2)\)는 \(x\)에 1, \(y\)에 2를 넣은 것이므로 \(1 = 2 \times 2\), 곧 \(1 = 4\)입니다. 1과 4는 같지 않으므로 \(P(1, 2)\)는 거짓인 명제입니다. \(P(2, 1)\)은 \(2 = 2 \times 1\)이고 양쪽이 모두 2이므로 참인 명제입니다. 같은 명제함수라도 넣는 값에 따라 참인 명제가 되기도 하고 거짓인 명제가 되기도 합니다.</p>
+  </div>
+
+  <h3>3-2) 한정자</h3>
+  <p>변수에 값을 하나씩 넣는 대신, 논의영역의 값 가운데 얼마만큼에 대해 말하는지를 밝혀도 명제가 됩니다. "모든 \(x\)에 대해"나 "어떤 \(x\)에 대해"처럼 논의영역의 범위를 정해 주는 말을 한정자(quantifier)라고 합니다.</p>
+  <div class="definition">
+    <p class="definition-term">전체한정자(전칭기호, universal quantifier) ∀</p>
+    <p>"논의영역의 모든 \(x\)에 대해"를 \(\forall x\)로 씁니다. \(\forall x\,P(x)\)는 논의영역 \(D\)에 속하는 모든 \(x\)에 대해 \(P(x)\)가 참이라는 명제이고, \(D\)의 모든 원소에 대해 \(P(x)\)가 참일 때만 참입니다.</p>
+  </div>
+  <p>∀는 영어 All의 A를 위아래로 뒤집은 모양이고, "for all"이라고 읽습니다. \(\forall x\,P(x)\)는 "모든 \(x\)에 대하여 \(P(x)\)이다"라고 읽습니다.</p>
+  <div class="definition">
+    <p class="definition-term">존재한정자(존재기호, existential quantifier) ∃</p>
+    <p>"논의영역의 어떤 \(x\)에 대해"를 \(\exists x\)로 씁니다. \(\exists x\,P(x)\)는 논의영역 \(D\)에 속하는 어떤 \(x\)에 대해 \(P(x)\)가 참이라는 명제이고, \(D\)의 원소 가운데 하나라도 \(P(x)\)를 참으로 만들면 참입니다.</p>
+  </div>
+  <p>∃는 영어 Exist의 E를 좌우로 뒤집은 모양이고, "there exists"라고 읽습니다. \(\exists x\,P(x)\)는 "\(P(x)\)를 참으로 만드는 \(x\)가 적어도 하나 있다"라고 읽습니다.</p>
+  <p>한정자를 붙였을 때 참과 거짓이 정해지는 것은 \(\forall x\,P(x)\)와 \(\exists x\,P(x)\)입니다. \(P(x)\)는 여전히 명제함수이고, 한정자와 함께 하나의 명제를 이룹니다. 두 명제가 참인지 거짓인지를 보이는 방법은 표 1-13처럼 서로 엇갈립니다.</p>
+  <table class="prose-table">
+    <caption>표 1-13 한정자가 붙은 명제의 참과 거짓을 보이는 방법</caption>
+    <thead><tr><th>명제</th><th>참임을 보이려면</th><th>거짓임을 보이려면</th></tr></thead>
+    <tbody>
+      <tr><td>\(\forall x\,P(x)\)</td><td>모든 \(x\)에 대해 \(P(x)\)가 참임을 보인다</td><td>\(P(x)\)가 거짓인 \(x\) 하나(반례)를 찾는다</td></tr>
+      <tr><td>\(\exists x\,P(x)\)</td><td>\(P(x)\)가 참인 \(x\) 하나를 찾는다</td><td>모든 \(x\)에 대해 \(P(x)\)가 거짓임을 보인다</td></tr>
+    </tbody>
+  </table>
+  <p>"모든"이 붙은 명제를 무너뜨리는 데는 반례(counterexample) 하나면 충분하고, "어떤"이 붙은 명제를 세우는 데는 예 하나면 충분합니다. 1-1)의 예제 1-3에서 \(n = 2\) 하나를 찾아 참임을 보인 것이 뒤의 경우입니다.</p>
+
+  <div class="example">
+    <p class="example-title">예제 1-26</p>
+    <p>논의영역 \(D = \{x \mid 0 &lt; x \le 4,\ x\text{는 양의 정수}\}\)에 대하여 명제함수 \(P(x)\)가 \(x^2 &lt; 10\)일 때, 다음 명제의 진릿값을 구하시오.</p>
+    <p>①&nbsp;\(\forall x\,P(x)\)&emsp;②&nbsp;\(\exists x\,P(x)\)</p>
+    <p class="solution-label">풀이</p>
+    <p>먼저 논의영역의 원소를 늘어놓습니다. 0보다 크고 4 이하인 양의 정수이므로 \(D = \{1, 2, 3, 4\}\)입니다.</p>
+    <p>① 모든 원소에 대해 \(P(x)\)가 참이어야 참입니다. 원소를 모두 넣어 볼 수도 있지만, 거짓임을 보이려면 반례 하나만 찾으면 됩니다. \(x = 4\)이면 \(4^2 = 16\)이고 16은 10보다 작지 않으므로 \(P(4)\)는 거짓입니다. 따라서 \(\forall x\,P(x)\)는 거짓입니다.</p>
+    <p>② 어떤 원소 하나에 대해 \(P(x)\)가 참이면 참입니다. \(x = 1\)이면 \(1^2 = 1 &lt; 10\)이므로 \(P(1)\)이 참입니다. 따라서 \(\exists x\,P(x)\)는 참입니다. 1뿐 아니라 2와 3도 \(P(x)\)를 참으로 만듭니다(\(4 &lt; 10\), \(9 &lt; 10\)).</p>
+  </div>
+
+  <h4>한정자의 부정</h4>
+  <p>논의영역이 \(D = \{1, 2, 3, 4\}\)처럼 원소가 몇 개뿐이면, 한정자가 붙은 명제를 1절의 연산자로 펼쳐 쓸 수 있습니다. "모든 \(x\)에 대해"는 원소마다 참이라는 것이므로 ∧로, "어떤 \(x\)에 대해"는 하나라도 참이라는 것이므로 ∨로 이어집니다.</p>
+  <p>\[\forall x\,P(x) \equiv P(1) \land P(2) \land P(3) \land P(4), \qquad \exists x\,P(x) \equiv P(1) \lor P(2) \lor P(3) \lor P(4)\]</p>
+  <p>이렇게 펼치면 한정자가 붙은 명제를 부정하는 방법이 2절의 드모르간의 법칙에서 바로 나옵니다. \(\neg\forall x\,P(x)\)는 \(\neg(P(1) \land \cdots \land P(4))\)이고, 드모르간의 법칙으로 \(\neg P(1) \lor \cdots \lor \neg P(4)\), 곧 \(\exists x\,\neg P(x)\)가 됩니다. 마찬가지로 \(\neg\exists x\,P(x) \equiv \forall x\,\neg P(x)\)입니다. 원소가 무한히 많은 논의영역에서도 같은 관계가 성립합니다(표 1-14).</p>
+  <table class="prose-table">
+    <caption>표 1-14 한정자의 부정</caption>
+    <thead><tr><th>명제</th><th>동치인 명제</th><th>말로 옮기면</th></tr></thead>
+    <tbody>
+      <tr><td>\(\neg\forall x\,P(x)\)</td><td>\(\exists x\,\neg P(x)\)</td><td>모든 \(x\)가 \(P(x)\)를 만족하는 것은 아니다. 곧 \(P(x)\)를 만족하지 않는 \(x\)가 있다.</td></tr>
+      <tr><td>\(\neg\exists x\,P(x)\)</td><td>\(\forall x\,\neg P(x)\)</td><td>\(P(x)\)를 만족하는 \(x\)가 없다. 곧 모든 \(x\)가 \(P(x)\)를 만족하지 않는다.</td></tr>
+    </tbody>
+  </table>
+  <p>부정하면 ∀는 ∃로, ∃는 ∀로 바뀌고 ¬는 \(P(x)\) 쪽으로 들어갑니다. 반례 하나로 \(\forall x\,P(x)\)가 거짓임을 보이는 것은, 표 1-14의 첫 줄에서 \(\exists x\,\neg P(x)\)가 참임을 보이는 것과 같은 일입니다.</p>
+
+  <h4>한정자가 둘일 때</h4>
+  <p>변수가 둘이면 한정자도 둘 붙습니다. \(\forall x\,\exists y\,P(x, y)\)는 "모든 \(x\)에 대해, 어떤 \(y\)가 있어서 \(P(x, y)\)이다"라고 읽습니다. 한정자는 왼쪽부터 차례로 읽습니다. 이 명제에서는 \(x\)가 먼저 주어지고, \(y\)는 그 \(x\)를 보고 고를 수 있습니다. 반면 \(\exists y\,\forall x\,P(x, y)\)는 \(y\) 하나를 먼저 골라 두고, 그 \(y\)가 모든 \(x\)에 대해 통해야 합니다. 이처럼 종류가 다른 한정자는 순서를 바꾸면 뜻이 달라집니다.</p>
+
+  <div class="example">
+    <p class="example-title">예제 1-27</p>
+    <p>실수 \(x\), \(y\)에 대해 명제함수 \(P(x, y)\)가 \(x^2 &lt; y^2\)일 때, 다음 명제의 진릿값을 구하시오.</p>
+    <p>③&nbsp;\(\forall x\,\exists y\,P(x, y)\)&emsp;④&nbsp;\(\exists x\,\forall y\,P(x, y)\)</p>
+    <p class="solution-label">풀이</p>
+    <p>실수에서는 \(x^2 = |x|^2\)이고 절댓값은 0 이상이므로, \(x^2 &lt; y^2\)은 \(|x| &lt; |y|\)와 같습니다. 이제 절댓값의 크기만 견주면 됩니다.</p>
+    <p>③ \(x\)가 어떤 실수로 주어지든 \(y = |x| + 1\)로 고르면 \(|x| &lt; |y|\)입니다. 예를 들어 \(x\)가 1000이면 \(y\)를 1001로 고르면 됩니다. 모든 \(x\)에 대해 조건을 만족하는 \(y\)가 있으므로 ③은 참입니다.</p>
+    <p>④ 어떤 \(x\) 하나를 골라서, 그 \(x\)가 모든 실수 \(y\)에 대해 \(|x| &lt; |y|\)를 만족해야 참입니다. 그런데 \(y = 0\)이면 \(|x| &lt; 0\)을 만족하는 실수 \(x\)가 없습니다. 어떤 \(x\)를 골라도 \(y = 0\)에서 막히므로 ④는 거짓입니다.</p>
+    <p>④를 "모든 \(y\)에 대해, 그보다 절댓값이 작은 \(x\)가 있다"로 읽으면 \(\forall y\,\exists x\,P(x, y)\)를 읽은 것이 되어 순서가 바뀝니다. 이 예에서는 그 명제도 \(y = 0\)에서 막혀 거짓이지만, 일반적으로는 진릿값이 다를 수 있습니다. ③의 순서만 바꾼 \(\exists y\,\forall x\,P(x, y)\)가 그런 경우입니다. 이 명제는 어떤 \(y\) 하나가 모든 \(x\)보다 절댓값이 커야 한다는 뜻인데, 어떤 \(y\)를 골라도 \(x = y\)이면 \(|x| &lt; |y|\)가 거짓입니다. 그래서 ③은 참이지만 \(\exists y\,\forall x\,P(x, y)\)는 거짓입니다.</p>
+  </div>
+</section>
+
+<section>
+  <h2>4. 논리</h2>
+
+  <h3>4-1) 논리와 추론</h3>
+  <p>지금까지는 명제 하나하나의 진릿값을 계산했습니다. 이 절에서는 참인 명제들에서 다른 명제가 참임을 끌어내는 일을 다룹니다.</p>
+  <div class="definition">
+    <p class="definition-term">추론(inference)</p>
+    <p>어떤 명제가 참인 것을 근거로 하여 다른 명제가 참임을 유도하는 방식을 추론이라고 합니다. 근거가 되는 참인 명제를 가정 또는 전제(hypothesis, premise)라 하고, 유도되는 명제를 결론이라고 합니다.</p>
+  </div>
+  <p>추론은 전제를 위에 늘어놓고, 결론 앞에 ∴를 붙여 씁니다. ∴는 "그러므로"라고 읽습니다. 예를 들어 "p → q가 참이고 p가 참이다. 그러므로 q가 참이다"는 다음처럼 씁니다.</p>
+  <table class="derivation">
+    <tr><td class="step-sign"></td><td>p → q</td><td class="step-reason">전제</td></tr>
+    <tr><td class="step-sign"></td><td>p</td><td class="step-reason">전제</td></tr>
+    <tr><td class="step-sign">∴</td><td>q</td><td class="step-reason">결론</td></tr>
+  </table>
+  <p>추론에서 꼭 기억할 것은 <strong>전제는 참인 것으로 놓고 시작한다</strong>는 점입니다. 추론은 전제가 참이라는 것을 근거로 삼는 일이므로, 추론을 판단할 때는 전제가 모두 참인 경우만 봅니다. 전제 가운데 하나라도 거짓이면 그 전제는 근거가 되지 못하고, 결론에 대해 아무것도 보장하지 않습니다. 다음 추론을 봅니다.</p>
+  <table class="derivation">
+    <tr><td class="step-sign"></td><td>학생들은 학교에서 공부를 한다.</td><td class="step-reason">전제</td></tr>
+    <tr><td class="step-sign"></td><td>영희는 학생이다.</td><td class="step-reason">전제</td></tr>
+    <tr><td class="step-sign">∴</td><td>영희는 학교에서 공부를 한다.</td><td class="step-reason">결론</td></tr>
+  </table>
+  <p>두 전제가 참이면 결론도 참입니다. 그러나 학교가 아닌 곳에서 공부하는 학생도 있어 첫 전제가 거짓이라면, 이 추론으로는 영희가 학교에서 공부하는지 알 수 없습니다. 추론이 말해 주는 것은 전제가 참이면 결론도 참이라는 것뿐입니다.</p>
+
+  <h3>4-2) 정당한 추론(유효추론)</h3>
+  <div class="definition">
+    <p class="definition-term">정당한 추론(유효추론, 타당한 추론, valid argument), 부당한 추론(허위추론, invalid argument)</p>
+    <p>전제가 모두 참인 모든 경우에 결론도 반드시 참인 추론을 정당한 추론이라고 합니다. 전제가 모두 참인데도 결론이 거짓인 경우가 있는 추론, 곧 전제가 참이어도 결론이 참이라는 보장이 없는 추론을 부당한 추론이라고 합니다.</p>
+  </div>
+  <p>부당한 추론은 "결론이 거짓인 추론"이 아닙니다. 부당한 추론의 결론도 우연히 참일 수 있습니다. 문제는 전제만으로는 결론이 참이라고 보장할 수 없다는 데 있습니다. 반대로 정당한 추론이라고 해서 결론이 실제로 참인 것도 아닙니다. 전제가 실제로 참일 때 결론도 참이라는 것을 보장할 뿐입니다.</p>
+  <p>진리표로 추론을 판단하는 방법은 간단합니다. 전제가 모두 참인 줄만 고르고, 그 줄들에서 결론이 모두 참인지 봅니다. 비와 우산의 두 추론으로 확인합니다. p는 "비가 온다", q는 "우산을 가지고 간다"입니다.</p>
+  <p>첫째 추론은 "비가 오면 우산을 가지고 간다. 비가 온다. 그러므로 우산을 가지고 간다", 곧 p → q, p ∴ q입니다. 표 1-15에서 두 전제 p와 p → q가 모두 참인 줄은 첫째 줄 하나뿐이고, 그 줄에서 결론 q는 참입니다. 정당한 추론입니다.</p>
+  <table class="truth">
+    <caption>표 1-15 p → q, p ∴ q의 판단</caption>
+    <thead>
+      <tr><th>전제</th><th>결론</th><th>전제</th></tr>
+      <tr><th>p</th><th>q</th><th>p → q</th></tr>
+    </thead>
+    <tbody>
+      <tr class="mark"><td>T</td><td>T</td><td>T</td></tr>
+      <tr><td>T</td><td>F</td><td>F</td></tr>
+      <tr><td>F</td><td>T</td><td>T</td></tr>
+      <tr><td>F</td><td>F</td><td>T</td></tr>
+    </tbody>
+  </table>
+  <p>둘째 추론은 "비가 오면 우산을 가지고 간다. 우산을 가지고 간다. 그러므로 비가 온다", 곧 p → q, q ∴ p입니다. 표 1-16에서 두 전제 q와 p → q가 모두 참인 줄은 첫째 줄과 셋째 줄입니다. 그런데 셋째 줄에서 결론 p는 거짓입니다. 전제가 모두 참인데 결론이 거짓인 경우가 있으므로 부당한 추론입니다. 비가 오지 않아도 우산을 가지고 갈 수 있다는 것, 곧 표 1-5의 셋째 줄이 바로 그 경우입니다. 결론 q를 긍정했다고 조건 p까지 긍정하는 이 잘못을 후건 긍정의 오류(affirming the conclusion)라고 부릅니다.</p>
+  <table class="truth">
+    <caption>표 1-16 p → q, q ∴ p의 판단</caption>
+    <thead>
+      <tr><th>결론</th><th>전제</th><th>전제</th></tr>
+      <tr><th>p</th><th>q</th><th>p → q</th></tr>
+    </thead>
+    <tbody>
+      <tr class="mark"><td>T</td><td>T</td><td>T</td></tr>
+      <tr><td>T</td><td>F</td><td>F</td></tr>
+      <tr class="mark"><td><strong>F</strong></td><td>T</td><td>T</td></tr>
+      <tr><td>F</td><td>F</td><td>T</td></tr>
+    </tbody>
+  </table>
+  <p>이 판단 방법을 하나의 명제로 옮길 수도 있습니다. 전제들을 ∧로 이어 결론과 함축으로 묶은 명제, 곧 (전제 ∧ 전제) → 결론이 항진명제이면 정당한 추론입니다. 전제가 모두 참인데 결론이 거짓인 줄이 없다는 것과, 이 함축이 거짓인 줄이 없다는 것은 같은 말이기 때문입니다. 예를 들어 [p ∧ (p → q)] → q는 항진명제이고, [q ∧ (p → q)] → p는 셋째 줄에서 거짓이므로 항진명제가 아닙니다.</p>
+
+  <h3>4-3) 논리적 추론 법칙</h3>
+  <p>정당한 추론 가운데 자주 쓰는 것을 법칙으로 정해 두면, 긴 추론도 진리표 없이 한 단계씩 따라갈 수 있습니다. 표 1-17은 대표적인 일곱 법칙과, 각 법칙이 정당하다는 것을 나타내는 항진명제입니다.</p>
+  <table class="prose-table">
+    <caption>표 1-17 논리적 추론 법칙. 오른쪽 열의 항진명제는 모두 진리표로 확인할 수 있습니다.</caption>
+    <thead><tr><th>법칙 이름</th><th>추론 꼴</th><th>대응하는 항진명제</th></tr></thead>
+    <tbody>
+      <tr><td>논리곱</td><td>p, q ∴ p ∧ q</td><td>(p ∧ q) → (p ∧ q)</td></tr>
+      <tr><td>선언적 부가<br>(가법, disjunctive addition)</td><td>p ∴ p ∨ q</td><td>p → (p ∨ q)</td></tr>
+      <tr><td>단순화(simplification)</td><td>p ∧ q ∴ p (또는 q)</td><td>(p ∧ q) → p, (p ∧ q) → q</td></tr>
+      <tr><td>긍정논법(modus ponens)</td><td>p, p → q ∴ q</td><td>[p ∧ (p → q)] → q</td></tr>
+      <tr><td>부정논법(modus tollens)</td><td>¬q, p → q ∴ ¬p</td><td>[¬q ∧ (p → q)] → ¬p</td></tr>
+      <tr><td>선언적 삼단논법, 소거<br>(disjunctive syllogism)</td><td>p ∨ q, ¬p ∴ q</td><td>[(p ∨ q) ∧ ¬p] → q</td></tr>
+      <tr><td>가설적 삼단논법, 추이<br>(hypothetical syllogism)</td><td>p → q, q → r ∴ p → r</td><td>[(p → q) ∧ (q → r)] → (p → r)</td></tr>
+    </tbody>
+  </table>
+  <p>법칙마다 따로 외울 것은 거의 없습니다. 모두 연산자의 정의에서 바로 나오고, 전제는 참으로 놓고 시작한다는 것만 기억하면 됩니다.</p>
+  <ul>
+    <li>논리곱: p와 q가 모두 참이면, ∧의 정의에 따라 p ∧ q도 참입니다. 대응하는 항진명제는 (p ∧ q) → (p ∧ q)로, 같은 식을 같은 식으로 잇는 꼴이라 따로 적을 내용이 거의 없습니다. 그래서 이 법칙에는 항진명제를 적지 않기도 합니다.</li>
+    <li>선언적 부가: p가 참이면 무엇과 ∨를 해도 참입니다. 선언(選言)은 논리합을 가리키는 말이고, 참인 명제에 논리합으로 아무 명제나 덧붙여도(부가) 참이라는 뜻입니다.</li>
+    <li>단순화: p ∧ q가 참이면 p와 q가 모두 참이므로, 그 가운데 하나만 떼어 결론으로 삼을 수 있습니다.</li>
+    <li>긍정논법: 4-2)에서 본 비와 우산의 정당한 추론입니다. 조건 p를 긍정하면 결론 q를 얻습니다.</li>
+    <li>부정논법: ¬q가 참이니 q는 거짓입니다. p → q의 진리표에서 q가 거짓인 줄은 둘째 줄과 넷째 줄인데, p → q가 참인 것은 넷째 줄뿐이고 거기서 p는 거짓입니다. 그래서 ¬p입니다. 비와 우산으로 말하면, 비가 오면 우산을 가지고 가는데 우산을 가지고 가지 않았다면 비가 오지 않은 것입니다. 부정논법은 1-5)의 대우로도 이해됩니다. p → q는 대우 ¬q → ¬p와 동치이므로, 부정논법은 대우에 긍정논법을 쓴 것과 같습니다.</li>
+    <li>선언적 삼단논법: p ∨ q가 참인데 p가 거짓이면, 남은 q가 참이어야 합니다. 둘 가운데 하나를 지워 없앤다고 해서 소거라고도 합니다.</li>
+    <li>가설적 삼단논법: p이면 q이고 q이면 r이면, p이면 r입니다. 흔히 삼단논법이라고 부르는 것입니다. 함축이 p에서 q로, q에서 r로 옮아 가므로 추이(推移)라고도 합니다.</li>
+  </ul>
+  <p>법칙과 닮았지만 정당하지 않은 추론도 있습니다. p → q, q ∴ p(후건 긍정의 오류)는 4-2)에서 보았습니다. p → q, ¬p ∴ ¬q도 정당하지 않습니다. p가 F, q가 T인 줄에서 전제는 모두 참인데 결론 ¬q는 거짓입니다. 비가 오지 않았다고 해서 우산을 가지고 가지 않았다고 할 수는 없습니다. 이 잘못을 전건 부정의 오류(denying the hypothesis)라고 부릅니다. 후건 긍정은 역 q → p를, 전건 부정은 이 ¬p → ¬q를 원래 명제처럼 쓴 것입니다. 1-5)에서 보았듯이 역과 이는 원래 명제와 동치가 아니므로 이런 추론은 정당하지 않습니다. 정당한 것은 원래 명제를 그대로 쓰는 긍정논법과, 대우를 쓰는 부정논법입니다.</p>
+
+  <div class="example">
+    <p class="example-title">예제 1-30</p>
+    <p>논리적 추론 법칙을 이용하여 다음 추론의 결론이 참인지 판별하시오.</p>
+    <table class="derivation">
+      <tr><td class="step-sign">A</td><td>(¬p ∨ ¬q) → ¬r</td><td class="step-reason">전제</td></tr>
+      <tr><td class="step-sign">B</td><td>¬r → ¬s</td><td class="step-reason">전제</td></tr>
+      <tr><td class="step-sign">C</td><td>s</td><td class="step-reason">전제</td></tr>
+      <tr><td class="step-sign">∴</td><td>q</td><td class="step-reason">결론</td></tr>
+    </table>
+    <p class="solution-label">풀이</p>
+    <p>전제 A, B, C를 모두 참으로 놓고, 법칙으로 한 단계씩 새 참인 명제를 얻어 결론 q에 닿는지 봅니다.</p>
+    <p>A의 결론 ¬r이 B의 조건이므로, 두 함축을 가설적 삼단논법으로 이을 수 있습니다. 그러면 D: (¬p ∨ ¬q) → ¬s를 얻습니다. 다음으로 C는 s가 참이라는 것이고, s는 이중 부정법칙으로 ¬(¬s)와 동치입니다. 곧 D의 결론 ¬s가 거짓이라는 것이므로, D와 C에 부정논법을 쓰면 D의 조건을 부정한 E: ¬(¬p ∨ ¬q)를 얻습니다. E는 괄호 전체에 ¬가 걸려 있으니 드모르간의 법칙으로 풀고 이중 부정법칙을 쓰면 F: p ∧ q입니다. 마지막으로 F에 단순화를 쓰면 q가 나옵니다.</p>
+    <table class="derivation">
+      <tr><td class="step-sign">D</td><td>(¬p ∨ ¬q) → ¬s</td><td class="step-reason">A, B에 가설적 삼단논법</td></tr>
+      <tr><td class="step-sign">E</td><td>¬(¬p ∨ ¬q)</td><td class="step-reason">D, C에 부정논법</td></tr>
+      <tr><td class="step-sign">F</td><td>p ∧ q</td><td class="step-reason">E에 드모르간의 법칙, 이중 부정법칙</td></tr>
+      <tr><td class="step-sign">∴</td><td>q</td><td class="step-reason">F에 단순화</td></tr>
+    </table>
+    <p>전제 A, B, C가 모두 참이면 결론 q는 반드시 참이므로, 이 추론은 정당한 추론입니다. 풀이에서 추론 법칙(가설적 삼단논법, 부정논법, 단순화)과 2절의 동치 법칙(드모르간의 법칙, 이중 부정법칙)을 함께 썼다는 점을 눈여겨보세요. 동치 법칙은 명제를 같은 값의 다른 꼴로 바꾸고, 추론 법칙은 참인 명제에서 새 참인 명제로 나아갑니다.</p>
+  </div>
+</section>
+
+<section class="looking-back">
+  <h2>장을 마치며</h2>
+  <p>이 장은 참과 거짓, 두 값만 가지는 명제에서 출발했습니다. 논리 연산자로 명제를 엮고 진리표로 그 값을 계산했습니다. 함축과 역, 이, 대우를 진리표로 견주다 보니 생김새는 다른데 값이 늘 같은 짝이 나타났고, 이것이 논리적 동치였습니다. 진리표로 줄마다 확인하던 동치를 이제는 법칙 몇 개로 증명할 수 있습니다.</p>
+  <p>3절의 한정자는 변수가 들어 있어 그대로는 명제가 아니던 문장까지 명제로 다루게 해 주었습니다. 한정자를 부정하는 방법이 드모르간의 법칙에서 나왔듯이, 뒤 절은 앞 절의 도구를 그대로 씁니다. 4절의 예제 1-30에서는 동치 법칙과 추론 법칙이 함께 쓰였습니다. 동치 법칙이 같은 값을 다른 꼴로 바꾸는 도구라면, 추론 법칙은 참에서 참으로 옮아 가는 도구입니다.</p>
+  <p>참인 전제에서 추론 법칙으로 결론을 끌어내는 일을 체계적으로 하는 것이 다음 장의 증명입니다. p → q를 직접 보이기 어려울 때 그 대우 ¬q → ¬p를 보이는 대우증명법도, 1-5)에서 확인한 "함축과 대우는 늘 동치"라는 사실 위에 서 있습니다.</p>
+</section>
+
+<section class="recall">
+  <h2>떠올려 보기</h2>
+  <ol>
+    <li>명제의 정의는 무엇입니까? \(1 + 1 = 3\)은 명제입니까?</li>
+    <li>p ∨ q와 p ⊕ q는 진리표의 어느 줄에서 다릅니까?</li>
+    <li>¬p ∧ q와 ¬(p ∧ q)는 같은 명제입니까? 우선순위로 설명해 보세요.</li>
+    <li>p → q가 거짓이 되는 경우는 하나뿐입니다. 어느 경우입니까? p가 거짓일 때 p → q가 참인 까닭은 무엇입니까?</li>
+    <li>p ⇒ q일 때 충분조건과 필요조건은 각각 무엇입니까? 진리집합 P와 Q는 어떤 관계입니까?</li>
+    <li>역과 대우 가운데 원래 명제와 진릿값이 늘 같은 것은 무엇입니까?</li>
+    <li>p ≡ q는 무슨 뜻입니까? 두 명제가 동치임을 보이는 두 가지 방법은 무엇입니까?</li>
+    <li>분배법칙 p ∨ (q ∧ r) ≡ (p ∨ q) ∧ (p ∨ r)를 더하기와 곱하기로 옮기면 왜 성립하지 않습니까?</li>
+    <li>명제함수 \(P(x)\)가 명제가 되는 두 가지 길은 무엇입니까?</li>
+    <li>\(\forall x\,P(x)\)가 거짓임을 보이려면 무엇을 찾으면 됩니까? \(\neg\forall x\,P(x)\)와 동치인 명제는 무엇입니까?</li>
+    <li>실수에서 \(P(x, y)\)가 \(x^2 &lt; y^2\)일 때 \(\forall x\,\exists y\,P(x, y)\)와 \(\exists y\,\forall x\,P(x, y)\)의 진릿값은 각각 무엇입니까?</li>
+    <li>정당한 추론이란 무엇입니까? p → q, q ∴ p가 정당하지 않은 까닭은 무엇입니까?</li>
+  </ol>
+</section>
+
+<section class="answers">
+  <h2>짧은 답</h2>
+  <ol>
+    <li>참인지 거짓인지를 구분할 수 있는 문장이나 수식입니다. \(1 + 1 = 3\)은 거짓이라고 분명히 구분되므로 거짓인 명제입니다.</li>
+    <li>p와 q가 모두 참인 첫째 줄에서만 다릅니다. p ∨ q는 T, p ⊕ q는 F입니다.</li>
+    <li>다릅니다. ¬를 ∧보다 먼저 계산하므로 ¬p ∧ q는 (¬p) ∧ q입니다. p가 T, q가 F이면 ¬p ∧ q는 F, ¬(p ∧ q)는 T입니다.</li>
+    <li>p가 참이고 q가 거짓인 경우뿐입니다. p → q는 p가 참일 때에 대해서만 약속하므로, p가 거짓이면 약속이 깨질 수 없어 참으로 칩니다.</li>
+    <li>p는 q의 충분조건, q는 p의 필요조건입니다. 진리집합은 P ⊂ Q입니다.</li>
+    <li>대우 ¬q → ¬p입니다. 역 q → p는 원래 명제와 진릿값이 다를 수 있습니다.</li>
+    <li>p와 q의 진릿값이 모든 경우에 같다는 뜻입니다. 진리표의 열을 견주거나, 동치 법칙으로 한쪽 식을 다른 쪽 식으로 바꾸어 보입니다.</li>
+    <li>T를 1, F를 0으로 놓으면 p = q = r = 1일 때 1 + 1 × 1 = 2, (1 + 1) × (1 + 1) = 4로 다릅니다. 논리에서는 p ∧ p ≡ p(멱등법칙)이고 T와 ∨를 하면 T(지배법칙)여서 성립하지만, 산수에서는 1 + 1이 2가 되기 때문입니다.</li>
+    <li>변수에 논의영역의 값을 넣거나, ∀나 ∃ 같은 한정자를 붙이는 것입니다.</li>
+    <li>\(P(x)\)가 거짓인 \(x\) 하나, 곧 반례를 찾으면 됩니다. \(\neg\forall x\,P(x) \equiv \exists x\,\neg P(x)\)입니다.</li>
+    <li>\(\forall x\,\exists y\,P(x, y)\)는 참입니다(\(y = |x| + 1\)로 고름). \(\exists y\,\forall x\,P(x, y)\)는 거짓입니다(어떤 \(y\)를 골라도 \(x = y\)에서 막힘).</li>
+    <li>전제가 모두 참인 모든 경우에 결론도 반드시 참인 추론입니다. p가 F, q가 T이면 두 전제가 모두 참인데 결론 p가 거짓이기 때문입니다.</li>
+  </ol>
+</section>
+
+</body>
+</html>
