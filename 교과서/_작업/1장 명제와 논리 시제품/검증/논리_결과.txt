@@ -1,0 +1,448 @@
+===== 표 1-1 연산자 넷, 표 1-3 항진과 모순 =====
+### 성립해야 함: table ¬p p ∧ q p ∨ q p ⊕ q
+p | q | ¬p | p ∧ q | p ∨ q | p ⊕ q
+--+---+----+-------+-------+------
+T | T | F  |   T   |   T   |   F  
+T | F | F  |   F   |   T   |   T  
+F | T | T  |   F   |   T   |   T  
+F | F | T  |   F   |   F   |   F  
+
+¬p: 사건명제(contingency)
+p ∧ q: 사건명제(contingency)
+p ∨ q: 사건명제(contingency)
+p ⊕ q: 사건명제(contingency)
+
+### 성립해야 함: table p ∨ ¬p p ∧ ¬p
+p | p ∨ ¬p | p ∧ ¬p
+--+--------+-------
+T |   T    |   F   
+F |   T    |   F   
+
+p ∨ ¬p: 항진명제(tautology)
+p ∧ ¬p: 모순명제(contradiction)
+
+===== 1-3 우선순위의 함정 =====
+### 성립하지 않아야 함: equiv (¬p) ∧ q ¬(p ∧ q)
+동치가 아닙니다: (¬p) ∧ q 와 ¬(p ∧ q)
+  반례 p=T, q=F: 왼쪽 F, 오른쪽 T
+
+===== 예제 1-7 =====
+### 성립해야 함: table p ∧ q ¬p ¬(p ∧ q) ¬p ∨ q (¬(p ∧ q)) ⊕ (¬p ∨ q)
+p | q | p ∧ q | ¬p | ¬(p ∧ q) | ¬p ∨ q | (¬(p ∧ q)) ⊕ (¬p ∨ q)
+--+---+-------+----+----------+--------+----------------------
+T | T |   T   | F  |    F     |   T    |           T          
+T | F |   F   | F  |    T     |   F    |           T          
+F | T |   F   | T  |    T     |   T    |           F          
+F | F |   F   | T  |    T     |   T    |           F          
+
+p ∧ q: 사건명제(contingency)
+¬p: 사건명제(contingency)
+¬(p ∧ q): 사건명제(contingency)
+¬p ∨ q: 사건명제(contingency)
+(¬(p ∧ q)) ⊕ (¬p ∨ q): 사건명제(contingency)
+
+### 성립해야 함: equiv (¬(p ∧ q)) ⊕ (¬p ∨ q) p
+동치입니다: (¬(p ∧ q)) ⊕ (¬p ∨ q) ≡ p
+
+===== 1-4 함축, 쌍방조건, 번호 없는 예제 =====
+### 성립해야 함: table p → q p ↔ q
+p | q | p → q | p ↔ q
+--+---+-------+------
+T | T |   T   |   T  
+T | F |   F   |   F  
+F | T |   T   |   F  
+F | F |   T   |   T  
+
+p → q: 사건명제(contingency)
+p ↔ q: 사건명제(contingency)
+
+### 성립해야 함: table p → q q → p (p → q) ∧ (q → p) p ↔ q
+p | q | p → q | q → p | (p → q) ∧ (q → p) | p ↔ q
+--+---+-------+-------+-------------------+------
+T | T |   T   |   T   |         T         |   T  
+T | F |   F   |   T   |         F         |   F  
+F | T |   T   |   F   |         F         |   F  
+F | F |   T   |   T   |         T         |   T  
+
+p → q: 사건명제(contingency)
+q → p: 사건명제(contingency)
+(p → q) ∧ (q → p): 사건명제(contingency)
+p ↔ q: 사건명제(contingency)
+
+### 성립해야 함: equiv (p → q) ∧ (q → p) p ↔ q
+동치입니다: (p → q) ∧ (q → p) ≡ p ↔ q
+
+===== 1-5 역, 이, 대우와 정리: 함축과 대우 =====
+### 성립해야 함: table p → q q → p ¬p → ¬q ¬q → ¬p
+p | q | p → q | q → p | ¬p → ¬q | ¬q → ¬p
+--+---+-------+-------+---------+--------
+T | T |   T   |   T   |    T    |    T   
+T | F |   F   |   T   |    T    |    F   
+F | T |   T   |   F   |    F    |    T   
+F | F |   T   |   T   |    T    |    T   
+
+p → q: 사건명제(contingency)
+q → p: 사건명제(contingency)
+¬p → ¬q: 사건명제(contingency)
+¬q → ¬p: 사건명제(contingency)
+
+### 성립해야 함: equiv p → q ¬q → ¬p
+동치입니다: p → q ≡ ¬q → ¬p
+
+### 성립해야 함: equiv q → p ¬p → ¬q
+동치입니다: q → p ≡ ¬p → ¬q
+
+### 성립하지 않아야 함: equiv p → q q → p
+동치가 아닙니다: p → q 와 q → p
+  반례 p=T, q=F: 왼쪽 F, 오른쪽 T
+
+### 성립하지 않아야 함: equiv p → q ¬p → ¬q
+동치가 아닙니다: p → q 와 ¬p → ¬q
+  반례 p=T, q=F: 왼쪽 F, 오른쪽 T
+
+===== 1-5 예제: '~일 때에만' (p 비가 온다, q 우산을 가지고 간다) =====
+### 성립해야 함: equiv ¬p → ¬q q → p
+동치입니다: ¬p → ¬q ≡ q → p
+
+### 성립하지 않아야 함: equiv ¬p → ¬q p → q
+동치가 아닙니다: ¬p → ¬q 와 p → q
+  반례 p=T, q=F: 왼쪽 T, 오른쪽 F
+
+===== 2-1 동치와 쌍방조건의 항진 =====
+### 성립해야 함: table (p → q) ↔ (¬q → ¬p)
+p | q | (p → q) ↔ (¬q → ¬p)
+--+---+--------------------
+T | T |          T         
+T | F |          T         
+F | T |          T         
+F | F |          T         
+
+(p → q) ↔ (¬q → ¬p): 항진명제(tautology)
+
+===== 예제 1-19 =====
+### 성립해야 함: table ¬p p → q ¬p ∨ q ¬q ¬q → ¬p
+p | q | ¬p | p → q | ¬p ∨ q | ¬q | ¬q → ¬p
+--+---+----+-------+--------+----+--------
+T | T | F  |   T   |   T    | F  |    T   
+T | F | F  |   F   |   F    | T  |    F   
+F | T | T  |   T   |   T    | F  |    T   
+F | F | T  |   T   |   T    | T  |    T   
+
+¬p: 사건명제(contingency)
+p → q: 사건명제(contingency)
+¬p ∨ q: 사건명제(contingency)
+¬q: 사건명제(contingency)
+¬q → ¬p: 사건명제(contingency)
+
+### 성립해야 함: chain p → q ¬p ∨ q ¬q → ¬p
+1단계 성립: p → q ≡ ¬p ∨ q
+2단계 성립: ¬p ∨ q ≡ ¬q → ¬p
+
+### 성립해야 함: chain ¬q → ¬p ¬(¬q) ∨ ¬p q ∨ ¬p ¬p ∨ q
+1단계 성립: ¬q → ¬p ≡ ¬(¬q) ∨ ¬p
+2단계 성립: ¬(¬q) ∨ ¬p ≡ q ∨ ¬p
+3단계 성립: q ∨ ¬p ≡ ¬p ∨ q
+
+===== 표 1-10 동치 법칙 =====
+### 성립해야 함: equiv p ∧ T p
+동치입니다: p ∧ T ≡ p
+
+### 성립해야 함: equiv p ∨ F p
+동치입니다: p ∨ F ≡ p
+
+### 성립해야 함: equiv p ∧ F F
+동치입니다: p ∧ F ≡ F
+
+### 성립해야 함: equiv p ∨ T T
+동치입니다: p ∨ T ≡ T
+
+### 성립해야 함: equiv p ∧ ¬p F
+동치입니다: p ∧ ¬p ≡ F
+
+### 성립해야 함: equiv p ∨ ¬p T
+동치입니다: p ∨ ¬p ≡ T
+
+### 성립해야 함: equiv ¬(¬p) p
+동치입니다: ¬(¬p) ≡ p
+
+### 성립해야 함: equiv p ∧ p p
+동치입니다: p ∧ p ≡ p
+
+### 성립해야 함: equiv p ∨ p p
+동치입니다: p ∨ p ≡ p
+
+### 성립해야 함: equiv p ∧ q q ∧ p
+동치입니다: p ∧ q ≡ q ∧ p
+
+### 성립해야 함: equiv p ∨ q q ∨ p
+동치입니다: p ∨ q ≡ q ∨ p
+
+### 성립해야 함: equiv (p ∧ q) ∧ r p ∧ (q ∧ r)
+동치입니다: (p ∧ q) ∧ r ≡ p ∧ (q ∧ r)
+
+### 성립해야 함: equiv (p ∨ q) ∨ r p ∨ (q ∨ r)
+동치입니다: (p ∨ q) ∨ r ≡ p ∨ (q ∨ r)
+
+### 성립해야 함: equiv p ∨ (q ∧ r) (p ∨ q) ∧ (p ∨ r)
+동치입니다: p ∨ (q ∧ r) ≡ (p ∨ q) ∧ (p ∨ r)
+
+### 성립해야 함: equiv p ∧ (q ∨ r) (p ∧ q) ∨ (p ∧ r)
+동치입니다: p ∧ (q ∨ r) ≡ (p ∧ q) ∨ (p ∧ r)
+
+### 성립해야 함: equiv ¬(p ∧ q) ¬p ∨ ¬q
+동치입니다: ¬(p ∧ q) ≡ ¬p ∨ ¬q
+
+### 성립해야 함: equiv ¬(p ∨ q) ¬p ∧ ¬q
+동치입니다: ¬(p ∨ q) ≡ ¬p ∧ ¬q
+
+### 성립해야 함: equiv p ∧ (p ∨ q) p
+동치입니다: p ∧ (p ∨ q) ≡ p
+
+### 성립해야 함: equiv p ∨ (p ∧ q) p
+동치입니다: p ∨ (p ∧ q) ≡ p
+
+### 성립해야 함: equiv p → q ¬p ∨ q
+동치입니다: p → q ≡ ¬p ∨ q
+
+===== 증명 블록: 드모르간 진리표, 변수 하나짜리 법칙 표 =====
+### 성립해야 함: table p ∧ q ¬(p ∧ q) ¬p ∨ ¬q p ∨ q ¬(p ∨ q) ¬p ∧ ¬q
+p | q | p ∧ q | ¬(p ∧ q) | ¬p ∨ ¬q | p ∨ q | ¬(p ∨ q) | ¬p ∧ ¬q
+--+---+-------+----------+---------+-------+----------+--------
+T | T |   T   |    F     |    F    |   T   |    F     |    F   
+T | F |   F   |    T     |    T    |   T   |    F     |    F   
+F | T |   F   |    T     |    T    |   T   |    F     |    F   
+F | F |   F   |    T     |    T    |   F   |    T     |    T   
+
+p ∧ q: 사건명제(contingency)
+¬(p ∧ q): 사건명제(contingency)
+¬p ∨ ¬q: 사건명제(contingency)
+p ∨ q: 사건명제(contingency)
+¬(p ∨ q): 사건명제(contingency)
+¬p ∧ ¬q: 사건명제(contingency)
+
+### 성립해야 함: table p ∧ T p ∨ F ¬(¬p) p ∧ p p ∨ p p ∧ F p ∧ ¬p p ∨ T p ∨ ¬p
+p | p ∧ T | p ∨ F | ¬(¬p) | p ∧ p | p ∨ p | p ∧ F | p ∧ ¬p | p ∨ T | p ∨ ¬p
+--+-------+-------+-------+-------+-------+-------+--------+-------+-------
+T |   T   |   T   |   T   |   T   |   T   |   F   |   F    |   T   |   T   
+F |   F   |   F   |   F   |   F   |   F   |   F   |   F    |   T   |   T   
+
+p ∧ T: 사건명제(contingency)
+p ∨ F: 사건명제(contingency)
+¬(¬p): 사건명제(contingency)
+p ∧ p: 사건명제(contingency)
+p ∨ p: 사건명제(contingency)
+p ∧ F: 모순명제(contradiction)
+p ∧ ¬p: 모순명제(contradiction)
+p ∨ T: 항진명제(tautology)
+p ∨ ¬p: 항진명제(tautology)
+
+===== 증명 블록: p가 T일 때와 F일 때로 나누기 =====
+### 성립해야 함: equiv T ∧ (q ∨ r) (T ∧ q) ∨ (T ∧ r)
+동치입니다: T ∧ (q ∨ r) ≡ (T ∧ q) ∨ (T ∧ r)
+
+### 성립해야 함: equiv F ∧ (q ∨ r) (F ∧ q) ∨ (F ∧ r)
+동치입니다: F ∧ (q ∨ r) ≡ (F ∧ q) ∨ (F ∧ r)
+
+### 성립해야 함: equiv T ∨ (q ∧ r) (T ∨ q) ∧ (T ∨ r)
+동치입니다: T ∨ (q ∧ r) ≡ (T ∨ q) ∧ (T ∨ r)
+
+### 성립해야 함: equiv F ∨ (q ∧ r) (F ∨ q) ∧ (F ∨ r)
+동치입니다: F ∨ (q ∧ r) ≡ (F ∨ q) ∧ (F ∨ r)
+
+### 성립해야 함: equiv (F ∨ q) ∧ (F ∨ r) q ∧ r
+동치입니다: (F ∨ q) ∧ (F ∨ r) ≡ q ∧ r
+
+### 성립해야 함: equiv (T ∧ q) ∨ (T ∧ r) q ∨ r
+동치입니다: (T ∧ q) ∨ (T ∧ r) ≡ q ∨ r
+
+### 성립해야 함: equiv T ∧ (T ∨ q) T
+동치입니다: T ∧ (T ∨ q) ≡ T
+
+### 성립해야 함: equiv F ∧ (F ∨ q) F
+동치입니다: F ∧ (F ∨ q) ≡ F
+
+### 성립해야 함: equiv T ∨ (T ∧ q) T
+동치입니다: T ∨ (T ∧ q) ≡ T
+
+### 성립해야 함: equiv F ∨ (F ∧ q) F
+동치입니다: F ∨ (F ∧ q) ≡ F
+
+===== 2-2 결합법칙과 드모르간의 함정 =====
+### 성립하지 않아야 함: equiv (p ∧ q) ∨ r p ∧ (q ∨ r)
+동치가 아닙니다: (p ∧ q) ∨ r 와 p ∧ (q ∨ r)
+  반례 p=F, q=T, r=T: 왼쪽 T, 오른쪽 F
+
+### 성립하지 않아야 함: equiv ¬(p ∧ q) ¬p ∧ ¬q
+동치가 아닙니다: ¬(p ∧ q) 와 ¬p ∧ ¬q
+  반례 p=T, q=F: 왼쪽 T, 오른쪽 F
+
+===== 2-2 분배법칙의 ∨ 쪽이 성립하는 까닭 =====
+### 성립해야 함: chain (p ∨ q) ∧ (p ∨ r) (p ∧ p) ∨ (p ∧ r) ∨ (q ∧ p) ∨ (q ∧ r) p ∨ (p ∧ r) ∨ (p ∧ q) ∨ (q ∧ r) (p ∧ (T ∨ r ∨ q)) ∨ (q ∧ r) (p ∧ T) ∨ (q ∧ r) p ∨ (q ∧ r)
+1단계 성립: (p ∨ q) ∧ (p ∨ r) ≡ (p ∧ p) ∨ (p ∧ r) ∨ (q ∧ p) ∨ (q ∧ r)
+2단계 성립: (p ∧ p) ∨ (p ∧ r) ∨ (q ∧ p) ∨ (q ∧ r) ≡ p ∨ (p ∧ r) ∨ (p ∧ q) ∨ (q ∧ r)
+3단계 성립: p ∨ (p ∧ r) ∨ (p ∧ q) ∨ (q ∧ r) ≡ (p ∧ (T ∨ r ∨ q)) ∨ (q ∧ r)
+4단계 성립: (p ∧ (T ∨ r ∨ q)) ∨ (q ∧ r) ≡ (p ∧ T) ∨ (q ∧ r)
+5단계 성립: (p ∧ T) ∨ (q ∧ r) ≡ p ∨ (q ∧ r)
+
+===== 예제 1-20 =====
+### 성립해야 함: chain ¬(p ∨ (¬p ∧ q)) ¬p ∧ ¬(¬p ∧ q) ¬p ∧ (¬(¬p) ∨ ¬q) ¬p ∧ (p ∨ ¬q) (¬p ∧ p) ∨ (¬p ∧ ¬q) F ∨ (¬p ∧ ¬q) ¬p ∧ ¬q
+1단계 성립: ¬(p ∨ (¬p ∧ q)) ≡ ¬p ∧ ¬(¬p ∧ q)
+2단계 성립: ¬p ∧ ¬(¬p ∧ q) ≡ ¬p ∧ (¬(¬p) ∨ ¬q)
+3단계 성립: ¬p ∧ (¬(¬p) ∨ ¬q) ≡ ¬p ∧ (p ∨ ¬q)
+4단계 성립: ¬p ∧ (p ∨ ¬q) ≡ (¬p ∧ p) ∨ (¬p ∧ ¬q)
+5단계 성립: (¬p ∧ p) ∨ (¬p ∧ ¬q) ≡ F ∨ (¬p ∧ ¬q)
+6단계 성립: F ∨ (¬p ∧ ¬q) ≡ ¬p ∧ ¬q
+
+### 성립해야 함: table ¬p ∧ q p ∨ (¬p ∧ q) ¬(p ∨ (¬p ∧ q)) ¬p ∧ ¬q
+p | q | ¬p ∧ q | p ∨ (¬p ∧ q) | ¬(p ∨ (¬p ∧ q)) | ¬p ∧ ¬q
+--+---+--------+--------------+-----------------+--------
+T | T |   F    |      T       |        F        |    F   
+T | F |   F    |      T       |        F        |    F   
+F | T |   T    |      T       |        F        |    F   
+F | F |   F    |      F       |        T        |    T   
+
+¬p ∧ q: 사건명제(contingency)
+p ∨ (¬p ∧ q): 사건명제(contingency)
+¬(p ∨ (¬p ∧ q)): 사건명제(contingency)
+¬p ∧ ¬q: 사건명제(contingency)
+
+===== 예제 1-21 =====
+### 성립해야 함: chain (p → q) ∧ (p → ¬q) (¬p ∨ q) ∧ (¬p ∨ ¬q) ¬p ∨ (q ∧ ¬q) ¬p ∨ F ¬p
+1단계 성립: (p → q) ∧ (p → ¬q) ≡ (¬p ∨ q) ∧ (¬p ∨ ¬q)
+2단계 성립: (¬p ∨ q) ∧ (¬p ∨ ¬q) ≡ ¬p ∨ (q ∧ ¬q)
+3단계 성립: ¬p ∨ (q ∧ ¬q) ≡ ¬p ∨ F
+4단계 성립: ¬p ∨ F ≡ ¬p
+
+===== 예제: 함축의 부정 =====
+### 성립해야 함: chain ¬(p → q) ¬(¬p ∨ q) ¬(¬p) ∧ ¬q p ∧ ¬q
+1단계 성립: ¬(p → q) ≡ ¬(¬p ∨ q)
+2단계 성립: ¬(¬p ∨ q) ≡ ¬(¬p) ∧ ¬q
+3단계 성립: ¬(¬p) ∧ ¬q ≡ p ∧ ¬q
+
+### 성립하지 않아야 함: equiv ¬(p → q) ¬p → ¬q
+동치가 아닙니다: ¬(p → q) 와 ¬p → ¬q
+  반례 p=T, q=T: 왼쪽 F, 오른쪽 T
+
+### 성립해야 함: table p → q ¬(p → q) p ∧ ¬q
+p | q | p → q | ¬(p → q) | p ∧ ¬q
+--+---+-------+----------+-------
+T | T |   T   |    F     |   F   
+T | F |   F   |    T     |   T   
+F | T |   T   |    F     |   F   
+F | F |   T   |    F     |   F   
+
+p → q: 사건명제(contingency)
+¬(p → q): 사건명제(contingency)
+p ∧ ¬q: 사건명제(contingency)
+
+===== 4-2 정당한 추론과 부당한 추론 =====
+### 성립해야 함: argument p → q p --conclusion q
+타당한 추론입니다: p → q, p ⊢ q
+
+### 성립하지 않아야 함: argument p → q q --conclusion p
+부당한 추론입니다: p → q, q 로부터 p
+  전제가 모두 참인데 결론이 거짓인 경우: p=F, q=T
+
+### 성립하지 않아야 함: argument p → q ¬p --conclusion ¬q
+부당한 추론입니다: p → q, ¬p 로부터 ¬q
+  전제가 모두 참인데 결론이 거짓인 경우: p=F, q=T
+
+### 성립해야 함: table (p ∧ (p → q)) → q (q ∧ (p → q)) → p
+p | q | (p ∧ (p → q)) → q | (q ∧ (p → q)) → p
+--+---+-------------------+------------------
+T | T |         T         |         T        
+T | F |         T         |         T        
+F | T |         T         |         F        
+F | F |         T         |         T        
+
+(p ∧ (p → q)) → q: 항진명제(tautology)
+(q ∧ (p → q)) → p: 사건명제(contingency)
+
+===== 4-3 논리적 추론 법칙 일곱 가지와 대응하는 항진명제 =====
+### 성립해야 함: argument p q --conclusion p ∧ q
+타당한 추론입니다: p, q ⊢ p ∧ q
+
+### 성립해야 함: argument p --conclusion p ∨ q
+타당한 추론입니다: p ⊢ p ∨ q
+
+### 성립해야 함: argument p ∧ q --conclusion p
+타당한 추론입니다: p ∧ q ⊢ p
+
+### 성립해야 함: argument p ∧ q --conclusion q
+타당한 추론입니다: p ∧ q ⊢ q
+
+### 성립해야 함: argument p p → q --conclusion q
+타당한 추론입니다: p, p → q ⊢ q
+
+### 성립해야 함: argument ¬q p → q --conclusion ¬p
+타당한 추론입니다: ¬q, p → q ⊢ ¬p
+
+### 성립해야 함: argument p ∨ q ¬p --conclusion q
+타당한 추론입니다: p ∨ q, ¬p ⊢ q
+
+### 성립해야 함: argument p → q q → r --conclusion p → r
+타당한 추론입니다: p → q, q → r ⊢ p → r
+
+### 성립해야 함: table (p ∧ q) → (p ∧ q) p → (p ∨ q) (p ∧ q) → p (p ∧ q) → q
+p | q | (p ∧ q) → (p ∧ q) | p → (p ∨ q) | (p ∧ q) → p | (p ∧ q) → q
+--+---+-------------------+-------------+-------------+------------
+T | T |         T         |      T      |      T      |      T     
+T | F |         T         |      T      |      T      |      T     
+F | T |         T         |      T      |      T      |      T     
+F | F |         T         |      T      |      T      |      T     
+
+(p ∧ q) → (p ∧ q): 항진명제(tautology)
+p → (p ∨ q): 항진명제(tautology)
+(p ∧ q) → p: 항진명제(tautology)
+(p ∧ q) → q: 항진명제(tautology)
+
+### 성립해야 함: table (p ∧ (p → q)) → q (¬q ∧ (p → q)) → ¬p ((p ∨ q) ∧ ¬p) → q
+p | q | (p ∧ (p → q)) → q | (¬q ∧ (p → q)) → ¬p | ((p ∨ q) ∧ ¬p) → q
+--+---+-------------------+---------------------+-------------------
+T | T |         T         |          T          |         T         
+T | F |         T         |          T          |         T         
+F | T |         T         |          T          |         T         
+F | F |         T         |          T          |         T         
+
+(p ∧ (p → q)) → q: 항진명제(tautology)
+(¬q ∧ (p → q)) → ¬p: 항진명제(tautology)
+((p ∨ q) ∧ ¬p) → q: 항진명제(tautology)
+
+### 성립해야 함: table ((p → q) ∧ (q → r)) → (p → r)
+p | q | r | ((p → q) ∧ (q → r)) → (p → r)
+--+---+---+------------------------------
+T | T | T |               T              
+T | T | F |               T              
+T | F | T |               T              
+T | F | F |               T              
+F | T | T |               T              
+F | T | F |               T              
+F | F | T |               T              
+F | F | F |               T              
+
+((p → q) ∧ (q → r)) → (p → r): 항진명제(tautology)
+
+### 성립해야 함: argument ¬q → ¬p ¬q --conclusion ¬p
+타당한 추론입니다: ¬q → ¬p, ¬q ⊢ ¬p
+
+===== 예제 1-30 =====
+### 성립해야 함: argument (¬p ∨ ¬q) → ¬r ¬r → ¬s s --conclusion q
+타당한 추론입니다: (¬p ∨ ¬q) → ¬r, ¬r → ¬s, s ⊢ q
+
+### 성립해야 함: argument (¬p ∨ ¬q) → ¬r ¬r → ¬s --conclusion (¬p ∨ ¬q) → ¬s
+타당한 추론입니다: (¬p ∨ ¬q) → ¬r, ¬r → ¬s ⊢ (¬p ∨ ¬q) → ¬s
+
+### 성립해야 함: argument (¬p ∨ ¬q) → ¬s s --conclusion ¬(¬p ∨ ¬q)
+타당한 추론입니다: (¬p ∨ ¬q) → ¬s, s ⊢ ¬(¬p ∨ ¬q)
+
+### 성립해야 함: chain s ¬(¬s)
+1단계 성립: s ≡ ¬(¬s)
+
+### 성립해야 함: chain ¬(¬p ∨ ¬q) ¬(¬p) ∧ ¬(¬q) p ∧ q
+1단계 성립: ¬(¬p ∨ ¬q) ≡ ¬(¬p) ∧ ¬(¬q)
+2단계 성립: ¬(¬p) ∧ ¬(¬q) ≡ p ∧ q
+
+### 성립해야 함: argument p ∧ q --conclusion q
+타당한 추론입니다: p ∧ q ⊢ q
+
+기대와 다른 결과: 0

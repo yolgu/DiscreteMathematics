@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>{{장 이름}}</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body, {delimiters: [{left: '\\[', right: '\\]', display: true}, {left: '\\(', right: '\\)', display: false}], throwOnError: false, errorColor: '#cc0001', output: 'html'})"></script>
+<!-- errorColor는 print_pdf.py가 그리지 못한 수식을 찾는 표지다. 바꾸지 않는다. -->
+<link rel="stylesheet" href="textbook.css">
+</head>
+<body>
+
+<!-- 과목의 첫 장일 때만 둔다. 아니면 이 section을 통째로 지운다. -->
+<section class="preface">
+  <h1>들어가며</h1>
+  <p>{{들어가며 본문}}</p>
+</section>
+
+<header class="chapter-opener">
+  <p class="chapter-number">{{N장}}</p>
+  <h1>{{장 제목}}</h1>
+</header>
+
+<section class="chapter-map">
+  <p>{{이 장이 답하려는 물음과 절들이 이어지는 방식}}</p>
+</section>
+
+<!-- 슬라이드의 절마다 하나씩. 제목은 슬라이드에 적힌 그대로. -->
+<section>
+  <h2>{{절 제목}}</h2>
+  <p>{{본문}}</p>
+</section>
+
+<section class="looking-back">
+  <h2>장을 마치며</h2>
+  <p>{{부분을 다시 전체로 묶는 짧은 글}}</p>
+</section>
+
+<section class="recall">
+  <h2>떠올려 보기</h2>
+  <ol>
+    <li>{{질문}}</li>
+  </ol>
+</section>
+
+<section class="answers">
+  <h2>짧은 답</h2>
+  <ol>
+    <li>{{답}}</li>
+  </ol>
+</section>
+
+</body>
+</html>
